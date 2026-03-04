@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northbound Commerce — Shopify Management</title>
+<meta name="description" content="Northbound Commerce is your embedded Shopify management partner. We handle ops, SEO, CRO and design so you can focus on growth.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #FAF7F2;
+  --ink: #0F1A14;
+  --green: #1A6B4A;
+  --green-light: #2D9E6E;
+  --green-pale: #EDF7F2;
+  --amber: #D4820A;
+  --amber-pale: #FEF6E8;
+  --stone: #8A8580;
+  --border: #E2DDD6;
+  --white: #FFFFFF;
+  --max: 1160px;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--cream); font-family: 'Outfit', sans-serif; color: var(--ink); overflow-x: hidden; }
+
+/* GRAIN */
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,247,242,0.88); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 24px rgba(15,26,20,0.06); }
+.nav-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 68px;
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav-logo span { color: var(--green); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { font-size: 13px; font-weight: 400; color: var(--stone); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  background: var(--ink); color: var(--white); font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 500; padding: 10px 22px; border-radius: 7px;
+  text-decoration: none; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--green); color: var(--white); }
+
+/* ── SHARED ── */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+.section-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--green); display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.section-tag::after { content: ''; width: 36px; height: 1px; background: var(--border); }
+.display { font-family: 'Playfair Display', serif; font-size: clamp(44px,5.5vw,76px); font-weight: 900; line-height: 1.0; letter-spacing: -0.025em; }
+.display em { font-style: italic; color: var(--green); }
+.display .hollow { -webkit-text-stroke: 2px var(--ink); color: transparent; }
+h2 { font-family: 'Playfair Display', serif; font-size: clamp(30px,3.5vw,48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+h2 em { font-style: italic; color: var(--green); }
+h3 { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 600; line-height: 1.3; }
+p { font-size: 15px; line-height: 1.75; color: #4A5048; font-weight: 300; }
+.lead { font-size: 18px; line-height: 1.65; color: #3A4038; font-weight: 300; }
+strong { font-weight: 500; color: var(--ink); }
+.rule { width: 40px; height: 2px; background: var(--green); border-radius: 1px; margin: 20px 0 36px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 500;
+  padding: 14px 30px; border-radius: 8px; border: none; cursor: pointer;
+  letter-spacing: 0.02em; text-decoration: none; transition: all 0.2s;
+}
+.btn-dark { background: var(--ink); color: var(--white); }
+.btn-dark:hover { background: #1c2e20; }
+.btn-green { background: var(--green); color: var(--white); }
+.btn-green:hover { background: #135438; }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--ink); }
+.btn .arr { display: inline-block; transition: transform 0.2s; }
+.btn:hover .arr { transform: translateX(4px); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  padding-top: 68px;
+}
+.hero-inner {
+  flex: 1; display: grid; grid-template-columns: 1fr 340px; gap: 0;
+  max-width: var(--max); margin: 0 auto; width: 100%;
+  padding: 0 40px;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 60px 80px 0; border-right: 1px solid var(--border);
+}
+.hero-right {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 0 80px 60px; gap: 32px;
+}
+.hero-stat .n {
+  font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900;
+  color: var(--green); line-height: 1;
+}
+.hero-stat .l { font-size: 12px; color: var(--stone); line-height: 1.4; margin-top: 4px; }
+.hero-divider { height: 1px; background: var(--border); }
+.hero-btns { display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap; }
+
+/* Fade-in animation */
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ── PAIN ── */
+#problem { padding: 100px 0; background: var(--ink); position: relative; overflow: hidden; }
+#problem::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,107,74,0.2) 0%, transparent 70%);
+}
+#problem .section-tag { color: var(--green-light); }
+#problem .section-tag::after { background: rgba(255,255,255,0.1); }
+#problem h2 { color: var(--white); }
+#problem h2 em { color: var(--green-light); }
+.pain-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; margin-top: 52px; }
+.pain-item { background: rgba(255,255,255,0.04); padding: 36px 32px; }
+.pain-item:hover { background: rgba(255,255,255,0.07); }
+.pain-ico { font-size: 28px; margin-bottom: 16px; }
+.pain-item h3 { color: var(--white); font-size: 16px; margin-bottom: 10px; }
+.pain-item p { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.65; }
+.pain-callout {
+  margin-top: 24px; padding: 28px 36px;
+  background: rgba(26,107,74,0.15); border: 1px solid rgba(26,107,74,0.3);
+  border-radius: 10px; display: flex; align-items: center; gap: 24px;
+}
+.pain-callout-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; color: var(--green-light); flex-shrink: 0; }
+.pain-callout p { color: rgba(255,255,255,0.7); font-size: 15px; }
+
+/* ── SOLUTION ── */
+#solution { padding: 100px 0; }
+.solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 0; }
+.ticks { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+.ticks li { display: flex; gap: 12px; font-size: 15px; line-height: 1.55; color: #3A4038; font-weight: 300; }
+.ticks li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.retainer-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
+.rtile {
+  background: var(--ink); border-radius: 10px; padding: 18px 16px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.rtile-ico { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.rtile-label { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+.rtile-sub { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.4; }
+.solution-right-head { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); margin-bottom: 16px; }
+
+/* ── SERVICES ── */
+#services { padding: 100px 0; background: var(--ink); }
+#services .section-tag { color: var(--green-light); }
+#services .section-tag::after { background: rgba(255,255,255,0.1); }
+#services h2 { color: var(--white); }
+#services h2 em { color: var(--green-light); }
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 52px; }
+.service-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 32px 28px; transition: background 0.2s, border-color 0.2s;
+}
+.service-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(26,107,74,0.4); }
+.service-ico { font-size: 26px; margin-bottom: 14px; }
+.service-card h3 { color: var(--white); font-size: 16px; margin-bottom: 10px; }
+.service-ticks { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.service-ticks li { font-size: 13.5px; color: rgba(255,255,255,0.55); display: flex; gap: 10px; line-height: 1.45; }
+.service-ticks li::before { content: '→'; color: var(--green-light); flex-shrink: 0; }
+
+/* ── WHY ── */
+#why { padding: 100px 0; }
+.ctable { width: 100%; border-collapse: collapse; margin-top: 52px; }
+.ctable th { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 20px; text-align: left; border-bottom: 2px solid var(--border); color: var(--stone); }
+.ctable th:last-child { color: var(--green); border-bottom-color: var(--green); }
+.ctable td { padding: 14px 20px; font-size: 14.5px; font-weight: 300; border-bottom: 1px solid var(--border); color: #4A5048; vertical-align: middle; }
+.ctable td:first-child { font-weight: 500; color: var(--ink); }
+.ctable td:nth-child(2), .ctable td:nth-child(3) { color: #C0392B; }
+.ctable td:last-child { color: var(--green); font-weight: 500; }
+.ctable tr:last-child td { border-bottom: none; }
+.ctable tr:hover td { background: rgba(26,107,74,0.02); }
+.why-callout {
+  margin-top: 24px; padding: 28px 32px;
+  background: var(--green-pale); border: 1px solid rgba(26,107,74,0.15);
+  border-radius: 10px;
+}
+.why-callout p { font-size: 15px; color: var(--ink); line-height: 1.7; }
+
+/* ── PRICING ── */
+#pricing { padding: 100px 0; background: var(--ink); }
+#pricing .section-tag { color: var(--green-light); }
+#pricing .section-tag::after { background: rgba(255,255,255,0.1); }
+#pricing h2 { color: var(--white); }
+#pricing h2 em { color: var(--green-light); }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 52px; }
+.plan {
+  border-radius: 14px; padding: 32px 28px; display: flex; flex-direction: column;
+  background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.1);
+  transition: border-color 0.2s;
+}
+.plan:hover { border-color: rgba(255,255,255,0.2); }
+.plan.featured { background: var(--cream); border-color: var(--green); }
+.plan-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: 16px; width: fit-content; }
+.plan-badge.std { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.45); }
+.plan-badge.pop { background: rgba(26,107,74,0.2); color: var(--green-light); }
+.plan.featured .plan-badge.pop { background: rgba(26,107,74,0.12); color: var(--green); }
+.plan-badge.pre { background: rgba(212,130,10,0.15); color: #D4820A; }
+.plan-price { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 4px; }
+.plan.featured .plan-price { color: var(--ink); }
+.plan-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 22px; }
+.plan.featured .plan-note { color: var(--stone); }
+.plan-div { height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 18px; }
+.plan.featured .plan-div { background: var(--border); }
+.plan-ticks { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.plan-ticks li { font-size: 13.5px; color: rgba(255,255,255,0.65); display: flex; gap: 10px; line-height: 1.45; }
+.plan-ticks li::before { content: '✓'; color: var(--green-light); font-weight: 700; flex-shrink: 0; }
+.plan.featured .plan-ticks li { color: #3A4038; }
+.plan.featured .plan-ticks li::before { color: var(--green); }
+.plan-btn {
+  margin-top: 24px; width: 100%; padding: 13px; border-radius: 8px; border: none;
+  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer;
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75);
+  transition: all 0.2s; letter-spacing: 0.02em;
+}
+.plan-btn:hover { background: rgba(255,255,255,0.18); color: var(--white); }
+.plan.featured .plan-btn { background: var(--green); color: var(--white); }
+.plan.featured .plan-btn:hover { background: #135438; }
+.pricing-note { margin-top: 20px; font-size: 12.5px; color: rgba(255,255,255,0.3); }
+
+/* ── PROCESS ── */
+#process { padding: 100px 0; }
+.process-steps { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0; position: relative; margin-top: 52px; }
+.process-steps::before {
+  content: ''; position: absolute; top: 27px; left: 5%; right: 5%; height: 1px;
+  background: var(--border); z-index: 0;
+}
+.pstep { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+.pcircle {
+  width: 54px; height: 54px; border-radius: 50%; background: var(--cream); border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+  margin-bottom: 20px; box-shadow: 0 0 0 6px var(--cream);
+}
+.pstep h3 { font-size: 15px; margin-bottom: 8px; }
+.pstep p { font-size: 13.5px; color: var(--stone); line-height: 1.55; }
+.process-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 52px; }
+.pcard { border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; background: var(--white); }
+.pcard-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.pcard-ico { font-size: 24px; }
+.pcard h3 { font-size: 16px; }
+.pcard.green { background: var(--green-pale); border-color: rgba(26,107,74,0.15); }
+
+/* ── CTA ── */
+#cta { padding: 120px 0; background: var(--ink); position: relative; overflow: hidden; }
+#cta::before {
+  content: ''; position: absolute; top: -100px; left: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,107,74,0.18) 0%, transparent 65%);
+}
+#cta::after { display: none; }
+.cta-inner { text-align: center; position: relative; z-index: 1; }
+.cta-inner .display { color: var(--white); }
+.cta-inner .display em { color: var(--green-light); }
+.cta-inner .display .hollow { -webkit-text-stroke: 2px rgba(255,255,255,0.5); }
+.cta-inner p { color: rgba(255,255,255,0.5); max-width: 500px; margin: 0 auto; font-size: 16px; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+.cta-trust { display: flex; gap: 36px; justify-content: center; align-items: center; margin-top: 52px; }
+.trust-item { text-align: center; }
+.trust-item .tn { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--green-light); }
+.trust-item .tl { font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
+.trust-div { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+
+/* ── FOOTER ── */
+footer { background: #070F0A; padding: 40px 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--white); }
+.footer-logo span { color: var(--green-light); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.7); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { border-right: none; padding: 72px 0; }
+  .pain-grid, .services-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .solution-grid, .process-cards { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .ctable th:nth-child(3), .ctable td:nth-child(3) { display: none; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Northbound<span> Commerce</span></a>
+    <div class="nav-links">
+      <a href="#problem">The Problem</a>
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#process">Get Started</a>
+    </div>
+    <a href="#cta" class="nav-cta">Book Free Audit →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="section-tag fade-in">Shopify Management Agency</div>
+      <div class="display fade-in" style="transition-delay:0.1s;">Your store,<br><em>expertly</em><br>managed.</div>
+      <div class="rule fade-in" style="transition-delay:0.2s;"></div>
+      <p class="lead fade-in" style="max-width:480px; transition-delay:0.25s;">We handle the day-to-day running of your Shopify store so you can focus on growing your brand — not managing your backend.</p>
+      <div class="hero-btns fade-in" style="transition-delay:0.35s;">
+        <a href="#cta" class="btn btn-green">Book Free Audit <span class="arr">→</span></a>
+        <a href="#pricing" class="btn btn-outline">See Pricing</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat fade-in" style="transition-delay:0.15s;">
+        <div class="n">4.6M</div>
+        <div class="l">Shopify stores globally —<br>most are undermanaged</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat fade-in" style="transition-delay:0.25s;">
+        <div class="n">+31%</div>
+        <div class="l">Average revenue uplift after<br>proper store optimisation</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat fade-in" style="transition-delay:0.35s;">
+        <div class="n">Full</div>
+        <div class="l">Ops · SEO · CRO · Design —<br>one dedicated partner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEM ── -->
+<section id="problem">
+  <div class="wrap">
+    <div class="section-tag fade-in">The Problem</div>
+    <h2 class="fade-in" style="transition-delay:0.1s;">Sound <em>familiar?</em></h2>
+    <div class="pain-grid fade-in" style="transition-delay:0.2s;">
+      <div class="pain-item">
+        <div class="pain-ico">🕐</div>
+        <h3>Store admin is eating your week</h3>
+        <p>Product uploads, descriptions, collection management — hours gone before you can work on what actually grows the business.</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-ico">📉</div>
+        <h3>Traffic isn't converting</h3>
+        <p>You're paying for ads and driving visitors, but the store isn't optimised to turn them into buyers. You know something's off but don't have time to fix it.</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-ico">🔍</div>
+        <h3>Your store is invisible on Google</h3>
+        <p>No product SEO, missing metadata, slow pages. Customers who are actively searching for what you sell can't find you.</p>
+      </div>
+    </div>
+    <div class="pain-callout fade-in" style="transition-delay:0.3s;">
+      <div class="pain-callout-num">15–30%</div>
+      <p>of potential revenue is lost by the average Shopify brand operating without proper store management. It's not a technology problem — it's a resource problem, and it's fixable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTION ── -->
+<section id="solution">
+  <div class="wrap">
+    <div class="solution-grid">
+      <div>
+        <div class="section-tag fade-in">The Solution</div>
+        <h2 class="fade-in" style="transition-delay:0.1s;">Your <em>embedded</em><br>ecom team</h2>
+        <div class="rule fade-in" style="transition-delay:0.15s;"></div>
+        <p class="lead fade-in" style="transition-delay:0.2s; font-size:16px;">We become the operational backbone of your Shopify store — handling everything it takes to keep it performing, converting, and growing every single month.</p>
+        <ul class="ticks fade-in" style="transition-delay:0.25s;">
+          <li>Product catalogue fully managed — uploads, descriptions, pricing, variants</li>
+          <li>On-page SEO so your products rank on Google</li>
+          <li>Conversion optimisation — traffic finally turns into revenue</li>
+          <li>Design assets created — banners, collection imagery, campaign visuals</li>
+          <li>Monthly performance reporting with clear, actionable insights</li>
+          <li>Proactive improvements — we spot issues before they cost you</li>
+        </ul>
+      </div>
+      <div class="fade-in" style="transition-delay:0.2s;">
+        <div class="solution-right-head">Why a Monthly Retainer?</div>
+        <div class="retainer-tiles">
+          <div class="rtile">
+            <div class="rtile-ico">🔄</div>
+            <div><div class="rtile-label">Compounds Over Time</div><div class="rtile-sub">Each month builds on the last</div></div>
+          </div>
+          <div class="rtile">
+            <div class="rtile-ico">🎯</div>
+            <div><div class="rtile-label">Brand Fluency</div><div class="rtile-sub">No briefing from scratch</div></div>
+          </div>
+          <div class="rtile">
+            <div class="rtile-ico">📊</div>
+            <div><div class="rtile-label">Accountable Results</div><div class="rtile-sub">Tied to your performance</div></div>
+          </div>
+          <div class="rtile">
+            <div class="rtile-ico">⚡</div>
+            <div><div class="rtile-label">Always On</div><div class="rtile-sub">Every single week, covered</div></div>
+          </div>
+        </div>
+        <div style="background:var(--green-pale); border:1px solid rgba(26,107,74,0.15); border-radius:10px; padding:24px 26px; margin-top:14px;">
+          <h3 style="color:var(--green); margin-bottom:8px; font-size:15px;">What You Get Back</h3>
+          <p style="font-size:14.5px;">Time to focus on product development, marketing, and brand growth — the things only <em>you</em> can do.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-tag fade-in">Full Service Breakdown</div>
+    <h2 class="fade-in" style="transition-delay:0.1s;">Everything your store <em>needs</em></h2>
+    <div class="services-grid fade-in" style="transition-delay:0.2s;">
+      <div class="service-card">
+        <div class="service-ico">📦</div>
+        <h3>Store Operations</h3>
+        <ul class="service-ticks">
+          <li>Product uploads, descriptions & variant management</li>
+          <li>Collections, navigation & UX improvements</li>
+          <li>Inventory, pricing updates & promotional setup</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">🔍</div>
+        <h3>SEO Optimisation</h3>
+        <ul class="service-ticks">
+          <li>Product titles, meta descriptions & alt text</li>
+          <li>Site structure, internal linking & page speed</li>
+          <li>Ongoing keyword-led content improvements</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">📈</div>
+        <h3>Conversion Rate Optimisation</h3>
+        <ul class="service-ticks">
+          <li>Product page layout, copy & trust signal improvements</li>
+          <li>Checkout flow analysis and friction removal</li>
+          <li>Data-driven A/B testing recommendations</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">🎨</div>
+        <h3>Design & Visual Assets</h3>
+        <ul class="service-ticks">
+          <li>Homepage and collection banners</li>
+          <li>Campaign imagery and promotional graphics</li>
+          <li>Brand-consistent visuals across all touchpoints</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY ── -->
+<section id="why">
+  <div class="wrap">
+    <div class="section-tag fade-in">Why Northbound</div>
+    <h2 class="fade-in" style="transition-delay:0.1s;">Not just another <em>agency</em></h2>
+    <table class="ctable fade-in" style="transition-delay:0.2s;">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Large Agencies</th>
+          <th>VAs / Freelancers</th>
+          <th>Northbound Commerce ✓</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Shopify specialist</td><td>Sometimes</td><td>Task-only</td><td>Shopify-only focus</td></tr>
+        <tr><td>SEO + CRO included</td><td>Extra cost</td><td>No</td><td>Core to every plan</td></tr>
+        <tr><td>Design assets</td><td>Separate team</td><td>No</td><td>Included</td></tr>
+        <tr><td>Who you deal with</td><td>Account manager</td><td>Offshore VA</td><td>Senior expert, direct</td></tr>
+        <tr><td>Turnaround</td><td>Days / ticket queue</td><td>Unpredictable</td><td>Same-day on priority items</td></tr>
+        <tr><td>Approach</td><td>Reactive</td><td>Reactive</td><td>Proactive — we bring ideas</td></tr>
+      </tbody>
+    </table>
+    <div class="why-callout fade-in" style="transition-delay:0.3s;">
+      <p><strong>The Northbound difference:</strong> You deal directly with a senior Shopify specialist at Northbound covering ops, SEO, CRO, and design. No handoffs, no queues, no generic support — just fast, expert work from someone who thinks like an ecom co-founder.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-tag fade-in">Pricing</div>
+    <h2 class="fade-in" style="transition-delay:0.1s;">Simple, <em>transparent</em> pricing</h2>
+    <div class="pricing-grid fade-in" style="transition-delay:0.2s;">
+      <div class="plan">
+        <span class="plan-badge std">Starter</span>
+        <div class="plan-price">£500</div>
+        <div class="plan-note">— £750 per month</div>
+        <div class="plan-div"></div>
+        <ul class="plan-ticks">
+          <li>Product uploads & catalogue management</li>
+          <li>Collection & navigation management</li>
+          <li>Basic store maintenance</li>
+          <li>Monthly performance report</li>
+        </ul>
+        <button class="plan-btn">Get Started →</button>
+      </div>
+      <div class="plan featured">
+        <span class="plan-badge pop">Most Popular</span>
+        <div class="plan-price">£1,000</div>
+        <div class="plan-note">— £1,500 per month</div>
+        <div class="plan-div"></div>
+        <ul class="plan-ticks">
+          <li>Everything in Starter</li>
+          <li>On-page SEO optimisation</li>
+          <li>Conversion rate improvements</li>
+          <li>Design assets — banners & imagery</li>
+          <li>Quarterly store speed & UX audit</li>
+        </ul>
+        <button class="plan-btn">Get Started →</button>
+      </div>
+      <div class="plan">
+        <span class="plan-badge pre">Full Partner</span>
+        <div class="plan-price">£2,000</div>
+        <div class="plan-note">— £2,500 per month</div>
+        <div class="plan-div"></div>
+        <ul class="plan-ticks">
+          <li>Everything in Growth</li>
+          <li>End-to-end ecom operations</li>
+          <li>Campaign & promotion management</li>
+          <li>Priority Slack/WhatsApp access</li>
+          <li>Monthly strategy call</li>
+        </ul>
+        <button class="plan-btn">Get Started →</button>
+      </div>
+    </div>
+    <p class="pricing-note">All plans month-to-month. No lock-in contracts. Cancel with 30 days notice.</p>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-tag fade-in">Getting Started</div>
+    <h2 class="fade-in" style="transition-delay:0.1s;">Up and running in <em>days</em></h2>
+    <div class="process-steps fade-in" style="transition-delay:0.2s;">
+      <div class="pstep">
+        <div class="pcircle">🔎</div>
+        <h3>Free Audit</h3>
+        <p>We review your store and flag the biggest opportunities. No commitment required.</p>
+      </div>
+      <div class="pstep">
+        <div class="pcircle">📋</div>
+        <h3>Choose Your Plan</h3>
+        <p>Pick the tier that fits. We tailor the scope to your brand specifically.</p>
+      </div>
+      <div class="pstep">
+        <div class="pcircle">📞</div>
+        <h3>Onboarding Call</h3>
+        <p>30 minutes to align on priorities, access, and how we communicate.</p>
+      </div>
+      <div class="pstep">
+        <div class="pcircle">🚀</div>
+        <h3>We Get to Work</h3>
+        <p>In your store making improvements from day one. Results in week one.</p>
+      </div>
+    </div>
+    <div class="process-cards fade-in" style="transition-delay:0.3s;">
+      <div class="pcard green">
+        <div class="pcard-head">
+          <div class="pcard-ico">🔑</div>
+          <h3>What You'll Need to Provide</h3>
+        </div>
+        <ul class="ticks">
+          <li>Shopify staff account access</li>
+          <li>Brand guidelines or examples (if available)</li>
+          <li>A brief intro call to cover your goals</li>
+        </ul>
+      </div>
+      <div class="pcard">
+        <div class="pcard-head">
+          <div class="pcard-ico">💬</div>
+          <h3>How We Communicate</h3>
+        </div>
+        <ul class="ticks">
+          <li>Dedicated Slack or WhatsApp channel</li>
+          <li>Monthly performance report with clear metrics</li>
+          <li>Proactive updates whenever something important changes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-inner fade-in">
+      <div class="section-tag" style="justify-content:center; color:var(--green-light);">Let's Talk</div>
+      <div class="display" style="margin-bottom:24px;">
+        Ready to stop <em>running</em><br>your store and start<br><span class="hollow">owning</span> it?
+      </div>
+      <p>Book a free 30-minute store audit. We'll show you exactly where you're leaving revenue on the table — no obligation to proceed.</p>
+      <div class="cta-btns">
+        <a href="mailto:hello@northboundcommerce.com" class="btn btn-green" style="font-size:16px; padding:16px 36px;">Book Free Audit <span class="arr">→</span></a>
+        <a href="#pricing" class="btn btn-outline" style="color:rgba(255,255,255,0.7); border-color:rgba(255,255,255,0.2); font-size:16px; padding:16px 36px;">See Pricing</a>
+      </div>
+      <div class="cta-trust">
+        <div class="trust-item"><div class="tn">Free</div><div class="tl">Initial Audit</div></div>
+        <div class="trust-div"></div>
+        <div class="trust-item"><div class="tn">No</div><div class="tl">Lock-in Contracts</div></div>
+        <div class="trust-div"></div>
+        <div class="trust-item"><div class="tn">7 Days</div><div class="tl">To See Results</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-logo">Northbound<span> Commerce</span></div>
+      <div class="footer-links">
+        <a href="#problem">The Problem</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#cta">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Northbound Commerce</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll shadow
+  const navEl = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fade-in on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  // Trigger hero immediately
+  document.querySelectorAll('#hero .fade-in').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), parseInt(el.style.transitionDelay || '0') * 1000 + 100);
+  });
+</script>
+</body>
+</html>
