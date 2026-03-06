@@ -77,10 +77,10 @@ strong { font-weight: 600; color: var(--ink); }
 .arr { display: inline-block; transition: transform 0.2s; }
 .btn:hover .arr { transform: translateX(4px); }
 
-/* FADE-IN — visible by default */
+/* FADE-IN */
 .fade-in { opacity: 1; transform: none; transition: opacity 0.65s ease, transform 0.65s ease; }
 
-/* ── MODAL ── */
+/* MODAL */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 10001;
   background: rgba(15,26,20,0.72); backdrop-filter: blur(6px);
@@ -251,7 +251,6 @@ ol.process-steps::before { content: ''; position: absolute; top: 26px; left: 5%;
 .cta-inner { text-align: center; position: relative; z-index: 1; }
 .cta-inner h2 { color: var(--white); font-size: clamp(36px,4.8vw,66px); }
 .cta-inner h2 em { color: var(--green-light); }
-.cta-inner h2 .hollow { -webkit-text-stroke: 2px rgba(255,255,255,0.5); color: transparent; }
 .cta-inner > p { color: rgba(255,255,255,0.62); max-width: 500px; margin: 22px auto 0; font-size: 16px; line-height: 1.7; }
 .cta-btns { display: flex; gap: 14px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
 .cta-trust { display: flex; gap: 40px; justify-content: center; align-items: center; margin-top: 56px; flex-wrap: wrap; }
@@ -369,7 +368,14 @@ footer { background: #060E08; padding: 40px 0; }
 <!-- NAV -->
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo">Northbound<span> Commerce</span></a>
+    <a href="#hero" class="nav-logo" style="display:inline-flex;align-items:center;text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 52" height="24" aria-label="Northbound Commerce">
+        <text x="0" y="42" font-family="'Outfit',sans-serif" font-weight="700" font-size="48" fill="#0F1A14" letter-spacing="-1">Northbound Commerce</text>
+        <g transform="translate(174, 6)">
+          <path d="M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z" fill="#0F1A14"/>
+        </g>
+      </svg>
+    </a>
     <ul class="nav-links">
       <li><a href="#problem">The Problem</a></li>
       <li><a href="#services">Services</a></li>
@@ -545,7 +551,7 @@ footer { background: #060E08; padding: 40px 0; }
         <li class="pstep"><div class="pcircle" aria-hidden="true">🔎</div><h3>Free Audit</h3><p>We review your store and flag the biggest opportunities. No commitment required.</p></li>
         <li class="pstep"><div class="pcircle" aria-hidden="true">📋</div><h3>Choose Your Plan</h3><p>Pick the tier that fits. We tailor the scope to your brand specifically.</p></li>
         <li class="pstep"><div class="pcircle" aria-hidden="true">📞</div><h3>Onboarding Call</h3><p>30 minutes to align on priorities, access, and how we communicate.</p></li>
-        <li class="pstep"><div class="pcircle" aria-hidden="true">🚀</div><h3>We Get to Work</h3><p>In your store making improvements from day one. Results in week one.</p></li>
+        <li class="pstep"><div class="pcircle" aria-hidden="true">🚀</div><h3>We Get to Work</h3><p>In your store making improvements from day one of your agreed scope.</p></li>
       </ol>
       <div class="process-cards fade-in">
         <div class="pcard green"><div class="pcard-head"><span class="pcard-ico" aria-hidden="true">🔑</span><h3>What You'll Need to Provide</h3></div><ul class="ticks"><li>Shopify staff account access</li><li>Brand guidelines or examples (if available)</li><li>A brief intro call to cover your goals</li></ul></div>
@@ -559,7 +565,7 @@ footer { background: #060E08; padding: 40px 0; }
     <div class="wrap">
       <div class="cta-inner fade-in">
         <p class="section-tag" style="justify-content:center;color:var(--green-light);" aria-hidden="true">Let's Talk</p>
-        <h2 id="cta-heading">Ready to stop <em>running</em><br>your store & start <em>owning</em> it?</h2>
+        <h2 id="cta-heading">Ready to stop <em>running</em><br>your store &amp; start <em>owning</em> it?</h2>
         <p>Book a free 30-minute store audit. We'll show you exactly where you're leaving revenue on the table — no obligation to proceed.</p>
         <div class="cta-btns">
           <button class="btn btn-green open-modal" style="font-size:16px;padding:16px 36px;">Book Free Audit <span class="arr" aria-hidden="true">→</span></button>
@@ -579,7 +585,14 @@ footer { background: #060E08; padding: 40px 0; }
 <footer role="contentinfo">
   <div class="wrap">
     <div class="footer-inner">
-      <p class="footer-logo">Northbound<span> Commerce</span></p>
+      <a href="#hero" style="display:inline-flex;align-items:center;text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 52" height="19" aria-label="Northbound Commerce">
+        <text x="0" y="42" font-family="'Outfit',sans-serif" font-weight="700" font-size="48" fill="#FFFFFF" letter-spacing="-1">Northbound Commerce</text>
+        <g transform="translate(174, 6)">
+          <path d="M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z" fill="#FFFFFF"/>
+        </g>
+      </svg>
+    </a>
       <nav aria-label="Footer navigation" class="footer-links">
         <a href="#problem">The Problem</a>
         <a href="#services">Services</a>
@@ -640,7 +653,7 @@ modalClose.addEventListener('click', closeModal);
 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// FORM SUBMIT → pre-filled mailto
+// FORM SUBMIT
 document.getElementById('modalSubmit').addEventListener('click', () => {
   const name      = document.getElementById('f-name').value.trim();
   const email     = document.getElementById('f-email').value.trim();
@@ -673,7 +686,7 @@ document.getElementById('modalSubmit').addEventListener('click', () => {
   closeModal();
 });
 
-// FADE-IN (progressive enhancement — content visible by default)
+// FADE-IN
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!reduced && 'IntersectionObserver' in window) {
   document.querySelectorAll('.fade-in').forEach(el => {
