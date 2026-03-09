@@ -127,8 +127,84 @@ strong { font-weight: 600; color: var(--ink); }
 .modal-submit:hover { background: #135438; }
 .modal-footer-note { text-align: center; font-size: 12px; color: var(--stone); margin-top: 12px; }
 
+/* SCROLL PROGRESS BAR */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--green);
+  z-index: 10001;
+  transition: width 0.05s linear;
+  pointer-events: none;
+}
+
+/* HEADLINE REVEAL */
+.hero-headline-reveal {
+  overflow: hidden;
+  display: block;
+  padding-bottom: 0.08em; /* prevent descender clip */
+}
+.hero-headline-reveal .line-inner {
+  display: block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+.hero-headline-reveal .line-inner.revealed {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* STAT COUNTER */
+.hero-stat .n[data-count] {
+  display: inline-block;
+  min-width: 3ch;
+}
+
+
+@keyframes aura-drift-1 {
+  0%   { opacity: 0.55; }
+  50%  { opacity: 0.45; }
+  100% { opacity: 0.55; }
+}
+@keyframes aura-drift-2 {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 0.5; }
+  100% { opacity: 0.4; }
+}
+@keyframes aura-drift-3 {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 0.45; }
+  100% { opacity: 0.3; }
+}
+.hero-aura {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
+}
+.hero-aura-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(55px);
+  will-change: transform, opacity;
+  transition: opacity 0.6s ease;
+}
+.hero-aura-orb-1 {
+  width: 700px; height: 700px;
+  top: -120px; left: -120px;
+  background: radial-gradient(circle at center, rgba(26,107,74,0.55) 0%, rgba(45,158,110,0.28) 40%, transparent 70%);
+  animation: aura-drift-1 14s ease-in-out infinite;
+}
+.hero-aura-orb-2 {
+  width: 580px; height: 580px;
+  top: 25%; right: 2%;
+  background: radial-gradient(circle at center, rgba(45,158,110,0.45) 0%, rgba(26,107,74,0.20) 45%, transparent 72%);
+  animation: aura-drift-2 18s ease-in-out infinite;
+}
+.hero-aura-orb-3 {
+  width: 440px; height: 440px;
+  bottom: 0%; left: 30%;
+  background: radial-gradient(circle at center, rgba(26,107,74,0.38) 0%, rgba(45,158,110,0.16) 50%, transparent 75%);
+  animation: aura-drift-3 22s ease-in-out infinite;
+}
+
 /* HERO */
-#hero { min-height: 100vh; display: flex; flex-direction: column; padding-top: 68px; }
+#hero { min-height: 100vh; display: flex; flex-direction: column; padding-top: 68px; position: relative; }
 .hero-inner { flex: 1; display: grid; grid-template-columns: 1fr 320px; max-width: var(--max); margin: 0 auto; width: 100%; padding: 0 40px; }
 .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 60px 80px 0; border-right: 1px solid var(--border); }
 .hero-right { display: flex; flex-direction: column; justify-content: center; padding: 80px 0 80px 60px; gap: 32px; }
@@ -136,6 +212,21 @@ strong { font-weight: 600; color: var(--ink); }
 .hero-stat .l { font-size: 13px; color: var(--stone); line-height: 1.5; margin-top: 5px; }
 .hero-divider { height: 1px; background: var(--border); }
 .hero-btns { display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap; }
+
+/* BUILT BY MERCHANTS */
+#merchants { background: var(--white); }
+.merchants-header { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: end; max-width: var(--max); margin: 0 auto; padding: 100px 40px 0; }
+.merchants-header h2 { margin-bottom: 0; }
+.merchants-header .lead { color: var(--stone); font-size: 16px; }
+.diff-grid { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-top: 64px; }
+.diff-col { padding: 52px 40px 56px; border-right: 1px solid var(--border); position: relative; transition: background 0.25s; overflow: hidden; cursor: default; }
+.diff-col:last-child { border-right: none; }
+.diff-col:hover { background: var(--cream); }
+.diff-col::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.diff-col:hover::before { transform: scaleX(1); }
+.diff-num { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: rgba(94,90,86,0.45); margin-bottom: 30px; display: block; text-transform: uppercase; }
+.diff-col h3 { font-size: 17px; margin-bottom: 14px; letter-spacing: -0.01em; }
+.diff-col p { font-size: 14px; line-height: 1.82; color: var(--stone); font-weight: 300; }
 
 /* PROBLEM */
 #problem { padding: 100px 0; background: var(--ink); position: relative; overflow: hidden; }
@@ -245,9 +336,28 @@ ol.process-steps::before { content: ''; position: absolute; top: 26px; left: 5%;
 .pcard-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .pcard-ico { font-size: 24px; }
 
-/* CTA */
+/* CTA AURA */
+.cta-aura { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.cta-aura-orb { position: absolute; border-radius: 50%; filter: blur(60px); will-change: transform; }
+.cta-aura-orb-1 {
+  width: 650px; height: 650px;
+  top: -160px; left: -160px;
+  background: radial-gradient(circle at center, rgba(45,158,110,0.5) 0%, rgba(26,107,74,0.22) 45%, transparent 70%);
+}
+.cta-aura-orb-2 {
+  width: 550px; height: 550px;
+  bottom: -140px; right: -100px;
+  background: radial-gradient(circle at center, rgba(45,158,110,0.42) 0%, rgba(26,107,74,0.18) 50%, transparent 72%);
+}
+.cta-aura-orb-3 {
+  width: 400px; height: 400px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, rgba(26,107,74,0.28) 0%, rgba(45,158,110,0.10) 55%, transparent 75%);
+}
+
+
 #cta { padding: 120px 0; background: var(--ink); position: relative; overflow: hidden; }
-#cta::before { content: ''; position: absolute; top: -100px; left: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(26,107,74,0.15) 0%, transparent 65%); pointer-events: none; }
 .cta-inner { text-align: center; position: relative; z-index: 1; }
 .cta-inner h2 { color: var(--white); font-size: clamp(36px,4.8vw,66px); }
 .cta-inner h2 em { color: var(--green-light); }
@@ -281,6 +391,10 @@ footer { background: #060E08; padding: 40px 0; }
   ol.process-steps { grid-template-columns: 1fr 1fr; }
   .ctable th:nth-child(3), .ctable td:nth-child(3) { display: none; }
   .wrap { padding: 0 24px; }
+  .merchants-header { grid-template-columns: 1fr; gap: 16px; padding: 72px 24px 0; }
+  .diff-grid { grid-template-columns: 1fr; }
+  .diff-col { border-right: none; border-bottom: 1px solid var(--border); }
+  .diff-col:last-child { border-bottom: none; }
   #problem, #solution, #services, #why, #pricing, #process { padding: 72px 0; }
   #cta { padding: 80px 0; }
   .modal { padding: 32px 24px; }
@@ -363,6 +477,7 @@ footer { background: #060E08; padding: 40px 0; }
   </div>
 </div>
 
+<div id="scroll-progress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- NAV -->
@@ -400,23 +515,57 @@ footer { background: #060E08; padding: 40px 0; }
 
   <!-- HERO -->
   <section id="hero" aria-labelledby="hero-heading">
-    <div class="hero-inner">
+    <div class="hero-aura" aria-hidden="true">
+      <div class="hero-aura-orb hero-aura-orb-1"></div>
+      <div class="hero-aura-orb hero-aura-orb-2"></div>
+      <div class="hero-aura-orb hero-aura-orb-3"></div>
+    </div>
+    <div class="hero-inner" style="position:relative;z-index:1;">
       <div class="hero-left">
         <p class="section-tag fade-in" aria-hidden="true">Shopify Management Agency</p>
-        <h1 id="hero-heading" class="fade-in">Your store,<br><em>expertly</em><br>managed.</h1>
+        <h1 id="hero-heading">
+          <span class="hero-headline-reveal"><span class="line-inner">Your store,</span></span>
+          <span class="hero-headline-reveal"><span class="line-inner"><em>expertly</em></span></span>
+          <span class="hero-headline-reveal"><span class="line-inner">managed.</span></span>
+        </h1>
         <div class="rule fade-in" role="presentation"></div>
-        <p class="lead fade-in" style="max-width:480px;">We handle the day-to-day running of your Shopify store so you can focus on growing your brand — not managing your backend.</p>
+        <p class="lead fade-in" style="max-width:480px;">Most Shopify agencies come from development. We come from ecommerce. We've operated stores, managed catalogues, and tracked conversion data — and we bring that operator mindset to every retainer.</p>
         <div class="hero-btns fade-in">
           <button class="btn btn-green open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></button>
           <a href="#pricing" class="btn btn-outline">See Pricing</a>
         </div>
       </div>
       <div class="hero-right" aria-hidden="true">
-        <div class="hero-stat fade-in"><div class="n">4.6M</div><div class="l">Shopify stores globally —<br>most are undermanaged</div></div>
+        <div class="hero-stat fade-in"><div class="n" data-count="4.6" data-suffix="M">0</div><div class="l">Shopify stores globally —<br>most are undermanaged</div></div>
         <div class="hero-divider"></div>
-        <div class="hero-stat fade-in"><div class="n">+31%</div><div class="l">Average revenue uplift after<br>proper store optimisation</div></div>
+        <div class="hero-stat fade-in"><div class="n" data-count="31" data-prefix="+" data-suffix="%">0</div><div class="l">Average revenue uplift after<br>proper store optimisation</div></div>
         <div class="hero-divider"></div>
         <div class="hero-stat fade-in"><div class="n">Full</div><div class="l">Ops · SEO · CRO · Design —<br>one dedicated partner</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILT BY MERCHANTS -->
+  <section id="merchants" aria-labelledby="merchants-heading">
+    <div class="merchants-header fade-in">
+      <h2 id="merchants-heading">Built by merchants.<br><em>Run for merchants.</em></h2>
+      <p class="lead">We're the only Shopify management agency run by people who've actually operated ecommerce brands — not just built them. That difference shows in everything we do.</p>
+    </div>
+    <div class="diff-grid fade-in">
+      <div class="diff-col">
+        <span class="diff-num">01 / 03</span>
+        <h3>We come from ecommerce</h3>
+        <p>Our team has operated DTC brands, not just built websites. We understand margins, AOV, conversion funnels, and the real ops of running a store because we've lived it from the inside.</p>
+      </div>
+      <div class="diff-col">
+        <span class="diff-num">02 / 03</span>
+        <h3>We embed, not deliver</h3>
+        <p>No project handoffs. No account managers. We become a permanent operational layer inside your business — compounding improvements every single week, not parachuting in and leaving.</p>
+      </div>
+      <div class="diff-col">
+        <span class="diff-num">03 / 03</span>
+        <h3>We speak your language</h3>
+        <p>AOV, CVR, repeat purchase rate, CAC payback. Not tickets, sprints, and deployments. We think commercially — like an ecom co-founder, not a contracted developer.</p>
       </div>
     </div>
   </section>
@@ -562,6 +711,11 @@ footer { background: #060E08; padding: 40px 0; }
 
   <!-- CTA -->
   <section id="cta" aria-labelledby="cta-heading">
+    <div class="cta-aura" aria-hidden="true">
+      <div class="cta-aura-orb cta-aura-orb-1"></div>
+      <div class="cta-aura-orb cta-aura-orb-2"></div>
+      <div class="cta-aura-orb cta-aura-orb-3"></div>
+    </div>
     <div class="wrap">
       <div class="cta-inner fade-in">
         <p class="section-tag" style="justify-content:center;color:var(--green-light);" aria-hidden="true">Let's Talk</p>
@@ -710,7 +864,118 @@ if (!reduced && 'IntersectionObserver' in window) {
   });
 }
 
-// ACTIVE NAV LINK
+// SCROLL PROGRESS BAR
+const progressBar = document.getElementById('scroll-progress');
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+  progressBar.style.width = pct + '%';
+  progressBar.setAttribute('aria-valuenow', pct);
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+// HERO HEADLINE REVEAL
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Fall back: just show everything immediately
+    document.querySelectorAll('.line-inner').forEach(el => el.classList.add('revealed'));
+    return;
+  }
+  const lines = document.querySelectorAll('.hero-headline-reveal .line-inner');
+  lines.forEach((line, i) => {
+    setTimeout(() => line.classList.add('revealed'), 120 + i * 110);
+  });
+})();
+
+// STAT COUNTER ANIMATION
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.n[data-count]').forEach(el => {
+      el.textContent = (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || '');
+    });
+    return;
+  }
+
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.count);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const isDecimal = String(el.dataset.count).includes('.');
+    const duration = 1600;
+    const start = performance.now();
+
+    function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutExpo(progress);
+      const value = eased * target;
+      el.textContent = prefix + (isDecimal ? value.toFixed(1) : Math.floor(value)) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        statObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.n[data-count]').forEach(el => statObs.observe(el));
+})();
+
+
+// AURA CURSOR TRACKING (shared for hero + cta)
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function initAura(sectionId, config) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    const orbs = config.map(c => ({ el: section.querySelector(c.sel), lag: c.lag, ox: c.ox, oy: c.oy }));
+    const pos  = config.map(c => ({ x: c.ix, y: c.iy }));
+    let rect   = section.getBoundingClientRect();
+    let target = { x: rect.width / 2, y: rect.height / 2 };
+
+    window.addEventListener('resize', () => { rect = section.getBoundingClientRect(); }, { passive: true });
+    window.addEventListener('scroll', () => { rect = section.getBoundingClientRect(); }, { passive: true });
+    section.addEventListener('mousemove', e => { target = { x: e.clientX - rect.left, y: e.clientY - rect.top }; }, { passive: true });
+    section.addEventListener('mouseleave', () => { target = { x: rect.width / 2, y: rect.height / 2 }; }, { passive: true });
+
+    function tick() {
+      orbs.forEach((orb, i) => {
+        pos[i].x = lerp(pos[i].x, target.x, orb.lag);
+        pos[i].y = lerp(pos[i].y, target.y, orb.lag);
+        orb.el.style.transform = `translate(${pos[i].x + orb.ox}px, ${pos[i].y + orb.oy}px)`;
+      });
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  initAura('hero', [
+    { sel: '.hero-aura-orb-1', lag: 0.06,  ox: -350, oy: -350, ix: 350, iy: 350  },
+    { sel: '.hero-aura-orb-2', lag: 0.04,  ox: -290, oy: -290, ix: 900, iy: 400  },
+    { sel: '.hero-aura-orb-3', lag: 0.025, ox: -220, oy: -220, ix: 600, iy: 600  },
+  ]);
+
+  initAura('cta', [
+    { sel: '.cta-aura-orb-1', lag: 0.07,  ox: -325, oy: -325, ix: 325, iy: 325  },
+    { sel: '.cta-aura-orb-2', lag: 0.045, ox: -275, oy: -275, ix: 800, iy: 350  },
+    { sel: '.cta-aura-orb-3', lag: 0.03,  ox: -200, oy: -200, ix: 500, iy: 250  },
+  ]);
+})();
+
 document.querySelectorAll('section[id]').forEach(s => {
   new IntersectionObserver(entries => {
     entries.forEach(e => {
