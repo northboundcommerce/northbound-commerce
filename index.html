@@ -1208,7 +1208,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
     </div>
     <div class="footer-bottom">
       <small>© 2026 Northbound Commerce Ltd. All rights reserved.</small>
-      <span>Privacy Policy · Terms of Service</span>
+      <span><a href="/privacy-policy.html" style="color:rgba(255,255,255,0.45);text-decoration:none;">Privacy Policy</a> · <a href="/terms-of-service.html" style="color:rgba(255,255,255,0.45);text-decoration:none;">Terms of Service</a></span>
     </div>
   </div>
 </footer>
@@ -1327,7 +1327,10 @@ if (!reduced && 'IntersectionObserver' in window) {
   function initAura(sectionId, configs) {
     const section = document.getElementById(sectionId);
     if (!section) return;
-    co
+    const orbs = configs.map(c => ({ el: section.querySelector(c.sel), lag: c.lag, ox: c.ox, oy: c.oy }));
+    const pos  = configs.map(c => ({ x: c.ix, y: c.iy }));
+    let rect   = section.getBoundingClientRect();
+    let target = { x: rect.width / 2, y: rect.height / 2 };
     window.addEventListener('resize',  () => { rect = section.getBoundingClientRect(); }, { passive: true });
     window.addEventListener('scroll',  () => { rect = section.getBoundingClientRect(); }, { passive: true });
     section.addEventListener('mousemove',  e => { target = { x: e.clientX - rect.left, y: e.clientY - rect.top }; }, { passive: true });
