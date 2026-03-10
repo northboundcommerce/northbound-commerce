@@ -264,7 +264,7 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 }
 .hero-ticker {
   white-space: nowrap;
-  animation: tickerScroll 32s linear infinite;
+  animation: tickerScroll 24s linear infinite;
   font-family: var(--serif);
   font-size: clamp(4.5rem, 10vw, 12rem);
   font-weight: 400; line-height: 1; color: var(--ink);
@@ -622,9 +622,17 @@ footer { background: #060E08; padding: 52px 0 32px; }
   .hero-bottom { grid-template-columns: 1fr; padding: 28px 24px 52px; }
   .hero-sub { max-width: 100%; }
   .pain-grid, .services-grid-ed { grid-template-columns: 1fr; }
-  .stats-strip { grid-template-columns: 1fr; }
-  .stat-item { border-right: none; border-bottom: 1px solid var(--rule); padding: 40px 24px; }
-  .stat-item:last-child { border-bottom: none; }
+  .stats-strip {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; grid-template-columns: unset;
+    border-bottom: 1px solid var(--rule);
+  }
+  .stats-strip::-webkit-scrollbar { display: none; }
+  .stat-item {
+    flex: 0 0 72vw; min-width: 220px; scroll-snap-align: start;
+    border-right: 1px solid var(--rule); border-bottom: none; padding: 36px 24px;
+  }
+  .stat-item:last-child { border-right: none; }
   .pricing-grid-ed, .gs-steps { grid-template-columns: 1fr; }
   .gs-cards { grid-template-columns: 1fr; }
   .gs-header { grid-template-columns: 1fr; gap: 20px; padding: 52px 0 48px; }
@@ -1193,7 +1201,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
         <p class="footer-col-title">Connect</p>
         <ul class="footer-links">
           <li><a href="https://www.instagram.com/northboundcommerce" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          <li><a href="mailto:contact@northboundcommerce.co.uk">contact@northboundcommerce.co.uk</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#1a7975746e7b796e5a7475686e7278756f747e797577777f68797f347975346f71"><span class="__cf_email__" data-cfemail="b8dbd7d6ccd9dbccf8d6d7caccd0dad7cdd6dcdbd7d5d5ddcadbdd96dbd796cdd3">[email&#160;protected]</span></a></li>
           <li><a href="#" class="footer-cta open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></a></li>
         </ul>
       </div>
@@ -1205,7 +1213,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // NAV
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
@@ -1353,13 +1361,4 @@ if (!reduced && 'IntersectionObserver' in window) {
 document.querySelectorAll('section[id]').forEach(s => {
   new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) document.querySelectorAll('.nav-links a').forEach(l => {
-        l.removeAttribute('aria-current');
-        if (l.getAttribute('href') === '#' + e.target.id) l.setAttribute('aria-current', 'page');
-      });
-    });
-  }, { threshold: 0.4 }).observe(s);
-});
-</script>
-</body>
-</html>
+      if (e.isIntersecting) document.query
