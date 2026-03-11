@@ -20,6 +20,8 @@ html, body { margin: 0; padding: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .hero-ticker, .section-scroll-inner, .hero-aura-orb, .cta-aura-orb { animation: none !important; transform: none !important; }
+  body::before { display: none; }
 }
 :root {
   --bg:           #f9f7f4;
@@ -169,6 +171,25 @@ body::before {
 }
 .modal-submit:hover { background: #135438; }
 .modal-footer-note { text-align: center; font-size: 0.75rem; color: var(--mid); margin-top: 10px; }
+
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.modal-overlay[hidden] { display: none; }
+.modal[tabindex="-1"] { outline: none; }
+.form-help, .form-error {
+  display: block; margin-top: 6px; font-size: 0.78rem; line-height: 1.5;
+}
+.form-help { color: var(--mid); }
+.form-error { color: #8F1D12; min-height: 1.2em; }
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+  border-color: #8F1D12;
+  box-shadow: 0 0 0 1px #8F1D12;
+}
 
 /* ── LAYOUT UTILS ── */
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--page-pad); }
@@ -685,25 +706,31 @@ footer { background: #060E08; padding: 52px 0 32px; }
 <body>
 
 <!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal">
-    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription" hidden>
+  <div class="modal" tabindex="-1">
+    <button type="button" class="modal-close" id="modalClose" aria-label="Close">✕</button>
     <p class="modal-eyebrow">Free Store Audit</p>
     <h2 id="modalTitle">Tell us about your store</h2>
-    <p class="modal-sub">Fill in a few quick details and we'll come back within 1 business day with specific recommendations — not a generic report.</p>
+    <p class="modal-sub" id="modalDescription">Fill in a few quick details and we'll come back within 1 business day with specific recommendations — not a generic report.</p>
+    <form id="auditForm" novalidate>
+    <p id="formStatus" class="sr-only" aria-live="polite"></p>
     <div class="form-row">
       <div class="form-group">
         <label for="f-name">Your name <span class="req">*</span></label>
-        <input type="text" id="f-name" autocomplete="name">
+        <input type="text" id="f-name" name="name" autocomplete="name" required aria-required="true" aria-describedby="f-name-error">
+        <span id="f-name-error" class="form-error" aria-live="polite"></span>
       </div>
       <div class="form-group">
         <label for="f-email">Email address <span class="req">*</span></label>
-        <input type="email" id="f-email" autocomplete="email">
+        <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="f-email-error">
+        <span id="f-email-error" class="form-error" aria-live="polite"></span>
       </div>
     </div>
     <div class="form-group">
       <label for="f-url">Your Shopify store URL <span class="req">*</span></label>
-      <input type="url" id="f-url" placeholder="https://yourbrand.com">
+      <input type="url" id="f-url" name="store-url" placeholder="https://yourbrand.com" inputmode="url" autocomplete="url" required aria-required="true" aria-describedby="f-url-help f-url-error">
+      <span id="f-url-help" class="form-help">Include the full website address, such as https://yourbrand.com</span>
+      <span id="f-url-error" class="form-error" aria-live="polite"></span>
     </div>
     <div class="form-group">
       <label for="f-plan">Which plan interests you?</label>
@@ -726,7 +753,8 @@ footer { background: #060E08; padding: 52px 0 32px; }
     </div>
     <div class="form-group">
       <label for="f-challenge">What's your biggest challenge right now? <span class="req">*</span></label>
-      <textarea id="f-challenge" placeholder="e.g. Store admin takes too long, traffic not converting, poor Google rankings…"></textarea>
+      <textarea id="f-challenge" name="challenge" placeholder="e.g. Store admin takes too long, traffic not converting, poor Google rankings…" required aria-required="true" aria-describedby="f-challenge-error"></textarea>
+      <span id="f-challenge-error" class="form-error" aria-live="polite"></span>
     </div>
     <div class="form-group">
       <label for="f-hear">How did you hear about us?</label>
@@ -739,19 +767,21 @@ footer { background: #060E08; padding: 52px 0 32px; }
         <option value="Other">Other</option>
       </select>
     </div>
-    <button class="modal-submit" id="modalSubmit">Send My Audit Request →</button>
+    <button class="modal-submit" id="modalSubmit" type="submit">Send My Audit Request →</button>
     <p class="modal-footer-note">We'll be in touch within 1 business day. No obligation to proceed.</p>
+    </form>
   </div>
 </div>
 
 <div id="scroll-progress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
+<header>
 <!-- NAV -->
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 52" height="22" aria-label="Northbound Commerce">
+    <a href="#hero" class="nav-logo" aria-label="Northbound Commerce home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 52" height="22" aria-hidden="true" focusable="false">
         <text x="0" y="42" font-family="'Outfit',sans-serif" font-weight="700" font-size="48" fill="#0F1A14" letter-spacing="-1">Northbound Commerce</text>
         <g transform="translate(174, 6)">
           <path d="M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z" fill="#0F1A14"/>
@@ -764,19 +794,20 @@ footer { background: #060E08; padding: 52px 0 32px; }
       <li><a href="#why">Why Us</a></li>
       <li><a href="#pricing">Pricing</a></li>
     </ul>
-    <button class="nav-cta open-modal">Book Free Audit &nbsp;<span aria-hidden="true">→</span></button>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">☰</button>
+    <button type="button" class="nav-cta open-modal">Book Free Audit &nbsp;<span aria-hidden="true">→</span></button>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">☰</button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#problem">The Problem</a>
     <a href="#services">Services</a>
     <a href="#why">Why Us</a>
     <a href="#pricing">Pricing</a>
-    <button class="open-modal">Book Free Audit &nbsp;→</button>
+    <button type="button" class="open-modal" aria-label="Book free audit">Book Free Audit &nbsp;→</button>
   </div>
 </nav>
+</header>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 
 <!-- HERO -->
 <section id="hero" aria-labelledby="hero-heading">
@@ -800,7 +831,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
     <div class="hero-right-col fade-in" style="transition-delay:0.5s;">
       <p class="hero-sub">Shopify store management handled every week — catalogue operations, SEO, CRO and design. You focus on the brand. We run the store.</p>
       <div class="hero-actions">
-        <button class="btn btn-green open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></button>
+        <button type="button" class="btn btn-green open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></button>
         <a href="#pricing" class="btn btn-outline">See Pricing</a>
       </div>
     </div>
@@ -986,7 +1017,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
           <li>Monthly performance report</li>
         </ul>
         <p class="plan-scope-note">Exact scope confirmed at audit based on your store's needs.</p>
-        <button class="plan-btn-ed outline-dark open-modal" data-plan="Starter (from £500/month)">Start with Starter →</button>
+        <button type="button" class="plan-btn-ed outline-dark open-modal" data-plan="Starter (from £500/month)">Start with Starter →</button>
       </div>
 
       <div class="plan-card-ed featured">
@@ -1004,7 +1035,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
           <li>Design assets — banners & imagery (up to 5/mo)</li>
           <li>Quarterly store speed & UX audit</li>
         </ul>
-        <button class="plan-btn-ed solid-green open-modal" data-plan="Growth (from £1,000/month)">Start with Growth →</button>
+        <button type="button" class="plan-btn-ed solid-green open-modal" data-plan="Growth (from £1,000/month)">Start with Growth →</button>
       </div>
 
       <div class="plan-card-ed plan-card-premium">
@@ -1021,7 +1052,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
           <li>Priority comms — faster response than standard plans</li>
           <li>Monthly strategy call with a senior lead</li>
         </ul>
-        <button class="plan-btn-ed solid-green-outline open-modal" data-plan="Full Partner (from £2,000/month)">Start with Full Partner →</button>
+        <button type="button" class="plan-btn-ed solid-green-outline open-modal" data-plan="Full Partner (from £2,000/month)">Start with Full Partner →</button>
       </div>
 
     </div>
@@ -1174,7 +1205,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
     </h2>
     <p class="cta-sub reveal">Book a free 30-minute Shopify store audit. We'll show you exactly where you're leaving revenue on the table — no obligation to proceed.</p>
     <div class="cta-actions reveal">
-      <button class="btn btn-green open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></button>
+      <button type="button" class="btn btn-green open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></button>
       <a href="#pricing" class="btn btn-ghost-dark">See Pricing</a>
     </div>
     <div class="cta-trust reveal">
@@ -1194,8 +1225,8 @@ footer { background: #060E08; padding: 52px 0 32px; }
   <div class="wrap">
     <div class="footer-inner">
       <div>
-        <a href="#hero" class="footer-brand">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 52" height="18" aria-label="Northbound Commerce">
+        <a href="#hero" class="footer-brand" aria-label="Northbound Commerce home">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 52" height="18" aria-hidden="true" focusable="false">
             <text x="0" y="42" font-family="'Outfit',sans-serif" font-weight="700" font-size="48" fill="#FFFFFF" letter-spacing="-1">Northbound Commerce</text>
             <g transform="translate(174, 6)">
               <path d="M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z" fill="#FFFFFF"/>
@@ -1219,7 +1250,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
         <ul class="footer-links">
           <li><a href="https://www.instagram.com/northboundcommerce" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           <li><a href="mailto:contact@northboundcommerce.co.uk">contact@northboundcommerce.co.uk</a></li>
-          <li><a href="#" class="footer-cta open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></a></li>
+          <li><button type="button" class="footer-cta open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></button></li>
         </ul>
       </div>
     </div>
@@ -1250,41 +1281,139 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
 }));
 
 // MODAL
-const overlay   = document.getElementById('modalOverlay');
+const overlay = document.getElementById('modalOverlay');
+const modal = overlay.querySelector('.modal');
 const modalClose = document.getElementById('modalClose');
 const planSelect = document.getElementById('f-plan');
+const auditForm = document.getElementById('auditForm');
+const formStatus = document.getElementById('formStatus');
+const pageRegions = [document.querySelector('header'), document.getElementById('main-content'), document.querySelector('footer')];
+let lastFocusedElement = null;
 
+function getFocusableElements(container) {
+  return [...container.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+    .filter(el => el.offsetParent !== null);
+}
+function setPageInert(isInert) {
+  pageRegions.forEach(el => {
+    if (!el) return;
+    if (isInert) {
+      el.setAttribute('aria-hidden', 'true');
+      el.inert = true;
+    } else {
+      el.removeAttribute('aria-hidden');
+      el.inert = false;
+    }
+  });
+}
 function openModal(preselect) {
+  lastFocusedElement = document.activeElement;
+  overlay.hidden = false;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+  setPageInert(true);
   if (preselect) planSelect.value = preselect;
   mobileMenu.classList.remove('open');
   toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'Open navigation menu');
   toggle.textContent = '☰';
-  setTimeout(() => modalClose.focus(), 100);
+  requestAnimationFrame(() => modal.focus());
 }
-function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+function closeModal() {
+  overlay.classList.remove('open');
+  overlay.hidden = true;
+  document.body.style.overflow = '';
+  setPageInert(false);
+  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
+}
 
 document.querySelectorAll('.open-modal').forEach(el => {
   el.addEventListener('click', e => { e.preventDefault(); openModal(el.dataset.plan || ''); });
 });
 modalClose.addEventListener('click', closeModal);
 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-// FORM SUBMIT
-document.getElementById('modalSubmit').addEventListener('click', () => {
-  const name      = document.getElementById('f-name').value.trim();
-  const email     = document.getElementById('f-email').value.trim();
-  const url       = document.getElementById('f-url').value.trim();
-  const plan      = document.getElementById('f-plan').value      || 'Not sure yet';
-  const revenue   = document.getElementById('f-revenue').value   || 'Not provided';
-  const challenge = document.getElementById('f-challenge').value.trim();
-  const hear      = document.getElementById('f-hear').value      || 'Not provided';
-  if (!name || !email || !url || !challenge) {
-    alert('Please fill in your name, email, store URL and biggest challenge before sending.');
+document.addEventListener('keydown', e => {
+  if (overlay.hidden) return;
+  if (e.key === 'Escape') {
+    closeModal();
     return;
   }
+  if (e.key === 'Tab') {
+    const focusable = getFocusableElements(modal);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+});
+
+// FORM SUBMIT
+const fieldRules = {
+  'f-name': value => value ? '' : 'Enter your name.',
+  'f-email': value => {
+    if (!value) return 'Enter your email address.';
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Enter a valid email address.';
+  },
+  'f-url': value => {
+    if (!value) return 'Enter your Shopify store URL.';
+    try {
+      const url = new URL(value);
+      return /^https?:$/.test(url.protocol) ? '' : 'Use a full web address starting with http or https.';
+    } catch {
+      return 'Enter a valid website address.';
+    }
+  },
+  'f-challenge': value => value ? '' : 'Describe your biggest challenge.'
+};
+
+function setFieldError(fieldId, message) {
+  const field = document.getElementById(fieldId);
+  const error = document.getElementById(fieldId + '-error');
+  field.setAttribute('aria-invalid', message ? 'true' : 'false');
+  if (error) error.textContent = message;
+}
+function validateForm() {
+  let firstInvalid = null;
+  Object.entries(fieldRules).forEach(([fieldId, rule]) => {
+    const field = document.getElementById(fieldId);
+    const message = rule(field.value.trim());
+    setFieldError(fieldId, message);
+    if (message && !firstInvalid) firstInvalid = field;
+  });
+  if (firstInvalid) {
+    formStatus.textContent = 'There are errors in the form. Please review the highlighted fields.';
+    firstInvalid.focus();
+    return false;
+  }
+  formStatus.textContent = '';
+  return true;
+}
+Object.keys(fieldRules).forEach(fieldId => {
+  const field = document.getElementById(fieldId);
+  field.addEventListener('input', () => {
+    const message = fieldRules[fieldId](field.value.trim());
+    setFieldError(fieldId, message);
+  });
+});
+
+auditForm.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!validateForm()) return;
+
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const url = document.getElementById('f-url').value.trim();
+  const plan = document.getElementById('f-plan').value || 'Not sure yet';
+  const revenue = document.getElementById('f-revenue').value || 'Not provided';
+  const challenge = document.getElementById('f-challenge').value.trim();
+  const hear = document.getElementById('f-hear').value || 'Not provided';
+
   const subject = encodeURIComponent('Free Store Audit Request — ' + name);
   const body = encodeURIComponent(
     'Hi Northbound Commerce,\n\nI\'d like to request a free store audit.\n\n' +
