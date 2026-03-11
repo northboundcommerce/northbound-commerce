@@ -10,6 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@300;400;500;600&family=Outfit:wght@700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@300;400;500;600&family=Outfit:wght@700&display=swap" rel="stylesheet">
 
 <style>
@@ -228,6 +229,22 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
   transition: transform 0.78s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease;
 }
 .hero-headline-reveal .line-inner.revealed { transform: translateY(0); opacity: 1; }
+
+/* Keep above-the-fold content stable on first paint */
+#hero .fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+#hero .hero-headline-reveal {
+  overflow: visible;
+}
+#hero .hero-headline-reveal .line-inner {
+  transform: none;
+  opacity: 1;
+  transition: none;
+  will-change: auto;
+}
 
 /* ── HERO ── */
 #hero {
@@ -1292,16 +1309,6 @@ function updateProgress() {
 window.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
-// HERO HEADLINE REVEAL
-(function() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.line-inner').forEach(el => el.classList.add('revealed'));
-    return;
-  }
-  document.querySelectorAll('.hero-headline-reveal .line-inner').forEach((line, i) => {
-    setTimeout(() => line.classList.add('revealed'), 140 + i * 120);
-  });
-})();
 
 // SCROLL REVEALS
 const io = new IntersectionObserver((entries) => {
@@ -1309,15 +1316,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// FADE-IN (hero)
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (!reduced && 'IntersectionObserver' in window) {
-  document.querySelectorAll('#hero .fade-in').forEach(el => {
-    el.style.opacity = '0'; el.style.transform = 'translateY(18px)';
-    const delay = (parseFloat(el.style.transitionDelay) || 0) * 1000 + 80;
-    setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, delay);
-  });
-}
 
 // AURA CURSOR TRACKING
 (function() {
