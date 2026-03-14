@@ -1,13 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Northbound Commerce — Shopify Management Agency</title>
-<meta name="description" content="Northbound Commerce is a dedicated Shopify store management agency — handling catalogue operations, SEO, CRO and design on a monthly retainer with no minimum term.">
-<meta property="og:title" content="Northbound Commerce — Shopify Store Management">
-<meta property="og:description" content="Shopify store management handled every week. Ops, SEO, CRO and design — one senior specialist, no lock-in.">
+
+<!-- Primary SEO -->
+<title>Shopify Store Management Agency UK | Northbound Commerce</title>
+<meta name="description" content="UK-based Shopify store management agency. Ongoing ops, SEO, CRO and design — handled by a senior specialist on a monthly retainer. No lock-in. Book a free store audit.">
+<link rel="canonical" href="https://northboundcommerce.co.uk/">
+
+<!-- Open Graph -->
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://northboundcommerce.co.uk/">
+<meta property="og:title" content="Shopify Store Management Agency UK | Northbound Commerce">
+<meta property="og:description" content="Ongoing Shopify store management — ops, SEO, CRO and design under one retainer. Senior specialist, no lock-in. Based in the UK.">
+<meta property="og:site_name" content="Northbound Commerce">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shopify Store Management Agency UK | Northbound Commerce">
+<meta name="twitter:description" content="Ongoing Shopify store management — ops, SEO, CRO and design under one retainer. Senior specialist, no lock-in.">
+<meta name="twitter:site" content="@northboundcommerce">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Northbound Commerce",
+  "url": "https://northboundcommerce.co.uk/",
+  "description": "UK-based Shopify store management agency offering ongoing operations, SEO, CRO and design on a monthly retainer.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "GB"
+  },
+  "areaServed": "GB",
+  "priceRange": "££",
+  "serviceType": "Shopify Store Management",
+  "knowsAbout": ["Shopify", "eCommerce", "SEO", "CRO", "Store Operations"],
+  "sameAs": [
+    "https://www.instagram.com/northboundcommerce"
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@300;400;500;600&family=Outfit:wght@700&display=swap">
@@ -206,9 +243,20 @@ h1 {
   font-weight: 400; line-height: 1.15; letter-spacing: -0.01em;
 }
 h1 em, h2 em { font-style: italic; color: var(--green); }
+
+/* Balanced headings */
+.headline-balance {
+  text-wrap: balance;
+  max-width: 18ch;
+}
+@media (max-width: 600px) {
+  .headline-balance {
+    max-width: 22ch;
+  }
+}
 h2 {
   font-family: var(--serif); font-size: clamp(1.9rem, 3vw, 2.7rem);
-  font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 28px;
+  font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 20px;
 }
 h3 { font-family: var(--sans); font-size: 1rem; font-weight: 600; line-height: 1.3; }
 p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
@@ -302,25 +350,29 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 }
 .hero-ticker {
   white-space: nowrap;
-  animation: tickerScroll 24s linear infinite;
+  animation: heroTickerScroll 24s linear infinite;
   font-family: var(--serif);
   font-size: clamp(4.5rem, 10vw, 12rem);
   font-weight: 400; line-height: 1; color: var(--ink);
   opacity: 0.82; letter-spacing: -0.01em;
 }
 .hero-ticker em { font-style: italic; color: var(--green); }
-@keyframes tickerScroll {
+@keyframes heroTickerScroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
 }
 
 /* Hero bottom bar */
 .hero-bottom {
   position: relative; z-index: 2;
   display: grid; grid-template-columns: 1fr 1fr;
-  align-items: end; gap: 48px;
+  align-items: end; gap: 32px;
   border-top: 1px solid var(--rule);
-  padding: 36px var(--page-pad) 64px;
+  padding: 28px var(--page-pad) 48px;
 }
 .hero-right-col { display: flex; flex-direction: column; gap: 28px; }
 .hero-sub { font-size: 1rem; color: var(--mid); line-height: 1.75; max-width: 420px; }
@@ -329,7 +381,7 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 /* ── MERCHANTS / BUILT BY ── */
 /* ── PROBLEM (dark) ── */
 #problem {
-  padding: 100px 0; background: var(--ink);
+  padding: 80px 0; background: var(--ink);
   position: relative; overflow: hidden;
 }
 #problem::before {
@@ -345,20 +397,25 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 .pain-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
   background: rgba(255,255,255,0.08); border-radius: 10px;
-  overflow: hidden; margin-top: 48px; list-style: none;
+  overflow: hidden; margin-top: 32px; list-style: none;
 }
-.pain-item { background: rgba(255,255,255,0.04); padding: 36px 30px; transition: background 0.2s; }
+.pain-item { background: rgba(255,255,255,0.04); padding: 28px 24px; transition: background 0.2s; }
 .pain-item:hover { background: rgba(255,255,255,0.07); }
 .pain-ico { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; color: var(--white); margin-bottom: 24px; }
 .pain-ico svg { width: 44px; height: 44px; display: block; }
 .pain-item h3 { color: var(--white); font-size: 1rem; margin-bottom: 10px; }
 .pain-item p { color: rgba(255,255,255,0.62); font-size: 0.875rem; line-height: 1.72; }
 .pain-callout {
-  margin-top: 20px; padding: 26px 34px;
+  margin-top: 20px; padding: 36px 44px;
   background: rgba(26,107,74,0.18); border: 1px solid rgba(45,158,110,0.35);
-  border-radius: 10px; display: flex; align-items: center; gap: 28px;
+  border-radius: 10px;
 }
-.pain-callout p { color: rgba(255,255,255,0.75); font-size: 0.94rem; line-height: 1.75; }
+.pain-callout-headline {
+  font-family: var(--serif); font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 400; line-height: 1.25; color: var(--white); margin-bottom: 10px;
+}
+.pain-callout-headline em { font-style: italic; color: var(--green-light); }
+.pain-callout-sub { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.7; margin: 0; }
 
 /* ── STATS STRIP ── */
 .stats-strip {
@@ -378,14 +435,18 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 /* ── SECTION SCROLLER ── */
 .section-scroller {
   border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
-  padding: 20px 0; overflow: hidden; white-space: nowrap;
+  padding: 20px 0; overflow: hidden;
 }
-.section-scroll-inner { display: inline-flex; animation: tickerScroll 22s linear infinite; }
+.section-scroll-inner {
+  display: flex; width: max-content;
+  animation: tickerScroll 22s linear infinite;
+  will-change: transform;
+}
 .section-scroll-text { font-family: var(--serif); font-size: 1.45rem; font-weight: 400; color: var(--ink); padding-right: 80px; }
 .section-scroll-text em { font-style: italic; color: var(--mid); }
 
-/* ── SERVICES (dark) ── */
-#services { padding: 0; background: var(--ink); }
+/* ── SERVICES (dark green tint) ── */
+#services { padding: 0; background: #0A1A10; }
 #services .section-label { color: var(--green-light); }
 #services .section-label::before { background: var(--green-light); }
 #services h2 { color: var(--white); }
@@ -395,7 +456,7 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 .services-scroller { border-color: rgba(255,255,255,0.1); }
 .services-grid-ed {
   display: grid; grid-template-columns: repeat(2,1fr);
-  gap: 1px; background: rgba(255,255,255,0.08);
+  gap: 1px; background: rgba(255,255,255,0.06);
   border-top: none;
 }
 .services-plan-note {
@@ -403,10 +464,10 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
   text-align: center; padding: 18px var(--page-pad) 0; margin: 0;
 }
 .service-card-ed {
-  background: var(--ink); padding: 52px 44px;
+  background: #0A1A10; padding: 52px 44px;
   transition: background 0.3s; cursor: default;
 }
-.service-card-ed:hover { background: rgba(255,255,255,0.04); }
+.service-card-ed:hover { background: rgba(255,255,255,0.03); }
 .service-num-ed { font-size: 0.68rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.5); margin-bottom: 32px; }
 .service-name-ed {
   font-family: var(--serif); font-size: 2.2rem; font-weight: 400;
@@ -418,7 +479,7 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 .service-ticks-ed li::before { content: '→'; color: var(--green-light); flex-shrink: 0; }
 
 /* ── WHY US ── */
-#why { padding: 100px 0; }
+#why { padding: 80px 0; }
 .ctable { width: 100%; border-collapse: collapse; margin-top: 48px; }
 .ctable caption { font-size: 0.8rem; color: var(--mid); text-align: left; padding-bottom: 10px; }
 .ctable th {
@@ -447,7 +508,7 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 .pricing-scroller { border-color: rgba(255,255,255,0.1); }
 .pricing-scroller .section-scroll-text { color: rgba(255,255,255,0.5); }
 .pricing-scroller .section-scroll-text em { color: rgba(255,255,255,0.28); }
-.pricing-inner { padding: 0 var(--page-pad) 80px; }
+.pricing-inner { padding: 0 var(--page-pad) 56px; }
 .pricing-grid-ed {
   display: grid; grid-template-columns: repeat(3,1fr);
   gap: 1px; background: rgba(255,255,255,0.1);
@@ -501,7 +562,7 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 .pricing-note { text-align: center; font-size: 0.78rem; color: rgba(255,255,255,0.55); padding: 20px var(--page-pad) 0; }
 
 /* ── GETTING STARTED ── */
-#process { padding: 0; }
+#process { padding: 0; background: var(--bg); border-top: 2px solid var(--rule); }
 .gs-wrap { padding: 0 var(--page-pad) 100px; max-width: var(--max); margin: 0 auto; }
 
 .gs-header {
@@ -591,7 +652,7 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 }
 
 /* ── CTA (dark + aura) ── */
-#cta { padding: 120px 0; background: var(--ink); position: relative; overflow: hidden; }
+#cta { padding: 96px 0; background: var(--ink); position: relative; overflow: hidden; }
 .cta-aura { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
 .cta-aura-orb { position: absolute; border-radius: 50%; filter: blur(60px); will-change: transform; }
 .cta-aura-orb-1 { width: 650px; height: 650px; top: -160px; left: -160px; background: radial-gradient(circle, rgba(45,158,110,0.45) 0%, rgba(26,107,74,0.18) 45%, transparent 70%); }
@@ -615,7 +676,7 @@ p { font-size: 0.94rem; line-height: 1.78; color: #2E3130; font-weight: 300; }
 .cta-note { font-size: 0.85rem; color: rgba(255,255,255,0.35); max-width: 440px; margin: 44px auto 0; line-height: 1.7; }
 
 /* ── FOOTER ── */
-footer { background: #060E08; padding: 52px 0 32px; }
+footer { background: #030A05; border-top: 1px solid rgba(255,255,255,0.06); padding: 52px 0 32px; }
 .footer-inner { display: grid; grid-template-columns: 1fr auto auto; gap: 80px; align-items: start; }
 .footer-brand { display: inline-flex; align-items: center; text-decoration: none; margin-bottom: 12px; }
 .footer-tagline { font-size: 0.83rem; color: rgba(255,255,255,0.38); line-height: 1.65; max-width: 260px; }
@@ -701,7 +762,205 @@ footer { background: #060E08; padding: 52px 0 32px; }
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--green); }
-</style>
+
+/* ── ABOUT ── */
+#about {
+  padding: 72px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.about-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 56px;
+  align-items: start;
+}
+.about-left,
+.about-right {
+  min-width: 0;
+}
+.about-topline {
+  font-size: 0.76rem;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 44ch;
+  margin: -8px 0 16px;
+}
+.about-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 3.4vw, 3.3rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  margin-bottom: 22px;
+  color: var(--ink);
+}
+.about-heading em { font-style: italic; color: var(--green); }
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+  max-width: 54ch;
+}
+.about-body p {
+  font-size: 0.94rem;
+  line-height: 1.72;
+  color: #2E3130;
+  font-weight: 300;
+}
+.about-body p strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+.about-brands-label {
+  font-size: 0.7rem;
+  color: var(--mid);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
+}
+.brand-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 0;
+}
+.brand-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 10px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.45);
+  font-size: 0.82rem;
+  color: var(--ink);
+  line-height: 1;
+  white-space: nowrap;
+}
+.about-right .section-label {
+  margin-bottom: 20px;
+}
+.about-right-rail {
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+.about-rail-item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(15,26,20,0.08);
+}
+.about-rail-num {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(94,90,86,0.6);
+  padding-top: 4px;
+}
+.about-rail-copy h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.about-rail-copy p {
+  font-size: 0.88rem;
+  line-height: 1.68;
+  color: var(--mid);
+}
+.about-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding-top: 24px;
+}
+.about-stat {
+  min-width: 0;
+}
+.about-stat-num {
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  font-style: italic;
+  color: var(--green);
+  line-height: 1;
+  display: block;
+}
+.about-stat-label {
+  font-size: 0.72rem;
+  color: var(--mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 6px;
+  display: block;
+  line-height: 1.45;
+}
+
+@media (max-width: 960px) {
+  #about { padding: 72px 0; }
+  .about-inner { grid-template-columns: 1fr; gap: 42px; }
+  .about-body { max-width: 62ch; }
+}
+
+@media (max-width: 600px) {
+  #about { padding: 56px 0; }
+  .about-topline {
+    font-size: 0.72rem;
+    margin: -6px 0 14px;
+  }
+  .about-heading {
+    font-size: clamp(1.8rem, 9vw, 2.35rem);
+    margin-bottom: 18px;
+  }
+  .about-body {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .about-body p,
+  .about-rail-copy p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+  .brand-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .brand-chip {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 10px;
+    font-size: 0.78rem;
+    white-space: normal;
+    text-align: center;
+  }
+  .about-right .section-label {
+    margin-bottom: 16px;
+  }
+  .about-right-rail {
+    padding-top: 6px;
+  }
+  .about-rail-item {
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    padding: 16px 0;
+  }
+  .about-stat-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 14px;
+    padding-top: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-strip,
+  .about-stat-row {
+    grid-template-columns: 1fr;
+  }
+}</style>
 </head>
 <body>
 
@@ -793,6 +1052,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
       <li><a href="#services">Services</a></li>
       <li><a href="#why">Why Us</a></li>
       <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#about">About</a></li>
     </ul>
     <button type="button" class="nav-cta open-modal">Book Free Audit &nbsp;<span aria-hidden="true">→</span></button>
     <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">☰</button>
@@ -802,6 +1062,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
     <a href="#services">Services</a>
     <a href="#why">Why Us</a>
     <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
     <button type="button" class="open-modal" aria-label="Book free audit">Book Free Audit &nbsp;→</button>
   </div>
 </nav>
@@ -824,8 +1085,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
   <div class="hero-bottom">
     <div>
       <h1 id="hero-heading">
-        <span class="hero-headline-reveal"><span class="line-inner">Most agencies build Shopify stores.</span></span>
-        <span class="hero-headline-reveal"><span class="line-inner"><em>We help run them.</em></span></span>
+        <span class="hero-headline-reveal"><span class="line-inner headline-balance">Your Shopify store, up and running in days</span></span>
       </h1>
     </div>
     <div class="hero-right-col fade-in" style="transition-delay:0.5s;">
@@ -842,7 +1102,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
 <section id="problem" aria-labelledby="problem-heading">
   <div class="wrap">
     <div class="section-label reveal">The Problem</div>
-    <h2 id="problem-heading" class="reveal">Sound <em>familiar?</em></h2>
+    <h2 id="problem-heading" class="reveal">Running a Shopify store <em>sound familiar?</em></h2>
     <ul class="pain-grid reveal">
       <li class="pain-item">
         <div class="pain-ico" aria-hidden="true">
@@ -890,31 +1150,17 @@ footer { background: #060E08; padding: 52px 0 32px; }
       </li>
     </ul>
     <aside class="pain-callout reveal">
-      <p>For most Shopify founders, store management isn't a technology problem — it's a resource one. The work compounds quietly until it crowds out everything else.</p>
+      <p class="pain-callout-headline">Store management isn't a technology problem —<br><em>it's a resource one.</em></p>
+      <p class="pain-callout-sub">The work compounds quietly until it crowds out everything else.</p>
     </aside>
   </div>
 </section>
-
-<!-- STATS STRIP -->
-<div class="stats-strip reveal">
-  <div class="stat-item">
-    <div class="stat-num"><em>Shopify</em><br>only</div>
-    <p class="stat-desc">We work exclusively on Shopify — not spread across platforms, not generalist. One platform, done properly.</p>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num"><em>Senior</em><br>direct</div>
-    <p class="stat-desc">You deal with a senior specialist throughout — not an account manager, not a support queue.</p>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num"><em>Month</em><br>to month</div>
-    <p class="stat-desc">No minimum term. Cancel with 30 days' written notice.</p>
-  </div>
-</div>
 
 <!-- SERVICES -->
 <section id="services" aria-labelledby="services-heading">
   <div class="section-scroller services-scroller">
     <div class="section-scroll-inner">
+      <span class="section-scroll-text">What we do &nbsp;<em>Services. Operations. Results.</em>&nbsp;&nbsp;&nbsp;</span>
       <span class="section-scroll-text">What we do &nbsp;<em>Services. Operations. Results.</em>&nbsp;&nbsp;&nbsp;</span>
       <span class="section-scroll-text">What we do &nbsp;<em>Services. Operations. Results.</em>&nbsp;&nbsp;&nbsp;</span>
       <span class="section-scroll-text">What we do &nbsp;<em>Services. Operations. Results.</em>&nbsp;&nbsp;&nbsp;</span>
@@ -964,7 +1210,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
 <section id="why" aria-labelledby="why-heading">
   <div class="wrap">
     <div class="section-label reveal">Why Northbound</div>
-    <h2 id="why-heading" class="reveal">One specialist.<br><em>Your whole store.</em></h2>
+    <h2 id="why-heading" class="reveal">One Shopify specialist.<br><em>Your whole store.</em></h2>
     <table class="ctable reveal" aria-label="Comparison table">
       <caption>How Northbound Commerce compares to large agencies and freelancers</caption>
       <thead>
@@ -994,6 +1240,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
 <section id="pricing" aria-labelledby="pricing-heading">
   <div class="section-scroller pricing-scroller">
     <div class="section-scroll-inner">
+      <span class="section-scroll-text">Pricing &nbsp;<em>Simple. Transparent. No lock-in.</em>&nbsp;&nbsp;&nbsp;</span>
       <span class="section-scroll-text">Pricing &nbsp;<em>Simple. Transparent. No lock-in.</em>&nbsp;&nbsp;&nbsp;</span>
       <span class="section-scroll-text">Pricing &nbsp;<em>Simple. Transparent. No lock-in.</em>&nbsp;&nbsp;&nbsp;</span>
       <span class="section-scroll-text">Pricing &nbsp;<em>Simple. Transparent. No lock-in.</em>&nbsp;&nbsp;&nbsp;</span>
@@ -1060,6 +1307,80 @@ footer { background: #060E08; padding: 52px 0 32px; }
   </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="wrap">
+    <div class="about-inner reveal">
+
+      <div class="about-left">
+        <div class="section-label">About Northbound</div>
+        <p class="about-topline">Shopify ecommerce store management by experienced brand-side operators.</p>
+        <h2 id="about-heading" class="about-heading headline-balance">You don't need to explain your <em>Shopify store</em> to us.</h2>
+
+        <div class="about-body">
+          <p>We've been on the brand side — responsible for ecommerce revenue, store performance and the day-to-day reality of running stores properly.</p>
+          <p>At De Beers, Samsung and Swarovski, we worked inside businesses where conversion, merchandising, operations and growth all mattered. <strong>We know what it costs when a Shopify store is under-managed — and how to fix it.</strong></p>
+        </div>
+
+        <p class="about-brands-label">Trusted ecommerce experience from teams behind</p>
+        <div class="brand-strip" aria-label="Brands and companies with relevant ecommerce experience">
+          <span class="brand-chip">De Beers Group</span>
+          <span class="brand-chip">Samsung</span>
+          <span class="brand-chip">Swarovski</span>
+          <span class="brand-chip">Condé Nast</span>
+          <span class="brand-chip">Links of London</span>
+          <span class="brand-chip">Kurt Geiger</span>
+        </div>
+</div>
+
+      <div class="about-right">
+        <div class="section-label">Why it matters</div>
+        <div class="about-right-rail">
+          <div class="about-rail-item">
+            <div class="about-rail-num">01</div>
+            <div class="about-rail-copy">
+              <h3>Brand-side ecommerce experience</h3>
+              <p>We have worked inside brands, accountable for store performance, revenue and the commercial impact of every change.</p>
+            </div>
+          </div>
+
+          <div class="about-rail-item">
+            <div class="about-rail-num">02</div>
+            <div class="about-rail-copy">
+              <h3>Senior Shopify expertise</h3>
+              <p>No junior handoffs or ticket queues. You work directly with an experienced Shopify and ecommerce operator.</p>
+            </div>
+          </div>
+
+          <div class="about-rail-item">
+            <div class="about-rail-num">03</div>
+            <div class="about-rail-copy">
+              <h3>Ongoing store management</h3>
+              <p>Continuous Shopify store optimisation, ecommerce support and practical execution — built for retainers, not one-off projects.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-stat-row" aria-label="Northbound experience highlights">
+          <div class="about-stat">
+            <span class="about-stat-num">10+</span>
+            <span class="about-stat-label">Years in ecommerce</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">6</span>
+            <span class="about-stat-label">Premium brands</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">Shopify</span>
+            <span class="about-stat-label">Focused platform</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- GETTING STARTED -->
 <section id="process" aria-labelledby="process-heading">
   <div class="gs-wrap">
@@ -1068,7 +1389,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
     <div class="gs-header reveal">
       <div>
         <div class="section-label">Getting Started</div>
-        <h2 id="process-heading">Up and running<br><em>in days</em></h2>
+        <h2 id="process-heading">Your Shopify store,<br>up and running <em>in days</em></h2>
       </div>
       <p class="lead">Focused discovery and onboarding help us deeply understand your brand.</p>
     </div>
@@ -1144,50 +1465,6 @@ footer { background: #060E08; padding: 52px 0 32px; }
 
     </div>
 
-    <!-- What you need + how we communicate -->
-    <div class="gs-cards reveal">
-
-      <div class="gs-card gs-card-tinted">
-        <div class="gs-card-head">
-          <div class="gs-card-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Key -->
-              <circle cx="8" cy="9" r="5" stroke="var(--green)" stroke-width="1.5" fill="none"/>
-              <line x1="12.5" y1="12.5" x2="20" y2="20" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="16" y1="17" x2="18" y2="15" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>What You'll Need to Provide</h3>
-        </div>
-        <ul class="gs-ticks">
-          <li>Shopify staff account access</li>
-          <li>Brand guidelines or examples (if available)</li>
-          <li>A brief intro call to cover your goals</li>
-        </ul>
-      </div>
-
-      <div class="gs-card">
-        <div class="gs-card-head">
-          <div class="gs-card-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Speech bubbles -->
-              <path d="M3 4 Q3 2 5 2 L17 2 Q19 2 19 4 L19 12 Q19 14 17 14 L9 14 L5 17 L5 14 L5 14 Q3 14 3 12 Z" stroke="var(--ink)" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
-              <circle cx="8" cy="8" r="1" fill="var(--ink)"/>
-              <circle cx="11" cy="8" r="1" fill="var(--ink)"/>
-              <circle cx="14" cy="8" r="1" fill="var(--ink)"/>
-            </svg>
-          </div>
-          <h3>How We Communicate</h3>
-        </div>
-        <ul class="gs-ticks">
-          <li>Slack or WhatsApp channel for all ongoing communication</li>
-          <li>Monthly performance report with clear metrics</li>
-          <li>Proactive updates whenever something important changes</li>
-        </ul>
-      </div>
-
-    </div>
-
   </div>
 </section>
 
@@ -1249,7 +1526,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
         <p class="footer-col-title">Connect</p>
         <ul class="footer-links">
           <li><a href="https://www.instagram.com/northboundcommerce" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          <li><a href="mailto:contact@northboundcommerce.co.uk">contact@northboundcommerce.co.uk</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#6a0905041e0b091e2a0405181e0208051f040e090507070f18090f440905441f01"><span class="__cf_email__" data-cfemail="b0d3dfdec4d1d3c4f0dedfc2c4d8d2dfc5ded4d3dfddddd5c2d3d59ed3df9ec5db">[email&#160;protected]</span></a></li>
           <li><button type="button" class="footer-cta open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></button></li>
         </ul>
       </div>
@@ -1260,7 +1537,7 @@ footer { background: #060E08; padding: 52px 0 32px; }
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // NAV
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
@@ -1487,13 +1764,15 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 document.querySelectorAll('section[id]').forEach(s => {
   new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) document.querySelectorAll('.nav-links a').forEach(l => {
-        l.removeAttribute('aria-current');
-        if (l.getAttribute('href') === '#' + e.target.id) l.setAttribute('aria-current', 'page');
-      });
+      if (e.isIntersecting) {
+        document.querySelectorAll('.nav-links a').forEach(a => a.removeAttribute('aria-current'));
+        const link = document.querySelector(`.nav-links a[href="#${s.id}"]`);
+        if (link) link.setAttribute('aria-current', 'page');
+      }
     });
-  }, { threshold: 0.4 }).observe(s);
+  }, { rootMargin: '-40% 0px -55% 0px' }).observe(s);
 });
+
 </script>
 </body>
 </html>
