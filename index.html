@@ -1526,7 +1526,7 @@ footer { background: #030A05; border-top: 1px solid rgba(255,255,255,0.06); padd
         <p class="footer-col-title">Connect</p>
         <ul class="footer-links">
           <li><a href="https://www.instagram.com/northboundcommerce" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          <li><a href="mailto:contact@northboundcommerce.co.uk">contact@northboundcommerce.co.uk</a></li>
+          <li><a href="mailto:hello@northboundcommerce.co.uk">hello@northboundcommerce.co.uk</a></li>
           <li><button type="button" class="footer-cta open-modal">Book Free Audit <span class="arr" aria-hidden="true">→</span></button></li>
         </ul>
       </div>
@@ -1537,7 +1537,7 @@ footer { background: #030A05; border-top: 1px solid rgba(255,255,255,0.06); padd
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // NAV
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
@@ -1699,7 +1699,7 @@ auditForm.addEventListener('submit', e => {
     '\nBiggest challenge: ' + challenge + '\nHow I heard about you: ' + hear +
     '\n\nLooking forward to hearing from you!'
   );
-  window.location.href = 'mailto:contact@northboundcommerce.co.uk?subject=' + subject + '&body=' + body;
+  window.location.href = 'mailto:hello@northboundcommerce.co.uk?subject=' + subject + '&body=' + body;
   closeModal();
 });
 
@@ -1765,14 +1765,4 @@ document.querySelectorAll('section[id]').forEach(s => {
   new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        document.querySelectorAll('.nav-links a').forEach(a => a.removeAttribute('aria-current'));
-        const link = document.querySelector(`.nav-links a[href="#${s.id}"]`);
-        if (link) link.setAttribute('aria-current', 'page');
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' }).observe(s);
-});
-
-</script>
-</body>
-</html>
+        document.querySelectorAll('.nav-links a').forEach(a => a.remov
