@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Northbound Commerce — Shopify CRO and PDP specialists for luxury and premium DTC brands. Senior-led Shopify development, conversion optimisation and ecommerce strategy.">
-<title>Shopify CRO &amp; PDP Specialists for Luxury Brands | Northbound Commerce</title>
+<title>Shopify CRO &amp; Specialists for Luxury Brands | Northbound Commerce</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet">
@@ -107,7 +108,7 @@ nav {
 }
 .card-img img {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center 35%;
+  object-fit: cover; object-position: center 40%;
   display: block;
   transition: transform .5s cubic-bezier(.22,.61,.36,1);
 }
@@ -215,6 +216,8 @@ nav {
   color: var(--green); text-decoration: none;
   border-bottom: .5px solid rgba(26,107,74,.3); padding-bottom: 2px;
   transition: border-color .2s;
+  align-self: flex-start;
+  width: fit-content;
 }
 .card-audit-link:hover { border-color: var(--green); }
 
@@ -275,13 +278,16 @@ footer {
   :root { --pad: 32px; }
   .header-inner { grid-template-columns: 1fr; gap: 32px; padding-bottom: 64px; }
   .card-featured { grid-template-columns: 1fr; }
-  .card-img { aspect-ratio: 3/2; }
+  .card-img { aspect-ratio: 4/3; min-height: 0; }
+  .card-img img { object-position: center 45%; }
   .cta-inner { grid-template-columns: 1fr; gap: 40px; }
 }
 @media (max-width: 640px) {
   :root { --pad: 20px; }
   .header-h1 { font-size: clamp(44px, 13vw, 64px); }
   .cards-row { grid-template-columns: 1fr; }
+  .card-img { aspect-ratio: 5/4; }
+  .card-img img { object-position: center 50%; }
   footer { flex-direction: column; gap: 12px; align-items: flex-start; }
 }
 
