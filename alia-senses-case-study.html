@@ -481,7 +481,7 @@ position: absolute; background: var(--ink); color: var(--cream);
 padding: 11px 14px; width: 210px; font-size: 11.5px; font-weight: 300;
 line-height: 1.6;
 pointer-events: none; opacity: 0; transition: opacity .2s; z-index: 30;
-font-family: var(--sans);
+font-family: var(--sans); text-transform: none; letter-spacing: normal;
 }
 .hs-tip strong { display: block; font-weight: 500; font-size: 9.5px;
 letter-spacing: .1em; text-transform: uppercase; color: #8DC65B;
@@ -946,11 +946,9 @@ the price</div>
 d="M2 7l4 4 6-6"/></svg>Top notes surfaced inline, full pyramid on
 reveal</div>
 <div class="gap-row"><svg class="gap-tick" viewBox="0 0 14 14"><path
-d="M2 7l4 4 6-6"/></svg>Klarna positioned immediately after the purchase
-CTAs</div>
+d="M2 7l4 4 6-6"/></svg>Klarna positioned immediately after the purchase buttons</div>
 <div class="gap-row"><svg class="gap-tick" viewBox="0 0 14 14"><path
-d="M2 7l4 4 6-6"/></svg>Bundle CTA placed after the add to bag
-decision</div>
+d="M2 7l4 4 6-6"/></svg>Bundle offer placed after the add to bag decision</div>
 <div class="gap-row"><svg class="gap-tick" viewBox="0 0 14 14"><path
 d="M2 7l4 4 6-6"/></svg>Gift message component built into the purchase
 zone</div>
@@ -1057,7 +1055,7 @@ aria-label="Annotation 2">
 <div class="hs-dot">2</div>
 <div class="hs-tip tip-l"><strong>Notes above the fold</strong>Scent
 character in the purchase zone with progressive disclosure. Communicates
-character without pushing the CTA below view.</div>
+character without pushing the add to bag below view.</div>
 </div>
 </div>
 <hr class="pz-line">
@@ -1078,7 +1076,6 @@ character without pushing the CTA below view.</div>
 <div class="hs-tip tip-r"><strong>Price on the add to bag</strong>Cost and commitment confirmed in a single element. No need to look up — the price is visible at the exact moment of decision, removing the last point of hesitation.</div>
 </div>
 </div>
-<div class="pz-btn-bin">BUY IT NOW</div>
 <div class="pz-btn-bndl">
 SAVE 10% — SHOP ALL THREE CHARACTERS
 <div class="hs" style="top:50%;transform:translateY(-50%);right:-4px;"
@@ -1103,7 +1100,7 @@ status.</div>
 tabindex="0" aria-label="Annotation 5">
 <div class="hs-dot">5</div>
 <div class="hs-tip tip-r"><strong>Klarna — strategic
-placement</strong>BNPL after the CTAs, not buried at checkout. Breaking
+placement</strong>BNPL after the add to bag, not buried at checkout. Breaking
 £60 into three £20 removes the final price barrier at the point of
 decision.</div>
 </div>
@@ -1133,7 +1130,7 @@ tabindex="0" aria-label="Annotation 6">
 <div class="hs-dot">6</div>
 <div class="hs-tip tip-r"><strong>Trust signals at the decision
 point</strong>Shipping and security as centred equal containers.
-Addresses core objections directly after the CTAs.</div>
+Addresses core objections directly after the add to bag.</div>
 </div>
 </div>
 <!-- Accordions -->
@@ -1169,7 +1166,7 @@ class="pz-acc-ico">+</span></div>
 </div>
 <div class="hs" style="top:50%;transform:translateY(-50%);right:10px;" tabindex="0" aria-label="Annotation 8">
 <div class="hs-dot">8</div>
-<div class="hs-tip tip-up"><strong>Sticky add to bag</strong>The CTA stays fixed as the customer scrolls through brand story, notes and reviews. Purchase intent is never lost to navigation — one tap from anywhere on the page.</div>
+<div class="hs-tip tip-up"><strong>Sticky add to bag</strong>The add to bag bar stays fixed as the customer scrolls through brand story, notes and reviews. Purchase intent is never lost to navigation — one tap from anywhere on the page.</div>
 </div>
 </div>
 <!-- Press bar -->
@@ -1255,16 +1252,15 @@ it forms.</p></div>
 <div class="opt-card"><div class="opt-lbl">Discovery</div><h3
 class="opt-title">Fragrance notes in the purchase zone</h3><p
 class="opt-body">Top notes surfaced inline with progressive disclosure
-revealing the full pyramid. Scent character communicated without pushing
-the CTA out of view.</p></div>
+revealing the full pyramid. Scent character communicated without pushing the add to bag out of view.</p></div>
 <div class="opt-card"><div class="opt-lbl">AOV</div><h3
-class="opt-title">Bundle CTA placed after the decision</h3><p
+class="opt-title">Bundle offer placed after the decision</h3><p
 class="opt-body">The 10% offer placed after the primary add to bag
 action. Lands when the customer has already committed mentally, not
 before when it creates noise.</p></div>
 <div class="opt-card"><div class="opt-lbl">Friction removal</div><h3
 class="opt-title">Klarna visibility and positioning</h3><p
-class="opt-body">BNPL placed immediately after the CTAs, not buried at
+class="opt-body">BNPL placed immediately after the add to bag, not buried at
 checkout. Breaking £60 into three £20 payments removes the final price
 barrier at the point of decision.</p></div>
 <div class="opt-card"><div class="opt-lbl">Brand</div><h3
@@ -1320,8 +1316,8 @@ intent at the final step.</p>
 </div>
 <div class="mob-feat" role="listitem">
 <div class="mob-feat-lbl">Hierarchy</div>
-<h3 class="mob-feat-h">Single column CTA stack</h3>
-<p class="mob-feat-p">Add to Bag, Buy It Now and Bundle CTA stacked full
+<h3 class="mob-feat-h">Single column button stack</h3>
+<p class="mob-feat-p">Add to bag and bundle offer stacked full
 width with deliberate vertical spacing. Clear hierarchy, no accidental
 taps between adjacent actions.</p>
 </div>
@@ -1341,8 +1337,7 @@ hierarchy calibrated for small-screen rendering</p>
 src="https://image2url.com/r2/default/images/1775766834817-dc4279a1-a01e-40f2-ab40-e700f827503c.png"
 alt="image">
 <div class="phone-tag">Scrolled</div>
-<p class="phone-caption">Fixed CTA Component: Position-locked element
-ensuring constant visibility</p>
+<p class="phone-caption">Sticky add to bag bar stays fixed — one tap away no matter how far you scroll</p>
 </div>
 </div>
 </section>
