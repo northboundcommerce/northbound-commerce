@@ -6,7 +6,7 @@
 <title>Rowing Blazers — CRO Audit · Northbound Commerce</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
+  body {   margin: 0; }
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: #faf7f2;
     color: #1a1a1a;
@@ -56,10 +56,14 @@
   .nb-nav a:hover { color: #faf7f2; }
 
   /* ── HERO HEADER ─────────────────────────────────── */
-  .hero-header {
-    position: relative;
-    height: 420px;
-    overflow: hidden;
+.hero-header {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
   }
   .hero-img {
     width: 100%;
