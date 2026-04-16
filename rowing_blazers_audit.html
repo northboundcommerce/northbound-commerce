@@ -7,6 +7,7 @@
 <title>Rowing Blazers — CRO Audit · Northbound Commerce</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: #faf7f2;
@@ -15,7 +16,7 @@
     line-height: 1.7;
   }
 
-  /* ── NORTHBOUND LOGO BAR ─────────────────────────── */
+  /* ── NORTHBOUND LOGO BAR ── (kept from v2) */
   .nb-logobar {
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -52,23 +53,23 @@
     font-size: 10.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    transition: color 0.2s;
   }
   .nb-nav a:hover { color: #faf7f2; }
 
-  /* ── HERO HEADER ─────────────────────────────────── */
+  /* ── HERO HEADER ── (Rat & Boa style, image fills absolutely) */
   .hero-header {
     position: relative;
-    height: 320px;
+    height: 420px;
     overflow: hidden;
   }
   .hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
   }
   .hero-overlay {
     position: absolute;
@@ -84,7 +85,7 @@
   }
   .hero-content .audit-header { width: 100%; }
 
-  /* ── HEADER (inside hero) ────────────────────────── */
+  /* ── AUDIT HEADER (inside hero, kept from v2) ── */
   .audit-header {
     color: #faf7f2;
     display: flex;
@@ -117,20 +118,40 @@
     font-size: 11px;
     opacity: 0.55;
     line-height: 1.9;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
   .audit-header .meta a {
     color: rgba(250,247,242,0.85);
     text-decoration: none;
     border-bottom: 1px solid rgba(250,247,242,0.3);
-    padding-bottom: 1px;
   }
-  .audit-header .meta a:hover { opacity: 1; border-color: #faf7f2; }
 
-  /* ── LAYOUT ─────────────────────────────────────── */
+  /* ── NAV BAR BELOW HERO ── (kept from v2) */
+  .nav-bar {
+    background: #1a1a1a;
+    padding: 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-bar-left { color: rgba(250,247,242,0.35); }
+  .nav-bar-right { display: flex; gap: 28px; }
+  .nav-bar-right a {
+    color: rgba(250,247,242,0.45);
+    text-decoration: none;
+  }
+  .nav-bar-right a:hover { color: #faf7f2; }
+
+  /* ════ RAT & BOA CONTENT STYLES ════ */
+
+  /* Layout */
   .wrap { max-width: 860px; margin: 0 auto; padding: 48px 48px; }
 
-  /* ── EXEC SUMMARY ───────────────────────────────── */
+  /* Exec summary */
   .exec-summary {
     border-left: 4px solid #3b6d11;
     background: #fff;
@@ -145,13 +166,9 @@
     margin-bottom: 12px;
     font-weight: 600;
   }
-  .exec-summary p {
-    font-size: 13px;
-    line-height: 1.75;
-    color: #333;
-  }
+  .exec-summary p { font-size: 13px; line-height: 1.75; color: #333; }
 
-  /* ── SECTION HEADERS ─────────────────────────────── */
+  /* Section headers */
   .section { margin-bottom: 44px; }
   .section-label {
     display: flex;
@@ -167,191 +184,97 @@
     color: #faf7f2;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 11px;
-    font-weight: 600;
-    flex-shrink: 0;
+    font-size: 11px; font-weight: 600; flex-shrink: 0;
   }
-  .section h2 {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: #1a1a1a;
-  }
-  .section-sub {
-    font-size: 11px;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
+  .section h2 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: #1a1a1a; }
+  .section-sub { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.12em; }
 
-  /* ── FINDING CARDS ───────────────────────────────── */
+  /* Finding cards */
   .findings { display: flex; flex-direction: column; gap: 14px; }
-  .finding {
-    background: #fff;
-    border: 1px solid #e8e3da;
-    padding: 20px 24px;
-  }
+  .finding { background: #fff; border: 1px solid #e8e3da; padding: 20px 24px; }
   .finding-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 8px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 12px; margin-bottom: 8px;
   }
-  .finding h3 {
-    font-size: 13px;
-    font-weight: 600;
-    color: #1a1a1a;
-    line-height: 1.4;
-  }
-  .finding p {
-    font-size: 12.5px;
-    color: #444;
-    line-height: 1.7;
-  }
+  .finding h3 { font-size: 13px; font-weight: 600; color: #1a1a1a; line-height: 1.4; }
+  .finding p { font-size: 12.5px; color: #444; line-height: 1.7; }
   .finding .rec {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #eee;
-    font-size: 12px;
-    color: #3b6d11;
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;
+    font-size: 12px; color: #3b6d11;
   }
   .finding .rec strong { font-weight: 600; }
 
   /* Pills */
   .pills { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
   .pill {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 9px;
-    border-radius: 2px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 2px;
   }
   .pill-impact-h { background: #1a1a1a; color: #faf7f2; }
   .pill-impact-m { background: #e8e3da; color: #1a1a1a; }
   .pill-effort-low { background: #d4e8c4; color: #2a4f0a; }
   .pill-effort-med { background: #fef3cd; color: #7a5c00; }
-  .pill-effort-high { background: #fde8e8; color: #8b1a1a; }
 
-  /* ── DIVIDER ─────────────────────────────────────── */
+  /* Divider */
   .divider { border: none; border-top: 1px solid #ddd7cc; margin: 44px 0; }
 
-  /* ── TOP 10 TABLE ────────────────────────────────── */
+  /* Top 10 table */
   .table-wrap { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-size: 12px; }
   thead tr { background: #1a1a1a; color: #faf7f2; }
   thead th {
-    padding: 11px 14px;
-    text-align: left;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 600;
+    padding: 11px 14px; text-align: left;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
   }
   tbody tr { border-bottom: 1px solid #e8e3da; background: #fff; }
   tbody tr:hover { background: #f5f2ec; }
-  tbody td {
-    padding: 11px 14px;
-    vertical-align: top;
-    line-height: 1.55;
-    color: #333;
-  }
+  tbody td { padding: 11px 14px; vertical-align: top; line-height: 1.55; color: #333; }
   tbody td:first-child { font-weight: 600; color: #1a1a1a; width: 20px; text-align: center; }
   tbody td:nth-child(2) { font-weight: 600; color: #1a1a1a; width: 200px; }
   .tag-wrap { display: flex; gap: 5px; flex-wrap: wrap; }
 
-  /* ── QUICK WINS ──────────────────────────────────── */
-  .quick-wins {
-    background: #fff;
-    border: 1px solid #e8e3da;
-    padding: 28px;
-    margin-bottom: 28px;
-  }
+  /* Quick wins */
+  .quick-wins { background: #fff; border: 1px solid #e8e3da; padding: 28px; margin-bottom: 28px; }
   .quick-wins h3 {
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #3b6d11;
-    font-weight: 600;
-    margin-bottom: 18px;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #3b6d11; font-weight: 600; margin-bottom: 18px;
   }
   .qw-item {
-    display: flex;
-    gap: 14px;
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid #f0ece5;
-    align-items: flex-start;
+    display: flex; gap: 14px; margin-bottom: 14px; padding-bottom: 14px;
+    border-bottom: 1px solid #f0ece5; align-items: flex-start;
   }
   .qw-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .qw-num {
-    width: 22px; height: 22px;
-    border: 2px solid #3b6d11;
-    border-radius: 50%;
-    color: #3b6d11;
-    font-size: 10px;
-    font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
+    width: 22px; height: 22px; border: 2px solid #3b6d11; border-radius: 50%;
+    color: #3b6d11; font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
   }
   .qw-item h4 { font-size: 12.5px; font-weight: 600; margin-bottom: 2px; }
   .qw-item p { font-size: 12px; color: #555; }
 
-  /* ── STRATEGIC EXPERIMENTS ───────────────────────── */
+  /* Strategic experiments */
   .experiments { display: flex; flex-direction: column; gap: 12px; margin-bottom: 44px; }
   .exp-label {
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #3b6d11;
-    font-weight: 600;
-    margin-bottom: 6px;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #3b6d11; font-weight: 600; margin-bottom: 6px;
   }
-  .experiment {
-    background: #fff;
-    border: 1px solid #e8e3da;
-    padding: 20px 24px;
-    display: flex;
-    gap: 18px;
-  }
+  .experiment { background: #fff; border: 1px solid #e8e3da; padding: 20px 24px; display: flex; gap: 18px; }
   .experiment-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
   .experiment h4 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
   .experiment p { font-size: 12px; color: #444; line-height: 1.65; }
   .experiment .hyp { margin-top: 8px; font-size: 11.5px; color: #3b6d11; }
   .experiment .hyp strong { font-weight: 600; }
 
-  /* ── PDP MOCKUP ──────────────────────────────────── */
-  .mockup-wrap {
-    background: #fff;
-    border: 1px solid #e8e3da;
-    padding: 28px;
-    margin-bottom: 44px;
-  }
+  /* PDP Mockup */
+  .mockup-wrap { background: #fff; border: 1px solid #e8e3da; padding: 28px; margin-bottom: 44px; }
   .mockup-wrap > h3 {
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #3b6d11;
-    font-weight: 600;
-    margin-bottom: 20px;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #3b6d11; font-weight: 600; margin-bottom: 20px;
   }
-  .mockup {
-    display: flex;
-    gap: 24px;
-    background: #faf7f2;
-    padding: 20px;
-  }
-  .mockup-gallery {
-    flex: 1.1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .mockup { display: flex; gap: 24px; background: #faf7f2; padding: 20px; }
+  .mockup-gallery { flex: 1.1; display: flex; flex-direction: column; gap: 8px; }
   .m-main {
-    background: #e8e3da;
-    height: 280px;
+    background: #e8e3da; height: 280px;
     display: flex; align-items: center; justify-content: center;
     font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #999;
   }
@@ -360,58 +283,41 @@
   .m-thumb.active { outline: 1.5px solid #1a1a1a; }
   .mockup-info { flex: 1.2; }
   .m-badge {
-    display: inline-block;
-    background: #3b6d11; color: #fff;
+    display: inline-block; background: #3b6d11; color: #fff;
     font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
     padding: 3px 8px; margin-bottom: 10px;
   }
   .m-title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 4px; }
-  .m-reviews {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 11px; color: #888; margin-bottom: 10px;
-  }
+  .m-reviews { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #888; margin-bottom: 10px; }
   .m-reviews .stars { color: #c8860a; }
   .m-reviews a { color: #3b6d11; text-decoration: underline; }
   .m-price { font-size: 16px; font-weight: 500; margin-bottom: 14px; color: #1a1a1a; }
   .m-bnpl {
     background: #f5f2ec; border: 1px solid #ddd7cc;
-    padding: 8px 12px; font-size: 10.5px; color: #444;
-    margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+    padding: 8px 12px; font-size: 10.5px; color: #444; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
   }
   .m-bnpl .bnpl-logo { font-size: 10px; font-weight: 700; letter-spacing: -0.02em; color: #1a1a1a; }
   .m-bnpl a { color: #3b6d11; font-size: 10px; text-decoration: underline; }
-  .m-scarcity {
-    font-size: 11px; font-weight: 600; color: #c03010;
-    letter-spacing: 0.02em; margin-bottom: 12px;
-  }
-  .m-section-label {
-    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: #999; margin-bottom: 6px; margin-top: 14px;
-  }
+  .m-scarcity { font-size: 11px; font-weight: 600; color: #c03010; letter-spacing: 0.02em; margin-bottom: 12px; }
+  .m-section-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #999; margin-bottom: 6px; margin-top: 14px; }
   .size-options { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
   .size-opt { border: 1px solid #ddd7cc; font-size: 10px; padding: 5px 10px; cursor: pointer; color: #333; }
   .size-opt.sel { border-color: #1a1a1a; background: #1a1a1a; color: #faf7f2; }
   .size-opt.oos { color: #bbb; text-decoration: line-through; }
   .fit-note { font-size: 11px; color: #888; font-style: italic; margin-bottom: 12px; line-height: 1.5; }
-  .trust-bar {
-    display: flex; gap: 6px;
-    border-top: 1px solid #e8e3da; padding-top: 12px; margin-top: 4px;
-  }
+  .trust-bar { display: flex; gap: 6px; border-top: 1px solid #e8e3da; padding-top: 12px; margin-top: 4px; }
   .trust-item { flex: 1; text-align: center; font-size: 9px; color: #555; line-height: 1.5; }
   .trust-item .t-icon { font-size: 14px; display: block; margin-bottom: 2px; }
   .m-atc {
-    background: #1a1a1a; color: #faf7f2;
-    width: 100%; padding: 13px;
-    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    font-weight: 600; text-align: center; cursor: pointer;
-    border: none; margin-bottom: 8px; margin-top: 12px;
-    border-radius: 2px;
+    background: #1a1a1a; color: #faf7f2; width: 100%; padding: 13px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+    text-align: center; cursor: pointer; border: none; margin-bottom: 8px; margin-top: 12px; border-radius: 2px;
   }
   .m-atc-sub { font-size: 9.5px; color: #888; text-align: center; margin-bottom: 14px; }
   .annotation-box {
     background: #fff3cd; border: 1px solid #f5c842;
-    padding: 6px 10px; font-size: 10px; color: #7a5c00;
-    margin-top: 6px; line-height: 1.5;
+    padding: 6px 10px; font-size: 10px; color: #7a5c00; margin-top: 6px; line-height: 1.5;
   }
   .annotation-box strong { font-weight: 600; }
   .m-accordions { border-top: 1px solid #e8e3da; margin-top: 14px; }
@@ -420,65 +326,40 @@
     padding: 10px 0; border-bottom: 1px solid #e8e3da;
     font-size: 12px; font-weight: 500; cursor: pointer;
   }
-  .acc-row span.acc-plus { color: #999; font-size: 16px; }
+  .acc-plus { color: #999; font-size: 16px; }
 
-  /* ── HOW NORTHBOUND CAN HELP ─────────────────────── */
-  .nb-help {
-    background: #1a1a1a;
-    padding: 48px;
-    margin-top: 0;
-  }
+  /* How Northbound can help */
+  .nb-help { background: #1a1a1a; padding: 48px; margin-top: 0; }
   .nb-help-inner { max-width: 860px; margin: 0 auto; }
-  .nb-help-label {
-    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: #7ab860; font-weight: 600; margin-bottom: 10px;
-  }
-  .nb-help h2 {
-    font-size: 26px; font-weight: 300; letter-spacing: -0.02em;
-    color: #faf7f2; margin-bottom: 32px; line-height: 1.2;
-  }
+  .nb-help-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #7ab860; font-weight: 600; margin-bottom: 10px; }
+  .nb-help h2 { font-size: 26px; font-weight: 300; letter-spacing: -0.02em; color: #faf7f2; margin-bottom: 32px; line-height: 1.2; }
   .nb-help h2 em { font-style: italic; opacity: 0.55; }
-  .nb-help-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1px; background: #2d2d2b; margin-bottom: 1px;
-  }
+  .nb-help-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #2d2d2b; margin-bottom: 1px; }
   .nb-help-card { background: #222220; padding: 22px 24px; }
-  .nb-help-card h3 {
-    font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: #7ab860; font-weight: 600; margin-bottom: 8px;
-  }
+  .nb-help-card h3 { font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #7ab860; font-weight: 600; margin-bottom: 8px; }
   .nb-help-card p { font-size: 12.5px; color: #888; line-height: 1.65; }
   .nb-help-footer { background: #222220; padding: 22px 24px; }
-  .nb-help-footer h3 {
-    font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: #555; font-weight: 600; margin-bottom: 8px;
-  }
+  .nb-help-footer h3 { font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #555; font-weight: 600; margin-bottom: 8px; }
   .nb-help-footer p { font-size: 12.5px; color: #666; line-height: 1.7; }
 
-  /* ── FOOTER ──────────────────────────────────────── */
-  .site-footer {
-    background: #111110;
-    padding: 20px 48px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .site-footer-left {
-    font-size: 10px; letter-spacing: 0.06em; color: #444;
-  }
+  /* Site footer */
+  .site-footer { background: #111110; padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; }
+  .site-footer-left { font-size: 10px; letter-spacing: 0.06em; color: #444; }
   .site-footer-left a { color: #7ab860; text-decoration: none; }
-  .site-footer-left a:hover { color: #a0d870; }
   .site-footer-right { font-size: 10px; color: #333; letter-spacing: 0.04em; }
 </style>
 </head>
 <body>
 
-<!-- ── HERO ─────────────────────────────────────── -->
-<img src="https://www.image2url.com/r2/default/images/1776335984021-3836110f-c073-4491-93d3-e141df1c4d23.jpg" alt="image" />
-  <!-- Northbound logo bar (top) -->
+<!-- HERO -->
+<div class="hero-header">
+ <img src="https://www.image2url.com/r2/default/images/1776335984021-3836110f-c073-4491-93d3-e141df1c4d23.jpg" alt="image" />
   <div class="nb-logobar">
     <a href="https://northboundcommerce.co.uk" target="_blank" class="nb-logo-link">
-        <path d="M12 2L22 9L12 22L2 9Z" stroke="#faf7f2" stroke-width="1.5" fill="none"></path>
-        <path d="M2 9L12 12L22 9" stroke="#faf7f2" stroke-width="1.5"></path>
-        <path d="M12 2L12 12" stroke="#faf7f2" stroke-width="1.5"></path>
+      <svg class="nb-diamond" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L22 9L12 22L2 9Z" stroke="#faf7f2" stroke-width="1.5" fill="none"/>
+        <path d="M2 9L12 12L22 9" stroke="#faf7f2" stroke-width="1.5"/>
+        <path d="M12 2L12 12" stroke="#faf7f2" stroke-width="1.5"/>
       </svg>
       <span class="nb-wordmark">Northbound Commerce</span>
     </a>
@@ -491,7 +372,6 @@
 
   <div class="hero-overlay"></div>
 
-  <!-- Title + meta (bottom) -->
   <div class="hero-content">
     <div class="audit-header">
       <div>
@@ -501,16 +381,25 @@
       <div class="meta">
         <a href="https://northboundcommerce.co.uk" target="_blank">northboundcommerce.co.uk</a><br>
         rowingblazers.com<br>
-        Prepared by Amy, Founder
+        Prepared by Amy
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── MAIN CONTENT ─────────────────────────────── -->
+<!-- NAV BAR (kept from v2) -->
+<div class="nav-bar">
+  <span class="nav-bar-left">Northbound Commerce · CRO Audit</span>
+  <div class="nav-bar-right">
+    <a href="https://northboundcommerce.co.uk" target="_blank">Our Work</a>
+    <a href="https://northboundcommerce.co.uk" target="_blank">Services</a>
+    <a href="mailto:amy@northboundcommerce.co.uk">Get In Touch</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
 <div class="wrap">
 
-  <!-- Executive Summary -->
   <div class="exec-summary">
     <h2>Executive Summary</h2>
     <p>Rowing Blazers has built something genuinely rare — a brand with real cultural cachet, a cult following, and a product range compelling enough to sustain 700% revenue growth between 2018 and 2022. The Shopify Plus store reflects that energy in its visual design. But beneath the editorial surface there are meaningful revenue leaks: a PDP that undersells its own product story, <strong>sizing confidence gaps</strong> fuelling real return friction, trust signals that disappear at exactly the wrong moments, and a checkout funnel that doesn't work as hard as it could. This audit identifies ten high-leverage opportunities — several addressable within 30 days with no significant development resource.</p>
@@ -529,21 +418,15 @@
       <div class="finding">
         <div class="finding-top">
           <h3>Hero real estate underused for conversion intent</h3>
-          <div class="pills">
-            <span class="pill pill-impact-m">Impact: Med</span>
-            <span class="pill pill-effort-low">Effort: Low</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-m">Impact: Med</span><span class="pill pill-effort-low">Effort: Low</span></div>
         </div>
-        <p>The homepage leads strongly on editorial imagery but the primary CTA resolves to a broad collection rather than the current hero narrative. The collaboration engine — Paddington, Winnie-the-Pooh, Babar — is a genuine differentiator but competes equally with core product in nav, diluting both.</p>
+        <p>The homepage leads strongly on editorial imagery but the primary CTA resolves to a broad collection rather than the current hero narrative. The collaboration engine — Paddington, Winnie-the-Pooh, Babar — is a genuine differentiator but competes equally with core product in the nav, diluting both.</p>
         <div class="rec"><strong>Recommendation:</strong> Ensure the ATF hero carries a single, seasonally-relevant CTA tied to the editorial story. Reserve the collaboration nav cluster for a clearly signposted sub-section so it reads as an asset, not noise.</div>
       </div>
       <div class="finding">
         <div class="finding-top">
           <h3>Free shipping threshold ($195) not visible at entry</h3>
-          <div class="pills">
-            <span class="pill pill-impact-h">Impact: High</span>
-            <span class="pill pill-effort-low">Effort: Low</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-h">Impact: High</span><span class="pill pill-effort-low">Effort: Low</span></div>
         </div>
         <p>The free shipping threshold only surfaces on the locations page — not in the announcement bar or ATF. At this price point, $195 is often one item away for many visitors. Surfacing it early nudges shoppers toward add-to-bag rather than immediate checkout with a single item.</p>
         <div class="rec"><strong>Recommendation:</strong> Add "Free US shipping on orders over $195" to the announcement bar. One line of copy, immediate AOV impact.</div>
@@ -551,10 +434,7 @@
       <div class="finding">
         <div class="finding-top">
           <h3>Welcome offer (20% off) not optimised for capture</h3>
-          <div class="pills">
-            <span class="pill pill-impact-m">Impact: Med</span>
-            <span class="pill pill-effort-low">Effort: Low</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-m">Impact: Med</span><span class="pill pill-effort-low">Effort: Low</span></div>
         </div>
         <p>A 20% first-order discount is available for email sign-up — a strong incentive. If the Yieldify integration is firing on page-load rather than exit-intent or scroll-depth, it's training visitors to dismiss before they've invested in the experience.</p>
         <div class="rec"><strong>Recommendation:</strong> Audit Yieldify trigger rules. Test exit-intent vs. time-on-page (45+ seconds). Reinforce the offer in the footer capture for those who dismissed the overlay.</div>
@@ -577,10 +457,7 @@
       <div class="finding">
         <div class="finding-top">
           <h3>Sizing confidence is the primary conversion blocker</h3>
-          <div class="pills">
-            <span class="pill pill-impact-h">Impact: High</span>
-            <span class="pill pill-effort-med">Effort: Med</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-h">Impact: High</span><span class="pill pill-effort-med">Effort: Med</span></div>
         </div>
         <p>Customer reviews across Trustpilot consistently cite sizing inconsistencies — mediums running large, model callouts not reflecting real proportions. This is a pre-purchase hesitation suppressing add-to-cart. The Barrel-built PDP includes size and fit detail, but not at the level of granularity needed to build real confidence at the point of decision.</p>
         <div class="rec"><strong>Recommendation:</strong> Add a fit confidence module to every PDP: model height/weight/size worn, plus a per-garment fit note ("runs large in the body, true to sleeve"). Layer in a lightweight size recommendation quiz. Single highest-leverage CRO intervention available on this site.</div>
@@ -588,21 +465,15 @@
       <div class="finding">
         <div class="finding-top">
           <h3>Rebuy likely under-configured in cart</h3>
-          <div class="pills">
-            <span class="pill pill-impact-h">Impact: High</span>
-            <span class="pill pill-effort-med">Effort: Med</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-h">Impact: High</span><span class="pill pill-effort-med">Effort: Med</span></div>
         </div>
-        <p>Rebuy is installed — one of the highest-ROI apps in the Shopify ecosystem when used well. Given the brand's strong product narrative (blazer, rugby, collaboration piece) there are natural "complete the look" moments that well-configured Rebuy rules could capitalise on in the cart drawer.</p>
+        <p>Rebuy is installed — one of the highest-ROI apps in the Shopify ecosystem when used well. Given the brand's strong product narrative (blazer, rugby, collaboration piece), there are natural "complete the look" moments that well-configured Rebuy rules could capitalise on in the cart drawer.</p>
         <div class="rec"><strong>Recommendation:</strong> Audit Rebuy configuration. Set curated "pairs well with" rules per product type. In-cart upsells at the AOV threshold ("Add $X for free shipping") are a reliable, low-effort quick win.</div>
       </div>
       <div class="finding">
         <div class="finding-top">
           <h3>No scarcity signalling on collaboration PDPs</h3>
-          <div class="pills">
-            <span class="pill pill-impact-h">Impact: High</span>
-            <span class="pill pill-effort-low">Effort: Low</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-h">Impact: High</span><span class="pill pill-effort-low">Effort: Low</span></div>
         </div>
         <p>For a brand that trades on limited-edition drops, there is no visible low-stock signal on product pages. The collaboration pieces — Paddington, Moomin, Babar, Magic 8 Ball, UNO — carry genuine scarcity logic that isn't being converted into urgency copy at the point of purchase.</p>
         <div class="rec"><strong>Recommendation:</strong> Implement inventory-aware low-stock messaging ("Only 3 left in your size") on collaboration and seasonal PDPs. Native Shopify Liquid — minimal development required.</div>
@@ -625,10 +496,7 @@
       <div class="finding">
         <div class="finding-top">
           <h3>Customer service perception is a conversion suppressor</h3>
-          <div class="pills">
-            <span class="pill pill-impact-h">Impact: High</span>
-            <span class="pill pill-effort-low">Effort: Low</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-h">Impact: High</span><span class="pill pill-effort-low">Effort: Low</span></div>
         </div>
         <p>The volume and consistency of negative Trustpilot reviews — fulfilment delays, unresponsive CS, incorrect shipments — is notable for a brand at this price point. New visitors who Google the brand before purchasing will find these. The reputational fallout directly impacts conversion for cold traffic.</p>
         <div class="rec"><strong>Recommendation:</strong> Prioritise Trustpilot review management — respond publicly to all reviews. A visible returns and CS policy on-site (ideally with a self-serve returns portal) reduces both contact volume and pre-purchase anxiety.</div>
@@ -636,10 +504,7 @@
       <div class="finding">
         <div class="finding-top">
           <h3>Broken page: MagicPass remnant on /pages/about-team</h3>
-          <div class="pills">
-            <span class="pill pill-impact-m">Impact: Med</span>
-            <span class="pill pill-effort-low">Effort: Low</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-m">Impact: Med</span><span class="pill pill-effort-low">Effort: Low</span></div>
         </div>
         <p>The team page is displaying a broken MagicPass gate — an app recently uninstalled but whose Liquid code was not cleaned up. The page shows an error referencing a third-party app and a placeholder email address (name@university.com). Live now, visible to anyone navigating to learn about the brand.</p>
         <div class="rec"><strong>Recommendation:</strong> Immediate fix. Remove the MagicPass Liquid snippet from the about-team page template. A 15-minute development task with real trust signal implications.</div>
@@ -662,24 +527,18 @@
       <div class="finding">
         <div class="finding-top">
           <h3>Mega-nav complexity may impede first-time discovery</h3>
-          <div class="pills">
-            <span class="pill pill-impact-m">Impact: Med</span>
-            <span class="pill pill-effort-med">Effort: Med</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-m">Impact: Med</span><span class="pill pill-effort-med">Effort: Med</span></div>
         </div>
-        <p>Seven top-level sections, each with multi-level sub-menus, serves a returning fan well. For a first-time visitor arriving from press or Instagram, it's cognitively heavy. The Edits section (Best Sellers, New Arrivals, Gifts Under $100) partially addresses this — but it's buried mid-nav rather than treated as a first-time visitor entry point.</p>
+        <p>Seven top-level nav sections, each with multi-level sub-menus, serves a returning fan well. For a first-time visitor arriving from press or Instagram, it's cognitively heavy. The Edits section (Best Sellers, New Arrivals, Gifts Under $100) partially addresses this — but it's buried mid-nav rather than treated as a first-time visitor entry point.</p>
         <div class="rec"><strong>Recommendation:</strong> Elevate "Best Sellers" and "New Arrivals" in the nav hierarchy. Consider a homepage module positioned explicitly for new visitors — a curated, non-intimidating introduction to the range.</div>
       </div>
       <div class="finding">
         <div class="finding-top">
           <h3>Shopify Markets auto-geolocation may not trigger on first visit</h3>
-          <div class="pills">
-            <span class="pill pill-impact-m">Impact: Med</span>
-            <span class="pill pill-effort-low">Effort: Low</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-m">Impact: Med</span><span class="pill pill-effort-low">Effort: Low</span></div>
         </div>
         <p>The Shopify Markets integration delivers currency localisation — critical for UK customers paying £180+ for a sweater. If the currency selector requires manual navigation rather than auto-triggering from geolocation, UK visitors are pricing in USD and potentially abandoning before they understand they're seeing the wrong number.</p>
-        <div class="rec"><strong>Recommendation:</strong> Confirm Shopify Markets is configured to auto-redirect based on geolocation on first visit. Verify the selector is also accessible below the fold and not exclusively within the navigation on mobile.</div>
+        <div class="rec"><strong>Recommendation:</strong> Confirm Shopify Markets is configured to auto-redirect based on geolocation on first visit. Verify the selector is also accessible below the fold on mobile.</div>
       </div>
     </div>
   </div>
@@ -699,10 +558,7 @@
       <div class="finding">
         <div class="finding-top">
           <h3>Collaboration narrative stops at collection level — not carried to PDP</h3>
-          <div class="pills">
-            <span class="pill pill-impact-m">Impact: Med</span>
-            <span class="pill pill-effort-med">Effort: Med</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-m">Impact: Med</span><span class="pill pill-effort-med">Effort: Med</span></div>
         </div>
         <p>The Barrel build introduced storytelling at collection landing page level, which is right. But the conversion opportunity lies in carrying that narrative into the PDP: why this character, why this garment, what makes this piece collectible. The PDP is where purchase decisions are made.</p>
         <div class="rec"><strong>Recommendation:</strong> For all active collaboration PDPs, add a "The Story" module — 3–5 sentences on the collaboration origin and what makes this piece worth owning. Elevates the product from apparel to cultural artefact.</div>
@@ -725,10 +581,7 @@
       <div class="finding">
         <div class="finding-top">
           <h3>Product structured data + AggregateRating will drive SERP rich results</h3>
-          <div class="pills">
-            <span class="pill pill-impact-m">Impact: Med</span>
-            <span class="pill pill-effort-med">Effort: Med</span>
-          </div>
+          <div class="pills"><span class="pill pill-impact-m">Impact: Med</span><span class="pill pill-effort-med">Effort: Med</span></div>
         </div>
         <p>With a strong product catalogue and existing review presence, Rowing Blazers is well-positioned to benefit from Product schema with AggregateRating markup. Rich results showing star ratings in Google Search meaningfully improve organic CTR — particularly for branded product queries where competitor PDPs appear alongside.</p>
         <div class="rec"><strong>Recommendation:</strong> Audit structured data implementation on PDPs. Ensure Product, Offer, and AggregateRating schema are correctly implemented and validated in Google's Rich Results Test.</div>
@@ -738,7 +591,7 @@
 
   <hr class="divider">
 
-  <!-- Top 10 Table -->
+  <!-- TOP 10 TABLE -->
   <div class="section">
     <div class="section-label">
       <div class="section-num" style="background:#1a1a1a;">↑</div>
@@ -749,14 +602,7 @@
     </div>
     <div class="table-wrap">
       <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Opportunity</th>
-            <th>Impact</th>
-            <th>Effort</th>
-          </tr>
-        </thead>
+        <thead><tr><th>#</th><th>Opportunity</th><th>Impact</th><th>Effort</th></tr></thead>
         <tbody>
           <tr><td>1</td><td>Fit confidence module + model sizing notes on all PDPs</td><td><div class="tag-wrap"><span class="pill pill-impact-h">High</span></div></td><td><div class="tag-wrap"><span class="pill pill-effort-med">Med</span></div></td></tr>
           <tr><td>2</td><td>Free shipping threshold in announcement bar</td><td><div class="tag-wrap"><span class="pill pill-impact-h">High</span></div></td><td><div class="tag-wrap"><span class="pill pill-effort-low">Low</span></div></td></tr>
@@ -775,7 +621,7 @@
 
   <hr class="divider">
 
-  <!-- Quick Wins -->
+  <!-- QUICK WINS -->
   <div class="quick-wins">
     <h3>Quick Wins · Next 30 Days</h3>
     <div class="qw-item">
@@ -800,7 +646,7 @@
     </div>
   </div>
 
-  <!-- Strategic Experiments -->
+  <!-- STRATEGIC EXPERIMENTS -->
   <div class="exp-label">Strategic Experiments</div>
   <div class="experiments">
     <div class="experiment">
@@ -815,15 +661,15 @@
       <div class="experiment-icon">📖</div>
       <div>
         <h4>Collaboration Landing Pages: Story-first vs. Grid-first</h4>
-        <p>Test a narrative-led collection page (editorial intro, then products) against the current product-grid-first layout for a single active collaboration. Hypothesis: story context increases session depth and conversion for first-time visitors arriving via social or press.</p>
+        <p>Test a narrative-led collection page (editorial intro, then products) against the current product-grid-first layout for a single active collaboration. Hypothesis: story context increases session depth and conversion for visitors arriving via social or press.</p>
         <div class="hyp"><strong>Primary metric:</strong> Collection-to-PDP click-through rate.</div>
       </div>
     </div>
     <div class="experiment">
       <div class="experiment-icon">🛒</div>
       <div>
-        <h4>Cart Drawer: AOV Threshold Messaging ("You're $X away from free shipping")</h4>
-        <p>Dynamic in-cart prompt when the threshold is not yet met, via Rebuy or a custom Liquid snippet. One of the highest-confidence experiments in premium apparel CRO — consistent lifts across comparable brands.</p>
+        <h4>Cart Drawer: AOV Threshold Messaging</h4>
+        <p>Dynamic "You're $X away from free shipping" in the cart drawer when the threshold is not yet met, via Rebuy or a custom Liquid snippet. One of the highest-confidence experiments in premium apparel CRO — consistent lifts across comparable brands.</p>
         <div class="hyp"><strong>Primary metric:</strong> Average order value. Secondary: items per order.</div>
       </div>
     </div>
@@ -831,40 +677,31 @@
 
   <hr class="divider">
 
-  <!-- PDP Mockup -->
+  <!-- PDP MOCKUP -->
   <div class="mockup-wrap">
     <h3>Annotated Mockup · PDP Optimisation Concept — Collaboration Product</h3>
     <div class="mockup">
       <div class="mockup-gallery">
         <div class="m-main">Product Image</div>
         <div class="m-thumbs">
-          <div class="m-thumb active"></div>
-          <div class="m-thumb"></div>
-          <div class="m-thumb"></div>
-          <div class="m-thumb"></div>
+          <div class="m-thumb active"></div><div class="m-thumb"></div><div class="m-thumb"></div><div class="m-thumb"></div>
         </div>
       </div>
       <div class="mockup-info">
         <span class="m-badge">Collaboration</span>
         <div class="m-title">Rowing Blazers × Paddington™<br>Heavy Cotton Rugby Shirt</div>
         <div class="m-reviews">
-          <span class="stars">★★★★★</span>
-          <span>4.8</span>
-          <a href="#">(124 reviews)</a>
+          <span class="stars">★★★★★</span><span>4.8</span><a href="#">(124 reviews)</a>
         </div>
         <div class="annotation-box"><strong>↑ Reviews above the fold</strong> — star rating + count anchors trust before price is seen</div>
         <div class="m-price">$195</div>
-        <div class="m-bnpl">
-          <span class="bnpl-logo">Shop Pay</span>
-          or 4 × $48.75 — <a href="#">learn more</a>
-        </div>
+        <div class="m-bnpl"><span class="bnpl-logo">Shop Pay</span> or 4 × $48.75 — <a href="#">learn more</a></div>
         <div class="m-scarcity">⚑ Only 4 left in size M</div>
         <div class="annotation-box"><strong>↑ Scarcity signal</strong> — inventory-aware, shown only when stock ≤ 5</div>
         <div class="m-section-label">Size</div>
         <div class="size-options">
-          <div class="size-opt">XS</div><div class="size-opt">S</div>
-          <div class="size-opt sel">M</div><div class="size-opt">L</div>
-          <div class="size-opt oos">XL</div><div class="size-opt">XXL</div>
+          <div class="size-opt">XS</div><div class="size-opt">S</div><div class="size-opt sel">M</div>
+          <div class="size-opt">L</div><div class="size-opt oos">XL</div><div class="size-opt">XXL</div>
         </div>
         <div class="fit-note">Model is 6'0", wearing size M. Fits true to size — size up for a relaxed rugby fit.</div>
         <div class="annotation-box"><strong>↑ Per-garment fit note</strong> — written copy, no development required</div>
@@ -888,7 +725,7 @@
 
 </div><!-- /wrap -->
 
-<!-- ── HOW NORTHBOUND CAN HELP ─────────────────── -->
+<!-- HOW NORTHBOUND CAN HELP -->
 <div class="nb-help">
   <div class="nb-help-inner">
     <div class="nb-help-label">Northbound Commerce</div>
@@ -918,7 +755,7 @@
   </div>
 </div>
 
-<!-- ── FOOTER ─────────────────────────────────── -->
+<!-- FOOTER -->
 <div class="site-footer">
   <div class="site-footer-left">
     <a href="https://northboundcommerce.co.uk" target="_blank">Northbound Commerce</a> &nbsp;·&nbsp; Amy &nbsp;·&nbsp; <a href="mailto:amy@northboundcommerce.co.uk">amy@northboundcommerce.co.uk</a>
