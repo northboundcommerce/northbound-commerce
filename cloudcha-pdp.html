@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloudcha Matcha 30g</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ─────────────────────────────────────────────────────────────
+   BASE — matches live Dawn theme
+───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:        #fafafa;
+  --white:     #ffffff;
+  --ink:       #121212;
+  --muted:     #6d6d6d;
+  --border:    #e3e3e3;
+  --border-lt: #ebebeb;
+  --green:     #3b6d11;
+  --green-dk:  #2d5410;
+  --green-pale:#eef6e9;
+  --sage:      #a8d39f;
+  --sage-pale: #dff0dc;
+  --sage-dk:   #8ec485;
+  --stone:     #8a8a8a;
+  --stone-lt:  #b0b0b0;
+  --display:   'Cormorant', Georgia, serif;
+  --body:      'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --nav-h:     60px;
+}
+
+body {
+  background: var(--bg);
+  font-family: var(--body);
+  font-weight: 400;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; }
+img { display: block; width: 100%; }
+
+/* ─────────────────────────────────────────────────────────────
+   ANNOUNCEMENT BAR — matches live site
+───────────────────────────────────────────────────────────── */
+.ann-bar {
+  background: var(--ink);
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 9px 16px;
+  font-weight: 400;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   NAV — faithful to live site
+───────────────────────────────────────────────────────────── */
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  height: var(--nav-h);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 500;
+}
+.nav-links a:hover { opacity: 0.65; }
+.nav-logo { justify-self: center; }
+.nav-logo img { height: 24px; }
+.nav-utils { display: flex; gap: 20px; justify-content: flex-end; align-items: center; }
+.nav-utils a {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 400;
+}
+.nav-utils a:hover { opacity: 0.65; }
+
+/* ─────────────────────────────────────────────────────────────
+   PAGE WRAPPER
+───────────────────────────────────────────────────────────── */
+.page-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ATF PRODUCT GRID — faithful to live site
+───────────────────────────────────────────────────────────── */
+.product-grid {
+  display: grid;
+  grid-template-columns: 56% 44%;
+  gap: 48px;
+  padding: 40px 0 60px;
+  align-items: start;
+}
+
+/* ── Image column ── */
+.product-images {}
+
+.main-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f2f2f2;
+  position: relative;
+}
+.main-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.25s ease;
+}
+
+.thumbnail-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.thumb-item {
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+  flex-shrink: 0;
+  background: #f2f2f2;
+}
+.thumb-item.active { border-color: var(--ink); }
+.thumb-item img { width: 100%; height: 100%; object-fit: cover; }
+.thumb-item.placeholder {
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 4px;
+}
+.thumb-item.placeholder span {
+  font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--stone-lt); font-weight: 500;
+}
+
+/* ── Buy box ── */
+.buy-box {}
+
+.product-title {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.stockist-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  background: var(--green-pale);
+  padding: 4px 12px;
+  border-radius: 2px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.product-desc {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-lt);
+}
+
+/* ── Subscription selector (ADDED) ── */
+.sub-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.sub-options {
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.sub-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--border-lt);
+  background: transparent;
+}
+.sub-opt:last-child { border-bottom: none; }
+.sub-opt.sel { background: var(--green-pale); }
+.sub-opt input { display: none; }
+.sub-radio {
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+.sub-opt.sel .sub-radio { border-color: var(--green); background: var(--green); }
+.sub-opt.sel .sub-radio::after {
+  content: ''; width: 5px; height: 5px;
+  background: white; border-radius: 50%;
+}
+.sub-opt-body { flex: 1; }
+.sub-opt-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.sub-opt-note { font-size: 11px; color: var(--stone); }
+.sub-opt-price { font-size: 13px; font-weight: 500; color: var(--ink); }
+.sub-save {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--sage);
+  color: var(--green-dk);
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+/* ── Size selector ── */
+.size-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.size-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 20px;
+  border: 1px solid var(--ink);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Add to cart ── */
+.atc-btn {
+  display: block;
+  width: 100%;
+  background: var(--ink);
+  color: white;
+  padding: 16px;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: var(--body);
+  transition: background 0.2s;
+  margin-bottom: 12px;
+}
+.atc-btn:hover { background: #2a2a2a; }
+
+.ship-text {
+  font-size: 11.5px;
+  color: var(--stone);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* ── Trust pills ── */
+.trust-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-lt);
+}
+.tpill {
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone);
+  border: 1px solid var(--border-lt);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-weight: 500;
+}
+
+/* ── Accordions — faithful to live site ── */
+.accordions { border-top: 1px solid var(--border-lt); }
+.acc-row { border-bottom: 1px solid var(--border-lt); }
+.acc-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  cursor: pointer;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  user-select: none;
+}
+.acc-trigger:hover { color: var(--green); }
+.acc-icon { font-size: 20px; font-weight: 300; color: var(--stone); }
+.acc-panel {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.75;
+  padding-bottom: 16px;
+  display: none;
+}
+.acc-panel.open { display: block; }
+
+/* ─────────────────────────────────────────────────────────────
+   BELOW FOLD — all our mockup improvements, minimal styling
+───────────────────────────────────────────────────────────── */
+
+/* ── HOW TO section ── */
+.how-to {
+  display: grid;
+  grid-template-columns: 44% 56%;
+  min-height: 520px;
+  background: var(--sage);
+}
+.ht-l {
+  padding: 64px 48px 64px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(59,109,17,0.1);
+}
+.ht-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+}
+.ht-eyebrow::before {
+  content: ''; width: 18px; height: 1.5px;
+  background: var(--green); opacity: 0.45; border-radius: 2px;
+}
+.ht-body { margin-top: 18px; }
+.ht-body h2 {
+  font-family: var(--display);
+  font-size: 46px; font-weight: 500;
+  line-height: 1.05; letter-spacing: -0.01em;
+  color: var(--green-dk); margin-bottom: 14px;
+}
+.ht-body p {
+  font-size: 14px; line-height: 1.75;
+  color: var(--green-dk); max-width: 340px;
+  font-weight: 400; opacity: 0.75;
+}
+.ht-foot { margin-top: 32px; }
+.ht-steps { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.ht-step { display: flex; gap: 12px; align-items: center; }
+.ht-sn {
+  font-size: 10.5px; font-weight: 600; color: var(--green);
+  width: 22px; height: 22px;
+  background: rgba(59,109,17,0.13);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ht-st { font-size: 13px; color: var(--green-dk); line-height: 1.5; font-weight: 400; opacity: 0.85; }
+.ht-cta {
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--green-dk);
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(59,109,17,0.1); padding: 10px 20px;
+  border-radius: 2px; font-weight: 600;
+  transition: background 0.2s;
+}
+.ht-cta:hover { background: rgba(59,109,17,0.18); }
+.ht-r {
+  position: relative; background: #1c2a14;
+  overflow: hidden; cursor: pointer;
+}
+.ht-r-bg {
+  position: absolute; inset: 0;
+  background: url('https://cloudchamatcha.com/cdn/shop/files/9_f8ea1ec0-b294-40f6-98a0-8896b0f76899.jpg') center/cover;
+  opacity: 0.28; transition: opacity 0.4s;
+}
+.ht-r:hover .ht-r-bg { opacity: 0.4; }
+.play-wrap {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.play-ring {
+  width: 76px; height: 76px;
+  border: 1.5px solid rgba(168,211,159,0.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.ht-r:hover .play-ring { border-color: rgba(168,211,159,0.85); transform: scale(1.07); }
+.play-lbl {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(168,211,159,0.5); font-weight: 500; transition: color 0.3s;
+}
+.ht-r:hover .play-lbl { color: rgba(168,211,159,0.85); }
+.ht-caption {
+  position: absolute; bottom: 22px; left: 0; right: 0;
+  text-align: center; font-size: 12.5px;
+  color: rgba(168,211,159,0.25); font-weight: 400;
+}
+
+/* ── Upgrade banner ── */
+.upgrade {
+  background: #f5f5f3;
+  border-bottom: 1px solid var(--border);
+  padding: 28px 56px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 32px;
+}
+.upgrade h3 {
+  font-family: var(--display);
+  font-size: 22px; font-weight: 500;
+  letter-spacing: -0.01em; margin-bottom: 4px;
+}
+.upgrade p { font-size: 12.5px; color: var(--stone); font-weight: 400; }
+.upgrade-btn {
+  background: var(--ink); color: white;
+  padding: 12px 24px;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-family: var(--body); font-weight: 500;
+  white-space: nowrap; transition: background 0.2s;
+  border-radius: 2px;
+}
+.upgrade-btn:hover { background: var(--green); }
+
+/* ── Reviews ── */
+.reviews-section {
+  padding: 60px 56px;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.section-title {
+  font-family: var(--display);
+  font-size: 32px; font-weight: 500;
+  letter-spacing: -0.01em; margin-bottom: 4px;
+}
+.section-subtitle { font-size: 12px; color: var(--stone); margin-bottom: 36px; }
+.reviews-summary {
+  display: grid; grid-template-columns: 110px 1fr;
+  gap: 44px; align-items: center;
+  padding-bottom: 36px; border-bottom: 1px solid var(--border-lt);
+}
+.rev-score {
+  font-family: var(--display);
+  font-size: 72px; font-weight: 400; line-height: 1;
+  color: var(--green); letter-spacing: -0.02em; margin-bottom: 4px;
+}
+.rev-stars-sm { font-size: 11px; color: var(--sage-dk); letter-spacing: 2px; margin-bottom: 3px; }
+.rev-count { font-size: 10px; color: var(--stone-lt); }
+.rev-bars { display: flex; flex-direction: column; gap: 8px; }
+.rb { display: flex; align-items: center; gap: 10px; }
+.rbl { font-size: 11px; color: var(--stone); min-width: 10px; font-weight: 500; }
+.rb-t { flex: 1; height: 2px; background: #ebebeb; border-radius: 2px; }
+.rb-f { height: 2px; background: var(--sage); border-radius: 2px; }
+.rb-p { font-size: 10px; color: var(--stone-lt); min-width: 26px; text-align: right; }
+.rev-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border-lt);
+}
+.rev-card {
+  padding: 28px 24px 28px 0;
+  border-right: 1px solid var(--border-lt);
+}
+.rev-card:last-child { border-right: none; }
+.rev-card + .rev-card { padding-left: 24px; }
+.rc-stars { font-size: 10px; color: var(--sage-dk); letter-spacing: 1.5px; margin-bottom: 10px; }
+.rc-title {
+  font-family: var(--display);
+  font-size: 18px; font-weight: 500;
+  line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.rc-body { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
+.rc-meta { font-size: 9.5px; color: var(--stone-lt); }
+
+/* ── Mercha ── */
+.mercha-section {
+  padding: 60px 56px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.mercha-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 28px;
+}
+.mercha-header h2 {
+  font-family: var(--display);
+  font-size: 32px; font-weight: 500;
+  letter-spacing: -0.01em; margin-bottom: 3px;
+}
+.mercha-header h2 span { color: var(--green); }
+.mercha-sub { font-size: 12px; color: var(--stone); }
+.mercha-all {
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px; transition: color 0.2s;
+}
+.mercha-all:hover { color: var(--green); }
+.mercha-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.mc { cursor: pointer; }
+.mc-img {
+  aspect-ratio: 3/4; overflow: hidden;
+  background: #f0f0f0; margin-bottom: 12px; position: relative;
+}
+.mc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.mc:hover .mc-img img { transform: scale(1.04); }
+.mc-tag {
+  position: absolute; top: 10px; right: 10px;
+  font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase;
+  background: rgba(255,255,255,0.9); color: var(--ink);
+  padding: 3px 9px; font-weight: 500;
+}
+.mc-name { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.mc-price { font-size: 12.5px; color: var(--stone); }
+
+/* ── Instagram ── */
+.ig-section {
+  padding: 52px 56px 60px;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.ig-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 20px;
+}
+.ig-header h2 {
+  font-family: var(--display);
+  font-size: 26px; font-weight: 500;
+  letter-spacing: -0.01em; margin-bottom: 2px;
+}
+.ig-handle { font-size: 10px; color: var(--stone); letter-spacing: 0.1em; text-transform: uppercase; }
+.ig-badge {
+  font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--stone); border: 1px solid var(--border);
+  padding: 7px 14px; font-weight: 500;
+  display: flex; align-items: center; gap: 7px;
+}
+.ig-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px;
+}
+.ig-cell {
+  aspect-ratio: 1; background: #ebebeb; cursor: pointer; transition: opacity 0.2s;
+}
+.ig-cell:nth-child(2n) { background: #e3e3e3; }
+.ig-cell:hover { opacity: 0.75; }
+.ig-note { font-size: 11px; color: var(--stone-lt); margin-top: 10px; }
+
+/* ── Footer ── */
+footer {
+  background: var(--ink); color: white; padding: 52px 56px 28px;
+}
+.ft-inner {
+  max-width: 1280px; margin: 0 auto;
+}
+.ft-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 20px;
+}
+.ft-brand img { height: 20px; filter: invert(1); opacity: 0.65; margin-bottom: 16px; }
+.ft-brand p { font-size: 12.5px; color: rgba(255,255,255,0.32); line-height: 1.75; max-width: 240px; }
+.ft-col h4 { font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 12px; font-weight: 600; }
+.ft-col a { display: block; font-size: 12.5px; color: rgba(255,255,255,0.48); margin-bottom: 8px; transition: color 0.2s; }
+.ft-col a:hover { color: rgba(255,255,255,0.8); }
+.ft-bottom { display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,0.18); }
+
+/* ── Sticky ATC bar ── */
+.sticky-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  padding: 12px 40px;
+  display: flex; align-items: center; gap: 24px;
+  z-index: 300; box-shadow: 0 -2px 16px rgba(0,0,0,0.05);
+}
+.sticky-info { flex: 1; }
+.sticky-name { font-size: 13px; font-weight: 500; }
+.sticky-price { font-size: 12px; color: var(--stone); }
+.sticky-sep { width: 1px; height: 24px; background: var(--border); }
+.sticky-btn {
+  background: var(--ink); color: white;
+  padding: 11px 28px; font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  font-family: var(--body); font-weight: 500;
+  transition: background 0.2s; border-radius: 2px;
+}
+.sticky-btn:hover { background: var(--green); }
+.spacer { height: 60px; }
+
+/* ── Annotation chip ── */
+.chip {
+  display: inline-block; font-size: 8px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--stone-lt);
+  border: 1px solid var(--border-lt); background: #f5f5f5;
+  padding: 2px 7px; border-radius: 2px;
+  vertical-align: middle; margin-left: 5px; font-weight: 500;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MOBILE
+───────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .page-wrap { padding: 0 20px; }
+  nav { padding: 0 20px; }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 20px 0 40px;
+  }
+
+  .product-images { margin-bottom: 24px; }
+
+  .thumbnail-row { gap: 6px; }
+  .thumb-item { width: 60px; height: 60px; }
+
+  .product-title { font-size: 22px; }
+
+  .how-to {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .ht-l {
+    padding: 40px 24px;
+    border-right: none;
+    border-bottom: 1px solid rgba(59,109,17,0.1);
+  }
+  .ht-body h2 { font-size: 32px; }
+  .ht-r { height: 60vw; min-height: 220px; }
+
+  .upgrade {
+    grid-template-columns: 1fr;
+    gap: 16px; padding: 24px 20px;
+    text-align: center;
+  }
+  .upgrade-btn { width: 100%; }
+
+  .reviews-section { padding: 44px 20px; }
+  .reviews-summary { grid-template-columns: 80px 1fr; gap: 24px; }
+  .rev-score { font-size: 52px; }
+  .rev-cards { grid-template-columns: 1fr; }
+  .rev-card {
+    padding: 20px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-lt);
+  }
+  .rev-card:last-child { border-bottom: none; }
+  .rev-card + .rev-card { padding-left: 0; }
+
+  .mercha-section { padding: 44px 20px; }
+  .mercha-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .mercha-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  .ig-section { padding: 40px 20px; }
+  .ig-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ig-grid { grid-template-columns: repeat(3, 1fr); }
+
+  footer { padding: 40px 20px 24px; }
+  .ft-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .ft-brand { grid-column: 1 / -1; }
+
+  .sticky-bar { padding: 10px 20px; gap: 12px; }
+  .nav-links { gap: 14px; }
+}
+
+@media (max-width: 480px) {
+  .product-title { font-size: 20px; }
+  .nav-links a { font-size: 10px; }
+  .ht-body h2 { font-size: 28px; }
+  .section-title { font-size: 26px; }
+  .mercha-grid { grid-template-columns: 1fr 1fr; }
+  .ft-grid { grid-template-columns: 1fr; }
+  .ft-brand { grid-column: auto; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Announcement bar -->
+<div class="ann-bar">Free UK delivery on orders over £40 &nbsp;·&nbsp; Ceremonial grade from Uji, Japan</div>
+
+<!-- Nav — faithful to live site -->
+<nav>
+  <div class="nav-links">
+    <a href="#">SHOP</a>
+    <a href="#">MERCHA</a>
+    <a href="#">ABOUT</a>
+  </div>
+  <div class="nav-logo">
+    <img src="https://cloudchamatcha.com/cdn/shop/files/logo-cloudcha_4208048e-97df-43e8-a856-f8b934efc173.png" alt="Cloudcha">
+  </div>
+  <div class="nav-utils">
+    <a href="#">Account</a>
+    <a href="#">Cart (0)</a>
+  </div>
+</nav>
+
+<!-- ── ATF PRODUCT SECTION ─────────────────────────────────── -->
+<div class="page-wrap">
+  <div class="product-grid">
+
+    <!-- Images — thumbnail row below, matching live site -->
+    <div class="product-images">
+      <div class="main-img-wrap">
+        <img id="mainImg"
+             src="https://cloudchamatcha.com/cdn/shop/files/SHOT_17_011_v2_ec6f2926-34a2-49b1-9d59-a5b46c37de9f.jpg"
+             alt="Cloudcha Matcha 30g">
+      </div>
+      <div class="thumbnail-row">
+        <div class="thumb-item active" data-src="https://cloudchamatcha.com/cdn/shop/files/SHOT_17_011_v2_ec6f2926-34a2-49b1-9d59-a5b46c37de9f.jpg">
+          <img src="https://cloudchamatcha.com/cdn/shop/files/SHOT_17_011_v2_ec6f2926-34a2-49b1-9d59-a5b46c37de9f.jpg" alt="">
+        </div>
+        <div class="thumb-item" data-src="https://cloudchamatcha.com/cdn/shop/files/9_f8ea1ec0-b294-40f6-98a0-8896b0f76899.jpg">
+          <img src="https://cloudchamatcha.com/cdn/shop/files/9_f8ea1ec0-b294-40f6-98a0-8896b0f76899.jpg" alt="">
+        </div>
+        <div class="thumb-item placeholder">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0c0c0" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M21 15l-5-5L5 21"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+          <span>Ritual</span>
+        </div>
+        <div class="thumb-item placeholder">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0c0c0" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M21 15l-5-5L5 21"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+          <span>In-use</span>
+        </div>
+        <div class="thumb-item placeholder">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0c0c0" stroke-width="1.2"><polygon points="6,3 20,12 6,21"/></svg>
+          <span>Video</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buy box -->
+    <div class="buy-box">
+
+      <div class="stockist-tag">As stocked at Selfridges <span class="chip">Added</span></div>
+
+      <h1 class="product-title">Cloudcha Matcha 30g</h1>
+      <div class="product-price">£28.00</div>
+
+      <p class="product-desc">
+        Ceremonial grade matcha sourced from the highest quality green tea leaves in Uji, Japan. Shade-grown, handpicked, stone-ground. Full body, smooth taste, gentle release of energy — the perfect morning ritual or afternoon energiser.<br><br>
+        Our 30g drum tin is perfect for on-the-go or gifting.
+      </p>
+
+      <!-- Subscription selector — ADDED -->
+      <div class="sub-label">Purchase option <span class="chip">Added</span></div>
+      <div class="sub-options">
+        <div class="sub-opt sel" id="so1">
+          <input type="radio" name="so" checked>
+          <div class="sub-radio"></div>
+          <div class="sub-opt-body">
+            <div class="sub-opt-name">One-time purchase</div>
+          </div>
+          <div class="sub-opt-price">£28.00</div>
+        </div>
+        <div class="sub-opt" id="so2">
+          <input type="radio" name="so">
+          <div class="sub-radio"></div>
+          <div class="sub-opt-body">
+            <div class="sub-opt-name">Subscribe monthly</div>
+            <div class="sub-opt-note">Cancel any time &nbsp;·&nbsp; never run out</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="sub-opt-price">£25.20</div>
+            <span class="sub-save">Save 10%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Size -->
+      <div class="size-label">Size</div>
+      <div class="size-option">30g</div>
+
+      <!-- ATC -->
+      <button class="atc-btn">Add to cart</button>
+      <div class="ship-text">Free UK delivery on orders over £40</div>
+
+      <!-- Trust pills -->
+      <div class="trust-pills">
+        <span class="tpill">No crash energy</span>
+        <span class="tpill">Single-origin Uji</span>
+        <span class="tpill">100% Vegan</span>
+      </div>
+
+      <!-- Accordions — matching live site -->
+      <div class="accordions">
+        <div class="acc-row">
+          <div class="acc-trigger" data-panel="a-ing">
+            Ingredients
+            <span class="acc-icon">+</span>
+          </div>
+          <div class="acc-panel" id="a-ing">
+            100% ceremonial grade green tea matcha from Uji, Japan.
+          </div>
+        </div>
+        <div class="acc-row">
+          <div class="acc-trigger" data-panel="a-prep">
+            How to prepare <span class="chip">Moved inline</span>
+            <span class="acc-icon">+</span>
+          </div>
+          <div class="acc-panel open" id="a-prep">
+            <div style="display:flex;flex-direction:column;gap:10px;padding-top:4px;">
+              <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--muted);">
+                <span style="min-width:18px;height:18px;background:var(--sage-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--green);flex-shrink:0;margin-top:1px;">1</span>
+                <span>Sift 1–1.5 tsp matcha into your bowl</span>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--muted);">
+                <span style="min-width:18px;height:18px;background:var(--sage-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--green);flex-shrink:0;margin-top:1px;">2</span>
+                <span>Add 60ml water at 70–80°C — never boiling</span>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--muted);">
+                <span style="min-width:18px;height:18px;background:var(--sage-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--green);flex-shrink:0;margin-top:1px;">3</span>
+                <span>Whisk in a W motion until smooth and frothy</span>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--muted);">
+                <span style="min-width:18px;height:18px;background:var(--sage-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--green);flex-shrink:0;margin-top:1px;">4</span>
+                <span>Top with steamed milk or enjoy straight. You're on cloud nine</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="acc-row">
+          <div class="acc-trigger" data-panel="a-ship">
+            Delivery &amp; Returns
+            <span class="acc-icon">+</span>
+          </div>
+          <div class="acc-panel" id="a-ship">
+            Free standard UK delivery on orders over £40. Express next-day available at checkout. Returns within 14 days for unopened items.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     BELOW FOLD — all mockup improvements, consistent minimal style
+═══════════════════════════════════════════════════════════ -->
+
+<!-- HOW TO CLOUDCHA (from homepage, embedded) -->
+<div class="how-to">
+  <div class="ht-l">
+    <div class="ht-eyebrow">The Ritual</div>
+    <div class="ht-body">
+      <h2>How to Cloudcha</h2>
+      <p>Our love for matcha transcends its taste — it's about the rituals and the sense of serenity it brings into our lives, starting each day right.</p>
+    </div>
+    <div class="ht-foot">
+      <div class="ht-steps">
+        <div class="ht-step"><span class="ht-sn">1</span><span class="ht-st">Sift your matcha into the bowl</span></div>
+        <div class="ht-step"><span class="ht-sn">2</span><span class="ht-st">Add hot (not boiling) water, whisk until frothy</span></div>
+        <div class="ht-step"><span class="ht-sn">3</span><span class="ht-st">Enjoy hot, iced, or as a latte. You're on cloud nine ☁</span></div>
+      </div>
+      <a href="https://cloudchamatcha.com/pages/how-to" target="_blank" class="ht-cta">
+        Watch the video
+        <svg width="13" height="6" viewBox="0 0 13 6" fill="none"><path d="M1 3h11M9 1l2 2-2 2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="ht-r" onclick="window.open('https://cloudchamatcha.com/pages/how-to','_blank')">
+    <div class="ht-r-bg"></div>
+    <div class="play-wrap">
+      <div class="play-ring">
+        <svg width="13" height="15" viewBox="0 0 13 15" fill="none">
+          <path d="M1 1.5l11 6-11 6V1.5z" fill="rgba(168,211,159,0.9)"/>
+        </svg>
+      </div>
+      <div class="play-lbl">Play video</div>
+    </div>
+    <div class="ht-caption">Let's make a matcha made in heaven…</div>
+  </div>
+</div>
+
+<!-- 100g upgrade prompt -->
+<div class="upgrade">
+  <div>
+    <h3>Love it? The 100g refill is 30% cheaper per cup.</h3>
+    <p>Home-staple size. Same Uji matcha, same drum. Ideal for the properly addicted.</p>
+  </div>
+  <button class="upgrade-btn">Shop 100g — £65.00</button>
+</div>
+
+<!-- Reviews -->
+<div class="reviews-section" id="reviews">
+  <div class="section-title">What the cloud is saying <span class="chip">Added</span></div>
+  <div class="section-subtitle">130 verified reviews · 4.9 average rating</div>
+  <div class="reviews-summary">
+    <div>
+      <div class="rev-score">4.9</div>
+      <div class="rev-stars-sm">★★★★★</div>
+      <div class="rev-count">130 reviews</div>
+    </div>
+    <div class="rev-bars">
+      <div class="rb"><span class="rbl">5</span><div class="rb-t"><div class="rb-f" style="width:88%"></div></div><span class="rb-p">88%</span></div>
+      <div class="rb"><span class="rbl">4</span><div class="rb-t"><div class="rb-f" style="width:9%"></div></div><span class="rb-p">9%</span></div>
+      <div class="rb"><span class="rbl">3</span><div class="rb-t"><div class="rb-f" style="width:2%"></div></div><span class="rb-p">2%</span></div>
+      <div class="rb"><span class="rbl">2</span><div class="rb-t"><div class="rb-f" style="width:1%"></div></div><span class="rb-p">1%</span></div>
+      <div class="rb"><span class="rbl">1</span><div class="rb-t"><div class="rb-f" style="width:0%"></div></div><span class="rb-p">0%</span></div>
+    </div>
+  </div>
+  <div class="rev-cards">
+    <div class="rev-card">
+      <div class="rc-stars">★★★★★</div>
+      <div class="rc-title">Replaced my morning coffee entirely</div>
+      <div class="rc-body">Smooth, rounded, genuinely delicious. Calmer and more focused all day. The crashes are gone.</div>
+      <div class="rc-meta">Harriet M. · Verified buyer · 2 weeks ago</div>
+    </div>
+    <div class="rev-card">
+      <div class="rc-stars">★★★★★</div>
+      <div class="rc-title">The drum packaging is beautiful</div>
+      <div class="rc-body">Bought as a gift and my friend was genuinely delighted. Looks stunning on a kitchen shelf.</div>
+      <div class="rc-meta">Oliver T. · Verified buyer · 1 month ago</div>
+    </div>
+    <div class="rev-card">
+      <div class="rc-stars">★★★★★</div>
+      <div class="rc-title">Found it at Selfridges, now addicted</div>
+      <div class="rc-body">Tried it at Selfridges and ordered that same evening. Calm, sustained energy. Properly on cloud nine.</div>
+      <div class="rc-meta">Priya S. · Verified buyer · 3 weeks ago</div>
+    </div>
+  </div>
+</div>
+
+<!-- Mercha cross-sell -->
+<div class="mercha-section">
+  <div class="mercha-header">
+    <div>
+      <h2>With matcha, comes <span>mercha. ☁</span></h2>
+      <div class="mercha-sub">The Cloudcha Mercha collection</div>
+    </div>
+    <a href="https://cloudchamatcha.com/collections/shop-mercha" target="_blank" class="mercha-all">View all mercha</a>
+  </div>
+  <div class="mercha-grid">
+    <div class="mc">
+      <div class="mc-img">
+        <img src="https://cloudchamatcha.com/cdn/shop/files/cloudcha-matcha-mercha-welness-club-cap.jpg" alt="Wellness Club Cap">
+        <div class="mc-tag">Cap</div>
+      </div>
+      <div class="mc-name">Wellness Club Cap</div>
+      <div class="mc-price">£38.00</div>
+    </div>
+    <div class="mc">
+      <div class="mc-img">
+        <img src="https://cloudchamatcha.com/cdn/shop/files/cloudcha-matcha-mercha-daily-rituals-joggers.jpg" alt="Daily Rituals Joggers">
+        <div class="mc-tag">Joggers</div>
+      </div>
+      <div class="mc-name">"Daily Rituals" Joggers</div>
+      <div class="mc-price">£75.00</div>
+    </div>
+    <div class="mc">
+      <div class="mc-img">
+        <img src="https://cloudchamatcha.com/cdn/shop/files/cloudcha-matcha-mercha-daily-rituals-sweatshirt.jpg" alt="Daily Rituals Sweatshirt">
+        <div class="mc-tag">Sweatshirt</div>
+      </div>
+      <div class="mc-name">"Daily Rituals" Sweatshirt</div>
+      <div class="mc-price">£85.00</div>
+    </div>
+    <div class="mc">
+      <div class="mc-img">
+        <img src="https://cloudchamatcha.com/cdn/shop/files/cloudcha-matcha-mercha-hoodie.jpg" alt="Let's go for a matcha hoodie">
+        <div class="mc-tag">Hoodie</div>
+      </div>
+      <div class="mc-name">"Let's Go for a Matcha" Hoodie</div>
+      <div class="mc-price">£125.00</div>
+    </div>
+  </div>
+</div>
+
+<!-- Instagram / Spark Carousel -->
+<div class="ig-section">
+  <div class="ig-header">
+    <div>
+      <h2>Join the cloud ☁</h2>
+      <div class="ig-handle">@cloudchamatcha</div>
+    </div>
+    <div class="ig-badge">Spark Carousel <span class="chip">Replace current app</span></div>
+  </div>
+  <div class="ig-grid">
+    <div class="ig-cell"></div><div class="ig-cell"></div><div class="ig-cell"></div>
+    <div class="ig-cell"></div><div class="ig-cell"></div><div class="ig-cell"></div>
+  </div>
+  <div class="ig-note">Shoppable feed via Spark Carousel — tap any image to shop the look</div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="https://cloudchamatcha.com/cdn/shop/files/logo-cloudcha_4208048e-97df-43e8-a856-f8b934efc173.png" alt="Cloudcha">
+        <p>Elevating your daily rituals. Let's make a matcha made in heaven…</p>
+      </div>
+      <div class="ft-col">
+        <h4>Shop</h4>
+        <a href="#">Matcha 30g</a>
+        <a href="#">Matcha 100g</a>
+        <a href="#">Cloudcha Whisk</a>
+        <a href="#">Tea Set</a>
+      </div>
+      <div class="ft-col">
+        <h4>Mercha</h4>
+        <a href="#">Apparel</a>
+        <a href="#">Accessories</a>
+        <a href="#">Collaborations</a>
+      </div>
+      <div class="ft-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Shipping &amp; Returns</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© Cloudcha 2026</span>
+      <span>Instagram &nbsp;·&nbsp; TikTok</span>
+    </div>
+  </div>
+</footer>
+
+<div class="spacer"></div>
+
+<!-- Sticky bar -->
+<div class="sticky-bar">
+  <div class="sticky-info">
+    <div class="sticky-name">Cloudcha Matcha 30g</div>
+    <div class="sticky-price">£28.00 · ~15 cups of calm</div>
+  </div>
+  <div class="sticky-sep"></div>
+  <button class="sticky-btn">Add to Cart</button>
+</div>
+
+<script>
+  // Thumbnail gallery
+  const mainImg = document.getElementById('mainImg');
+  mainImg.style.transition = 'opacity 0.22s ease';
+  document.querySelectorAll('.thumb-item[data-src]').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.thumb-item').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      mainImg.style.opacity = '0';
+      setTimeout(() => { mainImg.src = t.dataset.src; mainImg.style.opacity = '1'; }, 160);
+    });
+  });
+
+  // Subscription toggle
+  ['so1','so2'].forEach(id => {
+    document.getElementById(id).addEventListener('click', function() {
+      document.querySelectorAll('.sub-opt').forEach(o => o.classList.remove('sel'));
+      this.classList.add('sel');
+      this.querySelector('input').checked = true;
+    });
+  });
+
+  // Accordions
+  document.querySelectorAll('.acc-trigger').forEach(trigger => {
+    const panel = document.getElementById(trigger.dataset.panel);
+    const icon = trigger.querySelector('.acc-icon');
+    // prep panel starts open
+    let open = panel ? panel.classList.contains('open') : false;
+    if (icon) icon.textContent = open ? '−' : '+';
+    if (trigger) trigger.addEventListener('click', () => {
+      if (!panel) return;
+      open = !open;
+      panel.classList.toggle('open', open);
+      icon.textContent = open ? '−' : '+';
+    });
+  });
+</script>
+</body>
+</html>
