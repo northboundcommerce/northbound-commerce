@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,15 +46,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0;
-  }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 30% 60%, rgba(143,168,139,0.18) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 50% at 75% 40%, rgba(27,58,33,0.25) 0%, transparent 70%),
-      linear-gradient(160deg, #1a1e16 0%, #0e120c 100%);
+    opacity: 1;
   }
   .hero-overlay {
     position: absolute;
@@ -80,7 +73,11 @@
     gap: 10px;
     text-decoration: none;
   }
-  .nb-diamond { width: 22px; height: 22px; }
+  .nb-diamond-char {
+    font-size: 20px;
+    color: rgba(250,247,242,0.8);
+    line-height: 1;
+  }
   .nb-wordmark {
     font-family: var(--sans);
     font-size: 11px;
@@ -806,16 +803,12 @@
 
 <!-- ═══ HERO ═══ -->
 <div class="hero-header">
-  <div class="hero-bg"></div>
+  <img class="hero-img" src="https://cdn.sanity.io/images/69kas9zj/production/517fa1b8f8ebbe860b2977fe830b560f558022af-2222x1481.jpg?w=2222&h=1481&auto=format" alt="Groove Pillow product photography">
   <div class="hero-overlay"></div>
 
   <div class="nb-logobar">
     <a href="https://northboundcommerce.co.uk" target="_blank" class="nb-logo-link">
-      <svg class="nb-diamond" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L22 9L12 22L2 9Z" stroke="#faf7f2" stroke-width="1.5" fill="none"/>
-        <path d="M2 9L12 12L22 9" stroke="#faf7f2" stroke-width="1.5"/>
-        <path d="M12 2L12 12" stroke="#faf7f2" stroke-width="1.5"/>
-      </svg>
+      <span class="nb-diamond-char">⟡</span>
       <span class="nb-wordmark">Northbound Commerce</span>
     </a>
     <nav class="nb-nav">
