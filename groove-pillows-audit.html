@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groove Pillows — CRO &amp; UX Audit · Northbound Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stone: #F5F0EA;
+    --stone-deep: #EBE5DC;
+    --forest: #1B3A21;
+    --forest-light: #2D5A35;
+    --sage: #8FA88B;
+    --sage-pale: #EEF2ED;
+    --ink: #1A1A18;
+    --ink-soft: #4A4A46;
+    --ink-muted: #8A8A84;
+    --rule: #DDD8D0;
+    --white: #FDFCFA;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; -webkit-font-smoothing: antialiased; }
+  body { font-family: var(--sans); background: var(--stone); color: var(--ink); line-height: 1.65; }
+  a { color: var(--forest); }
+  ::selection { background: var(--sage-pale); }
+
+  /* ═══════════════════════════════
+     HERO
+     ═══════════════════════════════ */
+  .hero-header {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+    background: #1a1e16;
+  }
+  .hero-header .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 60%, rgba(143,168,139,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 75% 40%, rgba(27,58,33,0.25) 0%, transparent 70%),
+      linear-gradient(160deg, #1a1e16 0%, #0e120c 100%);
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(14,18,12,0.3) 0%, rgba(14,18,12,0.7) 100%);
+    z-index: 1;
+  }
+
+  /* NB LOGO BAR */
+  .nb-logobar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+  }
+  .nb-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nb-diamond { width: 22px; height: 22px; }
+  .nb-wordmark {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.8);
+  }
+  .nb-nav { display: flex; gap: 24px; }
+  .nb-nav a {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: rgba(250,247,242,0.5);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .nb-nav a:hover { color: rgba(250,247,242,0.9); }
+
+  /* HERO CONTENT */
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0 40px 36px;
+  }
+  .audit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .audit-header .brand {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(143,168,139,0.7);
+    margin-bottom: 8px;
+  }
+  .audit-header h1 {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 500;
+    color: #faf7f2;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .audit-header h1 em {
+    display: block;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(250,247,242,0.55);
+    margin-top: 6px;
+    letter-spacing: 0;
+  }
+  .audit-header .meta {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.7;
+    color: rgba(250,247,242,0.4);
+    letter-spacing: 0.04em;
+  }
+  .audit-header .meta a {
+    color: var(--sage);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(143,168,139,0.3);
+  }
+  .audit-header .meta a:hover { color: #a8c8a0; }
+
+  /* SUB-NAV BAR */
+  .nav-bar {
+    background: #0e120c;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-bar-left {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: #4a4a42;
+  }
+  .nav-bar-right { display: flex; gap: 20px; }
+  .nav-bar-right a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: #5a5a52;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-bar-right a:hover { color: #8a8a82; }
+
+  /* ═══════════════════════════════
+     AUDIT BODY
+     ═══════════════════════════════ */
+  .wrap { max-width: 800px; margin: 0 auto; padding: 52px 28px 40px; }
+
+  /* EXEC SUMMARY */
+  .exec-summary {
+    border-left: 3px solid var(--forest);
+    background: var(--white);
+    padding: 26px 30px;
+    margin-bottom: 52px;
+    border-radius: 0 4px 4px 0;
+  }
+  .exec-summary h2 {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .exec-summary p { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 48px; }
+  .section-num {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .section h3 {
+    font-family: var(--serif);
+    font-size: 23px;
+    font-weight: 500;
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+  .section p { font-size: 14px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 12px; }
+
+  .finding {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+  .finding strong { color: var(--ink); }
+  .finding .label {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .label-high { background: #F8E8E8; color: #8B2020; }
+  .label-med { background: #FDF3D7; color: #7A5A00; }
+  .label-low { background: var(--sage-pale); color: var(--forest); }
+
+  /* TABLE */
+  .opp-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 36px; }
+  .opp-table thead th {
+    text-align: left;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--forest);
+  }
+  .opp-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+  .opp-table tbody td:first-child { color: var(--ink); font-weight: 600; width: 28px; }
+  .pill { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; padding: 3px 9px; border-radius: 3px; }
+  .pill-high { background: #F8E8E8; color: #8B2020; }
+  .pill-med { background: #FDF3D7; color: #7A5A00; }
+  .pill-low { background: var(--sage-pale); color: var(--forest); }
+
+  /* QUICK WINS */
+  .qw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 36px; }
+  @media (max-width: 600px) { .qw-grid { grid-template-columns: 1fr; } }
+  .qw-card { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 20px; }
+  .qw-card h4 { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+  .qw-card p { font-size: 12px; color: var(--ink-muted); line-height: 1.6; margin: 0; }
+
+
+  /* ═══════════════════════════════════════
+     PDP MOCKUP
+     ═══════════════════════════════════════ */
+  .mockup-label {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .mockup-label h3 { font-family: var(--serif); font-size: 23px; font-weight: 500; margin-bottom: 4px; }
+  .mockup-label p { font-size: 12px; color: var(--ink-muted); }
+
+  .pdp {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 8px 32px rgba(0,0,0,0.04);
+  }
+
+  /* NAV */
+  .pdp-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    height: 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pdp-logo { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--ink); letter-spacing: -0.4px; }
+  .pdp-logo sup { font-size: 8px; vertical-align: super; margin-left: 1px; }
+  .pdp-topbar nav { display: flex; gap: 22px; }
+  .pdp-topbar nav a { font-size: 11px; font-weight: 500; color: var(--ink-muted); text-decoration: none; letter-spacing: 0.2px; transition: color 0.2s; }
+  .pdp-topbar nav a:hover { color: var(--ink); }
+  .pdp-topbar .cart-icon svg { width: 17px; height: 17px; stroke: var(--ink-soft); fill: none; stroke-width: 1.4; }
+
+  /* HERO SPLIT */
+  .pdp-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 700px) { .pdp-hero { grid-template-columns: 1fr; } }
+
+  /* GALLERY — compact */
+  .pdp-gallery {
+    background: var(--stone-deep);
+    padding: 32px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .pdp-gallery::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .gallery-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+  }
+  .hero-image {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 4/3;
+    border-radius: 6px;
+    background: linear-gradient(155deg, #E0DBD2 0%, #D2CCC2 50%, #C6C0B4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-image .img-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+  }
+  .thumb-strip { display: flex; gap: 6px; }
+  .th {
+    width: 44px;
+    height: 44px;
+    border-radius: 5px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.25s;
+  }
+  .th:hover { opacity: 0.75; }
+  .th.active { border-color: var(--forest); opacity: 1; }
+  .th:nth-child(1) { background: #D2CCC2; }
+  .th:nth-child(2) { background: #CBC5B9; }
+  .th:nth-child(3) { background: #C4BDB0; }
+  .th:nth-child(4) { background: #BDB6A8; }
+  .th:nth-child(5) { background: #CFC8BB; }
+
+  .g-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--forest);
+    padding: 5px 12px;
+    border-radius: 3px;
+  }
+
+  /* BUY BOX — compact */
+  .buy-box { padding: 32px 32px 28px; display: flex; flex-direction: column; justify-content: center; }
+
+  .bb-kicker {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .bb-kicker::before { content: ''; width: 20px; height: 1px; background: var(--sage); }
+  .bb-title {
+    font-family: var(--serif);
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .bb-reviews {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .bb-stars { display: flex; gap: 1px; }
+  .bb-stars svg { width: 13px; height: 13px; }
+  .bb-review-text { font-size: 11.5px; color: var(--ink-muted); }
+  .bb-review-text a { color: var(--forest); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .bb-review-text a:hover { border-bottom-color: var(--forest); }
+
+  .bb-price { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--ink); letter-spacing: -0.4px; }
+  .bb-installments { font-size: 11.5px; color: var(--ink-muted); margin-top: 3px; margin-bottom: 16px; }
+  .bb-installments strong { color: var(--ink-soft); font-weight: 600; }
+
+  .bb-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; }
+
+  .bb-benefits { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+  .bb-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--forest);
+    background: var(--sage-pale);
+    padding: 4px 12px 4px 8px;
+    border-radius: 16px;
+  }
+  .bb-tag svg { width: 11px; height: 11px; stroke: var(--forest); fill: none; stroke-width: 2; }
+
+  /* SLEEP SELECTOR */
+  .sleep-sel { margin-bottom: 16px; }
+  .sleep-sel-label { font-size: 9.5px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+  .sleep-sel-opts { display: flex; gap: 6px; }
+  .sso {
+    flex: 1;
+    text-align: center;
+    padding: 10px 6px 8px;
+    border: 1.5px solid var(--rule);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.25s;
+    background: transparent;
+  }
+  .sso:hover { border-color: var(--sage); }
+  .sso.active { border-color: var(--forest); background: var(--sage-pale); }
+  .sso-text { font-size: 10.5px; font-weight: 600; color: var(--ink-muted); letter-spacing: 0.2px; }
+  .sso.active .sso-text { color: var(--forest); }
+
+  /* ATC */
+  .atc-row { display: flex; gap: 8px; margin-bottom: 16px; }
+  .qty {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .qty button {
+    width: 34px;
+    height: 44px;
+    border: none;
+    background: none;
+    font-size: 15px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: var(--sans);
+  }
+  .qty button:hover { background: var(--stone); }
+  .qty-num { width: 28px; text-align: center; font-size: 13px; font-weight: 600; }
+  .atc-btn {
+    flex: 1;
+    height: 44px;
+    background: var(--forest);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .atc-btn:hover { background: var(--forest-light); }
+
+  /* TRUST */
+  .trust-row {
+    display: flex;
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+  }
+  .tr-item {
+    flex: 1;
+    text-align: center;
+    padding: 4px 6px;
+  }
+  .tr-item:not(:last-child) { border-right: 1px solid var(--rule); }
+  .tr-item svg { display: block; margin: 0 auto 4px; width: 18px; height: 18px; stroke: var(--sage); fill: none; stroke-width: 1.3; }
+  .tr-item span { display: block; font-size: 9px; font-weight: 600; letter-spacing: 0.3px; color: var(--ink-muted); line-height: 1.4; }
+
+
+  /* ═══ BELOW FOLD ═══ */
+  .btf-section {
+    padding: 36px 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .btf-section .sec-label {
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btf-section .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .btf-section h2 {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .btf-section .sec-sub { font-size: 12.5px; color: var(--ink-muted); line-height: 1.6; max-width: 480px; margin-bottom: 22px; }
+
+  /* HOW GRID */
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  @media (max-width: 600px) { .how-grid { grid-template-columns: 1fr; } }
+  .how-cell { background: var(--white); padding: 22px 20px; }
+  .how-cell .hc-num { font-family: var(--serif); font-size: 24px; color: var(--sage); margin-bottom: 6px; line-height: 1; }
+  .how-cell h4 { font-size: 12.5px; font-weight: 600; margin-bottom: 4px; }
+  .how-cell p { font-size: 12px; color: var(--ink-muted); line-height: 1.6; margin: 0; }
+
+  /* VIDEO */
+  .video-wrap {
+    aspect-ratio: 16/7;
+    background: linear-gradient(155deg, #D4CEC4 0%, #C2BBB0 100%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+  .video-wrap:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.07); }
+  .play-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .video-wrap:hover .play-btn { transform: scale(1.06); }
+  .play-btn svg { width: 18px; height: 18px; fill: var(--forest); margin-left: 2px; }
+  .video-caption {
+    position: absolute;
+    bottom: 14px;
+    left: 18px;
+  }
+  .video-caption span {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    background: rgba(253,252,250,0.8);
+    padding: 4px 10px;
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* EXPERT GRID */
+  .expert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  @media (max-width: 600px) { .expert-grid { grid-template-columns: 1fr; } }
+  .expert-card { background: var(--white); padding: 24px 18px; text-align: center; }
+  .ec-icon {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background: var(--sage-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ec-icon svg { width: 14px; height: 14px; stroke: var(--forest); fill: none; stroke-width: 1.5; }
+  .ec-stat { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--ink); line-height: 1; margin-bottom: 3px; }
+  .ec-label { font-size: 10.5px; color: var(--ink-muted); line-height: 1.4; }
+
+  /* TESTIMONIALS */
+  .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 600px) { .testi-grid { grid-template-columns: 1fr; } }
+  .testi-card { background: var(--stone); border-radius: 5px; padding: 24px 22px; position: relative; }
+  .testi-card::before {
+    content: '\201C';
+    font-family: var(--serif);
+    font-size: 48px;
+    color: var(--sage);
+    line-height: 1;
+    position: absolute;
+    top: 12px;
+    left: 18px;
+    opacity: 0.35;
+  }
+  .tc-stars-sm { display: flex; gap: 1px; margin-bottom: 4px; }
+  .tc-stars-sm svg { width: 11px; height: 11px; }
+  .tc-body {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 14px;
+    padding-top: 12px;
+    position: relative;
+  }
+  .tc-footer { display: flex; align-items: center; justify-content: space-between; }
+  .tc-author { font-size: 11px; font-weight: 600; color: var(--ink); }
+  .tc-verified { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sage); }
+
+  /* CROSS-SELL */
+  .xsell-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 600px) { .xsell-grid { grid-template-columns: 1fr; } }
+  .xsell-card { border: 1px solid var(--rule); border-radius: 5px; overflow: hidden; background: var(--white); transition: box-shadow 0.25s; }
+  .xsell-card:hover { box-shadow: 0 3px 16px rgba(0,0,0,0.04); }
+  .xsell-img { aspect-ratio: 1/1; background: var(--stone-deep); display: flex; align-items: center; justify-content: center; }
+  .xsell-img span { font-family: var(--mono); font-size: 9px; color: var(--ink-muted); letter-spacing: 0.06em; }
+  .xsell-body { padding: 14px; }
+  .xsell-body h4 { font-size: 12px; font-weight: 600; line-height: 1.35; margin-bottom: 3px; }
+  .xp { font-family: var(--serif); font-size: 15px; font-weight: 600; }
+  .xsell-add {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 7px;
+    border: 1.5px solid var(--forest);
+    border-radius: 3px;
+    background: none;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--forest);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .xsell-add:hover { background: var(--forest); color: var(--white); }
+
+
+  /* ═══════════════════════════════
+     DESIGN RATIONALE (outside mockup)
+     ═══════════════════════════════ */
+  .rationale {
+    margin-top: 40px;
+    margin-bottom: 52px;
+    padding: 32px;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .rationale h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .rationale-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .rationale-item:last-child { border-bottom: none; }
+  @media (max-width: 600px) { .rationale-item { grid-template-columns: 1fr; gap: 4px; } }
+  .rationale-item .ri-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--forest);
+    padding-top: 2px;
+  }
+  .rationale-item p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+
+  /* ═══════════════════════════════
+     NB CTA + FOOTER
+     ═══════════════════════════════ */
+  .nb-cta {
+    background: var(--forest);
+    color: var(--white);
+    border-radius: 6px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  .nb-cta::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -15%;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(143,168,139,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .nb-cta h3 { font-family: var(--serif); font-size: 22px; font-weight: 500; margin-bottom: 10px; position: relative; }
+  .nb-cta > p { font-size: 13px; line-height: 1.7; opacity: 0.85; max-width: 500px; position: relative; margin-bottom: 20px; }
+  .nb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative; }
+  @media (max-width: 600px) { .nb-grid { grid-template-columns: 1fr; } }
+  .nb-svc { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 16px; }
+  .nb-svc h4 { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+  .nb-svc p { font-size: 11.5px; opacity: 0.7; margin: 0; line-height: 1.5; }
+
+  /* SITE FOOTER */
+  .site-footer {
+    margin-top: 0;
+    background: #0e120c;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 6px 6px;
+  }
+  .site-footer-left {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #4a4a42;
+    letter-spacing: 0.05em;
+  }
+  .site-footer-left a { color: var(--sage); text-decoration: none; }
+  .site-footer-right {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #3a3a32;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero-header">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="nb-logobar">
+    <a href="https://northboundcommerce.co.uk" target="_blank" class="nb-logo-link">
+      <svg class="nb-diamond" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L22 9L12 22L2 9Z" stroke="#faf7f2" stroke-width="1.5" fill="none"/>
+        <path d="M2 9L12 12L22 9" stroke="#faf7f2" stroke-width="1.5"/>
+        <path d="M12 2L12 12" stroke="#faf7f2" stroke-width="1.5"/>
+      </svg>
+      <span class="nb-wordmark">Northbound Commerce</span>
+    </a>
+    <nav class="nb-nav">
+      <a href="https://northboundcommerce.co.uk" target="_blank">Our Work</a>
+      <a href="https://northboundcommerce.co.uk" target="_blank">Services</a>
+      <a href="mailto:amy@northboundcommerce.co.uk">Get In Touch</a>
+    </nav>
+  </div>
+
+  <div class="hero-content">
+    <div class="audit-header">
+      <div>
+        <div class="brand">Northbound Commerce · CRO Audit</div>
+        <h1>Groove Pillows<em>CRO &amp; UX Audit · April 2026</em></h1>
+      </div>
+      <div class="meta">
+        <a href="https://northboundcommerce.co.uk" target="_blank">northboundcommerce.co.uk</a><br>
+        groovepillows.co.uk<br>
+        Prepared by Amy
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-bar">
+  <span class="nav-bar-left">Northbound Commerce · CRO Audit</span>
+  <div class="nav-bar-right">
+    <a href="https://northboundcommerce.co.uk" target="_blank">Our Work</a>
+    <a href="https://northboundcommerce.co.uk" target="_blank">Services</a>
+    <a href="mailto:amy@northboundcommerce.co.uk">Get In Touch</a>
+  </div>
+</div>
+
+
+<!-- ═══ AUDIT BODY ═══ -->
+<div class="wrap">
+
+  <div class="exec-summary">
+    <h2>Executive Summary</h2>
+    <p>Groove Pillows has built an enviable DTC brand: 12,780+ reviews, a clear pain-relief positioning, a "Best Pillow 2025" claim, and a tight product range at an accessible price point. The foundations are strong. However, the PDP — the single most important page on the site — leaves conversion on the table through a cluttered above-the-fold hierarchy, buried trust signals, no structured product education, and a missing cross-sell/bundle strategy. This audit identifies ten high-impact opportunities and provides a full PDP mockup showing how Groove can close the gap between brand strength and commercial performance.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <span class="section-num">Section 01</span>
+    <h3>Above the Fold &amp; First Impression</h3>
+    <div class="finding"><span class="label label-high">High Impact</span><p><strong>The H1 is duplicated and diluted.</strong> Two competing H1s create visual noise and split the focal point. A single, benefit-led H1 with a supporting subtitle would give the hero far more clarity.</p></div>
+    <div class="finding"><span class="label label-high">High Impact</span><p><strong>Price and ATC sit below the carousel on mobile.</strong> On narrower viewports the buying module falls beneath ten+ gallery images. Sticky ATC on mobile is essential.</p></div>
+    <div class="finding"><span class="label label-med">Medium Impact</span><p><strong>No Klarna / Clearpay messaging at ATF.</strong> Instalments messaging ("4 × £8.75") is absent entirely. Even at £35, BNPL copy lifts perceived affordability and nudges multi-unit purchases.</p></div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <span class="section-num">Section 02</span>
+    <h3>Conversion Rate Optimisation</h3>
+    <div class="finding"><span class="label label-high">High Impact</span><p><strong>No structured cross-sell or bundle module at ATF.</strong> "Bundle &amp; Save" exists but sits far below fold as a text link. A visual bundle builder would drive AOV immediately.</p></div>
+    <div class="finding"><span class="label label-med">Medium Impact</span><p><strong>Generic "Add to Cart" copy.</strong> A value-reinforced CTA — "Add to Cart — 100 Night Trial" — would lower perceived risk at the point of commitment.</p></div>
+    <div class="finding"><span class="label label-med">Medium Impact</span><p><strong>No urgency or scarcity messaging.</strong> No stock indicators, no delivery countdown. Subtle urgency nudges improve checkout click-through.</p></div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <span class="section-num">Section 03</span>
+    <h3>Brand &amp; Positioning</h3>
+    <div class="finding"><span class="label label-high">High Impact</span><p><strong>"850+ Medical Practitioners" is buried.</strong> The single most powerful conversion asset is rendered as a small icon strip. It should feature prominently in the buy box.</p></div>
+    <div class="finding"><span class="label label-low">Lower Impact</span><p><strong>Good Housekeeping badge has no context.</strong> It appears as a gallery image. Shoppers who don't swipe that far never see it.</p></div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <span class="section-num">Section 04</span>
+    <h3>UX &amp; UI Design</h3>
+    <div class="finding"><span class="label label-high">High Impact</span><p><strong>Gallery is heavy on testimonials, light on education.</strong> Several gallery images are overlaid review quotes — diluting both product showcase and social proof. A cleaner gallery with "How It Works" diagrams would convert better.</p></div>
+    <div class="finding"><span class="label label-med">Medium Impact</span><p><strong>No sleep-position selector.</strong> A "How do you sleep?" selector revealing tailored copy would personalise the single-SKU PDP and address the #1 pre-purchase objection.</p></div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <span class="section-num">Section 05</span>
+    <h3>Content &amp; Storytelling</h3>
+    <div class="finding"><span class="label label-med">Medium Impact</span><p><strong>No "How It Works" section.</strong> The product has a compelling design story but the page relies on images alone. A structured feature section would educate and convert simultaneously.</p></div>
+    <div class="finding"><span class="label label-low">Lower Impact</span><p><strong>FAQ not surfaced early.</strong> Common objections should be addressed within the buy box via an accordion.</p></div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <span class="section-num">Section 06</span>
+    <h3>Technical &amp; SEO</h3>
+    <div class="finding"><span class="label label-med">Medium Impact</span><p><strong>Missing descriptive alt text.</strong> Multiple Sanity CMS images use generic or empty alt attributes — a missed opportunity for image-search traffic and accessibility.</p></div>
+    <div class="finding"><span class="label label-low">Lower Impact</span><p><strong>No visible breadcrumbs.</strong> A simple trail would improve orientation and search snippets.</p></div>
+  </div>
+
+  <!-- TOP 10 -->
+  <div class="section">
+    <span class="section-num">Top 10 Opportunities</span>
+    <h3>Ranked by Estimated Impact</h3>
+    <table class="opp-table">
+      <thead><tr><th>#</th><th>Opportunity</th><th>Impact</th><th>Effort</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Restructure ATF — single H1, sticky mobile ATC, price above fold</td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td></tr>
+        <tr><td>2</td><td>Add structured cross-sell / bundle builder at buy box</td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-med">Med</span></td></tr>
+        <tr><td>3</td><td>Surface "850+ Medical Practitioners" as buy-box trust badge</td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td></tr>
+        <tr><td>4</td><td>Add Klarna / BNPL messaging to price block</td><td><span class="pill pill-med">Med</span></td><td><span class="pill pill-low">Low</span></td></tr>
+        <tr><td>5</td><td>Replace testimonial gallery images with product-education visuals</td><td><span class="pill pill-med">Med</span></td><td><span class="pill pill-med">Med</span></td></tr>
+        <tr><td>6</td><td>Add interactive sleep-position selector with tailored copy</td><td><span class="pill pill-med">Med</span></td><td><span class="pill pill-med">Med</span></td></tr>
+        <tr><td>7</td><td>Value-reinforced CTA copy ("Add to Cart — 100 Night Trial")</td><td><span class="pill pill-med">Med</span></td><td><span class="pill pill-low">Low</span></td></tr>
+        <tr><td>8</td><td>Add "How It Works" feature section with icons</td><td><span class="pill pill-med">Med</span></td><td><span class="pill pill-low">Low</span></td></tr>
+        <tr><td>9</td><td>Fix alt text across all Sanity-hosted images</td><td><span class="pill pill-low">Low</span></td><td><span class="pill pill-low">Low</span></td></tr>
+        <tr><td>10</td><td>Add delivery countdown + subtle urgency messaging</td><td><span class="pill pill-med">Med</span></td><td><span class="pill pill-low">Low</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- QUICK WINS -->
+  <div class="section">
+    <span class="section-num">Quick Wins — 30 Days</span>
+    <h3>Immediate Improvements</h3>
+    <div class="qw-grid">
+      <div class="qw-card"><h4>Single H1 + Sticky Mobile ATC</h4><p>Remove duplicate heading. Add position: sticky buy bar on mobile.</p></div>
+      <div class="qw-card"><h4>Trust Badge Repositioning</h4><p>Move "850+ Medical Practitioners" and Good Housekeeping into buy-box area.</p></div>
+      <div class="qw-card"><h4>CTA Copy A/B Test</h4><p>"Add to Cart" vs "Add to Cart — 100 Night Trial". Measurable in two weeks.</p></div>
+      <div class="qw-card"><h4>Klarna Messaging</h4><p>"4 × £8.75 interest-free with Klarna" beneath price. One Liquid snippet.</p></div>
+    </div>
+  </div>
+
+  <!-- STRATEGIC EXPERIMENTS -->
+  <div class="section">
+    <span class="section-num">Strategic Experiments</span>
+    <h3>Longer-Horizon Tests</h3>
+    <p><strong>Sleep-Position Personalisation:</strong> Three-option selector that swaps hero image and feature copy. Sells one product to three audiences without additional SKUs.</p>
+    <p><strong>Bundle Builder:</strong> Visual module — Pillow + Pillowcase + Eye Mask at combined price with savings callout. 15–25% AOV uplift typical.</p>
+    <p><strong>Video-First Gallery:</strong> 15–20s autoplay video as first gallery asset. Video-first PDPs in wellness DTC consistently outperform static-first.</p>
+  </div>
+
+
+  <!-- ═══════════════════════════════
+       PDP MOCKUP (clean — no annotations)
+       ═══════════════════════════════ -->
+  <div class="section">
+    <div class="mockup-label">
+      <span class="section-num">PDP Mockup</span>
+      <h3>Redesigned Product Page</h3>
+      <p>Every recommendation applied. See Design Rationale below for annotation key.</p>
+    </div>
+
+    <div class="pdp">
+      <div class="pdp-topbar">
+        <div class="pdp-logo">Groove<sup>®</sup></div>
+        <nav><a href="#">Pillows</a><a href="#">Pillowcases</a><a href="#">Reviews</a><a href="#">FAQ</a></nav>
+        <div class="cart-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+      </div>
+
+      <div class="pdp-hero">
+        <div class="pdp-gallery">
+          <span class="g-badge">Best Pillow 2025</span>
+          <div class="gallery-inner">
+            <div class="hero-image"><span class="img-label">Product Hero</span></div>
+            <div class="thumb-strip">
+              <div class="th active"></div><div class="th"></div><div class="th"></div><div class="th"></div><div class="th"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="buy-box">
+          <div class="bb-kicker">Recommended by 850+ Medical Practitioners</div>
+          <h1 class="bb-title">The Original Groove®<br>Pillow</h1>
+          <div class="bb-reviews">
+            <div class="bb-stars">
+              <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg>
+              <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg>
+              <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg>
+              <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg>
+              <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg>
+            </div>
+            <span class="bb-review-text">4.8 · <a href="#">12,780 reviews</a></span>
+          </div>
+          <div class="bb-price">£35</div>
+          <div class="bb-installments">or <strong>4 × £8.75</strong> interest-free with Klarna</div>
+          <p class="bb-desc">Ergonomic memory-foam pillow engineered to relieve neck pain, reduce headaches and improve sleep quality — designed for side, back and combination sleepers.</p>
+          <div class="bb-benefits">
+            <span class="bb-tag"><svg viewBox="0 0 16 16"><polyline points="3 8 6.5 11.5 13 5"/></svg>Relieves Neck Pain</span>
+            <span class="bb-tag"><svg viewBox="0 0 16 16"><polyline points="3 8 6.5 11.5 13 5"/></svg>Reduces Headaches</span>
+            <span class="bb-tag"><svg viewBox="0 0 16 16"><polyline points="3 8 6.5 11.5 13 5"/></svg>Improves Sleep</span>
+          </div>
+          <div class="sleep-sel">
+            <div class="sleep-sel-label">How do you sleep?</div>
+            <div class="sleep-sel-opts">
+              <div class="sso active"><div class="sso-text">Side</div></div>
+              <div class="sso"><div class="sso-text">Back</div></div>
+              <div class="sso"><div class="sso-text">Combo</div></div>
+            </div>
+          </div>
+          <div class="atc-row">
+            <div class="qty"><button>−</button><span class="qty-num">1</span><button>+</button></div>
+            <button class="atc-btn">Add to Cart — 100 Night Trial</button>
+          </div>
+          <div class="trust-row">
+            <div class="tr-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Good Housekeeping<br>Approved 2025</span></div>
+            <div class="tr-item"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>850+ Medical<br>Practitioners</span></div>
+            <div class="tr-item"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span>Free Returns<br>100 Night Trial</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BELOW FOLD -->
+      <div class="btf-section">
+        <div class="sec-label">The Science</div>
+        <h2>Why the Groove Works</h2>
+        <p class="sec-sub">Four design principles engineered to transform your sleep.</p>
+        <div class="how-grid">
+          <div class="how-cell"><div class="hc-num">01</div><h4>The Groove</h4><p>A central channel cradles your head, relieving pressure on neck muscles and promoting spinal alignment.</p></div>
+          <div class="how-cell"><div class="hc-num">02</div><h4>Premium Memory Foam</h4><p>High-density foam responds to body heat, contouring to your shape while maintaining firm support.</p></div>
+          <div class="how-cell"><div class="hc-num">03</div><h4>Ergonomic Contour</h4><p>Raised edges and a sloped profile keep your neck at the optimal angle all night.</p></div>
+          <div class="how-cell"><div class="hc-num">04</div><h4>Breathable Cover</h4><p>Removable, machine-washable cover with moisture-wicking properties for cool sleep.</p></div>
+        </div>
+      </div>
+
+      <div class="btf-section">
+        <div class="sec-label">See It In Action</div>
+        <h2>The Groove, Up Close</h2>
+        <p class="sec-sub">15 seconds. One pillow. The moment everything clicks.</p>
+        <div class="video-wrap">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
+          <div class="video-caption"><span>Watch · 0:15</span></div>
+        </div>
+      </div>
+
+      <div class="btf-section">
+        <div class="sec-label">Expert Endorsement</div>
+        <h2>Trusted by Professionals</h2>
+        <p class="sec-sub">The numbers behind the recommendation.</p>
+        <div class="expert-grid">
+          <div class="expert-card"><div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="ec-stat">850+</div><div class="ec-label">Medical practitioners<br>recommend Groove</div></div>
+          <div class="expert-card"><div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="ec-stat">4.8</div><div class="ec-label">Average rating across<br>12,780 verified reviews</div></div>
+          <div class="expert-card"><div class="ec-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="ec-stat">100</div><div class="ec-label">Night risk-free<br>sleep trial</div></div>
+        </div>
+      </div>
+
+      <div class="btf-section">
+        <div class="sec-label">Real Reviews</div>
+        <h2>In Their Words</h2>
+        <p class="sec-sub">From the 12,780 people who've already made the switch.</p>
+        <div class="testi-grid">
+          <div class="testi-card">
+            <div class="tc-stars-sm"><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg></div>
+            <div class="tc-body">I've had neck pain for years and tried everything. This pillow genuinely changed my mornings — I wake up without stiffness for the first time in a decade.</div>
+            <div class="tc-footer"><span class="tc-author">Sarah M.</span><span class="tc-verified">Verified Buyer</span></div>
+          </div>
+          <div class="testi-card">
+            <div class="tc-stars-sm"><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10.2,5.4 15,6.1 11.5,9.5 12.3,14.3 8,12 3.7,14.3 4.5,9.5 1,6.1 5.8,5.4" fill="#C9A84C"/></svg></div>
+            <div class="tc-body">My physio recommended it. Sceptical at first but the groove really does cradle your neck differently. Bought a second one for my partner.</div>
+            <div class="tc-footer"><span class="tc-author">James R.</span><span class="tc-verified">Verified Buyer</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btf-section">
+        <div class="sec-label">Complete Your Setup</div>
+        <h2>Pairs Well With</h2>
+        <p class="sec-sub">Everything you need for a better night's sleep.</p>
+        <div class="xsell-grid">
+          <div class="xsell-card"><div class="xsell-img"><span>Tencel Pillowcase</span></div><div class="xsell-body"><h4>Groove® Cooling<br>Tencel Pillowcase</h4><div class="xp">£15</div><button class="xsell-add">Add to Cart</button></div></div>
+          <div class="xsell-card"><div class="xsell-img"><span>Cotton 2-Pack</span></div><div class="xsell-body"><h4>Groove® 100% Cotton<br>Pillowcase 2-Pack</h4><div class="xp">£21.50</div><button class="xsell-add">Add to Cart</button></div></div>
+          <div class="xsell-card"><div class="xsell-img"><span>Sleep Bundle</span></div><div class="xsell-body"><h4>Groove® Original<br>Sleep Essentials</h4><div class="xp">£49</div><button class="xsell-add">Add to Cart</button></div></div>
+        </div>
+      </div>
+    </div><!-- /pdp -->
+
+
+    <!-- ═══ DESIGN RATIONALE (outside mockup) ═══ -->
+    <div class="rationale">
+      <h3>Design Rationale</h3>
+      <div class="rationale-item"><div class="ri-label">Gallery</div><p>Reordered: 1) Hero product shot, 2) Dimensions overlay, 3) "How the Groove works" diagram, 4) Materials close-up, 5) Lifestyle. Testimonial images removed from gallery — handled in dedicated below-fold section.</p></div>
+      <div class="rationale-item"><div class="ri-label">Medical Kicker</div><p>"Recommended by 850+ Medical Practitioners" moved from buried trust bar into kicker position above the H1. Establishes authority before the customer reads anything else.</p></div>
+      <div class="rationale-item"><div class="ri-label">Klarna</div><p>Instalment messaging added beneath price — currently absent from the live PDP. Even at £35, BNPL copy improves perceived affordability and encourages multi-unit / bundle purchases.</p></div>
+      <div class="rationale-item"><div class="ri-label">Sleep Selector</div><p>New interactive element. Tapping reveals tailored copy — e.g. "Side sleepers: the groove cradles your neck while raised edges support spinal alignment." Personalises a single-SKU PDP and addresses the #1 pre-purchase objection.</p></div>
+      <div class="rationale-item"><div class="ri-label">CTA Copy</div><p>Button now carries value reinforcement: "100 Night Trial" addresses risk at the point of commitment. The live CTA is generic "ADD TO CART".</p></div>
+      <div class="rationale-item"><div class="ri-label">Below Fold</div><p>Supporting content — product science, video, expert stats, reviews, cross-sell — arranged as quiet editorial sections with labelled dividers. Each section breathes; none competes with the buy box above.</p></div>
+      <div class="rationale-item"><div class="ri-label">Cross-Sell</div><p>Visual module replaces the current buried "Bundle &amp; Save" text link. Pillow + Pillowcase + Bundle at a glance, with outlined CTAs that don't overpower the primary purchase.</p></div>
+    </div>
+  </div>
+
+
+  <!-- ═══ HOW NB CAN HELP ═══ -->
+  <div class="nb-cta">
+    <h3>How Northbound Can Help</h3>
+    <p>Northbound Commerce is a Shopify agency specialising in luxury and premium DTC brands. We work with founders who know their brand deserves better digital execution — and we make it happen.</p>
+    <div class="nb-grid">
+      <div class="nb-svc"><h4>Shopify Development</h4><p>Custom Liquid builds, theme architecture, performance optimisation and ongoing support.</p></div>
+      <div class="nb-svc"><h4>CRO &amp; Experimentation</h4><p>Data-led A/B testing, PDP optimisation, checkout flow improvements and UX strategy.</p></div>
+      <div class="nb-svc"><h4>SEO &amp; Content</h4><p>Technical SEO audits, structured data, content strategy and organic growth programmes.</p></div>
+      <div class="nb-svc"><h4>How We Work</h4><p>Monthly retainers from £500/mo. No minimum term. We earn the relationship every month.</p></div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<div class="site-footer">
+  <div class="site-footer-left"><a href="https://northboundcommerce.co.uk" target="_blank">northboundcommerce.co.uk</a> · amy@northboundcommerce.co.uk</div>
+  <div class="site-footer-right">© 2026 Northbound Commerce</div>
+</div>
+
+</body>
+</html>
