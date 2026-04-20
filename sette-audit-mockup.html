@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SETTE Jewelry — CRO & UX Audit · Northbound Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Trirong:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --brand:#362C9D;--brand-dk:#2A2280;--brand-lt:#EAE8F7;--brand-pale:#F4F3FC;
+  --white:#FFFFFF;--off:#FAFAF8;--warm:#F5F2ED;
+  --ink:#1E1E1E;--mid:#5A5A5A;--soft:#8C8C8C;--mute:#B8B8B8;
+  --rule:rgba(30,30,30,0.08);--rule-md:rgba(30,30,30,0.13);
+  --serif:'Trirong',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;
+  --nav-h:56px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--white);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--sans);cursor:pointer;border:none;background:none}
+
+/* ═══════════════════════════════════════
+   AUDIT DOCUMENT
+   ═══════════════════════════════════════ */
+
+.audit-doc{background:#FAF7F2;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;padding:56px 64px 72px;border-bottom:3px solid var(--brand)}
+
+/* Header */
+.audit-prepared{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-bottom:6px}
+.audit-brand{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:32px}
+.audit-h1{font-size:32px;font-weight:300;color:#1A1A1A;letter-spacing:.01em;margin-bottom:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
+.audit-date{font-size:11px;color:#999;margin-bottom:40px;letter-spacing:.06em}
+
+/* Executive Summary */
+.exec-box{border-left:3px solid var(--brand);padding:20px 24px;background:#fff;margin-bottom:48px}
+.exec-label{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--brand);margin-bottom:10px}
+.exec-copy{font-size:13px;font-weight:300;line-height:1.75;color:#3A3A3A;max-width:680px}
+
+/* Opportunity Table */
+.opp-title{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#1A1A1A;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #E0DDD8}
+table.opp{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:48px}
+table.opp thead th{font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#999;padding:8px 12px;text-align:left;border-bottom:1px solid #E0DDD8}
+table.opp tbody tr{border-bottom:.5px solid #EDEAE4}
+table.opp tbody tr:hover{background:#F7F4EF}
+table.opp td{padding:12px 12px;vertical-align:top;line-height:1.55;color:#3A3A3A}
+table.opp td:first-child{font-weight:400;color:#1A1A1A;width:36%}
+.pill{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:2px;white-space:nowrap}
+.pill-hi{background:#DBEAFE;color:#1D4ED8}
+.pill-md{background:#FEF3C7;color:#92400E}
+.pill-lo{background:#F3F4F6;color:#374151}
+.pill-effort-lo{background:#D1FAE5;color:#065F46}
+.pill-effort-md{background:#FEF3C7;color:#92400E}
+.pill-effort-hi{background:#FEE2E2;color:#991B1B}
+
+/* Was / Now */
+.wn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#E0DDD8;margin-bottom:48px}
+.wn-card{background:#FAF7F2;padding:20px 22px}
+.wn-label{font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.wn-was .wn-label{color:#B91C1C}
+.wn-now .wn-label{color:var(--brand)}
+.wn-title{font-size:11px;font-weight:500;color:#1A1A1A;margin-bottom:6px}
+.wn-body{font-size:12px;font-weight:300;line-height:1.65;color:#555}
+
+/* Northbound close */
+.audit-close{background:var(--brand);padding:28px 32px;color:#fff}
+.audit-close-title{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.audit-close-body{font-size:12px;font-weight:300;line-height:1.7;color:rgba(255,255,255,.75);max-width:640px}
+.audit-services{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.svc-tag{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:5px 12px;border-radius:1px}
+
+/* Redesign divider */
+.rd{background:var(--brand);text-align:center;padding:9px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#fff;font-family:var(--sans)}
+
+/* ═══════════════════════════════════════
+   HOMEPAGE
+   ═══════════════════════════════════════ */
+
+/* NAV */
+.ann{background:var(--ink);color:rgba(255,255,255,.7);font-size:10px;font-weight:300;letter-spacing:.14em;text-align:center;padding:8px 20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-wrap{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:.5px solid var(--rule-md)}
+nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:var(--nav-h);padding:0 48px;max-width:1440px;margin:0 auto}
+.nl{display:flex;gap:36px}
+.nl a{font-size:10px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);transition:color .2s}
+.nl a:hover{color:var(--brand)}
+.logo{font-family:var(--serif);font-size:21px;font-weight:200;letter-spacing:.34em;text-transform:uppercase;color:var(--ink);text-align:center}
+.nr{display:flex;gap:2px;align-items:center;justify-content:flex-end}
+.ni{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--mid);position:relative;transition:color .2s}
+.ni:hover{color:var(--brand)}
+.ni svg{width:18px;height:18px;stroke-width:1.3}
+.cc{position:absolute;top:6px;right:4px;background:var(--brand);color:#fff;font-size:8px;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+#nt{display:none}
+.hb{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;cursor:pointer}
+.hb span{display:block;width:20px;height:1px;background:var(--ink);transition:all .3s}
+.mn{display:none;flex-direction:column;background:var(--white);border-top:.5px solid var(--rule);padding:28px 24px 36px}
+.mn a{font-family:var(--serif);font-size:26px;font-weight:100;font-style:italic;color:var(--ink);padding:10px 0;border-bottom:.5px solid var(--rule);letter-spacing:.01em}
+.mn a:hover{color:var(--brand)}
+.mns{margin-top:22px;display:flex;flex-direction:column;gap:6px}
+.mns a{font-size:10px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);border:none;padding:3px 0}
+#nt:checked~.nav-wrap .mn{display:flex}
+#nt:checked~.nav-wrap .hb span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+#nt:checked~.nav-wrap .hb span:nth-child(2){opacity:0}
+#nt:checked~.nav-wrap .hb span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+
+/* HERO */
+.hero{position:relative;height:calc(100svh - var(--nav-h));min-height:520px;max-height:900px;overflow:hidden;background:#1A1818;display:flex;align-items:flex-end}
+.hi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;opacity:.88}
+.hs{position:absolute;inset:0;background:linear-gradient(115deg,rgba(18,16,14,.78) 0%,rgba(18,16,14,.22) 52%,transparent 100%)}
+.hs2{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,16,14,.42) 0%,transparent 48%)}
+.hc{position:relative;z-index:2;padding:0 64px 64px;max-width:560px}
+.htag{font-size:9px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.htag::before{content:'';width:22px;height:.5px;background:rgba(255,255,255,.4)}
+.hh1{font-family:var(--serif);font-size:clamp(44px,5.8vw,80px);font-weight:100;line-height:1;color:#fff;letter-spacing:.01em;margin-bottom:28px}
+.hh1 em{font-style:italic;font-weight:100}
+.hctas{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:0 28px;background:var(--brand);color:#fff;min-height:44px;border-radius:1px;transition:background .2s}
+.btn-p:hover{background:var(--brand-dk)}
+.btn-t{font-size:10px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);border-bottom:.5px solid rgba(255,255,255,.22);padding-bottom:1px}
+
+/* TRUST STRIP */
+.trust-strip{border-top:.5px solid var(--rule-md);border-bottom:.5px solid var(--rule-md);padding:13px 48px;text-align:center;font-size:10px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);background:var(--white)}
+.trust-strip span{margin:0 14px;color:var(--brand);opacity:.5}
+
+/* press strip CSS added below */
+
+/* SECTION CHROME */
+.sec{padding:88px 60px;max-width:1440px;margin:0 auto}
+.sec-sm{padding:64px 60px;max-width:1440px;margin:0 auto}
+.sh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:44px;gap:20px;flex-wrap:wrap}
+.ey{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.s2{font-family:var(--serif);font-size:clamp(28px,2.8vw,42px);font-weight:200;color:var(--ink);line-height:1.1}
+.s2 em{font-style:italic;font-weight:100}
+.la{font-size:9px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);border-bottom:.5px solid rgba(54,44,157,.25);padding-bottom:1px;white-space:nowrap;min-height:40px;display:inline-flex;align-items:center}
+.la:hover{color:var(--brand-dk)}
+
+/* CATEGORIES */
+.cs{padding:72px 60px 0;max-width:1440px;margin:0 auto}
+.csh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:.5px solid var(--rule);gap:20px;flex-wrap:wrap}
+.cg{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+.ct{position:relative;overflow:hidden;aspect-ratio:3/5;display:flex;flex-direction:column;justify-content:flex-end;cursor:pointer;background:var(--warm)}
+.cti-clean{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;padding:20px;opacity:1;transition:opacity .5s ease;z-index:1}
+.cti-worn{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity .5s ease, transform .6s cubic-bezier(.25,.46,.45,.94);z-index:1}
+.ct:hover .cti-clean{opacity:0}
+.ct:hover .cti-worn{opacity:1;transform:scale(1.04)}
+.cg2{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,16,14,.65) 0%,rgba(18,16,14,.15) 55%,transparent 100%);z-index:2;opacity:.35;transition:opacity .4s}
+.ct:hover .cg2{opacity:1}
+.ct-accent{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--brand);opacity:0;z-index:4;transition:opacity .3s}
+.ct:hover .ct-accent{opacity:1}
+.cb{position:relative;z-index:3;padding:18px 16px}
+.cn{font-family:var(--serif);font-size:17px;font-weight:200;font-style:italic;color:var(--ink);transition:color .35s}
+.ct:hover .cn{color:rgba(255,255,255,.96)}
+
+/* PRODUCT GRID — floating product with padding */
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:40px 24px}
+.pc{cursor:pointer;display:block}
+.piw{position:relative;overflow:hidden;background:var(--warm);aspect-ratio:3/4;margin-bottom:18px;padding:24px}
+.piw img{width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.pc:hover .piw img{transform:scale(1.04)}
+.pq{position:absolute;bottom:0;left:0;right:0;font-size:9px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;text-align:center;padding:13px;background:rgba(255,255,255,.96);color:var(--ink);opacity:0;transition:opacity .2s;min-height:42px;display:flex;align-items:center;justify-content:center}
+.pc:hover .pq{opacity:1}
+.pst{font-size:10px;color:#C4994A;letter-spacing:2px;margin-bottom:6px}
+.pn{font-family:var(--serif);font-size:17px;font-weight:200;color:var(--ink);margin-bottom:4px;line-height:1.3}
+.psub{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.pp{font-family:var(--serif);font-size:16px;font-weight:300;color:var(--brand)}
+
+/* ETHOS — compact centred strip */
+.ethos{padding:80px 60px;text-align:center;background:var(--warm);border-top:.5px solid var(--rule);border-bottom:.5px solid var(--rule)}
+.ethos-inner{max-width:680px;margin:0 auto}
+.ethos-mark{font-family:var(--serif);font-size:56px;font-weight:100;font-style:italic;color:var(--brand);opacity:.4;line-height:1;margin-bottom:-12px}
+.ethos-q{font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);font-weight:100;font-style:italic;line-height:1.45;color:var(--ink);letter-spacing:.01em;margin-bottom:20px}
+.ethos-attr{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--soft);margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:12px}
+.ethos-attr::before,.ethos-attr::after{content:'';width:18px;height:.5px;background:var(--brand);opacity:.4}
+
+/* TESTIMONIALS */
+.tw{background:var(--white);padding:88px 60px}
+.ti{max-width:1440px;margin:0 auto}
+.tg{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.tc{display:flex;flex-direction:column}
+.tiw{overflow:hidden;aspect-ratio:1;margin-bottom:20px;background:var(--warm)}
+.tiw img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s}
+.tc:hover .tiw img{transform:scale(1.03)}
+.tst{font-size:10px;color:#C4994A;letter-spacing:2.5px;margin-bottom:10px}
+.tq{font-family:var(--serif);font-size:15px;font-style:italic;font-weight:200;line-height:1.6;color:var(--ink);margin-bottom:12px}
+.tn{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+
+/* FOUNDER */
+.fo{display:grid;grid-template-columns:1fr 1fr;border-top:.5px solid var(--rule)}
+.fov{overflow:hidden;background:var(--warm);position:relative}
+.fov img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.fov-accent{position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--brand);opacity:.6}
+.foc{background:var(--off);padding:80px 64px;display:flex;flex-direction:column;justify-content:center}
+.fol{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:100;font-style:italic;line-height:1.45;color:var(--ink);margin-bottom:22px;max-width:400px}
+.foa{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.foa::before{content:'';width:18px;height:.5px;background:var(--brand)}
+.fop{font-size:13px;font-weight:300;line-height:1.8;color:var(--soft);max-width:380px;margin-bottom:32px}
+
+/* JOURNAL */
+.jg{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.jc{position:relative;overflow:hidden;aspect-ratio:4/5;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end}
+.jc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s}
+.jc:hover img{transform:scale(1.03)}
+.jo{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,16,14,.75) 0%,transparent 50%)}
+.jb{position:relative;z-index:2;padding:24px 22px}
+.jtag{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-lt);margin-bottom:8px;display:block}
+.jt{font-family:var(--serif);font-size:18px;font-weight:200;font-style:italic;color:#fff;line-height:1.3}
+
+/* CAPTURE */
+.cap{background:var(--brand);padding:88px 60px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.cae{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:14px}
+.cah{font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:100;color:#fff;margin-bottom:10px;letter-spacing:.01em}
+.cah em{font-style:italic}
+.cas{font-size:13px;font-weight:300;color:rgba(255,255,255,.55);margin-bottom:36px;max-width:340px;line-height:1.8}
+.caf{display:flex;max-width:380px;width:100%;gap:0}
+.cain{flex:1;padding:0 18px;min-height:44px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-right:none;color:#fff;font-family:var(--sans);font-size:12px;font-weight:300;outline:none}
+.cain::placeholder{color:rgba(255,255,255,.35)}
+.cain:focus{border-color:rgba(255,255,255,.5)}
+.cab{padding:0 22px;min-height:44px;background:#fff;font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);cursor:pointer;transition:background .2s;white-space:nowrap}
+.cab:hover{background:var(--brand-pale)}
+.can{font-size:10px;font-weight:300;color:rgba(255,255,255,.3);margin-top:12px}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:.5px solid rgba(255,255,255,.05);padding:56px 60px 40px}
+.fi{max-width:1440px;margin:0 auto}
+.ft{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;padding-bottom:48px;border-bottom:.5px solid rgba(255,255,255,.05)}
+.fl{font-family:var(--serif);font-size:19px;font-weight:200;letter-spacing:.32em;text-transform:uppercase;color:#fff;margin-bottom:14px;display:block}
+.fd{font-size:12px;font-weight:300;line-height:1.8;color:rgba(255,255,255,.3);max-width:210px}
+.fso{display:flex;gap:16px;margin-top:22px}
+.fso a{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);min-height:40px;display:inline-flex;align-items:center;transition:color .2s}
+.fso a:hover{color:var(--brand-lt)}
+.fct{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:18px}
+.fls{list-style:none;display:flex;flex-direction:column;gap:2px}
+.fls a{font-family:var(--serif);font-size:14px;font-weight:200;font-style:italic;color:rgba(255,255,255,.45);min-height:38px;display:inline-flex;align-items:center;transition:color .2s}
+.fls a:hover{color:rgba(255,255,255,.8)}
+.fb2{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.fcp{font-size:9px;color:rgba(255,255,255,.15);letter-spacing:.06em}
+.fpy{display:flex;gap:6px}
+.fpl{font-size:9px;color:rgba(255,255,255,.18);border:.5px solid rgba(255,255,255,.08);padding:3px 8px;border-radius:1px}
+.fleg{display:flex;gap:20px}
+.fleg a{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.16);min-height:40px;display:inline-flex;align-items:center}
+
+.btt{position:fixed;bottom:28px;right:28px;z-index:200;width:40px;height:40px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:50%;box-shadow:0 4px 16px rgba(54,44,157,.35);transition:background .2s,transform .2s}
+.btt:hover{background:var(--brand-dk);transform:translateY(-2px)}
+.btt svg{width:14px;height:14px}
+
+/* ─── TABLET ─── */
+@media(max-width:1023px){
+  .audit-doc{padding:40px 36px 52px}
+  .findings-audit{grid-template-columns:repeat(2,1fr)!important}
+  nav{padding:0 28px}.nl{gap:24px}
+  .hc{padding:0 40px 52px}
+  .cs{padding:56px 28px 0}.cg{gap:2px}
+  .press-section{padding:36px 28px}.press-logos{grid-template-columns:repeat(3,1fr)}
+  .sec{padding:64px 28px}.sec-sm{padding:48px 28px}
+  .pg{grid-template-columns:repeat(2,1fr);gap:32px 16px}
+  .ethos{padding:64px 40px}
+  .tw{padding:64px 28px}.tg{grid-template-columns:repeat(2,1fr);gap:24px}
+  .fo{grid-template-columns:1fr 1fr}.foc{padding:56px 40px}
+  .jg{grid-template-columns:repeat(2,1fr)}.jg .jc:last-child{display:none}
+  footer{padding:48px 28px 32px}.ft{grid-template-columns:repeat(2,1fr);gap:36px}
+  .trust-strip{padding:11px 28px}
+  table.opp{font-size:11px}
+  .wn-grid{grid-template-columns:1fr}
+}
+
+/* ─── MOBILE ─── */
+@media(max-width:767px){
+  .audit-doc{padding:28px 16px 40px}
+  .findings-audit{grid-template-columns:1fr!important}
+  table.opp thead{display:none}
+  table.opp td{display:block;padding:4px 8px}
+  table.opp td:first-child{font-weight:500;padding-top:12px;padding-bottom:2px}
+  table.opp tr{display:block;padding:8px 0;border-bottom:1px solid #E0DDD8}
+  .wn-grid{grid-template-columns:1fr}
+
+  nav{padding:0 16px}.nl{display:none}.hb{display:flex}
+  .logo{font-size:17px;letter-spacing:.28em}.nr{gap:0}
+  .ann{font-size:9px}
+
+  .hero{height:100svh;min-height:500px;max-height:820px}
+  .hi{object-position:62% 10%}
+  .hs{background:linear-gradient(180deg,rgba(18,16,14,.18) 0%,rgba(18,16,14,.65) 55%,rgba(18,16,14,.88) 100%)}
+  .hc{padding:0 20px 40px;max-width:100%}
+  .hh1{font-size:clamp(38px,10vw,56px)}
+  .hctas{flex-direction:column;align-items:stretch;gap:10px}
+  .btn-p{justify-content:center}
+  .btn-t{justify-content:center;border-bottom:none;border-top:.5px solid rgba(255,255,255,.18);padding:12px 0 0}
+
+  .trust-strip{overflow-x:auto;white-space:nowrap;text-align:left;padding:11px 16px;scrollbar-width:none}
+  .trust-strip::-webkit-scrollbar{display:none}
+
+  .press-section{padding:36px 16px}
+  .press-logos{grid-template-columns:repeat(2,1fr)}
+  .press-logo-card{padding:20px 16px}
+  .press-quote{display:none}
+
+  .cs{padding:44px 16px 0}.csh{margin-bottom:18px}
+  .cg{grid-template-columns:repeat(2,1fr);gap:2px}.ct{aspect-ratio:3/4}
+
+  .sec{padding:52px 16px}.sec-sm{padding:40px 16px}
+  .pg{grid-template-columns:repeat(2,1fr);gap:24px 10px}
+  .piw{padding:16px}
+  .pq{display:none}.pn{font-size:15px}
+
+  .ethos{padding:52px 20px}
+  .ethos-q{font-size:clamp(20px,6vw,28px)}
+
+  .tw{padding:52px 16px}
+  .tg{grid-template-columns:unset;display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .tg::-webkit-scrollbar{display:none}
+  .tc{min-width:74vw;max-width:280px;flex-shrink:0;scroll-snap-align:start}
+
+  .fo{grid-template-columns:1fr}
+  .fov{order:-1;aspect-ratio:4/3;max-height:320px}.fov img{object-position:center 20%}
+  .foc{padding:40px 20px}.fol{font-size:clamp(20px,6vw,26px)}
+
+  .jg{grid-template-columns:1fr;gap:2px}.jg .jc:last-child{display:flex}.jc{aspect-ratio:16/10}
+
+  .cap{padding:60px 20px}
+  .caf{flex-direction:column;gap:8px;max-width:100%}
+  .cain{border-right:1px solid rgba(255,255,255,.25);min-height:44px}
+  .cab{min-height:44px}
+
+  footer{padding:48px 16px 32px}.ft{grid-template-columns:1fr;gap:36px}
+  .fb2{flex-direction:column;align-items:flex-start;gap:12px}
+  .fls a{min-height:34px}
+  .btt{bottom:16px;right:16px}
+}
+
+/* ─── AUDIT HERO (Rowing Blazers format) ─── */
+.audit-hero{position:relative;height:380px;overflow:hidden;background:#0e120c;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
+.audit-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:.38}
+.audit-hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,14,10,.85) 0%,rgba(10,14,10,.55) 100%)}
+.audit-hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:28px 48px 32px}
+.audit-logobar{display:flex;align-items:center;gap:10px}
+.audit-diamond{font-size:16px;color:#8DC88D;line-height:1}
+.audit-wordmark{font-family:'DM Mono','Courier New',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.audit-hero-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:16px 0}
+.audit-hero-h1{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(36px,5vw,64px);font-weight:200;color:#fff;letter-spacing:.02em;line-height:1;margin-bottom:10px}
+.audit-hero-sub{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:18px;font-weight:300;color:rgba(255,255,255,.5)}
+.audit-hero-sub em{font-style:italic;color:rgba(255,255,255,.65)}
+.audit-hero-meta{font-family:'DM Mono','Courier New',monospace;font-size:10px;line-height:1.8;color:rgba(255,255,255,.35);letter-spacing:.06em}
+.audit-hero-meta a{color:rgba(255,255,255,.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:1px}
+.audit-hero-meta a:hover{color:#8DC88D}
+/* NAV BAR */
+.audit-nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:40px;background:#080a07;border-bottom:1px solid rgba(255,255,255,.06);font-family:'DM Mono','Courier New',monospace}
+.audit-nav-left{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.audit-nav-right{display:flex;gap:24px}
+.audit-nav-right a{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+.audit-nav-right a:hover{color:#8DC88D}
+/* AUDIT BODY wrapper */
+.audit-body{padding:48px 64px 64px}
+
+/* ─── PRESS STRIP (single line, blue accent) ─── */
+.press-strip{background:var(--brand-pale);border-top:.5px solid rgba(54,44,157,.12);border-bottom:.5px solid rgba(54,44,157,.12);padding:14px 48px;display:flex;align-items:center;justify-content:center;gap:20px;overflow:hidden}
+.press-strip-label{font-size:9px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);white-space:nowrap;flex-shrink:0}
+.press-strip-rule{width:.5px;height:14px;background:rgba(54,44,157,.2);flex-shrink:0}
+.press-strip-logos{display:flex;gap:20px;align-items:center}
+.press-strip-img{height:14px;width:auto;object-fit:contain;opacity:.4;filter:grayscale(1)}
+.press-strip-sep{color:var(--brand);opacity:.35;font-size:11px;flex-shrink:0}
+.press-strip-text{font-family:var(--serif);font-size:14px;font-style:italic;font-weight:200;color:var(--ink);opacity:.45;white-space:nowrap}
+.press-strip-text-sans{font-size:10px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);opacity:.4;white-space:nowrap}
+@media(max-width:767px){
+  .audit-hero{height:300px}.audit-hero-content{padding:20px 20px 24px}
+  .audit-hero-h1{font-size:clamp(28px,9vw,44px)}
+  .audit-nav{padding:0 16px}.audit-nav-left{display:none}
+  .audit-nav-right{gap:14px}
+  .audit-body{padding:28px 16px 40px}
+  .press-strip{padding:12px 16px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .press-strip::-webkit-scrollbar{display:none}
+  .press-strip-logos{flex-shrink:0}
+}
+
+/* ═══════════════════════════════════════
+   ACCESSIBILITY — WCAG AA CONTRAST FIXES
+   All text on white/light bg: ≥4.5:1
+   All text on dark bg: ≥4.5:1
+   ═══════════════════════════════════════ */
+
+/* ── Audit hero: was .35/.3 opacity — far below readable ── */
+.audit-hero-meta{color:rgba(255,255,255,.72)!important}
+.audit-hero-meta a{color:rgba(255,255,255,.88)!important}
+.audit-nav-left{color:rgba(255,255,255,.65)!important}
+.audit-nav-right a{color:rgba(255,255,255,.8)!important}
+
+/* ── Trust strip: #8C8C8C on white = 3.55:1 fails AA for small text ── */
+.trust-strip{color:#4A4A4A!important}
+.trust-strip span{color:var(--brand)!important;opacity:.7!important}
+
+/* ── Press strip: logos and text were barely visible ── */
+.press-strip-img{opacity:.55!important}
+.press-strip-text{opacity:.75!important}
+.press-strip-text-sans{opacity:.7!important}
+.press-strip-sep{opacity:.55!important}
+
+/* ── Section eyebrow: --brand on white = good, --mute on white = fail ── */
+.ey{color:var(--brand)!important}
+
+/* ── Product sub: 9px + #B8B8B8 on warm bg fails badly ── */
+.psub{font-size:10px!important;color:#5A5A5A!important;letter-spacing:.1em}
+/* Product price already brand blue — good */
+
+/* ── Testimonial author name: #B8B8B8 fails ── */
+.tn{color:#5A5A5A!important}
+
+/* ── Ethos attribution: #8C8C8C at 9px borderline ── */
+.ethos-attr{color:#5A5A5A!important;font-size:10px!important}
+
+/* ── Founder attribution eyebrow ── */
+.foa{color:var(--brand)!important}
+
+/* ── Founder body text: #8C8C8C on off-white borderline ── */
+.fop{color:#4A4A4A!important}
+
+/* ── Journal tags on dark: brand-lt (#EAE8F7) on rgba(18,16,14,.75) overlay ── */
+/* #EAE8F7 on #0E0E0E overlay ≈ ok, but bump to white for clarity */
+.jtag{color:rgba(255,255,255,.75)!important}
+
+/* ── Email capture: sub was .55 opacity, note was .2 ── */
+.cas{color:rgba(255,255,255,.78)!important}
+.can{color:rgba(255,255,255,.5)!important}
+
+/* ── Footer: many values were near-invisible ── */
+.fl{color:#FFFFFF!important}
+.fd{color:rgba(255,255,255,.6)!important}
+.fso a{color:rgba(255,255,255,.55)!important}
+.fct{color:rgba(255,255,255,.5)!important}
+.fls a{color:rgba(255,255,255,.72)!important}
+.fcp{color:rgba(255,255,255,.45)!important}
+.fpl{color:rgba(255,255,255,.45)!important;border-color:rgba(255,255,255,.2)!important}
+.fleg a{color:rgba(255,255,255,.45)!important}
+
+/* ── Announce bar ── */
+.ann{color:rgba(255,255,255,.88)!important}
+
+/* ── Hero tag ── */
+.htag{color:rgba(255,255,255,.8)!important}
+.htag::before{background:rgba(255,255,255,.5)!important}
+
+/* ── "View all" link arrows — brand blue on white: fine. On warm bg: fine. ── */
+/* ── Nav links on white ── */
+.nl a{color:#3D3D3D!important}
+
+/* ── Mobile nav items ── */
+.mns a{color:#4A4A4A!important}
+
+/* ── Audit doc body text ── */
+.exec-copy{color:#2A2A2A!important}
+.fb{color:rgba(255,255,255,.72)!important}
+.ft_{color:rgba(255,255,255,.88)!important}
+.wn-body{color:#3A3A3A!important}
+table.opp td{color:#2A2A2A!important}
+table.opp td:first-child{color:#1A1A1A!important}
+.audit-close-body{color:rgba(255,255,255,.88)!important}
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     AUDIT DOCUMENT
+     ═══════════════════════════════════════════════════ -->
+<div class="audit-doc" style="background:#FAF7F2;border-bottom:3px solid var(--brand);">
+
+  <!-- HERO -->
+  <div class="audit-hero">
+    <img class="audit-hero-img" src="https://settejewelry.com/cdn/shop/files/2026_April_website_headers_6.png?v=1776133088&width=2400" alt="">
+    <div class="audit-hero-overlay"></div>
+    <div class="audit-hero-content">
+      <div class="audit-logobar">
+        <span class="audit-diamond">⟡</span>
+        <span class="audit-wordmark">Northbound Commerce</span>
+      </div>
+      <div class="audit-hero-body">
+        <h1 class="audit-hero-h1">SETTE Jewelry</h1>
+        <p class="audit-hero-sub"><em>CRO &amp; UX Audit · April 2026</em></p>
+      </div>
+      <div class="audit-hero-meta">
+        <a href="https://northboundcommerce.co.uk" target="_blank">northboundcommerce.co.uk</a><br>
+        settejewelry.com<br>
+        Prepared by Amy Lam · amy@northboundcommerce.co.uk
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV BAR -->
+  <div class="audit-nav">
+    <span class="audit-nav-left">Northbound Commerce &nbsp;·&nbsp; CRO &amp; UX Audit</span>
+    <div class="audit-nav-right">
+      <a href="https://northboundcommerce.co.uk/northbound-work.html" target="_blank">Our Work</a>
+      <a href="https://northboundcommerce.co.uk/#services" target="_blank">Services</a>
+      <a href="mailto:amy@northboundcommerce.co.uk">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="audit-body">
+
+  <!-- Executive Summary -->
+  <div class="exec-box">
+    <p class="exec-label">Executive Summary</p>
+    <p class="exec-copy">SETTE's homepage carries strong brand credentials — compelling photography, a clear founder narrative, and press coverage that signals genuine cultural traction. The gap is between the product's price point (£362–£3,499) and the signals the digital experience currently sends. Six structural changes close that gap: elevating the press section to match the brand's earned credibility, introducing consistent brand blue accents that reinforce identity, adding breathing room to product imagery so pieces are presented with appropriate ceremony, and removing the on-load discount popup that actively undermines positioning. The result is a homepage that feels proportionate to what SETTE is selling.</p>
+  </div>
+
+  <!-- Top 10 Opportunities -->
+  <p class="opp-title">Top Opportunities</p>
+  <table class="opp">
+    <thead>
+      <tr>
+        <th>Opportunity</th>
+        <th>Why it matters</th>
+        <th>Impact</th>
+        <th>Effort</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Remove on-load discount popup</td>
+        <td>Fires before the visitor has seen a single product. Signals margin anxiety at a £2K+ price point. Tiffany, Monica Vinader and Astrid & Miyu do not use this pattern.</td>
+        <td><span class="pill pill-hi">High</span></td>
+        <td><span class="pill-effort-lo pill">Low</span></td>
+      </tr>
+      <tr>
+        <td>Elevate "As Seen In" section</td>
+        <td>Vogue and WWD coverage is a significant trust signal that currently appears as a faint scrolling bar. Giving it structural prominence converts press credibility into purchase confidence.</td>
+        <td><span class="pill pill-hi">High</span></td>
+        <td><span class="pill-effort-lo pill">Low</span></td>
+      </tr>
+      <tr>
+        <td>Add padding to product imagery</td>
+        <td>Products currently fill their containers edge-to-edge. At £1,370–£3,499, pieces deserve the visual ceremony of white space — the way a jeweller presents a ring on a tray, not a shelf.</td>
+        <td><span class="pill pill-hi">High</span></td>
+        <td><span class="pill-effort-lo pill">Low</span></td>
+      </tr>
+      <tr>
+        <td>Replace category circle nav with editorial tiles</td>
+        <td>Circular Instagram-style thumbnails with thick indigo borders are a fast-fashion DTC pattern. Full-bleed portrait tiles using SETTE's own photography signal editorial confidence.</td>
+        <td><span class="pill pill-hi">High</span></td>
+        <td><span class="pill-effort-md pill">Medium</span></td>
+      </tr>
+      <tr>
+        <td>Condense trust signals to a single strip</td>
+        <td>A four-icon grid is visual noise at this price point. A single text line — "IGI Certified · 14–18K Solid Gold · Free Delivery Over £500 · 60-Day Returns" — carries the same information with less clutter.</td>
+        <td><span class="pill pill-md">Medium</span></td>
+        <td><span class="pill-effort-lo pill">Low</span></td>
+      </tr>
+      <tr>
+        <td>Apply consistent brand blue accents</td>
+        <td>The brand's indigo is currently used only on buttons. Extending it to eyebrow labels, interactive states, dividers, and the ethos section creates a coherent brand language across the page.</td>
+        <td><span class="pill pill-md">Medium</span></td>
+        <td><span class="pill-effort-lo pill">Low</span></td>
+      </tr>
+      <tr>
+        <td>Refine CTA language across hero</td>
+        <td>"GET YOURS" is casual commerce. "Explore the Ring" is an invitation — the linguistic register of brands at this price point. Small copy change, meaningful brand signal.</td>
+        <td><span class="pill pill-md">Medium</span></td>
+        <td><span class="pill-effort-lo pill">Low</span></td>
+      </tr>
+      <tr>
+        <td>Fix currency inconsistency</td>
+        <td>Products display in GBP throughout, but the section header reads "UNDER $1000" in USD. Signals incomplete localisation and erodes trust for UK buyers.</td>
+        <td><span class="pill pill-md">Medium</span></td>
+        <td><span class="pill-effort-lo pill">Low</span></td>
+      </tr>
+      <tr>
+        <td>Full mobile optimisation</td>
+        <td>No responsive breakpoints currently applied. Navigation collapses, product grid doesn't reflow, tap targets are too small. Given growing mobile purchase intent for fine jewellery, this is a conversion leak.</td>
+        <td><span class="pill pill-hi">High</span></td>
+        <td><span class="pill-effort-hi pill">High</span></td>
+      </tr>
+      <tr>
+        <td>Curate footer payment logos</td>
+        <td>15+ payment provider logos dominate the footer alongside "Powered by Shopify". Curating to four marks (Visa, Mastercard, Amex, Apple Pay) removes the mass-market signal without reducing checkout coverage.</td>
+        <td><span class="pill pill-lo">Low</span></td>
+        <td><span class="pill-effort-lo pill">Low</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Was / Now -->
+  <p class="opp-title">What Changed &amp; Why</p>
+  <div class="wn-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#E0DDD8;margin-bottom:48px;">
+    <div class="wn-card wn-was"><p class="wn-label">Was</p><p class="wn-title">Discount popup on load</p><p class="wn-body">"EXCLUSIVE DISCOUNT" overlay fires immediately, before the visitor has engaged with any product. Cheapens positioning at £2K+ average basket.</p></div>
+    <div class="wn-card wn-now"><p class="wn-label">Now</p><p class="wn-title">Editorial email capture at page end</p><p class="wn-body">Clean brand-blue email capture section — same data collection, appropriate placement, copy that reflects the brand's editorial tone rather than urgency mechanics.</p></div>
+    <div class="wn-card wn-was"><p class="wn-label">Was</p><p class="wn-title">Press logos as faint scrolling ticker</p><p class="wn-body">Vogue and WWD coverage appears in a barely visible fast-scrolling marquee bar. The credibility of the coverage is not translating into page-level trust.</p></div>
+    <div class="wn-card wn-now"><p class="wn-label">Now</p><p class="wn-title">Prominent "As Seen In" section</p><p class="wn-body">A structured grid with each publication given its own tile, a subtle editorial quote, and a hover interaction — positioned prominently below the hero where it anchors the brand's credibility before the visitor reaches the product grid.</p></div>
+    <div class="wn-card wn-was"><p class="wn-label">Was</p><p class="wn-title">Product images edge-to-edge</p><p class="wn-body">Product photography fills each card with no breathing room. At £1,370–£3,499, the lack of white space makes pieces feel like catalogue items rather than fine jewellery.</p></div>
+    <div class="wn-card wn-now"><p class="wn-label">Now</p><p class="wn-title">Products float in white space</p><p class="wn-body">24px padding inside each product container. Images scale to contain. Pieces sit in space the way they would in a jeweller's presentation — the visual equivalent of placing a ring on a tray.</p></div>
+    <div class="wn-card wn-was"><p class="wn-label">Was</p><p class="wn-title">Category navigation: Instagram circles</p><p class="wn-body">Circular thumbnails with thick indigo borders are a structural pattern borrowed from fast-fashion DTC. Incongruous next to pieces at this price point.</p></div>
+    <div class="wn-card wn-now"><p class="wn-label">Now</p><p class="wn-title">Full-bleed editorial portrait tiles</p><p class="wn-body">SETTE's own photography presented as portrait tiles with gradient overlay, category name in thin italic serif, and a brand-blue reveal on hover. Editorial confidence rather than social-media browse.</p></div>
+    <div class="wn-card wn-was"><p class="wn-label">Was</p><p class="wn-title">Brand blue used on buttons only</p><p class="wn-body">The brand indigo appears exclusively on CTA buttons. The rest of the page has no relationship with the brand colour, resulting in a disconnected visual identity.</p></div>
+    <div class="wn-card wn-now"><p class="wn-label">Now</p><p class="wn-title">Brand blue as a consistent accent</p><p class="wn-body">Eyebrow labels, section links, promise strip dividers, the ethos quote mark, category tile hover states, founder section attribution, journal tags, and the email capture section all use the brand indigo — coherent without being heavy.</p></div>
+    <div class="wn-card wn-was"><p class="wn-label">Was</p><p class="wn-title">No mobile layout</p><p class="wn-body">No responsive breakpoints. Navigation collapses, grids don't reflow, text overflows on small screens, touch targets are too small for reliable interaction.</p></div>
+    <div class="wn-card wn-now"><p class="wn-label">Now</p><p class="wn-title">Mobile-first with three breakpoints</p><p class="wn-body">Full hamburger nav, 2-col product and category grids, snap-scroll testimonials and journal cards, stacked founder section, touch-appropriate targets (44px minimum) throughout — at 767px and 1023px.</p></div>
+  </div>
+
+  <!-- How Northbound Can Help -->
+  <div class="audit-close">
+    <p class="audit-close-title">How Northbound Can Help</p>
+    <p class="audit-close-body">Northbound Commerce is a Shopify agency specialising in CRO, UX optimisation, and Shopify development for luxury and premium DTC brands. We can implement these changes directly in SETTE's Shopify theme — no disruption to live trading — and continue optimising on a retainer basis as results come in.</p>
+    <div class="audit-services">
+      <span class="svc-tag">Shopify Dev</span>
+      <span class="svc-tag">CRO</span>
+      <span class="svc-tag">UX Design</span>
+      <span class="svc-tag">Mobile Optimisation</span>
+    </div>
+  </div>
+
+  </div><!-- /audit-body -->
+
+</div><!-- /audit-doc -->
+
+<div class="rd">↓ &nbsp; redesigned homepage mockup &nbsp; ↓</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     REDESIGNED HOMEPAGE
+     ═══════════════════════════════════════════════════ -->
+
+<input type="checkbox" id="nt" style="position:absolute;opacity:0;pointer-events:none;">
+
+<div class="nav-wrap">
+  <div class="ann">Complimentary delivery on orders over £500 &nbsp;·&nbsp; Arrives beautifully packaged</div>
+  <nav>
+    <div class="nl">
+      <a href="https://settejewelry.com/collections/all-jewelry">Fine Jewellery</a>
+      <a href="https://settejewelry.com/collections/all-jewelry">The Edits</a>
+      <a href="https://settejewelry.com/pages/about">About</a>
+    </div>
+    <a class="logo" href="https://settejewelry.com">S E T T E</a>
+    <div class="nr">
+      <button class="ni" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <button class="ni" aria-label="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
+      <button class="ni" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cc">0</span></button>
+      <label class="hb" for="nt"><span></span><span></span><span></span></label>
+    </div>
+  </nav>
+  <nav class="mn">
+    <a href="https://settejewelry.com/collections/all-jewelry">Fine Jewellery</a>
+    <a href="https://settejewelry.com/collections/rings">Rings</a>
+    <a href="https://settejewelry.com/collections/all-earrings">Earrings</a>
+    <a href="https://settejewelry.com/collections/bracelets">Bracelets</a>
+    <a href="https://settejewelry.com/collections/necklaces">Necklaces</a>
+    <a href="https://settejewelry.com/collections/charms">Charms</a>
+    <a href="https://settejewelry.com/pages/about">About SETTE</a>
+    <div class="mns">
+      <a href="https://settejewelry.com/pages/our-founder">Meet Isabel</a>
+      <a href="https://settejewelry.com/pages/press">In the Press</a>
+    </div>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hi" src="https://settejewelry.com/cdn/shop/files/2026_April_website_headers_6.png?v=1776133088&width=2400" alt="SETTE — The Coquette Pinky Ring" loading="eager" fetchpriority="high">
+  <div class="hs"></div><div class="hs2"></div>
+  <div class="hc">
+    <div class="htag">New collection</div>
+    <h1 class="hh1">The Coquette<br><em>Pinky Ring</em></h1>
+    <div class="hctas">
+      <a class="btn-p" href="https://settejewelry.com/collections/coquette-pinky-ring">Explore the Ring</a>
+      <a class="btn-t" href="https://settejewelry.com/collections/all-jewelry">View all Fine Jewellery →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  IGI Certified Lab Diamonds <span>·</span>
+  14–18K Solid Gold <span>·</span>
+  Complimentary Delivery Over £500 <span>·</span>
+  60-Day Returns
+</div>
+
+<!-- AS SEEN IN — single-line blue-accent strip -->
+<div class="press-strip">
+  <span class="press-strip-label">As seen in</span>
+  <span class="press-strip-rule"></span>
+  <div class="press-strip-logos">
+    <img class="press-strip-img" src="https://settejewelry.com/cdn/shop/files/2025_q3_Headers_websites_300x300.png?v=1757629206" alt="Vogue">
+    <span class="press-strip-sep">·</span>
+    <span class="press-strip-text-sans">WWD</span>
+    <span class="press-strip-sep">·</span>
+    <img class="press-strip-img" src="https://settejewelry.com/cdn/shop/files/logo_b752e28f-1ac1-490d-a55d-472fb11ea341_300x300.png?v=1757629393" alt="">
+    <span class="press-strip-sep">·</span>
+    <span class="press-strip-text">Bustle</span>
+    <span class="press-strip-sep">·</span>
+    <img class="press-strip-img" src="https://settejewelry.com/cdn/shop/files/logo2_300x300.png?v=1757629561" alt="">
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="cs">
+  <div class="csh">
+    <div><p class="ey">Collections</p><h2 class="s2">Shop by <em>category</em></h2></div>
+    <a class="la" href="https://settejewelry.com/collections/all-jewelry">View all →</a>
+  </div>
+  <div class="cg">
+    <a class="ct" href="https://settejewelry.com/collections/rings"><img class="cti-clean" src="https://settejewelry.com/cdn/shop/files/SETTE_JEWELRY_18K_YELLOW_GOLD_COQUETTE1.0_LAB_DIAMOND_1.png?v=1738095652&width=600" alt="Rings" loading="lazy"><img class="cti-worn" src="https://settejewelry.com/cdn/shop/files/1_7dfe6cac-f38f-4526-84d4-888a02914ef1.png?v=1771376903&width=600" alt="" loading="lazy"><div class="cg2"></div><div class="ct-accent"></div><div class="cb"><div class="cn">Rings</div></div></a>
+    <a class="ct" href="https://settejewelry.com/collections/all-earrings"><img class="cti-clean" src="https://settejewelry.com/cdn/shop/files/SET-ER-R-90716-VMEH1210_EHE57396-_5.6X3.5_-YG-TV.png?v=1775826292&width=600" alt="Earrings" loading="lazy"><img class="cti-worn" src="https://settejewelry.com/cdn/shop/files/2_ece166bd-626a-459f-973e-1d1e2e789352.png?v=1757721149&width=600" alt="" loading="lazy"><div class="cg2"></div><div class="ct-accent"></div><div class="cb"><div class="cn">Earrings</div></div></a>
+    <a class="ct" href="https://settejewelry.com/collections/charms"><img class="cti-clean" src="https://settejewelry.com/cdn/shop/files/SETTE_JEWELRY_14KY_COQUETTE_PEAR_BEAD_1.png?v=1757432644&width=600" alt="Charms" loading="lazy"><img class="cti-worn" src="https://settejewelry.com/cdn/shop/files/3_614f4106-3045-4804-947c-5a800563277a.png?v=1757721195&width=600" alt="" loading="lazy"><div class="cg2"></div><div class="ct-accent"></div><div class="cb"><div class="cn">Charms</div></div></a>
+    <a class="ct" href="https://settejewelry.com/collections/bracelets"><img class="cti-clean" src="https://settejewelry.com/cdn/shop/files/SETTE_JEWELRY_14K_YELLOW_GOLD_COQUETTE_FRINGE_BRACELET_LAB_DIAMOND_1.png?v=1744480616&width=600" alt="Bracelets" loading="lazy"><img class="cti-worn" src="https://settejewelry.com/cdn/shop/files/4_c4af539e-f1a6-49ee-9f78-1310588b7f3f.png?v=1771376903&width=600" alt="" loading="lazy"><div class="cg2"></div><div class="ct-accent"></div><div class="cb"><div class="cn">Bracelets</div></div></a>
+    <a class="ct" href="https://settejewelry.com/collections/necklaces"><img class="cti-clean" src="https://settejewelry.com/cdn/shop/files/SETTE_JEWELRY_14KY_DECO_FINE_NECKLACE_3.png?v=1760575195&width=600" alt="Necklaces" loading="lazy"><img class="cti-worn" src="https://settejewelry.com/cdn/shop/files/5_8fe96399-ab4d-4d42-a512-d0c907e16995.png?v=1757721226&width=600" alt="" loading="lazy"><div class="cg2"></div><div class="ct-accent"></div><div class="cb"><div class="cn">Necklaces</div></div></a>
+  </div>
+</div>
+
+<!-- BEST SELLERS — products float in white space -->
+<section class="sec">
+  <div class="sh">
+    <div><p class="ey">The collection</p><h2 class="s2">Best sellers</h2></div>
+    <a class="la" href="https://settejewelry.com/collections/best-sellers">View all →</a>
+  </div>
+  <div class="pg">
+    <a class="pc" href="https://settejewelry.com/products/coquette-pinky-ring-1-0">
+      <div class="piw"><img src="https://settejewelry.com/cdn/shop/files/SETTE_JEWELRY_18K_YELLOW_GOLD_COQUETTE1.0_LAB_DIAMOND_1.png?v=1738095652&width=800" alt="Coquette Pinky Ring 1.0" loading="lazy"><div class="pq">View Details</div></div>
+      <p class="pst">★★★★★</p><p class="pn">Coquette Pinky Ring 1.0</p><p class="psub">18K Gold · 1.0CTW</p><p class="pp">£1,370</p>
+    </a>
+    <a class="pc" href="https://settejewelry.com/products/coquette-lab-diamond-fringe-bracelet">
+      <div class="piw"><img src="https://settejewelry.com/cdn/shop/files/SETTE_JEWELRY_14K_YELLOW_GOLD_COQUETTE_FRINGE_BRACELET_LAB_DIAMOND_1.png?v=1744480616&width=800" alt="Coquette Fringe Bracelet" loading="lazy"><div class="pq">View Details</div></div>
+      <p class="pst">★★★★★</p><p class="pn">Coquette Fringe Bracelet</p><p class="psub">14K Gold · 2.5CTW</p><p class="pp">£3,499</p>
+    </a>
+    <a class="pc" href="https://settejewelry.com/products/cove_oval_ring">
+      <div class="piw"><img src="https://settejewelry.com/cdn/shop/files/SETTE_JEWELRY_18K_YELLOW_GOLD_COVE_RING_1.png?v=1720903694&width=800" alt="Cove Oval Ring" loading="lazy"><div class="pq">View Details</div></div>
+      <p class="pst">★★★★★</p><p class="pn">Cove Oval Ring</p><p class="psub">14K Gold · Lab Diamond</p><p class="pp">£2,434</p>
+    </a>
+    <a class="pc" href="https://settejewelry.com/products/deco-radiant-fine-necklace">
+      <div class="piw"><img src="https://settejewelry.com/cdn/shop/files/SETTE_JEWELRY_14KY_DECO_FINE_NECKLACE_3.png?v=1760575195&width=800" alt="Deco Radiant Fine Necklace" loading="lazy"><div class="pq">View Details</div></div>
+      <p class="pst">★★★★★</p><p class="pn">Deco Radiant Fine Necklace</p><p class="psub">14K Gold · 1.4CTW</p><p class="pp">£2,130</p>
+    </a>
+  </div>
+</section>
+
+<!-- ETHOS — compact centred quote -->
+<section class="ethos">
+  <div class="ethos-inner">
+    <div class="ethos-mark">"</div>
+    <blockquote class="ethos-q">Ten years in the industry taught me that most jewellery looks the same. SETTE was my answer to that.</blockquote>
+    <p class="ethos-attr">Isabel Calvert, founder</p>
+    <a class="la" href="https://settejewelry.com/pages/our-founder">Our story →</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="tw">
+  <div class="ti">
+    <div class="sh" style="margin-bottom:40px;">
+      <div><p class="ey">Client voices</p><h2 class="s2">Worn and <em>loved</em></h2></div>
+    </div>
+    <div class="tg">
+      <div class="tc"><div class="tiw"><img src="https://settejewelry.com/cdn/shop/files/SETTE08.163872.jpg?v=1758069981" alt="" loading="lazy"></div><p class="tst">★★★★★</p><p class="tq">"The best pinky ring ever. Super comfortable, stunning design, and stacks beautifully."</p><p class="tn">Corine H.</p></div>
+      <div class="tc"><div class="tiw"><img src="https://settejewelry.com/cdn/shop/files/SETTE08.164340.jpg?v=1765328197" alt="" loading="lazy"></div><p class="tst">★★★★★</p><p class="tq">"SETTE is going to be where the cool girlies buy their diamonds."</p><p class="tn">Caroline S.</p></div>
+      <div class="tc"><div class="tiw"><img src="https://settejewelry.com/cdn/shop/files/SETTE08.163842.jpg?v=1755473015" alt="" loading="lazy"></div><p class="tst">★★★★★</p><p class="tq">"When you first see SETTE's packaging you immediately fall in love. The craftsmanship is impeccable."</p><p class="tn">Christine P.</p></div>
+      <div class="tc"><div class="tiw"><img src="https://settejewelry.com/cdn/shop/files/SETTE08.163944.jpg?v=1758629820" alt="" loading="lazy"></div><p class="tst">★★★★★</p><p class="tq">"Gorgeous ear cuff and even better fit. Super secure — I never worry about it."</p><p class="tn">Dani S.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOUNDER -->
+<div class="fo">
+  <div class="fov"><div class="fov-accent"></div><img src="https://settejewelry.com/cdn/shop/files/Meet_Isabel.png?v=1755961052&width=1200" alt="Isabel Calvert, founder of SETTE" loading="lazy"></div>
+  <div class="foc">
+    <p class="ey" style="margin-bottom:20px;">Meet Isabel</p>
+    <p class="fol">Thoughtful proportions. Comfort that lets you wear boldness every day. Modern. Tasteful. A little indulgent.</p>
+    <p class="foa">Isabel Calvert, founder</p>
+    <p class="fop">Everything here is Rare by Design. The pieces your friends will ask about.</p>
+    <a class="la" href="https://settejewelry.com/pages/our-founder">Our story →</a>
+  </div>
+</div>
+
+<!-- JOURNAL -->
+<section class="sec-sm">
+  <div class="sh" style="margin-bottom:24px;">
+    <div><p class="ey">Journal</p><h2 class="s2">The world of <em>SETTE</em></h2></div>
+    <a class="la" href="#">All stories →</a>
+  </div>
+  <div class="jg">
+    <div class="jc"><img src="https://settejewelry.com/cdn/shop/files/SETTE08.164340.jpg?v=1765328197" alt="" loading="lazy"><div class="jo"></div><div class="jb"><span class="jtag">Ring Guide</span><p class="jt">Why Most Rings Are Uncomfortable — and How We Fixed It</p></div></div>
+    <div class="jc"><img src="https://settejewelry.com/cdn/shop/files/SETTE08.163872.jpg?v=1758069981" alt="" loading="lazy"><div class="jo"></div><div class="jb"><span class="jtag">Styling</span><p class="jt">The Cool Girl's Guide to Stacking Fine Jewellery</p></div></div>
+    <div class="jc"><img src="https://settejewelry.com/cdn/shop/files/SETTE08.163944.jpg?v=1758629820" alt="" loading="lazy"><div class="jo"></div><div class="jb"><span class="jtag">Behind the Brand</span><p class="jt">Why Your SETTE Order Feels Elevated Before You Try It On</p></div></div>
+  </div>
+</section>
+
+<!-- CAPTURE — brand blue background -->
+<section class="cap">
+  <p class="cae">Private access</p>
+  <h2 class="cah">Be the first to know<br>about <em>new designs.</em></h2>
+  <p class="cas">New collections and edit drops — nothing more.</p>
+  <div class="caf">
+    <input class="cain" type="email" placeholder="Your email address" inputmode="email" autocomplete="email">
+    <button class="cab">Subscribe</button>
+  </div>
+  <p class="can">No promotions. Unsubscribe at any time.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div class="ft">
+      <div>
+        <a class="fl" href="https://settejewelry.com">SETTE</a>
+        <p class="fd">Fine jewellery, rare by design. Lab-grown diamonds in 14K and 18K solid gold.</p>
+        <div class="fso"><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">TikTok</a></div>
+      </div>
+      <div><p class="fct">Shop</p><ul class="fls"><li><a href="#">Fine Jewellery</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">New In</a></li><li><a href="#">Under £1,000</a></li></ul></div>
+      <div><p class="fct">About</p><ul class="fls"><li><a href="#">Our Story</a></li><li><a href="#">Lab Diamonds</a></li><li><a href="#">Press</a></li><li><a href="#">Book Appointment</a></li></ul></div>
+      <div><p class="fct">Client care</p><ul class="fls"><li><a href="#">Sizing Guide</a></li><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Jewellery Care</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="fb2">
+      <p class="fcp">© 2026 SETTE Jewellery Ltd. All rights reserved.</p>
+      <div class="fpy"><span class="fpl">Visa</span><span class="fpl">Mastercard</span><span class="fpl">Amex</span><span class="fpl">Apple Pay</span></div>
+      <div class="fleg"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+</body>
+</html>
