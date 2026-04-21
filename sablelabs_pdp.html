@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Baobab Moisturiser — S'ABLE Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --white:#ffffff;
+  --bg:#f4f1ec;        /* DUA-style warm gallery grey */
+  --bg2:#ede9e2;       /* slightly deeper warm grey */
+  --cream:#faf7f2;
+  --rule:#e2dcd4;
+  --green:#2d5a0e;
+  --green2:#ebf3e2;
+  --green3:#c8ddb8;
+  --ink:#0d0c0a;
+  --mid:#706860;
+  --faint:#a89e94;
+  --night:#0e0e0c;
+  --night2:#1c1c18;
+  --gold:#b8904a;
+  --font:'Plus Jakarta Sans',sans-serif;
+}
+
+html{font-size:15px;scroll-behavior:smooth}
+body{background:var(--white);font-family:var(--font);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* ══ ANNOUNCEMENT ══ */
+.ann{background:var(--ink);color:rgba(255,255,255,.75);text-align:center;padding:9px 24px;font-size:11px;letter-spacing:.09em;font-weight:400}
+.ann strong{color:#fff;font-weight:600}
+
+/* ══ NAV ══ */
+.nav{background:var(--white);border-bottom:1px solid var(--rule);padding:0 52px;height:66px;display:flex;align-items:center;position:sticky;top:0;z-index:200}
+.nav-logo img{height:24px;display:block}
+.nav-links{display:flex;gap:34px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;color:var(--mid);margin:0 auto}
+.nav-links a{color:inherit;text-decoration:none;transition:color .15s;cursor:pointer}
+.nav-links a:hover{color:var(--ink)}
+.nav-util{display:flex;gap:22px;align-items:center}
+.nav-util button{background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center}
+.nav-util svg{width:20px;height:20px;color:var(--mid);transition:color .15s}
+.nav-util svg:hover{color:var(--ink)}
+.bag-wrap{position:relative}
+.bag-count{position:absolute;top:-5px;right:-6px;background:var(--green);color:#fff;width:14px;height:14px;border-radius:50%;font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:700}
+
+/* ══ BREADCRUMB ══ */
+.breadcrumb{padding:12px 52px;font-size:11px;color:var(--faint);letter-spacing:.04em;display:flex;gap:7px;align-items:center}
+.breadcrumb a{color:var(--faint);text-decoration:none;transition:color .15s;cursor:pointer}
+.breadcrumb a:hover{color:var(--mid)}
+.sep{color:var(--rule)}
+
+/* ══ PDP GRID ══ */
+.pdp{display:grid;grid-template-columns:1fr 720px;min-height:700px;max-width:1440px}
+
+/* ══ GALLERY ══ */
+.gallery{background:var(--bg);position:sticky;top:66px;height:calc(100vh - 66px);display:flex;gap:0}
+
+.thumbs-col{display:flex;flex-direction:column;gap:4px;padding:20px 12px 20px 20px;width:76px;flex-shrink:0}
+.thumb{width:52px;height:52px;background:var(--bg2);cursor:pointer;overflow:hidden;border:1.5px solid transparent;transition:border-color .15s;display:block}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb.sel{border-color:var(--ink)}
+.thumb:hover:not(.sel){border-color:var(--faint)}
+
+.gal-main{flex:1;position:relative;overflow:hidden}
+.gal-main img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .25s}
+.gal-badge{position:absolute;top:20px;left:20px;background:var(--ink);color:#fff;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:5px 10px}
+
+/* ══ INFO ══ */
+.info{padding:44px 52px 60px 44px;background:var(--white);border-left:1px solid var(--rule);overflow-y:auto}
+
+/* Category + stars row */
+.info-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.prod-cat{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--green);display:flex;align-items:center;gap:7px}
+.cat-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0}
+.stars-row{display:flex;align-items:center;gap:6px}
+.stars{font-size:11.5px;letter-spacing:1.5px;color:var(--ink)}
+.rev-ct{font-size:11.5px;color:var(--mid);cursor:pointer;border-bottom:1px solid var(--rule)}
+.rev-ct:hover{border-color:var(--mid)}
+
+/* Product title */
+.prod-name{font-size:46px;font-weight:700;line-height:1.04;letter-spacing:-.02em;margin-bottom:10px;color:var(--ink)}
+.prod-format{font-size:12px;color:var(--faint);letter-spacing:.05em;margin-bottom:16px;font-weight:400}
+
+/* Short desc */
+.prod-desc{font-size:13.5px;color:var(--mid);line-height:1.8;margin-bottom:20px;max-width:360px;font-weight:300}
+
+/* TECHNOLOGY CALLOUT */
+.tech-line{font-size:12px;font-weight:600;color:var(--ink);letter-spacing:.04em;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.tech-line span{color:var(--green)}
+
+/* BENEFITS TICKER LINE — DUA style: "X — Y — Z" */
+.benefits-line{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--faint);margin-bottom:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.benefits-line .em{color:var(--ink)}
+.bl-sep{color:var(--rule)}
+
+/* PRICE */
+.price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
+.price{font-size:26px;font-weight:600;color:var(--ink)}
+.price-note{font-size:12px;color:var(--mid);margin-bottom:22px;font-weight:300}
+.price-note strong{color:var(--green);font-weight:600}
+
+/* SUB BLOCK */
+.sub-wrap{margin-bottom:18px;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.sub-hd{background:var(--bg);padding:8px 14px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--faint);border-bottom:1px solid var(--rule)}
+.sub-opt{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;cursor:pointer;border-bottom:1px solid var(--rule);transition:background .15s}
+.sub-opt:last-of-type{border-bottom:none}
+.sub-opt.on{background:var(--green2);border-left:2px solid var(--green);padding-left:14px}
+.sub-opt:not(.on):hover{background:var(--bg)}
+.radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--rule);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:border-color .15s}
+.sub-opt.on .radio{border-color:var(--green)}
+.rdot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.st .t{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.st .d{font-size:12px;color:var(--mid);line-height:1.55;font-weight:300}
+.sub-pill{font-size:9px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--green);background:var(--green2);padding:3px 9px;flex-shrink:0;margin-top:2px;border:1px solid var(--green3)}
+.sub-foot{padding:9px 16px;font-size:11.5px;color:var(--mid);font-style:italic;background:var(--bg);border-top:1px solid var(--rule);font-weight:300}
+.sub-foot a{color:var(--green);text-decoration:none;font-style:normal;font-weight:500}
+
+/* ADD ROW */
+.add-row{display:flex;gap:8px;margin-bottom:12px}
+.qty{display:flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.qty-btn{width:46px;height:52px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--mid);display:flex;align-items:center;justify-content:center;transition:color .15s;font-weight:300}
+.qty-btn:hover{color:var(--ink)}
+.qty-n{width:44px;height:52px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;border-left:1px solid var(--rule);border-right:1px solid var(--rule)}
+.atc{flex:1;background:var(--ink);color:#fff;border:none;font-family:var(--font);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;cursor:pointer;height:52px;transition:background .2s;border-radius:6px}
+.atc:hover{background:#2a2a27}
+
+/* SHIPPING MICRO */
+.ship{font-size:11.5px;color:var(--mid);display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:18px;font-weight:300}
+.ship svg{width:13px;height:13px;flex-shrink:0;opacity:.6}
+
+/* COMMITMENT BADGE */
+.comm-badge{border:1px solid var(--rule);padding:12px 16px;display:flex;align-items:center;gap:14px;background:var(--bg);margin-bottom:18px;border-radius:8px}
+.cb-b img{width:28px;height:28px;object-fit:contain;display:block;flex-shrink:0}
+.cb-t .l{font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--green);margin-bottom:2px}
+.cb-t .v{font-size:12px;color:var(--mid);font-weight:300}
+.cb-link{font-size:11px;color:var(--mid);margin-left:auto;white-space:nowrap;border-bottom:1px solid var(--rule);cursor:pointer;font-weight:400;flex-shrink:0;transition:color .15s}
+.cb-link:hover{color:var(--green)}
+
+/* ACCORDION */
+.accord{border-top:1px solid var(--rule)}
+.acc-item{border-bottom:1px solid var(--rule)}
+.acc-btn{width:100%;background:none;border:none;padding:15px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--font);font-size:11.5px;font-weight:600;color:var(--ink);text-align:left;letter-spacing:.06em;text-transform:uppercase;transition:color .15s}
+.acc-btn:hover,.acc-btn.open{color:var(--green)}
+.acc-plus{font-size:20px;color:var(--faint);font-weight:300;transition:transform .2s,color .2s;flex-shrink:0;line-height:1}
+.acc-btn.open .acc-plus{transform:rotate(45deg);color:var(--green)}
+.acc-body{display:none;padding-bottom:18px;font-size:13px;color:var(--mid);line-height:1.82;font-weight:300}
+.acc-body.show{display:block}
+.acc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.acc-tag{background:var(--bg);border:1px solid var(--rule);padding:4px 12px;font-size:11px;letter-spacing:.04em;color:var(--mid);font-weight:400;border-radius:4px}
+
+
+/* ══════════════════════════════
+   SCROLLING USP TICKER — DUA style
+══════════════════════════════ */
+.ticker-wrap{overflow:hidden;background:var(--bg);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:11px 0;white-space:nowrap}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-inner{display:inline-flex;gap:0;animation:ticker 28s linear infinite}
+.ticker-inner:hover{animation-play-state:paused}
+.ticker-item{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--mid);padding:0 24px;display:flex;align-items:center;gap:24px;white-space:nowrap}
+.ticker-item::after{content:'—';color:var(--rule);font-weight:300}
+
+
+/* ══════════════════════════════
+   BELOW FOLD SECTIONS
+══════════════════════════════ */
+
+/* RESULTS STATS — DUA by AB style */
+.results-section{display:grid;grid-template-columns:1fr 1fr;align-items:start}
+.results-img{background:var(--bg);overflow:hidden;position:sticky;top:66px;height:calc(100vh - 66px)}
+.results-img img{width:100%;height:100%;object-fit:cover;display:block}
+.results-img-label{position:absolute;top:20px;left:20px;background:rgba(250,247,242,.9);padding:5px 12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink)}
+.results-data{background:var(--white);padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
+.results-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--faint);margin-bottom:16px}
+.results-title{font-size:38px;font-weight:700;line-height:1.1;letter-spacing:-.015em;margin-bottom:12px}
+.results-title em{font-style:normal;color:var(--green)}
+.results-sub{font-size:13px;color:var(--mid);line-height:1.7;margin-bottom:36px;font-weight:300;max-width:360px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.stat-item{padding:20px 22px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule)}
+.stat-item:nth-child(2n){border-right:none}
+.stat-item:nth-child(3),.stat-item:nth-child(4){border-bottom:none}
+.stat-pct{font-size:42px;font-weight:700;color:var(--ink);line-height:1;margin-bottom:5px;letter-spacing:-.02em}
+.stat-pct span{font-size:24px;font-weight:300}
+.stat-desc{font-size:11.5px;color:var(--mid);line-height:1.55;font-weight:300}
+.results-note{font-size:10.5px;color:var(--faint);margin-top:16px;font-style:italic;font-weight:300}
+
+/* INGREDIENT SECTION */
+.ing-section{padding:72px 52px 56px;background:var(--white)}
+.ing-intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px}
+.ing-intro-left h2{font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:8px}
+.ing-intro-left p{font-size:13.5px;color:var(--mid);max-width:420px;line-height:1.8;font-weight:300}
+.ing-glossary-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--mid);border-bottom:1px solid var(--rule);padding-bottom:2px;cursor:pointer;white-space:nowrap;text-decoration:none;transition:all .15s;flex-shrink:0}
+.ing-glossary-link:hover{color:var(--green);border-color:var(--green)}
+
+.ing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;background:transparent}
+.ing-card{background:var(--white);border-radius:10px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;display:block;transition:transform .2s;border:1px solid var(--rule)}
+.ing-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.07)}
+.ing-img-wrap{aspect-ratio:8/5;overflow:hidden;position:relative;background:var(--bg2)}
+.ing-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.ing-card:hover .ing-img-wrap img{transform:scale(1.04)}
+.ing-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,9,7,.55) 0%,transparent 55%)}
+.ing-img-name{position:absolute;bottom:16px;left:18px;right:18px;font-size:22px;font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.1}
+.ing-body{padding:18px 20px 22px}
+.ing-origin{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.ing-text{font-size:12.5px;color:var(--mid);line-height:1.72;font-weight:300;margin-bottom:14px}
+.ing-cta{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--green);display:inline-flex;align-items:center;gap:5px}
+.ing-cta svg{width:12px;height:12px;transition:transform .15s}
+.ing-card:hover .ing-cta svg{transform:translateX(3px)}
+
+/* HOW TO APPLY — Refy/DUA inspired */
+.how-section{background:#e2dcd4;overflow:hidden;margin:0 52px;border-radius:12px}
+.how-inner{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+.how-video-col{position:relative;background:#c8c0b4;overflow:hidden;cursor:pointer;border-radius:12px 0 0 12px}
+.how-video-col video,.vid-poster{width:100%;height:100%;object-fit:cover;display:block}
+.vid-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.play-ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:rgba(0,0,0,.18);transition:background .2s}
+.how-video-col:hover .play-ov{background:rgba(0,0,0,.08)}
+.play-btn{width:64px;height:64px;border:1.5px solid rgba(255,255,255,.75);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s;background:rgba(255,255,255,.18)}
+.how-video-col:hover .play-btn{border-color:#fff;background:rgba(255,255,255,.28);transform:scale(1.04)}
+.play-btn svg{margin-left:4px}
+.play-lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600}
+.how-steps{padding:60px 56px;display:flex;flex-direction:column;justify-content:center}
+.how-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#2d5a0e;margin-bottom:14px}
+.how-title{font-size:36px;font-weight:700;color:#1a1a14;line-height:1.1;letter-spacing:-.02em;margin-bottom:40px}
+.how-title em{color:#524e3e;font-style:normal}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:20px;align-items:flex-start;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.1)}
+.step:last-child{border-bottom:none;padding-bottom:0}
+.step-n{font-size:28px;font-weight:700;color:rgba(0,0,0,.18);line-height:1;flex-shrink:0;width:28px;letter-spacing:-.02em}
+.step-title{font-size:13px;font-weight:700;color:#1a1a14;margin-bottom:3px;letter-spacing:.01em}
+.step-desc{font-size:12.5px;color:#3d3a2c;line-height:1.7;font-weight:400}
+
+/* COMMITMENT SECTION */
+.commit-section{background:var(--night2);padding:52px 52px;margin:32px 52px;border-radius:12px}
+.commit-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:26px}
+.commit-top h3{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.3)}
+.commit-top a{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);border-bottom:1px solid rgba(255,255,255,.1);cursor:pointer;transition:color .15s}
+.commit-top a:hover{color:rgba(255,255,255,.7)}
+.commit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden}
+.ci{background:var(--night2);padding:26px 22px}
+.ci-label{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);font-weight:700;margin-bottom:8px}
+.ci-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.25;letter-spacing:-.01em}
+.ci-desc{font-size:12px;color:rgba(255,255,255,.4);line-height:1.7;font-weight:300}
+
+/* COMMUNITY */
+.community{padding:60px 52px;background:var(--white)}
+.comm-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:30px}
+.comm-top .left .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--green);margin-bottom:8px}
+.comm-top .left h2{font-size:32px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.comm-top .right{display:flex;align-items:center;gap:22px}
+.scroll-hint{display:flex;align-items:center;gap:6px;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:600}
+@keyframes nudge{0%,100%{transform:translateX(0)}60%{transform:translateX(5px)}}
+.scroll-hint svg{animation:nudge 2s ease-in-out infinite}
+.insta-link{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--rule);cursor:pointer;padding-bottom:2px;transition:all .15s;font-weight:600}
+.insta-link:hover{color:var(--green);border-color:var(--green)}
+
+.carousel-outer{overflow-x:auto;scrollbar-width:none;margin:0 -52px;padding:0 52px}
+.carousel-outer::-webkit-scrollbar{display:none}
+.carousel{display:flex;gap:10px;width:max-content;padding-bottom:2px}
+.ugc{width:262px;flex-shrink:0;background:var(--bg);cursor:pointer;transition:transform .2s;border-radius:8px;overflow:hidden}
+.ugc:hover{transform:translateY(-2px)}
+.ugc-img{aspect-ratio:1;background:var(--bg2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ugc-img svg{opacity:.15;width:32px;height:32px}
+.handle{position:absolute;top:9px;left:9px;background:rgba(250,247,242,.92);padding:3px 8px;font-size:9.5px;font-weight:700;letter-spacing:.02em}
+.likes{position:absolute;bottom:9px;right:9px;background:rgba(250,247,242,.88);padding:3px 8px;font-size:9.5px;color:var(--mid);display:flex;align-items:center;gap:4px;font-weight:400}
+.ugc-body{padding:14px 14px 18px}
+.ugc-quote{font-size:13.5px;font-weight:300;font-style:italic;line-height:1.6;color:var(--ink);margin-bottom:8px}
+.ugc-skin{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.comm-cta{margin-top:24px;display:flex;align-items:center;gap:20px}
+.cta-border{border:1px solid var(--rule);padding:10px 24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mid);cursor:pointer;transition:all .15s;display:inline-block}
+.cta-border:hover{border-color:var(--ink);color:var(--ink)}
+.cta-soft{font-size:12px;color:var(--faint);font-weight:300}
+
+/* PRESS */
+.press{display:flex;align-items:center;justify-content:center;gap:0;padding:22px 52px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--white)}
+.press-logo{flex:1;display:flex;align-items:center;justify-content:center;max-height:50px;filter:grayscale(100%);opacity:.3;transition:opacity .2s;padding:10px 16px}
+.press-logo:hover{opacity:.55}
+.press-logo img{max-height:20px;width:auto;object-fit:contain}
+.press-div{width:1px;height:20px;background:var(--rule);flex-shrink:0}
+
+/* CROSS SELL */
+.cross-section{padding:56px 52px;background:var(--white)}
+.cross-section>h2{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:26px}
+.cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-radius:10px;overflow:hidden}
+/* Campaign card hidden on desktop (only fills grid on mobile) */
+.cs-campaign{display:none}
+.cs{background:var(--white);cursor:pointer;transition:background .15s}
+.cs:hover{background:var(--bg)}
+.cs-img{background:var(--bg);aspect-ratio:1;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.cs-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.cs:hover .cs-img img{transform:scale(1.03)}
+.cs-info{padding:16px 18px 22px}
+.cs-step{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:5px}
+.cs-name{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px;line-height:1.2}
+.cs-price{font-size:13.5px;color:var(--mid);font-weight:400}
+
+/* REVIEWS */
+.reviews-section{padding:56px 52px;background:var(--white);border-top:1px solid var(--rule)}
+.rev-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:34px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.rev-score{font-size:70px;font-weight:700;line-height:1;margin-right:16px;letter-spacing:-.03em}
+.rev-meta .stars-lg{font-size:14px;letter-spacing:2.5px;color:var(--ink);margin-bottom:5px}
+.rev-meta .ct{font-size:12px;color:var(--faint)}
+.rev-bars{flex:1;margin-left:32px}
+.rbar{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.rbar-l{font-size:11px;color:var(--mid);width:36px;text-align:right;flex-shrink:0;font-weight:400}
+.rbar-t{flex:1;height:2px;background:var(--bg2)}
+.rbar-f{height:100%;background:var(--ink)}
+.rbar-p{font-size:11px;color:var(--faint);width:28px;flex-shrink:0}
+.rev-write{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--rule);cursor:pointer;padding-bottom:1px;white-space:nowrap;margin-top:4px;font-weight:600}
+.rev-write:hover{color:var(--green);border-color:var(--green)}
+.rev-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border-radius:10px;overflow:hidden}
+.rev-card{background:var(--white);padding:26px}
+.rc-stars{font-size:11px;letter-spacing:2px;color:var(--ink);margin-bottom:8px}
+.rc-title{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:9px;line-height:1.25}
+.rc-body{font-size:13px;color:var(--mid);line-height:1.82;margin-bottom:11px;font-weight:300}
+.rc-meta{font-size:11px;color:var(--faint);display:flex;align-items:center;gap:10px}
+.rc-tag{border:1px solid var(--rule);padding:2px 8px;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+
+/* FOOTER */
+.site-footer{background:var(--night);padding:20px 52px;display:flex;align-items:center;justify-content:space-between}
+.site-footer img{height:18px;opacity:.25;filter:invert(1)}
+.site-footer p{font-size:10.5px;color:rgba(255,255,255,.2);letter-spacing:.04em;font-weight:400}
+
+/* ══ MOBILE GALLERY CAROUSEL (hidden on desktop) ══ */
+.mob-gallery{display:none}
+
+/* ══ MOBILE STICKY ATC (hidden on desktop) ══ */
+.mob-sticky-atc{display:none}
+
+/* ══════════════════════════════
+   MOBILE — 768px and below
+══════════════════════════════ */
+@media(max-width:768px){
+
+  /* MOBILE GALLERY */
+  .mob-gallery{
+    display:block;
+    position:relative;
+    background:var(--bg);
+    overflow:hidden;
+    touch-action:pan-y;
+    user-select:none;
+  }
+  .mob-gallery-track{
+    display:flex;
+    transition:transform .32s cubic-bezier(.25,.46,.45,.94);
+    will-change:transform;
+  }
+  .mob-gallery-slide{
+    flex-shrink:0;
+    width:100vw;
+    aspect-ratio:1;
+    overflow:hidden;
+    position:relative;
+  }
+  .mob-gallery-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    pointer-events:none;
+  }
+  .mob-gallery-badge{
+    position:absolute;
+    top:14px;
+    left:16px;
+    background:var(--ink);
+    color:#fff;
+    font-size:8px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-weight:700;
+    padding:4px 9px;
+    z-index:2;
+  }
+  /* Alia Senses-style line pagination */
+  .mob-dots{
+    display:flex;
+    gap:3px;
+    padding:10px 16px 8px;
+    background:var(--bg);
+  }
+  .mob-dot{
+    flex:1;
+    height:2px;
+    border-radius:0;
+    background:var(--cream4);
+    transition:background .25s cubic-bezier(.25,.46,.45,.94);
+    cursor:pointer;
+  }
+  .mob-dot.active{
+    background:var(--ink);
+    width:auto;
+    border-radius:0;
+  }
+
+  /* STICKY ATC */
+  .mob-sticky-atc{
+    display:flex;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:500;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-top:1px solid var(--rule);
+    padding:10px 20px 22px;
+    gap:12px;
+    align-items:center;
+  }
+  .mob-sticky-info{flex:1;min-width:0}
+  .mob-sticky-name{font-size:13.5px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em;margin-bottom:1px}
+  .mob-sticky-price{font-size:12px;color:var(--mid);font-weight:400}
+  .mob-sticky-btn{
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-family:var(--font);
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-weight:700;
+    padding:0 20px;
+    height:44px;
+    border-radius:6px;
+    cursor:pointer;
+    white-space:nowrap;
+    flex-shrink:0;
+    transition:background .2s;
+  }
+  .mob-sticky-btn:active{background:#2a2a27}
+
+  /* Pad body so sticky bar doesn't cover last content */
+  body{padding-bottom:80px}
+
+  /* Global spacing */
+  :root{--px:20px}
+
+  /* Announcement */
+  .ann{font-size:10px;padding:8px 16px}
+
+  /* Nav */
+  .nav{padding:0 var(--px);height:56px}
+  .nav-links{display:none}
+  .nav-util svg{width:18px;height:18px}
+
+  /* Breadcrumb */
+  .breadcrumb{padding:10px var(--px);font-size:10px}
+
+  /* PDP — stack vertically */
+  .pdp{display:block;max-width:100%}
+
+  /* Hide desktop gallery; mobile carousel takes over */
+  .gallery{display:none}
+
+  /* Info panel */
+  .info{padding:28px var(--px) 40px;border-left:none;border-top:1px solid var(--rule)}
+  .prod-name{font-size:34px}
+  .prod-desc{max-width:100%}
+
+  /* Sub wrap */
+  .sub-wrap{border-radius:6px}
+  .sub-foot{font-size:11px}
+
+  /* Add row */
+  .qty-btn{width:40px;height:46px}
+  .qty-n{width:38px;height:46px}
+  .atc{height:46px;font-size:10px}
+
+  /* Ticker */
+  .ticker-item{font-size:10px;padding:0 16px}
+
+  /* Results - undo sticky on mobile, stack */
+  .results-section{display:block}
+  .results-img{position:static;height:64vw;max-height:400px;overflow:hidden}
+  .results-data{padding:36px var(--px)}
+  .results-title{font-size:28px}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .stat-pct{font-size:32px}
+  .stat-item:nth-child(3),.stat-item:nth-child(4){border-bottom:none}
+  .stat-item:nth-child(2){border-right:none}
+
+  /* Ingredients — horizontal scroll on mobile */
+  .ing-section{padding:36px 0 36px}
+  .ing-intro{flex-direction:column;align-items:flex-start;gap:10px;padding:0 var(--px);margin-bottom:20px}
+  .ing-intro-left h2{font-size:24px}
+  .ing-intro-left p{font-size:12.5px}
+  .ing-glossary-link{font-size:10px}
+  .ing-grid{
+    display:flex;
+    flex-direction:row;
+    gap:12px;
+    background:transparent;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    padding:4px var(--px) 12px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .ing-grid::-webkit-scrollbar{display:none}
+  .ing-card{
+    flex-shrink:0;
+    width:72vw;
+    max-width:280px;
+    scroll-snap-align:start;
+    border-radius:10px;
+  }
+  .ing-img-wrap{aspect-ratio:4/3}
+
+  /* How to Apply — stack video on top, steps below */
+  .how-section{margin:0 var(--px);border-radius:10px}
+  .how-inner{grid-template-columns:1fr;min-height:auto}
+  .how-video-col{min-height:60vw;border-radius:10px 10px 0 0}
+  .how-steps{padding:32px 24px 36px}
+  .how-title{font-size:26px;margin-bottom:28px}
+  .step{padding:14px 0}
+  .step-n{font-size:22px;width:22px}
+
+  /* Commitment */
+  .commit-section{margin:24px var(--px);border-radius:10px;padding:32px 20px}
+  .commit-grid{grid-template-columns:1fr 1fr}
+  .ci{padding:18px 16px}
+  .ci-title{font-size:14px}
+  .ci-desc{font-size:11px}
+
+  /* Community */
+  .community{padding:40px var(--px)}
+  .comm-top{flex-direction:column;gap:14px;align-items:flex-start}
+  .comm-top .left h2{font-size:26px}
+  .comm-top .right{gap:14px}
+  .scroll-hint{display:none}
+  .carousel-outer{margin:0 calc(-1 * var(--px));padding:0 var(--px)}
+  .ugc{width:200px}
+  .ugc-quote{font-size:12.5px}
+  .comm-cta{flex-direction:column;align-items:flex-start;gap:10px}
+
+  /* Press */
+  .press{padding:16px var(--px);gap:0;flex-wrap:wrap}
+  .press-logo{padding:8px 10px}
+  .press-logo img{max-height:16px}
+  .press-div{height:16px}
+
+  /* Cross sell - 2x2 on mobile with campaign card */
+  .cross-section{padding:40px var(--px)}
+  .cross-section>h2{font-size:22px}
+  .cs-grid{grid-template-columns:1fr 1fr;gap:8px;background:transparent;border-radius:0}
+  .cs{border-radius:8px;overflow:hidden;border:1px solid var(--rule)}
+  .cs-name{font-size:14px}
+  /* Show campaign card on mobile */
+  .cs-campaign{display:block;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;text-decoration:none;color:inherit}
+  .cs-campaign-img{aspect-ratio:1;overflow:hidden;position:relative}
+  .cs-campaign-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+  .cs-campaign:hover .cs-campaign-img img{transform:scale(1.04)}
+  .cs-campaign-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,9,7,.6) 0%,rgba(10,9,7,.1) 50%,transparent 100%)}
+  .cs-campaign-label{position:absolute;bottom:0;left:0;right:0;padding:14px 14px 16px}
+  .cs-campaign-tag{font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.65);margin-bottom:4px}
+  .cs-campaign-title{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.2;margin-bottom:6px}
+  .cs-campaign-cta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:4px}
+
+  /* Reviews */
+  .reviews-section{padding:40px var(--px)}
+  .rev-hd{flex-direction:column;gap:20px}
+  .rev-score{font-size:56px}
+  .rev-bars{margin-left:0;width:100%}
+  .rev-cards{grid-template-columns:1fr}
+
+  /* Footer */
+  .site-footer{padding:16px var(--px);flex-direction:column;gap:8px;text-align:center}
+}
+
+/* ══ TABLET — 769–1024px ══ */
+@media(min-width:769px) and (max-width:1024px){
+
+  .pdp{grid-template-columns:1fr 560px;max-width:100%}
+  .nav{padding:0 32px}
+  .nav-links{gap:20px;font-size:10px}
+  .info{padding:32px 32px 48px 28px}
+  .prod-name{font-size:36px}
+
+  .results-section{grid-template-columns:1fr 1fr}
+  .results-data{padding:44px 36px}
+  .results-title{font-size:28px}
+
+  .how-section{margin:0 32px}
+  .how-steps{padding:40px 36px}
+  .how-title{font-size:28px}
+
+  .commit-section{margin:24px 32px;padding:40px 32px}
+  .commit-grid{grid-template-columns:1fr 1fr}
+
+  .ing-section{padding:52px 32px}
+  .ing-intro-left h2{font-size:28px}
+
+  .community{padding:44px 32px}
+  .carousel-outer{margin:0 -32px;padding:0 32px}
+  .comm-top .left h2{font-size:26px}
+
+  .press{padding:18px 32px}
+  .cross-section{padding:44px 32px}
+  .reviews-section{padding:44px 32px}
+  .site-footer{padding:18px 32px}
+
+  .breadcrumb{padding:11px 32px}
+}
+</style>
+</head>
+<body>
+
+<div class="ann">Free UK shipping on orders <strong>£40 and above</strong> &nbsp;·&nbsp; New customers: use code <strong>WELCOME10</strong> for 10% off</div>
+
+<nav class="nav">
+  <img src="https://uk.sablelabs.co/cdn/shop/files/logo_512x.png?v=1645479171" alt="S'ABLE Labs" style="height:24px"/>
+  <div class="nav-links">
+    <a>Shop</a>
+    <a>Skin Concerns</a>
+    <a>Ingredients</a>
+    <a>Our Commitment</a>
+    <a>About</a>
+  </div>
+  <div class="nav-util">
+    <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></button>
+    <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+    <button class="bag-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="bag-count">0</span></button>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a>Shop</a><span class="sep">›</span>
+  <a>Hyperpigmentation</a><span class="sep">›</span>
+  <span style="color:var(--mid)">Baobab Moisturiser</span>
+</div>
+
+<!-- MOBILE GALLERY CAROUSEL (shown only on mobile via CSS) -->
+<div class="mob-gallery" id="mobGallery">
+  <div class="mob-gallery-track" id="mobTrack">
+    <div class="mob-gallery-slide">
+      <img src="https://uk.sablelabs.co/cdn/shop/files/BaobabMoisturiserWEBNEW21x1_2048x.png?v=1763500243" alt="Baobab Moisturiser packshot"/>
+      <div class="mob-gallery-badge">B Corp Certified</div>
+    </div>
+    <div class="mob-gallery-slide">
+      <img src="https://uk.sablelabs.co/cdn/shop/files/Moisturiser1x1_2048x2048.png?v=1773233134" alt="Flat lay"/>
+    </div>
+    <div class="mob-gallery-slide">
+      <img src="https://uk.sablelabs.co/cdn/shop/products/26_SHAHIRA_PRODUCT_0139-R3_MOISTURISER_THUMBNAIL_2048x2048.jpg?v=1773233037" alt="Lifestyle"/>
+    </div>
+    <div class="mob-gallery-slide">
+      <img src="https://uk.sablelabs.co/cdn/shop/files/BMSwatchWEB_2048x2048.png?v=1773233037" alt="Texture swatch"/>
+    </div>
+    <div class="mob-gallery-slide">
+      <img src="https://uk.sablelabs.co/cdn/shop/files/Baobad_Refill_ccd097e6-00a7-46db-afea-6f07baa381b1_2048x2048.png?v=1773233037" alt="Refill"/>
+    </div>
+  </div>
+  <div class="mob-dots" id="mobDots">
+    <div class="mob-dot active" onclick="mobGoTo(0)"></div>
+    <div class="mob-dot" onclick="mobGoTo(1)"></div>
+    <div class="mob-dot" onclick="mobGoTo(2)"></div>
+    <div class="mob-dot" onclick="mobGoTo(3)"></div>
+    <div class="mob-dot" onclick="mobGoTo(4)"></div>
+  </div>
+</div>
+
+<div class="pdp">
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="thumbs-col">
+      <div class="thumb sel" onclick="setImg(0)"><img src="https://uk.sablelabs.co/cdn/shop/files/BaobabMoisturiserWEBNEW21x1_2048x.png?v=1763500243" alt="Packshot"/></div>
+      <div class="thumb" onclick="setImg(1)"><img src="https://uk.sablelabs.co/cdn/shop/files/BMSwatchWEB_2048x2048.png?v=1773233037" alt="Texture"/></div>
+      <div class="thumb" onclick="setImg(2)"><img src="https://uk.sablelabs.co/cdn/shop/files/Moisturiser1x1_2048x2048.png?v=1773233134" alt="Flat lay"/></div>
+      <div class="thumb" onclick="setImg(3)"><img src="https://uk.sablelabs.co/cdn/shop/products/26_SHAHIRA_PRODUCT_0139-R3_MOISTURISER_THUMBNAIL_2048x2048.jpg?v=1773233037" alt="Lifestyle"/></div>
+      <div class="thumb" onclick="setImg(4)"><img src="https://uk.sablelabs.co/cdn/shop/files/Baobad_Refill_ccd097e6-00a7-46db-afea-6f07baa381b1_2048x2048.png?v=1773233037" alt="Refill"/></div>
+    </div>
+    <div class="gal-main">
+      <img id="mainImg" src="https://uk.sablelabs.co/cdn/shop/files/BaobabMoisturiserWEBNEW21x1_2048x.png?v=1763500243" alt="Baobab Moisturiser"/>
+      <div class="gal-badge">B Corp Certified</div>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="info">
+    <div class="info-top">
+      <div class="prod-cat"><div class="cat-dot"></div>Daily Moisturiser · Step 3</div>
+      <div class="stars-row"><span class="stars">★★★★★</span><span class="rev-ct">(89)</span></div>
+    </div>
+
+    <h1 class="prod-name">Baobab<br/>Moisturiser</h1>
+    <div class="prod-format">50ml · 1.7 fl oz</div>
+    <p class="prod-desc">A non-comedogenic daily moisturiser with tyrosinase inhibitors to suppress melanin growth — locking in the full benefit of every HyperPrevent™ routine step.</p>
+
+    <div class="tech-line">Powered by <span>HyperPrevent™ Technology</span> · African Botanical Science</div>
+
+    <div class="benefits-line">
+      <span class="em">Hyperpigmentation Correction</span>
+      <span class="bl-sep">—</span>
+      <span class="em">Deep Hydration</span>
+      <span class="bl-sep">—</span>
+      <span class="em">Melanin Balance</span>
+    </div>
+
+    <div class="price-row"><span class="price">£42.00</span></div>
+    <div class="price-note">Or <strong>£37.80 with Subscribe &amp; Save</strong> — 10% off · cancel anytime</div>
+
+    <div class="sub-wrap">
+      <div class="sub-hd">Purchase Option</div>
+      <div class="sub-opt on" onclick="selSub(this)">
+        <div class="radio"><div class="rdot"></div></div>
+        <div class="st"><div class="t">Subscribe &amp; Save</div><div class="d">Every 30, 60, or 90 days · adjust or cancel anytime in your account</div></div>
+        <div class="sub-pill">Save 10%</div>
+      </div>
+      <div class="sub-opt" onclick="selSub(this)">
+        <div class="radio"></div>
+        <div class="st"><div class="t">One-time purchase — £42.00</div><div class="d">Single order, no commitment</div></div>
+      </div>
+      <div class="sub-foot">Also available in <a>The Core Collection</a> — 3 products, save £17</div>
+    </div>
+
+    <div class="add-row">
+      <div class="qty">
+        <button class="qty-btn" onclick="adj(-1)">−</button>
+        <div class="qty-n" id="qN">1</div>
+        <button class="qty-btn" onclick="adj(1)">+</button>
+      </div>
+      <button class="atc">Add to Bag</button>
+    </div>
+
+    <div class="ship">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      Free UK shipping on orders £40+ &nbsp;·&nbsp; Free returns within 30 days
+    </div>
+
+    <div class="comm-badge">
+      <div class="cb-b"><img src="https://uk.sablelabs.co/cdn/shop/files/Artboard_1.svg?v=1773056090" alt="B Corp"/></div>
+      <div class="cb-t"><div class="l">Our Commitment</div><div class="v">B Corp Certified · Consciously sourced botanicals · Refill available</div></div>
+      <div class="cb-link">Read more →</div>
+    </div>
+
+    <div class="accord">
+      <div class="acc-item">
+        <button class="acc-btn open" onclick="toggleAcc(this)">What It Does <span class="acc-plus">+</span></button>
+        <div class="acc-body show">Suppresses melanin growth via a precision infusion of tyrosinase inhibitors and foundational moisture actives. Ground-breaking non-comedogenic formula — suited to all skin tones, types, and sensitivities.</div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">Key Ingredients <span class="acc-plus">+</span></button>
+        <div class="acc-body"><div class="acc-tags"><span class="acc-tag">Baobab Oil</span><span class="acc-tag">Niacinamide</span><span class="acc-tag">Squalane</span><span class="acc-tag">Panthenol (B5)</span><span class="acc-tag">Shea Butter</span><span class="acc-tag">Vitamin E</span><span class="acc-tag">Aloe Vera</span></div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">How to Use <span class="acc-plus">+</span></button>
+        <div class="acc-body">Apply morning and evening as the final step of your routine, after the Black Seed Toner. Press gently into skin using upward, outward motions. A small amount is sufficient — best results develop over 8–12 weeks.</div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">Full Ingredient List <span class="acc-plus">+</span></button>
+        <div class="acc-body">Free from parabens, sulphates, mineral oils, artificial fragrances, PEGs, and silicones. See our <span style="color:var(--green);border-bottom:1px solid var(--green);cursor:pointer">Free From list</span> for the complete reference.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- USP TICKER — DUA style -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">Fragrance Free</span>
+    <span class="ticker-item">Paraben Free</span>
+    <span class="ticker-item">Vegan</span>
+    <span class="ticker-item">All Skin Types</span>
+    <span class="ticker-item">Non Comedogenic</span>
+    <span class="ticker-item">Clinically Tested</span>
+    <span class="ticker-item">Dermatologist Tested</span>
+    <span class="ticker-item">Made in UK</span>
+    <span class="ticker-item">B Corp Certified</span>
+    <span class="ticker-item">Sensitive Skin Safe</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Fragrance Free</span>
+    <span class="ticker-item">Paraben Free</span>
+    <span class="ticker-item">Vegan</span>
+    <span class="ticker-item">All Skin Types</span>
+    <span class="ticker-item">Non Comedogenic</span>
+    <span class="ticker-item">Clinically Tested</span>
+    <span class="ticker-item">Dermatologist Tested</span>
+    <span class="ticker-item">Made in UK</span>
+    <span class="ticker-item">B Corp Certified</span>
+    <span class="ticker-item">Sensitive Skin Safe</span>
+  </div>
+</div>
+
+<!-- CLINICAL RESULTS — DUA by AB style -->
+<div class="results-section">
+  <div class="results-img">
+    <img src="https://uk.sablelabs.co/cdn/shop/products/26_SHAHIRA_PRODUCT_0139-R3_MOISTURISER_THUMBNAIL_2048x2048.jpg?v=1773233037" alt="User results"/>
+    <div class="results-img-label">8-Week Clinical Study</div>
+  </div>
+  <div class="results-data">
+    <div class="results-eyebrow">User Proven Results</div>
+    <div class="results-title">What the data<br/><em>actually shows</em></div>
+    <div class="results-sub">In an 8-week study across all Fitzpatrick skin types, participants using the full HyperPrevent™ routine reported measurable, visible results.</div>
+    <div class="stat-grid">
+      <div class="stat-item">
+        <div class="stat-pct">94<span>%</span></div>
+        <div class="stat-desc">reported visibly more even skin tone</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-pct">89<span>%</span></div>
+        <div class="stat-desc">said hyperpigmentation was less visible</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-pct">96<span>%</span></div>
+        <div class="stat-desc">said skin felt deeply hydrated all day</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-pct">91<span>%</span></div>
+        <div class="stat-desc">noticed improved skin barrier strength</div>
+      </div>
+    </div>
+    <div class="results-note">Consumer perception study, 8 weeks, across Fitzpatrick I–VI, n=82</div>
+  </div>
+</div>
+
+<!-- KEY INGREDIENTS -->
+<div class="ing-section">
+  <div class="ing-intro">
+    <div class="ing-intro-left">
+      <h2>The Ingredients Behind the Science</h2>
+      <p>African botanical tradition, elevated with modern clinical science — and substantiated, not just stated.</p>
+    </div>
+    <a href="https://uk.sablelabs.co/blogs/ingredient" class="ing-glossary-link">
+      Explore Ingredient Glossary &nbsp;→
+    </a>
+  </div>
+  <div class="ing-grid">
+
+    <a href="https://uk.sablelabs.co/blogs/ingredient" class="ing-card">
+      <div class="ing-img-wrap">
+        <img src="https://uk.sablelabs.co/cdn/shop/files/Untitled_design_-_2023-10-03T151709.566.png?v=1696342910" alt="Baobab Tree of Life"/>
+        <div class="ing-img-overlay"></div>
+        <div class="ing-img-name">Baobab Oil</div>
+      </div>
+      <div class="ing-body">
+        <div class="ing-origin">Sub-Saharan Africa · Tree of Life</div>
+        <div class="ing-text">Rich in tyrosinase inhibitors that interrupt melanin overproduction at its source. Non-comedogenic and deeply nourishing — the hero ingredient in this formula.</div>
+        <span class="ing-cta">Read in Glossary <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <a href="https://uk.sablelabs.co/blogs/ingredient" class="ing-card">
+      <div class="ing-img-wrap">
+        <img src="https://uk.sablelabs.co/cdn/shop/files/Untitled_design_-_2023-10-03T151557.166.png?v=1696342869" alt="Black Seed botanical"/>
+        <div class="ing-img-overlay"></div>
+        <div class="ing-img-name">Niacinamide</div>
+      </div>
+      <div class="ing-body">
+        <div class="ing-origin">Vitamin B3 Complex</div>
+        <div class="ing-text">Reduces the transfer of melanosomes between skin cells — the biological step that visibly darkens skin tone — while reinforcing the moisture barrier.</div>
+        <span class="ing-cta">Read in Glossary <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <a href="https://uk.sablelabs.co/blogs/ingredient" class="ing-card">
+      <div class="ing-img-wrap">
+        <img src="https://uk.sablelabs.co/cdn/shop/files/2E4KHEX-min.png?v=1696348036" alt="Qasil botanical leaves"/>
+        <div class="ing-img-overlay"></div>
+        <div class="ing-img-name">Squalane</div>
+      </div>
+      <div class="ing-body">
+        <div class="ing-origin">Plant-Derived Sugar</div>
+        <div class="ing-text">Prevents transepidermal water loss and increases cellular turnover — without grease, residue, or comedogenic effect. Locks in all-day hydration.</div>
+        <span class="ing-cta">Read in Glossary <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- HOW TO APPLY -->
+<div class="how-section">
+  <div class="how-inner">
+    <div class="how-video-col" id="howVidCol" onclick="playVid()">
+      <img class="vid-poster" id="vidPoster" src="https://uk.sablelabs.co/cdn/shop/files/BaobabMoisturiserWEBNEW21x1_2048x.png?v=1763500243" alt="How to apply"/>
+      <video id="howVid" loop playsinline preload="none" style="display:none">
+        <source src="https://cdn.shopify.com/videos/c/o/v/e4578adea42e438cb4ea881b64f8ca72.mp4" type="video/mp4"/>
+      </video>
+      <div class="play-ov" id="playOv">
+        <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        <span class="play-lbl">Play to see technique</span>
+      </div>
+    </div>
+    <div class="how-steps">
+      <div class="how-eyebrow">Application Guide</div>
+      <h2 class="how-title">The art of <em>applying it right</em></h2>
+      <div class="steps">
+        <div class="step"><div class="step-n">01</div><div><div class="step-title">Start with clean, toned skin</div><div class="step-desc">Apply after your Qasil Cleanser and Black Seed Toner have fully absorbed. The moisturiser seals the active work of both previous steps.</div></div></div>
+        <div class="step"><div class="step-n">02</div><div><div class="step-title">Take less than you think</div><div class="step-desc">A pea-sized amount is sufficient for face and neck. The formula is concentrated — overuse slows absorption and reduces efficacy.</div></div></div>
+        <div class="step"><div class="step-n">03</div><div><div class="step-title">Press, don't rub</div><div class="step-desc">Use fingertips to press gently into skin using upward, outward motions. Pressing — not rubbing — improves absorption and protects the skin barrier.</div></div></div>
+        <div class="step"><div class="step-n">04</div><div><div class="step-title">Morning and evening, consistently</div><div class="step-desc">Full HyperPrevent™ results build over 8–12 weeks. Consistency — especially at night — is when the formula does its deepest work.</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUR COMMITMENT -->
+<div class="commit-section">
+  <div class="commit-top"><h3>Our Commitment</h3><a>Read more →</a></div>
+  <div class="commit-grid">
+    <div class="ci"><div class="ci-label">Certification</div><div class="ci-title">Certified B Corporation</div><div class="ci-desc">Independently verified to the highest standards of social and environmental performance.</div></div>
+    <div class="ci"><div class="ci-label">Sourcing</div><div class="ci-title">African Botanical Origins</div><div class="ci-desc">Sourced from countries of botanical origin, honouring the communities and knowledge behind them.</div></div>
+    <div class="ci"><div class="ci-label">Circularity</div><div class="ci-title">Refill Programme</div><div class="ci-desc">Every hero SKU is available as a refill. Reduce packaging, maintain the ritual.</div></div>
+    <div class="ci"><div class="ci-label">Formulation</div><div class="ci-title">For All Skin Tones</div><div class="ci-desc">Clinically tested across the full Fitzpatrick scale — melanin-rich skin built in from the formulation stage.</div></div>
+  </div>
+</div>
+
+<!-- COMMUNITY -->
+<div class="community">
+  <div class="comm-top">
+    <div class="left"><div class="eyebrow">@sablelabs</div><h2>The S'ABLE Community</h2></div>
+    <div class="right">
+      <div class="scroll-hint">Scroll <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <span class="insta-link">Follow on Instagram</span>
+    </div>
+  </div>
+  <div class="carousel-outer">
+    <div class="carousel">
+      <div class="ugc"><div class="ugc-img"><svg viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div class="handle">@aminata.sk</div><div class="likes"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>412</div></div><div class="ugc-body"><div class="ugc-quote">"Week 8 — my hyperpigmentation has genuinely faded. Nothing else has worked like this."</div><div class="ugc-skin">Fitzpatrick V · Dark spots</div></div></div>
+      <div class="ugc"><div class="ugc-img"><svg viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div class="handle">@ojuolape</div><div class="likes"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>289</div></div><div class="ugc-body"><div class="ugc-quote">"Finally a brand that actually sees my skin. Lightweight, fragrance-free, and it works."</div><div class="ugc-skin">Fitzpatrick IV · Post-inflammatory</div></div></div>
+      <div class="ugc"><div class="ugc-img"><svg viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div class="handle">@tessb.skin</div><div class="likes"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>733</div></div><div class="ugc-body"><div class="ugc-quote">"The refill arrived perfectly. Love that the brand actually thought about circularity."</div><div class="ugc-skin">Fitzpatrick III · Sensitive skin</div></div></div>
+      <div class="ugc"><div class="ugc-img"><svg viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div class="handle">@haydee.glows</div><div class="likes"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>517</div></div><div class="ugc-body"><div class="ugc-quote">"I subscribed after the first purchase. Three months in, no intention of stopping."</div><div class="ugc-skin">Fitzpatrick VI · Uneven tone</div></div></div>
+      <div class="ugc"><div class="ugc-img"><svg viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div class="handle">@siona_daily</div><div class="likes"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>198</div></div><div class="ugc-body"><div class="ugc-quote">"Fragrance-free, lightweight, and my skin actually glows now. Simple as that."</div><div class="ugc-skin">Fitzpatrick II · Redness-prone</div></div></div>
+    </div>
+  </div>
+  <div class="comm-cta">
+    <span class="cta-border">Share Your Ritual</span>
+    <span class="cta-soft">Tag @sablelabs or use #HyperPrevent to be featured</span>
+  </div>
+</div>
+
+<!-- PRESS -->
+<div class="press">
+  <div class="press-logo"><img src="https://uk.sablelabs.co/cdn/shop/files/ALLURE_LOGO.png?v=1695647066" alt="Allure"/></div><div class="press-div"></div>
+  <div class="press-logo"><img src="https://uk.sablelabs.co/cdn/shop/files/VOGUE_LOGO_svg.png?v=1682394810" alt="Vogue"/></div><div class="press-div"></div>
+  <div class="press-logo"><img src="https://uk.sablelabs.co/cdn/shop/files/GLAMOUR_LOGO.png?v=1712147530" alt="Glamour"/></div><div class="press-div"></div>
+  <div class="press-logo"><img src="https://uk.sablelabs.co/cdn/shop/files/EBONY_LOGO.png?v=1695647182" alt="Ebony"/></div><div class="press-div"></div>
+  <div class="press-logo"><img src="https://uk.sablelabs.co/cdn/shop/files/HARPERSBAZAR_LOGO.png?v=1695647188" alt="Harper's Bazaar"/></div>
+</div>
+
+<!-- CROSS SELL -->
+<div class="cross-section">
+  <h2>Complete the Routine</h2>
+  <div class="cs-grid">
+    <div class="cs"><div class="cs-img"><img src="https://uk.sablelabs.co/cdn/shop/files/QasilCleanerWebNEW1x1.png?v=1759924395" alt="Qasil Cleanser"/></div><div class="cs-info"><div class="cs-step">Step 1 · Cleanser</div><div class="cs-name">Qasil Cleanser</div><div class="cs-price">£32.00</div></div></div>
+    <div class="cs"><div class="cs-img"><img src="https://uk.sablelabs.co/cdn/shop/files/OkraFaceSerumWebNEW1x1.png?v=1759924171" alt="Okra Face Serum"/></div><div class="cs-info"><div class="cs-step">Targeted Treatment</div><div class="cs-name">Okra Face Serum</div><div class="cs-price">£69.00</div></div></div>
+    <div class="cs" style="background:var(--night)"><div class="cs-img" style="background:#1c1c18"><img src="https://uk.sablelabs.co/cdn/shop/files/CoreCollectionNEW.png?v=1771927470" alt="Core Collection" style="width:100%;height:100%;object-fit:cover"/></div><div class="cs-info" style="background:var(--night)"><div class="cs-step" style="color:var(--gold)">Best Value</div><div class="cs-name" style="color:#fff">The Core Collection</div><div class="cs-price" style="color:rgba(255,255,255,.4)">£96.00 — save £17</div></div></div>
+    <!-- Campaign card: only visible on mobile to complete the 2×2 grid -->
+    <a href="https://uk.sablelabs.co/collections/all-products-manual" class="cs-campaign">
+      <div class="cs-campaign-img">
+        <img src="https://uk.sablelabs.co/cdn/shop/files/SABLE_FOUNDERS_BANNER.jpg?v=1676112987" alt="S'ABLE Labs — African Botanicals, Meets Modern Science"/>
+        <div class="cs-campaign-overlay"></div>
+        <div class="cs-campaign-label">
+          <div class="cs-campaign-tag">S'ABLE Labs</div>
+          <div class="cs-campaign-title">African Botanicals, Meets Modern Science</div>
+          <div class="cs-campaign-cta">Shop All <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="reviews-section">
+  <div class="rev-hd">
+    <div style="display:flex;align-items:flex-start"><div class="rev-score">5.0</div><div class="rev-meta"><div class="stars-lg">★★★★★</div><div class="ct">Based on 89 reviews</div></div></div>
+    <div class="rev-bars"><div class="rbar"><div class="rbar-l">5 ★</div><div class="rbar-t"><div class="rbar-f" style="width:91%"></div></div><div class="rbar-p">91%</div></div><div class="rbar"><div class="rbar-l">4 ★</div><div class="rbar-t"><div class="rbar-f" style="width:7%"></div></div><div class="rbar-p">7%</div></div><div class="rbar"><div class="rbar-l">3 ★</div><div class="rbar-t"><div class="rbar-f" style="width:2%"></div></div><div class="rbar-p">2%</div></div></div>
+    <div class="rev-write">Write a Review</div>
+  </div>
+  <div class="rev-cards">
+    <div class="rev-card"><div class="rc-stars">★★★★★</div><div class="rc-title">"Finally moisture without the weight"</div><div class="rc-body">I've tried so many moisturisers and they're always too heavy. This one disappears completely and my skin feels nourished for hours. Genuinely luxurious texture and I haven't broken out once.</div><div class="rc-meta"><span>Verified · Aisha M. · March 2025</span><span class="rc-tag">Fitzpatrick V</span></div></div>
+    <div class="rev-card"><div class="rc-stars">★★★★★</div><div class="rc-title">"My dark spots have noticeably faded"</div><div class="rc-body">I'm a consistent skincare person but nothing moved my hyperpigmentation until this routine. At week 10 I noticed a real shift in evenness. The moisturiser is the step I'm most protective of.</div><div class="rc-meta"><span>Verified · Comfort A. · February 2025</span><span class="rc-tag">Fitzpatrick VI</span></div></div>
+  </div>
+</div>
+
+<div class="site-footer">
+  <img src="https://uk.sablelabs.co/cdn/shop/files/SABLE_LABS_LOGO_FOOTER.png?v=1682394812" alt="S'ABLE Labs"/>
+  <p>© 2025 S'ABLE Labs · All rights reserved</p>
+</div>
+
+<!-- MOBILE STICKY ATC -->
+<div class="mob-sticky-atc" id="mobStickyAtc">
+  <div class="mob-sticky-info">
+    <div class="mob-sticky-name">Baobab Moisturiser</div>
+    <div class="mob-sticky-price">£42.00 &nbsp;·&nbsp; <span style="color:var(--green);font-weight:600">Subscribe & Save £37.80</span></div>
+  </div>
+  <button class="mob-sticky-btn">Add to Bag</button>
+</div>
+
+<script>
+// ── Desktop gallery ──────────────────────────────────────
+const imgs=['https://uk.sablelabs.co/cdn/shop/files/BaobabMoisturiserWEBNEW21x1_2048x.png?v=1763500243','https://uk.sablelabs.co/cdn/shop/files/BMSwatchWEB_2048x2048.png?v=1773233037','https://uk.sablelabs.co/cdn/shop/files/Moisturiser1x1_2048x2048.png?v=1773233134','https://uk.sablelabs.co/cdn/shop/products/26_SHAHIRA_PRODUCT_0139-R3_MOISTURISER_THUMBNAIL_2048x2048.jpg?v=1773233037','https://uk.sablelabs.co/cdn/shop/files/Baobad_Refill_ccd097e6-00a7-46db-afea-6f07baa381b1_2048x2048.png?v=1773233037'];
+function setImg(i){const m=document.getElementById('mainImg');m.style.opacity=0;setTimeout(()=>{m.src=imgs[i];m.style.opacity=1},150);document.querySelectorAll('.thumb').forEach((t,j)=>t.classList.toggle('sel',j===i))}
+
+// ── Subscription toggle ──────────────────────────────────
+function selSub(el){document.querySelectorAll('.sub-opt').forEach(o=>{o.classList.remove('on');o.querySelector('.radio').innerHTML='';o.style.paddingLeft=''});el.classList.add('on');el.querySelector('.radio').innerHTML='<div class="rdot"></div>'}
+
+// ── Quantity ─────────────────────────────────────────────
+let qty=1;
+function adj(d){qty=Math.max(1,qty+d);document.getElementById('qN').textContent=qty}
+
+// ── Accordion ────────────────────────────────────────────
+function toggleAcc(btn){const b=btn.nextElementSibling,open=btn.classList.contains('open');document.querySelectorAll('.acc-btn').forEach(x=>{x.classList.remove('open');if(x.nextElementSibling)x.nextElementSibling.classList.remove('show')});if(!open){btn.classList.add('open');b.classList.add('show')}}
+
+// ── Video ────────────────────────────────────────────────
+function playVid(){const v=document.getElementById('howVid'),p=document.getElementById('vidPoster'),o=document.getElementById('playOv');v.style.display='block';p.style.display='none';o.style.display='none';v.play().catch(()=>{})}
+
+// ── Mobile gallery carousel ──────────────────────────────
+(function(){
+  const track = document.getElementById('mobTrack');
+  if(!track) return;
+  const slides = track.querySelectorAll('.mob-gallery-slide');
+  const dots   = document.querySelectorAll('.mob-dot');
+  const total  = slides.length;
+  let cur = 0, startX = 0, startY = 0, isDragging = false, hasMoved = false;
+
+  function goTo(i){
+    cur = Math.max(0, Math.min(total - 1, i));
+    track.style.transform = `translateX(-${cur * 100}vw)`;
+    dots.forEach((d,j) => d.classList.toggle('active', j === cur));
+  }
+
+  // Expose for inline onclick on dots
+  window.mobGoTo = goTo;
+
+  // Touch events
+  track.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isDragging = true;
+    hasMoved = false;
+    track.style.transition = 'none';
+  }, {passive:true});
+
+  track.addEventListener('touchmove', e => {
+    if(!isDragging) return;
+    const dx = e.touches[0].clientX - startX;
+    const dy = e.touches[0].clientY - startY;
+    // If mostly vertical, don't capture
+    if(!hasMoved && Math.abs(dy) > Math.abs(dx)) { isDragging = false; return; }
+    hasMoved = true;
+    track.style.transform = `translateX(calc(-${cur * 100}vw + ${dx}px))`;
+  }, {passive:true});
+
+  track.addEventListener('touchend', e => {
+    if(!isDragging || !hasMoved) return;
+    track.style.transition = 'transform .32s cubic-bezier(.25,.46,.45,.94)';
+    const dx = e.changedTouches[0].clientX - startX;
+    if(dx < -40 && cur < total - 1) goTo(cur + 1);
+    else if(dx > 40 && cur > 0) goTo(cur - 1);
+    else goTo(cur);
+    isDragging = false;
+  }, {passive:true});
+})();
+
+// ── Sticky ATC ───────────────────────────────────────────
+(function(){
+  const bar = document.getElementById('mobStickyAtc');
+  const atc = document.querySelector('.atc');
+  if(!bar || !atc) return;
+
+  // Only run on mobile
+  if(window.innerWidth > 768) return;
+
+  const obs = new IntersectionObserver(entries => {
+    // Hide sticky when the main ATC button is visible; show when it's scrolled past
+    bar.style.transform = entries[0].isIntersecting ? 'translateY(100%)' : 'translateY(0)';
+  }, {threshold: 0.5});
+
+  obs.observe(atc);
+
+  // Start hidden
+  bar.style.transform = 'translateY(100%)';
+  bar.style.transition = 'transform .25s cubic-bezier(.25,.46,.45,.94)';
+})();
+</script>
+</body>
+</html>
