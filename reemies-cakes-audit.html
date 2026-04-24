@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
   --nb-cream:#FAF7F2;--nb-green:#3B6D11;--nb-gl:#EBF2E4;
   --nb-ink:#1A1A1A;--nb-mid:#666;--nb-rule:#E2DDD6;
   --nb-red:#C0392B;--nb-amber:#D4812A;
-  --r-pink:#E26EA8;--r-red:#c0392b;--r-rule:#F0E8EE;
+  --r-pink:#E26EA8;--r-red:#C0392B;--r-rule:#F0E8EE;
   --r-mid:#8B5A78;--r-body:"Courier New",Courier,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -259,16 +260,16 @@ hr.rule{border:none;border-top:1px solid var(--nb-rule);margin:22px 0;}
 /* RIGHT: product info */
 .desk-info{padding:32px 32px 32px 28px;display:flex;flex-direction:column;gap:0;}
 .d-cat{font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--r-mid);margin-bottom:6px;}
-.d-title{font-family:var(--r-body);font-size:25px;font-weight: bold; color:var(--r-pink);font-style:italic;line-height:1;margin-bottom:10px;letter-spacing:-0.01em;}
+.d-title{font-family:var(--r-body);font-size:30px;color:var(--r-pink);font-style:italic;line-height:1.15;margin-bottom:10px;letter-spacing:-0.01em;}
 .d-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
 .d-stars{display:flex;align-items:center;gap:7px;margin-bottom:16px;}
 .d-stars .star{width:13px;height:13px;}
 .d-stars .star-count{font-size:12px;color:var(--r-mid);text-decoration:underline;cursor:pointer;}
 .d-price{font-family:var(--r-body);font-size:30px;font-weight:700;color:var(--nb-ink);margin-bottom:4px;line-height:1;}
-.d-bnpl{font-size:11px;color:var(--r-mid);margin-bottom:20px;font-family:'DM Mono';}
+.d-bnpl{font-size:11px;color:var(--r-mid);margin-bottom:20px;font-family:var(--r-body);}
 .d-bnpl strong{color:var(--nb-ink);}
 .d-divider{border:none;border-top:1px solid var(--r-rule);margin:16px 0;}
-.d-label{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--r-mid);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono');}
+.d-label{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--r-mid);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-family:var(--r-body);}
 .d-label a{font-weight:400;color:var(--r-red);text-transform:none;letter-spacing:0;text-decoration:underline;font-size:10.5px;}
 .d-sizes{display:flex;gap:8px;margin-bottom:0;}
 .d-size{flex:1;border:1.5px solid var(--r-rule);border-radius:6px;padding:10px 8px;text-align:center;cursor:pointer;background:white;transition:border-color 0.15s;}
@@ -325,7 +326,7 @@ hr.rule{border:none;border-top:1px solid var(--nb-rule);margin:22px 0;}
 /* Below-fold: FBT row */
 .d-below{border-top:1px solid var(--r-rule);background:white;}
 .d-fbt{padding:28px 32px 24px;}
-.d-fbt-h{font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--nb-ink);font-family:var(--r-body);margin-bottom:16px;}
+.d-fbt-h{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--nb-ink);font-family:var(--r-body);margin-bottom:16px;}
 .d-fbt-row{display:flex;gap:16px;}
 .d-fbt-card{flex:1;display:flex;align-items:center;gap:12px;border:1px solid var(--r-rule);border-radius:6px;padding:12px 14px;background:#FAF7F2;}
 .d-fbt-img{width:52px;height:52px;background:white;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--r-pink);font-family:var(--r-body);border:1px solid var(--r-rule);}
@@ -336,10 +337,10 @@ hr.rule{border:none;border-top:1px solid var(--nb-rule);margin:22px 0;}
 
 /* Below-fold: cross-sell */
 .d-cs{background:#FAF7F2;padding:24px 32px 28px;border-top:1px solid var(--r-rule);}
-.d-cs-h{font-family:var(--r-body);font-size:13px;font-style:italic;color:var(--r-pink);margin-bottom:16px;}
+.d-cs-h{font-family:var(--r-body);font-size:15px;font-style:italic;color:var(--r-pink);margin-bottom:16px;}
 .d-cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 .d-cs-card{background:white;border:1px solid var(--r-rule);border-radius:6px;overflow:hidden;}
-.d-cs-img{height:150px;background:rgba(226,110,168,0.09);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--r-pink);font-family:var(--r-body);position:relative;}
+.d-cs-img{height:100px;background:rgba(226,110,168,0.09);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--r-pink);font-family:var(--r-body);position:relative;}
 .d-cs-badge{position:absolute;top:6px;left:6px;background:var(--r-red);color:white;font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:0.04em;font-family:var(--r-body);}
 .d-cs-body{padding:10px 12px 12px;}
 .d-cs-name{font-size:12px;font-weight:600;color:var(--nb-ink);margin-bottom:3px;line-height:1.3;font-family:var(--r-body);}
@@ -363,6 +364,112 @@ hr.rule{border:none;border-top:1px solid var(--nb-rule);margin:22px 0;}
 .df-links a{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#444;text-decoration:none;}
 .df-links a:hover{color:#7ab860;}
 .doc-footer p{font-size:11px;color:#333;letter-spacing:0.05em;}
+
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE — audit shell only
+   (mockup frames stay fixed-width, scroll horizontally)
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* HERO */
+  .hero { height: 420px; }
+  .hero-top { padding: 20px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .hero-nav { gap: 16px; flex-wrap: wrap; }
+  .hero-nav a { font-size: 10px; letter-spacing: 0.1em; }
+  .hero-bottom { padding: 24px 24px 28px; }
+  .hero-title { font-size: 36px; }
+  .hero-title em { font-size: 15px; }
+  .hero-meta { font-size: 9px; line-height: 2; }
+
+  /* STICKY NAV */
+  .nav-bar { padding: 0 20px; height: 36px; }
+  .nav-bar-left svg { display: none; }
+  .nav-bar-right { gap: 14px; }
+  .nav-bar-right a { font-size: 9px; letter-spacing: 0.08em; }
+
+  /* PAGE */
+  .page { padding: 0 20px; }
+  .section { padding: 36px 0 28px; }
+  .section h2 { font-size: 24px; }
+  .intro { font-size: 14px; margin-bottom: 20px; }
+  .verdict { padding: 14px 16px; font-size: 13.5px; }
+
+  /* SCORECARD */
+  .scorecard { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 24px; }
+  .sc-n { font-size: 34px; }
+
+  /* TABLE — horizontal scroll */
+  .t-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -20px; padding: 0 20px; }
+  .t { font-size: 12px; min-width: 540px; }
+  .t thead th { padding: 9px 10px; font-size: 9.5px; }
+  .t tbody td { padding: 10px 10px; }
+
+  /* FINDINGS */
+  .find { padding: 16px 16px 14px; }
+  .find h3 { font-size: 13.5px; }
+  .find-body { font-size: 12.5px; }
+  .find-hd { flex-direction: column; gap: 6px; }
+
+  /* TWO / THREE COL → single */
+  .two-col { grid-template-columns: 1fr; }
+  .three-col { grid-template-columns: 1fr; }
+
+  /* QUICK WINS */
+  .qw-grid { grid-template-columns: 1fr; }
+  .qw { padding: 14px; }
+  .qw-n { font-size: 24px; }
+  .qw h4 { font-size: 12.5px; }
+  .qw p { font-size: 11.5px; }
+
+  /* CALLOUTS */
+  .co-t { font-size: 12px; }
+
+  /* SECTION LABEL */
+  .sec-label { font-size: 10px; }
+  .sub-h { font-size: 15px; margin: 18px 0 10px; }
+
+  /* MOCK WRAP — allow horizontal scroll for wide mockups */
+  .mock-wrap { border-radius: 6px; }
+  .mock-wrap > div:not(.mock-bar) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .mock-bar { padding: 7px 12px; font-size: 9px; gap: 5px; }
+
+  /* Nav mockup desktop → scrollable */
+  .r-nav-main { padding: 0 16px; }
+  .r-mega { padding: 16px 16px 14px; }
+
+  /* Mobile PDP/nav frames — centre and allow page scroll */
+  .mock-wrap .mock-body[style*="justify-content:center"] { padding: 16px 12px !important; }
+
+  /* Annotation column → goes below frame */
+  .mock-body > div[style*="gap:32px"] {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .annot-col { padding-top: 16px; width: 100%; max-width: 375px; }
+  .annot-t { font-size: 11.5px; }
+
+  /* FOOTER */
+  .doc-footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .df-links { gap: 14px; flex-wrap: wrap; }
+  .df-links a { font-size: 9.5px; }
+  .doc-footer p { font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+  .hero { height: 380px; }
+  .hero-title { font-size: 30px; }
+  .hero-nav { display: none; } /* too cramped — links in sticky nav */
+  .scorecard { grid-template-columns: repeat(2, 1fr); }
+  .nav-bar-right a:not(:last-child) { display: none; } /* show only Get In Touch */
+}
+
+
+.frame-annot-row { display: flex; gap: 32px; align-items: flex-start; padding: 24px; }
+@media (max-width: 768px) {
+  .frame-annot-row { flex-direction: column !important; align-items: center !important; padding: 16px !important; gap: 20px !important; }
+  .frame-annot-row .annot-col { width: 100%; max-width: 375px; padding-top: 0; }
+}
+
 </style>
 </head>
 <body>
@@ -432,7 +539,7 @@ hr.rule{border:none;border-top:1px solid var(--nb-rule);margin:22px 0;}
     <p class="sec-label">Section 02</p>
     <h2>Top 10 Opportunities</h2>
     <p class="intro">Ranked by estimated impact on conversion. Items 1&ndash;5 are structural blockers actively costing you orders every day. Items 6&ndash;10 are meaningful incremental gains once the blockers are resolved.</p>
-    <table class="t">
+    <div class="t-wrap"><table class="t">
       <thead><tr><th>#</th><th>Opportunity</th><th>Where</th><th>Impact</th><th>Effort</th></tr></thead>
       <tbody>
         <tr><td>1</td><td><strong>Add a direct path to shop in the navigation</strong><br><span style="font-size:11.5px;color:#666">No visible route to your products from the nav. Visitors who don't scroll the hero and don't find the Menu dropdown have nowhere to go.</span></td><td>Sitewide</td><td><span class="pill ph">High</span></td><td><span class="pill pl">Low</span></td></tr>
@@ -446,7 +553,7 @@ hr.rule{border:none;border-top:1px solid var(--nb-rule);margin:22px 0;}
         <tr><td>9</td><td><strong>Add dietary filtering to the collection page</strong><br><span style="font-size:11.5px;color:#666">A customer looking for a gluten-free option has to read every product card to find it. Filtering by dietary requirement and occasion would make that a two-tap journey.</span></td><td>Collection</td><td><span class="pill pm">Medium</span></td><td><span class="pill pm">Medium</span></td></tr>
         <tr><td>10</td><td><strong>Fix broken cross-sell images and standardise product naming</strong><br><span style="font-size:11.5px;color:#666">&ldquo;Personalised Plaque&rdquo; and &ldquo;Birthday Options&rdquo; show broken placeholder images in &ldquo;You may also like.&rdquo; The slash-separated naming convention also makes dietary variants hard to scan at a glance.</span></td><td>PDP</td><td><span class="pill pl">Low</span></td><td><span class="pill pl">Low</span></td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <!-- 03 UPSELL -->
@@ -563,7 +670,7 @@ hr.rule{border:none;border-top:1px solid var(--nb-rule);margin:22px 0;}
     <h3 class="sub-h">Mobile (375px)</h3>
     <div class="mock-wrap">
       <div class="mock-bar"><span class="dot" style="background:#FF5F57"></span><span class="dot" style="background:#FEBC2E"></span><span class="dot" style="background:#28C840"></span><span style="margin-left:6px">PDP &middot; Mobile &middot; Chocolate Fudge Double Layer Cake</span></div>
-      <div style="display:flex;gap:32px;align-items:flex-start;padding:24px">
+      <div class="frame-annot-row" style="display:flex;gap:32px;align-items:flex-start;padding:24px">
         <div class="mobile-frame" style="max-height:860px;overflow-y:auto">
           <div class="m-bar">Order by Sunday for Tue delivery <span class="sep">&middot;</span> <a href="#">FIRSTBITE 10% off</a></div>
           <div class="pdp-m-img">
