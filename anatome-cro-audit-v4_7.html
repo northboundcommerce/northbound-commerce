@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>anatomē — CRO & UX Audit · Northbound Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cr:#FAF7F2;--gr:#3B6D11;--grl:#E8F0DC;
+  --ink:#1A1A18;--mu:#6B6B60;--bd:#E2DDD5;--wh:#fff;
+  --px:clamp(20px,5vw,48px);
+  --ae-bg:#F5F0E8;--ae-ink:#1C1C1A;--ae-mu:#7A7A70;
+  --ae-bd:#D8D4CC;--ae-wh:#FDFBF8;--ae-stone:#E8E3D8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cr);color:var(--ink);font-family:"Instrument Sans",sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* HERO */
+.hero{position:relative;height:100svh;min-height:540px;max-height:900px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,14,6,.52) 0%,rgba(8,14,6,.1) 45%,rgba(8,14,6,.78) 100%)}
+.hero-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:26px var(--px);flex-wrap:wrap;gap:12px}
+.nb-link{display:flex;align-items:center;gap:8px;text-decoration:none}
+.nb-box{width:22px;height:22px;border:1.5px solid rgba(250,247,242,.7);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nb-box span{font-family:"Instrument Sans",sans-serif;font-size:9px;font-weight:700;letter-spacing:.05em;color:#FAF7F2}
+.nb-w{font-family:"Instrument Sans",sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#FAF7F2}
+.h-nav{display:flex;gap:22px}
+.h-nav a{font-size:12px;color:rgba(250,247,242,.7);text-decoration:none;font-weight:500;letter-spacing:.04em}
+.hero-bot{position:relative;z-index:2;padding:0 var(--px) 52px}
+.h-ey{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,247,242,.6);margin-bottom:16px}
+.h-ti{font-family:"Instrument Serif",serif;font-size:clamp(36px,7vw,70px);line-height:1.05;font-weight:400;color:#FAF7F2;margin-bottom:14px}
+.h-ti em{display:block;font-style:italic;font-size:.6em;opacity:.75;margin-top:8px}
+.h-me{font-family:"DM Mono",monospace;font-size:11px;color:rgba(250,247,242,.45);letter-spacing:.06em}
+
+/* STICKY NAV */
+.snav{position:sticky;top:0;z-index:100;background:var(--cr);border-bottom:1px solid var(--bd);padding:14px var(--px);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sn-l{display:flex;align-items:center;gap:10px}
+.sn-box{width:18px;height:18px;border:1.5px solid var(--gr);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sn-box span{font-family:"Instrument Sans",sans-serif;font-size:8px;font-weight:700;letter-spacing:.04em;color:var(--gr)}
+.sn-wm{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.sn-div{width:1px;height:13px;background:var(--bd)}
+.sn-lbl{font-family:"DM Mono",monospace;font-size:10px;color:var(--mu);letter-spacing:.1em;text-transform:uppercase}
+.sn-r{display:flex;gap:18px;align-items:center}
+.sn-r a{font-size:12px;color:var(--mu);text-decoration:none}
+.sn-pill{background:var(--grl);color:var(--gr);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:5px 13px;border-radius:100px}
+
+/* LAYOUT */
+.pw{max-width:1020px;margin:0 auto;padding:0 var(--px)}
+.sec{padding:56px 0;border-bottom:1px solid var(--bd)}
+.sec:last-child{border-bottom:none}
+.sl{font-family:"DM Mono",monospace;font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
+h2{font-family:"Instrument Serif",serif;font-size:clamp(24px,4vw,34px);font-weight:400;color:var(--ink);margin-bottom:20px;line-height:1.15}
+h3{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+p{margin-bottom:12px;color:var(--ink)}p:last-child{margin-bottom:0}
+
+/* EXEC BOX */
+.eb{border-left:3px solid var(--gr);padding:20px 24px;background:var(--wh);border-radius:0 8px 8px 0;margin-bottom:28px}
+.eb p{font-size:14px;line-height:1.72}
+.ms{display:flex;gap:clamp(16px,3vw,32px);flex-wrap:wrap;margin-top:20px}
+.ms-i{display:flex;flex-direction:column;gap:3px}
+.ms-l{font-family:"DM Mono",monospace;font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.1em}
+.ms-v{font-size:13px;font-weight:600;color:var(--ink)}
+
+/* PILLS */
+.pill{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.ph{background:#e6f0dc;color:#2B5C0A}.pm{background:#f5ead8;color:#B86A1A}
+.pe{background:#e6f0dc;color:#2B5C0A}.pme{background:#f5ead8;color:#B86A1A}.phe{background:#f5e5e5;color:#8B1F1F}
+.chip{display:inline-block;background:var(--cr);border:1px solid var(--bd);font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:4px;color:var(--mu);white-space:nowrap}
+
+/* TABLE */
+.at{width:100%;border-collapse:collapse;font-size:13px}
+.at thead th{text-align:left;font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);padding:10px 12px;border-bottom:1px solid var(--bd)}
+.at tbody tr{border-bottom:1px solid var(--bd)}
+.at tbody tr:last-child{border-bottom:none}
+.at tbody tr:nth-child(odd){background:var(--wh)}
+.at tbody tr:nth-child(even){background:#FDFCF9}
+.at td{padding:13px 12px;vertical-align:top}
+.on{font-family:"DM Mono",monospace;font-size:11px;color:var(--mu);white-space:nowrap}
+.ot{font-weight:600;color:var(--ink);margin-bottom:3px;font-size:13px}
+.od{color:var(--mu);line-height:1.45;font-size:12.5px}
+
+/* ISSUE ROWS */
+.ir{display:grid;grid-template-columns:130px 1fr;border:1px solid var(--bd);border-radius:8px;overflow:hidden;margin-bottom:10px;background:var(--wh)}
+.il{background:var(--cr);padding:16px;display:flex;flex-direction:column;gap:8px;border-right:1px solid var(--bd)}
+.il-t{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mu)}
+.ib{padding:16px 20px}
+.ib h4{font-size:13.5px;font-weight:600;margin-bottom:5px}
+.ib p{font-size:12.5px;color:var(--mu);margin-bottom:8px;line-height:1.5}
+.rt{display:inline-flex;align-items:flex-start;gap:5px;font-size:12px;font-weight:500;color:var(--gr);background:var(--grl);padding:6px 10px;border-radius:4px;line-height:1.4}
+
+/* QW */
+.qwl{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:20px}
+.qwi{display:flex;align-items:flex-start;gap:12px;background:var(--wh);border:1px solid var(--bd);border-radius:8px;padding:14px 16px}
+.qwicon{flex-shrink:0;width:20px;height:20px;background:var(--gr);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.qwicon svg{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.qwtx strong{display:block;font-size:13.5px;font-weight:600;margin-bottom:2px}
+.qwtx span{font-size:12px;color:var(--mu)}
+
+/* ROADMAP */
+.rmg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:20px}
+.rmc{background:var(--wh);border:1px solid var(--bd);border-radius:8px;overflow:hidden}
+.rmh{padding:14px 16px;border-bottom:1px solid var(--bd)}
+.rmh h4{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);font-weight:500;margin-bottom:2px}
+.rmh p{font-size:13px;font-weight:600;color:var(--ink)}
+.rml{list-style:none;padding:14px 16px;display:flex;flex-direction:column;gap:7px}
+.rml li{font-size:12.5px;display:flex;gap:7px;align-items:baseline}
+.rml li::before{content:"→";font-size:11px;color:var(--gr);flex-shrink:0}
+
+/* HELP */
+.hg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.hc{background:var(--wh);border:1px solid var(--bd);border-radius:8px;padding:20px}
+.hct{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--gr);margin-bottom:8px}
+.hc h3{font-family:"Instrument Serif",serif;font-size:17px;font-weight:400;margin-bottom:8px}
+.hc p{font-size:12.5px;color:var(--mu);line-height:1.55}
+.hcb{margin-top:24px;padding:18px 22px;border:1px solid var(--bd);border-radius:8px;background:var(--cr);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hcb .lbl{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);margin-bottom:3px}
+.hcb .desc{font-size:13.5px;color:var(--ink)}
+.hcb .em{font-family:"DM Mono",monospace;font-size:11px;color:var(--gr);letter-spacing:.06em}
+
+/* NAV MOCKUP */
+.nmock{width:100%;border:1px solid var(--bd);border-radius:10px;overflow:hidden;margin-top:20px;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+.nm-b{display:flex;align-items:center;padding:14px 22px;border-bottom:1px solid #F0EDE8;gap:28px}
+.nm-br{font-family:"Instrument Serif",serif;font-size:17px;font-style:italic;color:#1A1A18;min-width:90px}
+.nm-ls{display:flex;gap:20px;flex:1;justify-content:center}
+.nm-lk{font-size:13px;color:#3A3A38;position:relative;padding-bottom:2px}
+.nm-lk.on{font-weight:600;color:#1A1A18}
+.nm-lk.on::after{content:"";position:absolute;bottom:-2px;left:0;right:0;height:1.5px;background:#1A1A18}
+.nm-ac{display:flex;gap:12px}
+.nm-ic{width:18px;height:18px;background:#F0EDE8;border-radius:3px}
+.nm-dd{background:#fff;display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--gr)}
+.nm-c{padding:20px;border-right:1px solid #F0EDE8}
+.nm-c:last-child{border-right:none;background:#F8F5F0}
+.nm-ch{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--gr);margin-bottom:10px}
+.nm-c ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.nm-c ul li{font-size:13px;color:#3A3A38}
+
+/* SHARED FRAME */
+.mf{border:1px solid var(--bd);border-radius:12px;overflow:clip;background:var(--ae-wh);box-shadow:0 8px 40px rgba(0,0,0,.07);font-family:"Instrument Sans",sans-serif;position:relative}
+.ml{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);margin-bottom:12px}
+.stars{display:flex;gap:2px}
+.star{width:11px;height:11px;background:#C8A84A;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+
+/* =====================
+   MOBILE PDP
+   ===================== */
+.mob{width:375px;flex-shrink:0}
+.mob .mf{max-width:375px}
+
+.m-nv{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #EAE6E0;background:var(--ae-wh)}
+.m-nv-bc{font-size:11px;color:var(--ae-mu);display:flex;align-items:center;gap:4px}
+.m-nv-br{font-family:"Instrument Serif",serif;font-size:15px;font-style:italic;color:var(--ae-ink);letter-spacing:.06em}
+.m-nv-ic{display:flex;gap:10px}
+.m-nv-ic span{width:17px;height:17px;background:#EAE6E0;border-radius:2px;display:inline-block}
+
+.m-gal{background:var(--ae-stone);height:300px;position:relative;overflow:hidden}
+.m-gal img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.m-gal-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.m-dot{width:5px;height:5px;border-radius:50%;background:#B8B4AC}
+.m-dot.on{background:#1C1C1A;width:14px;border-radius:3px}
+
+.m-rv{display:flex;align-items:center;gap:6px;padding:9px 16px;background:#F0EBE2;border-bottom:1px solid #E0DBD3;font-size:11px}
+.m-rv-ct{color:var(--ae-mu)}
+.m-rv-snp{font-size:10.5px;color:var(--ae-mu);font-style:italic;border-left:1px solid #C8C4BC;padding-left:7px;margin-left:2px}
+
+/* USP strip */
+.m-usp{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #EAE6E0}
+.m-usp-i{padding:10px 8px;text-align:center;border-right:1px solid #EAE6E0;display:flex;flex-direction:column;align-items:center;gap:3px}
+.m-usp-i:last-child{border-right:none}
+.m-usp-l{font-family:"DM Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--ae-mu);line-height:1.3;text-align:center}
+
+.m-co{padding:16px}
+.m-br-lbl{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--ae-mu);margin-bottom:6px}
+.m-ti{font-family:"Instrument Serif",serif;font-size:22px;line-height:1.2;color:var(--ae-ink);margin-bottom:3px}
+.m-sub{font-size:12px;color:var(--ae-mu);margin-bottom:14px;line-height:1.45}
+
+/* product description */
+.m-desc{font-size:13px;color:var(--ae-ink);line-height:1.65;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.m-more-link{font-size:12px;color:var(--ae-mu);text-decoration:underline;text-underline-offset:2px;display:inline-block;margin-bottom:14px}
+
+/* what's included */
+.m-wi{background:var(--ae-stone);border-radius:2px;padding:12px 14px;margin-bottom:14px}
+.m-wi-l{font-family:"DM Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ae-mu);margin-bottom:8px}
+.m-wi-items{display:flex;flex-direction:column;gap:5px}
+.m-wi-item{display:flex;gap:10px;align-items:baseline;font-size:12px;color:var(--ae-ink)}
+.m-wi-dash{font-family:"DM Mono",monospace;font-size:10px;color:var(--ae-mu);flex-shrink:0}
+
+.m-pr{font-size:22px;font-weight:600;color:var(--ae-ink);margin-bottom:4px;letter-spacing:-.02em}
+.m-klarna{font-size:11.5px;color:var(--ae-mu);margin-bottom:14px}
+.m-klarna strong{color:var(--ae-ink);font-weight:500}
+
+/* gift wrap */
+.m-gw{border:1px solid var(--ae-bd);border-radius:2px;padding:11px 14px;margin-bottom:12px}
+.m-gw-row{display:flex;align-items:center;gap:10px;cursor:pointer}
+.m-gw-box{width:14px;height:14px;border:1px solid #8A8A80;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--ae-wh)}
+.m-gw-box svg{width:9px;height:9px;stroke:var(--ae-ink);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.m-gw-lbl{flex:1;font-size:12.5px;color:var(--ae-ink)}
+.m-gw-pr{font-size:12px;color:var(--ae-mu);font-weight:500}
+.m-gw-note{font-size:11px;color:var(--ae-mu);margin-top:6px;padding-left:24px;line-height:1.4}
+
+/* sub */
+.m-sb{border:1px solid var(--ae-bd);border-radius:2px;overflow:hidden;margin-bottom:12px}
+.m-sb-o{padding:11px 14px;font-size:12.5px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.m-sb-o.on{background:#EEE9DF;border-bottom:1px solid #D8D4CC}
+.m-radio{width:13px;height:13px;border-radius:50%;border:1.5px solid #8A8A80;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.m-radio.filled{border-color:var(--ae-ink);background:var(--ae-ink)}
+.m-radio-d{width:5px;height:5px;border-radius:50%;background:#fff}
+.m-sb-lbl{flex:1;color:var(--ae-ink)}
+.m-sb-pr{font-size:12px;font-weight:600;color:var(--ae-ink)}
+.m-sb-save{font-size:10px;color:var(--gr);font-weight:600;background:var(--grl);padding:2px 6px;border-radius:2px}
+.m-sub-note{font-size:11px;color:var(--ae-mu);margin-bottom:56px;padding:8px 10px;background:var(--ae-stone);border-radius:2px;line-height:1.5}
+
+/* spec strip */
+.m-spec{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ae-bd);font-size:11px}
+.m-sp{padding:10px 14px;border-right:1px solid var(--ae-bd);border-bottom:1px solid var(--ae-bd)}
+.m-sp:nth-child(2n){border-right:none}
+.m-sp:nth-last-child(-n+2){border-bottom:none}
+.m-sp-l{font-family:"DM Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--ae-mu);margin-bottom:2px}
+.m-sp-v{color:var(--ae-ink);font-size:11.5px}
+
+/* scent notes */
+.m-scent{background:var(--ae-stone);padding:14px 16px}
+.m-scent-l{font-family:"DM Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ae-mu);margin-bottom:10px}
+.m-notes{display:flex;flex-direction:column;gap:6px}
+.m-note{display:flex;gap:10px;font-size:11.5px;color:var(--ae-ink);line-height:1.45}
+.m-nt{font-family:"DM Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ae-mu);width:36px;flex-shrink:0;padding-top:1px}
+
+/* ingredients */
+.m-ingr{padding:14px 16px;border-top:1px solid var(--ae-bd)}
+.m-ingr-l{font-family:"DM Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ae-mu);margin-bottom:8px}
+.m-ingr p{font-size:11px;color:var(--ae-mu);line-height:1.65}
+
+/* STICKY ATC — mobile */
+.sticky-atc{position:sticky;bottom:0;left:0;right:0;background:var(--ae-wh);border-top:1px solid var(--ae-bd);padding:10px 16px;display:flex;align-items:center;gap:10px;z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,.1)}
+.sticky-atc-info{flex:1;min-width:0}
+.sticky-atc-name{font-size:12px;font-weight:600;color:var(--ae-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sticky-atc-price{font-size:11.5px;color:var(--ae-mu)}
+.sticky-atc-btn{background:var(--ae-ink);color:#fff;padding:11px 18px;font-size:13px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;border-radius:2px;white-space:nowrap;flex-shrink:0}
+
+/* =====================
+   DESKTOP PDP
+   ===================== */
+.desk .mf{width:100%}
+
+.d-nv{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid #EAE6E0;background:var(--ae-wh)}
+.d-nv-links{display:flex;gap:24px;font-size:12.5px;color:#5A5A52}
+.d-nv-br{font-family:"Instrument Serif",serif;font-size:18px;font-style:italic;color:var(--ae-ink);letter-spacing:.06em}
+.d-nv-ics{display:flex;gap:10px}
+.d-nv-ic{width:18px;height:18px;background:#EAE6E0;border-radius:2px}
+.d-bc{font-size:11.5px;color:#8A8A80;padding:9px 28px;border-bottom:1px solid #EAE6E0;letter-spacing:.02em}
+.d-bc span{color:#3A3A38}
+
+/* USP bar desktop */
+.d-usp{display:flex;border-bottom:1px solid #EAE6E0;background:var(--ae-stone)}
+.d-usp-i{flex:1;padding:11px 20px;border-right:1px solid #EAE6E0;display:flex;align-items:center;gap:8px}
+.d-usp-i:last-child{border-right:none}
+.d-usp-icon{width:16px;height:16px;flex-shrink:0}
+.d-usp-t{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ae-mu)}
+
+/* ATF */
+.d-atf{display:grid;grid-template-columns:52% 48%;min-height:260px}
+.d-gal-wrap{background:var(--ae-stone)} /* stretches full column height — stone fills below image */
+.d-gal{padding:10px 10px 10px 8px;display:flex;gap:8px;position:sticky;top:0}
+.d-thumbs{display:flex;flex-direction:column;gap:7px;flex-shrink:0}
+.d-th{width:44px;height:52px;background:#DDD9D1;border:1px solid var(--ae-bd);overflow:hidden;cursor:pointer}
+.d-th img,.d-th-pl{width:100%;height:100%;object-fit:cover}
+.d-th-pl{display:flex;align-items:center;justify-content:center;font-family:"DM Mono",monospace;font-size:9px;color:#9A9690;background:#E0DBD3}
+.d-th.on{border-color:var(--ae-ink);border-width:1.5px}
+.d-main{flex:1;overflow:hidden;background:var(--ae-stone);position:relative;height:240px}
+.d-main img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+
+/* right panel */
+.d-rp{padding:24px 28px;display:flex;flex-direction:column;gap:10px;background:var(--ae-wh)}
+.d-br{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--ae-mu)}
+.d-ti{font-family:"Instrument Serif",serif;font-size:26px;line-height:1.15;color:var(--ae-ink);font-weight:400}
+.d-sub-t{font-size:12.5px;color:var(--ae-mu);margin-top:-4px;line-height:1.45}
+.d-rv{display:flex;align-items:center;gap:8px;font-size:12px}
+.d-rv a{color:var(--ae-ink);text-decoration:underline;text-underline-offset:2px;font-size:12px}
+.d-dv{height:1px;background:#EAE6E0;flex-shrink:0}
+
+/* desc on desktop */
+.d-desc{font-size:13px;color:var(--ae-ink);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.d-more-link{font-size:12px;color:var(--ae-mu);text-decoration:underline;text-underline-offset:2px;cursor:pointer;margin-top:4px;display:inline-block;font-family:"Instrument Sans",sans-serif}
+
+.d-wi{background:var(--ae-stone);padding:14px 16px;border-radius:2px}
+.d-wi-l{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ae-mu);margin-bottom:8px}
+.d-wi-is{display:flex;flex-direction:column;gap:5px}
+.d-wi-i{display:flex;gap:10px;font-size:13px;color:var(--ae-ink);line-height:1.4}
+.d-wi-d{font-family:"DM Mono",monospace;font-size:10px;color:var(--ae-mu);flex-shrink:0;padding-top:2px}
+
+.d-pr{font-size:26px;font-weight:600;color:var(--ae-ink);letter-spacing:-.02em}
+.d-klarna{font-size:12px;color:var(--ae-mu)}
+.d-klarna strong{color:var(--ae-ink);font-weight:500}
+
+.d-gw{border:1px solid var(--ae-bd);padding:11px 14px;border-radius:2px}
+.d-gw-row{display:flex;align-items:center;gap:10px;cursor:pointer}
+.d-gw-box{width:14px;height:14px;border:1px solid #8A8A80;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--ae-wh)}
+.d-gw-box svg{width:9px;height:9px;stroke:var(--ae-ink);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.d-gw-lbl{flex:1;font-size:13px;color:var(--ae-ink)}
+.d-gw-pr{font-size:12.5px;color:var(--ae-mu);font-weight:500}
+.d-gw-note{font-size:11px;color:var(--ae-mu);margin-top:5px;padding-left:24px;line-height:1.4}
+
+.d-sb{border:1px solid var(--ae-bd);overflow:hidden;border-radius:2px}
+.d-sb-o{padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;font-family:"Instrument Sans",sans-serif}
+.d-sb-o.on{background:#EEE9DF;border-bottom:1px solid #D8D4CC}
+.d-sb-lbl{flex:1;font-size:13px;font-weight:400;color:var(--ae-ink);font-family:"Instrument Sans",sans-serif}
+.d-sb-pr{font-weight:500;font-size:13px;color:var(--ae-ink);font-family:"Instrument Sans",sans-serif}
+.d-save-badge{font-size:10px;color:var(--gr);font-weight:600;background:var(--grl);padding:2px 7px;border-radius:2px;font-family:"Instrument Sans",sans-serif;letter-spacing:.01em}
+.d-radio{width:13px;height:13px;border-radius:50%;border:1.5px solid #9A9A90;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:transparent}
+.d-radio.on{border-color:var(--ae-ink);background:var(--ae-ink)}
+.d-radio-dot{width:5px;height:5px;border-radius:50%;background:#fff}
+.d-sub-note{font-size:12px;color:var(--ae-mu);padding:9px 12px;background:var(--ae-stone);border-radius:2px;line-height:1.5}
+
+.d-ben{display:grid;grid-template-columns:1fr 1fr;border:1px solid #EAE6E0;border-radius:2px;overflow:hidden}
+.d-bi{padding:9px 12px;border-right:1px solid #EAE6E0;border-bottom:1px solid #EAE6E0;font-size:11.5px;color:var(--ae-mu)}
+.d-bi:nth-child(2n){border-right:none}
+.d-bi:nth-last-child(-n+2){border-bottom:none}
+.d-bi-l{font-family:"DM Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:#9A9A90;margin-bottom:2px}
+
+.d-atc-row{display:flex;gap:8px}
+.d-atc{flex:1;background:var(--ae-ink);color:#fff;padding:14px;text-align:center;font-size:13.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px}
+.d-wish{width:46px;border:1px solid var(--ae-bd);display:flex;align-items:center;justify-content:center;border-radius:2px;cursor:pointer}
+.d-wish svg{width:16px;height:16px;stroke:var(--ae-mu);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+.d-pay{display:flex;align-items:center;justify-content:center;gap:10px;font-size:11.5px;color:var(--ae-mu)}
+.d-pay-dot{width:3px;height:3px;border-radius:50%;background:#C8C4BC}
+
+/* BELOW FOLD */
+.bf{border-top:1px solid #EAE6E0}
+.band{padding:14px 28px;border-bottom:1px solid #EAE6E0;display:flex;justify-content:space-between;align-items:center;background:var(--ae-wh)}
+.band-l{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ae-mu)}
+.band-a{font-size:12px;color:var(--ae-ink);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+
+/* description + ingredients panel */
+.d-copy-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.d-copy-col{padding:28px 28px}
+.d-copy-col:first-child{border-right:1px solid #EAE6E0}
+.d-copy-h{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ae-mu);margin-bottom:12px}
+.d-copy-body{font-size:13px;color:var(--ae-ink);line-height:1.75}
+.d-ingr-list{font-size:11.5px;color:var(--ae-mu);line-height:1.8}
+.d-ingr-note{font-size:11px;color:#9A9A90;margin-top:8px;font-style:italic}
+
+/* craftsmanship */
+.d-craft{display:grid;grid-template-columns:1fr 1fr}
+.d-craft-img{background:var(--ae-stone);overflow:hidden;min-height:280px}
+.d-craft-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.d-craft-txt{padding:36px 36px;display:flex;flex-direction:column;justify-content:center;gap:16px;background:var(--ae-wh)}
+.d-craft-ey{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--ae-mu)}
+.d-craft-h{font-family:"Instrument Serif",serif;font-size:22px;font-weight:400;color:var(--ae-ink);line-height:1.3}
+.d-craft-p{font-size:13px;color:var(--ae-mu);line-height:1.7}
+.d-craft-usps{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.d-craft-usp{display:flex;align-items:baseline;gap:10px;font-size:12.5px;color:var(--ae-ink)}
+.d-craft-usp-dash{font-family:"DM Mono",monospace;font-size:10px;color:var(--ae-mu)}
+
+/* scent */
+.d-scent-g{display:grid;grid-template-columns:repeat(4,1fr)}
+.d-sc{padding:20px 24px;border-right:1px solid #EAE6E0}
+.d-sc:last-child{border-right:none}
+.d-sc-l{font-family:"DM Mono",monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ae-mu);margin-bottom:6px}
+.d-sc-v{font-size:12.5px;color:var(--ae-ink);line-height:1.6}
+
+/* how to use with video */
+.d-how-wrap{display:grid;grid-template-columns:1fr 1fr}
+.d-how-video{background:#1C1C1A;position:relative;overflow:hidden;min-height:260px;display:flex;align-items:center;justify-content:center}
+.d-how-video img{width:100%;height:100%;object-fit:cover;opacity:.55;position:absolute;inset:0}
+.d-play{position:relative;z-index:2;width:52px;height:52px;border:1.5px solid rgba(255,255,255,.7);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.d-play svg{width:18px;height:18px;fill:rgba(255,255,255,.9);margin-left:3px}
+.d-play-lbl{position:absolute;bottom:16px;left:20px;z-index:2;font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6)}
+.d-how-steps{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--ae-wh)}
+.d-hw{padding:24px 22px;border-right:1px solid #EAE6E0}
+.d-hw:last-child{border-right:none}
+.d-hw-n{font-family:"DM Mono",monospace;font-size:11px;color:var(--ae-mu);margin-bottom:8px}
+.d-hw-t{font-family:"Instrument Serif",serif;font-size:15px;font-weight:400;margin-bottom:6px;color:var(--ae-ink)}
+.d-hw-p{font-size:12px;color:var(--ae-mu);line-height:1.6}
+
+/* ritual */
+.d-ritual{display:grid;grid-template-columns:repeat(3,1fr)}
+.d-ri{background:var(--ae-wh);padding:20px 22px;border-right:1px solid #EAE6E0}
+.d-ri:last-child{border-right:none}
+.d-ri-lbl{font-family:"DM Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--ae-mu);margin-bottom:10px}
+.d-ri-img{height:130px;background:var(--ae-stone);margin-bottom:12px;overflow:hidden}
+.d-ri-img img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.d-ri-n{font-family:"Instrument Serif",serif;font-size:14px;color:var(--ae-ink);margin-bottom:3px}
+.d-ri-p{font-size:12px;color:var(--ae-mu)}
+
+/* reviews */
+.d-revs{display:grid;grid-template-columns:repeat(3,1fr)}
+.d-rev{background:var(--ae-wh);padding:20px 22px;border-right:1px solid #EAE6E0}
+.d-rev:last-child{border-right:none}
+.d-rev-hd{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.d-rev-nm{font-size:12px;font-weight:600;color:var(--ae-ink)}
+.d-rev-dt{font-size:11px;color:var(--ae-mu)}
+.d-rev-body{font-size:12.5px;color:var(--ae-mu);line-height:1.65;font-style:italic}
+
+/* FOOTER */
+footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.ft-l{display:flex;flex-direction:column;gap:10px}
+.ft-log{display:flex;align-items:center;gap:9px}
+.ft-nb-box{width:22px;height:22px;border:1.5px solid #6A7A62;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-nb-box span{font-family:"Instrument Sans",sans-serif;font-size:9px;font-weight:700;letter-spacing:.04em;color:#8A9A82}
+.ft-wm{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A9A82}
+.ft-tag{font-size:13px;color:#6A7A62;max-width:260px;line-height:1.6}
+.ft-r{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.ft-ct{font-family:"DM Mono",monospace;font-size:11px;color:#8A9A82;letter-spacing:.06em}
+.ft-leg{font-size:11px;color:#4A5A42;margin-top:4px}
+
+/* RESPONSIVE */
+@media(max-width:760px){
+  .h-nav{display:none}
+  .sn-r{display:none}
+  .rmg,.hg{grid-template-columns:1fr}
+  .ir{grid-template-columns:1fr}
+  .il{border-right:none;border-bottom:1px solid var(--bd);flex-direction:row;align-items:center;padding:10px 16px;gap:10px}
+  .nm-ls{display:none}
+  .nm-dd{grid-template-columns:1fr 1fr}
+  .hcb{flex-direction:column;align-items:flex-start}
+  footer{flex-direction:column}
+  .ft-r{align-items:flex-start}
+  .mob{width:100%}.mob .mf{max-width:100%}
+  .desk{overflow-x:auto}.desk .mf{min-width:820px}
+}
+@media(max-width:480px){
+  .sn-wm,.sn-div,.sn-lbl{display:none}
+  h2{font-size:22px}
+  .at thead th:nth-child(n+4),.at tbody td:nth-child(n+4){display:none}
+  .at thead th:nth-child(3),.at tbody td:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <img class="hero-img" src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=1200" alt="anatomē botanicals">
+  <div class="hero-ov"></div>
+  <div class="hero-top">
+    <a href="https://northboundcommerce.co.uk/" target="_blank" class="nb-link">
+      <div class="nb-box"><span>NB</span></div>
+      <span class="nb-w">Northbound Commerce</span>
+    </a>
+    <nav class="h-nav">
+      <a href="https://northboundcommerce.co.uk/">northboundcommerce.co.uk</a>
+      <a href="mailto:hello@northboundcommerce.co.uk">Get in touch</a>
+    </nav>
+  </div>
+  <div class="hero-bot">
+    <div class="h-ey">Northbound Commerce · CRO &amp; UX Audit</div>
+    <div class="h-ti">anatomē
+      <em>Conversion Rate &amp; UX Audit · April 2025</em>
+    </div>
+    <div class="h-me">northboundcommerce.co.uk &nbsp;·&nbsp; anatome.co &nbsp;·&nbsp; Prepared by Amy Lam</div>
+  </div>
+</div>
+
+<!-- STICKY NAV -->
+<div class="snav">
+  <div class="sn-l">
+    <div class="sn-box"><span>NB</span></div>
+    <span class="sn-wm">Northbound Commerce</span>
+    <span class="sn-div"></span>
+    <span class="sn-lbl">CRO &amp; UX Audit — anatomē</span>
+  </div>
+  <div class="sn-r">
+    <a href="https://northboundcommerce.co.uk/">northboundcommerce.co.uk</a>
+    <a href="mailto:hello@northboundcommerce.co.uk">Get in touch</a>
+    <span class="sn-pill">April 2025</span>
+  </div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="pw">
+
+  <!-- EXEC SUMMARY -->
+  <div class="sec">
+    <p class="sl">Overview</p>
+    <h2>Executive Summary</h2>
+    <div class="eb">
+      <p>anatomē has all the components of a high-performing premium wellness DTC — a compelling founder story, a proprietary aromachology framework, strong product craft, and a loyal customer base. The site is leaving meaningful revenue on the table. Social proof is sparse to absent across the catalogue; the subscription mechanic is buried and over-hedged with commitment language; the navigation organises by product type rather than by need; and the returns experience is actively generating negative public reviews. This audit identifies ten highest-leverage opportunities and maps them to a phased 90-day roadmap. The brand is strong. The work is in aligning the commerce experience with that promise.</p>
+    </div>
+    <div class="ms">
+      <div class="ms-i"><span class="ms-l">Site</span><span class="ms-v">anatome.co</span></div>
+      <div class="ms-i"><span class="ms-l">Platform</span><span class="ms-v">Shopify</span></div>
+      <div class="ms-i"><span class="ms-l">Category</span><span class="ms-v">Premium Wellness / Aromachology</span></div>
+      <div class="ms-i"><span class="ms-l">Price range</span><span class="ms-v">£25–£210</span></div>
+      <div class="ms-i"><span class="ms-l">Findings</span><span class="ms-v">10 identified</span></div>
+      <div class="ms-i"><span class="ms-l">Prepared by</span><span class="ms-v">Northbound Commerce</span></div>
+    </div>
+  </div>
+
+  <!-- TOP 10 -->
+  <div class="sec">
+    <p class="sl">Findings</p>
+    <h2>Top 10 opportunities</h2>
+    <div style="overflow-x:auto">
+    <table class="at">
+      <thead><tr>
+        <th style="width:28px">#</th><th style="width:185px">Opportunity</th><th>Observation &amp; Recommendation</th>
+        <th style="width:86px">Area</th><th style="width:68px">Impact</th><th style="width:68px">Effort</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="on">01</td><td><div class="ot">Social proof absent on most products</div></td><td class="od">Third-party data shows "No reviews" across a significant portion of the catalogue. For a wellness brand where efficacy drives purchase, absence of reviews is absence of permission to buy. Implement a post-purchase review flow (Okendo), surface stars on collection tiles, and pin review snippets above the fold on PDPs.</td><td><span class="chip">PDP · CRO</span></td><td><span class="pill ph">High</span></td><td><span class="pill pe">Low</span></td></tr>
+        <tr><td class="on">02</td><td><div class="ot">Subscription framed as commitment</div></td><td class="od">The 20% subscriber saving is one of the site's strongest conversion mechanics — but treated as secondary to one-time purchase. "Minimum commitment of 2 months" introduces friction before a decision is made. Lead with the saving; soften the caveat. Test subscription as the default-selected option on high-velocity SKUs.</td><td><span class="chip">PDP · CRO</span></td><td><span class="pill ph">High</span></td><td><span class="pill pe">Low</span></td></tr>
+        <tr><td class="on">03</td><td><div class="ot">Navigation by product type, not need</div></td><td class="od">A shopper arriving to "sleep better" navigates through product-type categories rather than a unified Sleep collection. Restructure primary nav around wellbeing pillars: Sleep, Focus, Calm, Movement, Skin — with product types as secondary filters within each.</td><td><span class="chip">Nav · UX</span></td><td><span class="pill ph">High</span></td><td><span class="pill pme">Medium</span></td></tr>
+        <tr><td class="on">04</td><td><div class="ot">Returns policy damaging brand trust</div></td><td class="od">Customers paying £4 to return an £8.50 product. Trustpilot reviews cite this specifically. The cost of one returned item is far lower than the cost of a publicly negative review that deters dozens of future buyers.</td><td><span class="chip">CX · Trust</span></td><td><span class="pill ph">High</span></td><td><span class="pill pe">Low</span></td></tr>
+        <tr><td class="on">05</td><td><div class="ot">Homepage hero misses the brand USP</div></td><td class="od">The meta title "Premium Wellbeing Products for Mind &amp; Body in UK" is SEO boilerplate. The aromachology framework is the brand's real differentiator. The founder's story and scent-science positioning need to be the first thing a new visitor encounters.</td><td><span class="chip">ATF · Brand</span></td><td><span class="pill pm">Medium</span></td><td><span class="pill pe">Low</span></td></tr>
+        <tr><td class="on">06</td><td><div class="ot">No BNPL option at product price level</div></td><td class="od">At £34–£210, the absence of Klarna is a missed opportunity, particularly for gift sets. Competitors in this price band routinely see basket size increases when BNPL is visible at the product price point. The Shopify app takes minutes to install.</td><td><span class="chip">PDP · CRO</span></td><td><span class="pill pm">Medium</span></td><td><span class="pill pe">Low</span></td></tr>
+        <tr><td class="on">07</td><td><div class="ot">Workshops under-merchandised</div></td><td class="od">Breathwork workshops, scent consultations, and practitioner collaborations build loyalty and justify premium pricing. Currently visible only at the bottom of the homepage. Surface in primary nav and as PDP cross-sells.</td><td><span class="chip">CX · Nav</span></td><td><span class="pill pm">Medium</span></td><td><span class="pill pe">Low</span></td></tr>
+        <tr><td class="on">08</td><td><div class="ot">No loyalty mechanic beyond subscription</div></td><td class="od">Wellness is inherently repeat-purchase. A loyalty programme (Smile.io) would increase purchase frequency, incentivise review-leaving, and give customers a reason to create accounts. A referral mechanic would drive new acquisition from the existing base.</td><td><span class="chip">Retention</span></td><td><span class="pill pm">Medium</span></td><td><span class="pill pme">Medium</span></td></tr>
+        <tr><td class="on">09</td><td><div class="ot">Email cadence generating spam complaints</div></td><td class="od">Trustpilot reviews cite daily emails with a non-functional unsubscribe path. High spam report rates degrade deliverability on all sends. A daily cadence is incompatible with a premium wellness brand whose core message is balance and calm.</td><td><span class="chip">CRM · Brand</span></td><td><span class="pill pm">Medium</span></td><td><span class="pill pe">Low</span></td></tr>
+        <tr><td class="on">10</td><td><div class="ot">International experience not calibrated</div></td><td class="od">Ships to 30+ countries but the international experience is an afterthought: premium express air rates universally applied, 21-day delivery windows, UK-first copy throughout. Clearer delivery expectations and localised currency would reduce international drop-off.</td><td><span class="chip">UX · Global</span></td><td><span class="pill pm">Medium</span></td><td><span class="pill pme">Medium</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- NAV SECTION -->
+  <div class="sec">
+    <p class="sl">Section 01</p>
+    <h2>Above the Fold &amp; Navigation</h2>
+    <div style="margin-bottom:24px">
+      <div style="display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--bd);margin-bottom:16px">
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gr)">ATF</span>
+        <h3 style="font-family:'Instrument Serif',serif;font-size:20px;font-weight:400;margin:0">Homepage — missed brand story</h3>
+      </div>
+      <div class="ir"><div class="il"><span class="il-t">Issue</span><span class="pill ph">High</span></div><div class="ib"><h4>Hero leads with category, not brand</h4><p>New visitors from discovery channels have no compelling reason to believe anatomē is different from a generic wellness retailer. The aromachology framework and founder origin are the brand's actual moat.</p><div class="rt">✦ Lead with the brand's "why" — the transformative power of scent. Test an editorial hero with the philosophy statement and a single entry point ("Find your blend").</div></div></div>
+      <div class="ir"><div class="il"><span class="il-t">Issue</span><span class="pill pm">Medium</span></div><div class="ib"><h4>Free shipping threshold not visible ATF</h4><p>Free shipping over £50 should be in the announcement bar on every page. A two-minute copy change with measurable AOV uplift.</p><div class="rt">✦ "Free UK delivery on orders over £50" — persistent top bar. Cart-drawer progress bar: "£X away from free delivery."</div></div></div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--bd);margin-bottom:4px">
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gr)">NAV</span>
+        <h3 style="font-family:'Instrument Serif',serif;font-size:20px;font-weight:400;margin:0">Proposed concern-led navigation</h3>
+      </div>
+      <p style="font-size:13.5px;color:var(--mu);margin-bottom:0">Current navigation groups by product type. The proposed model groups by wellbeing concern — how customers actually think and how they arrive via search.</p>
+      <div class="nmock">
+        <div class="nm-b">
+          <div class="nm-br">anatomē</div>
+          <div class="nm-ls"><span class="nm-lk on">Sleep</span><span class="nm-lk">Focus</span><span class="nm-lk">Calm</span><span class="nm-lk">Movement</span><span class="nm-lk">Skin</span><span class="nm-lk">Gifts</span><span class="nm-lk">Experiences</span></div>
+          <div class="nm-ac"><div class="nm-ic"></div><div class="nm-ic"></div><div class="nm-ic"></div></div>
+        </div>
+        <div class="nm-dd">
+          <div class="nm-c"><div class="nm-ch">Shop Sleep</div><ul><li>All Sleep</li><li>Sensory Oils</li><li>Supplements</li><li>Candles</li><li>Pillow Sprays</li><li>Bath Salts</li></ul></div>
+          <div class="nm-c"><div class="nm-ch">By Ingredient</div><ul><li>Somali Frankincense</li><li>Roman Chamomile</li><li>Cornish Lavender</li><li>Blue Tansy</li></ul></div>
+          <div class="nm-c"><div class="nm-ch">Build a Ritual</div><ul><li>Sleep Candle Duo Sets</li><li>Deep Sleep Trio</li><li>Subscribe &amp; Save</li></ul></div>
+          <div class="nm-c"><div class="nm-ch">Expert Pick</div><div style="font-size:12px;color:#3A3A38;line-height:1.6;margin-top:4px">"For those who wake in the night, Roman Chamomile is the formula I return to most."<br><br><span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gr);text-transform:uppercase;letter-spacing:.1em">— Brendan Murdock, Founder</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDP SECTION -->
+  <div class="sec">
+    <p class="sl">Section 02</p>
+    <h2>PDP Redesign — Sleep Candle Gift Set</h2>
+    <p style="font-size:13.5px;color:var(--mu);margin-bottom:32px">Based on the <em>Chamomile &amp; Lavender Sleep Ritual Set</em> PDP. Additions: product description, ingredients, USP strip, craftsmanship section, How to Use video, sticky ATC on mobile, optional gift wrapping, Klarna at price level.</p>
+
+    <!-- MOBILE MOCKUP -->
+    <div class="mob" style="margin-bottom:44px">
+      <div class="ml">Mobile · 375px — with sticky ATC</div>
+      <div class="mf">
+        <div class="m-nv">
+          <div class="m-nv-bc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            Sleep
+          </div>
+          <div class="m-nv-br">anatomē</div>
+          <div class="m-nv-ic"><span></span><span></span></div>
+        </div>
+        <div class="m-gal">
+          <img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=800" alt="Chamomile Lavender Sleep Ritual Set" onerror="this.style.background='#E8E3D8'">
+          <div class="m-gal-dots"><div class="m-dot on"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
+        </div>
+        <div class="m-rv">
+          <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+          <strong style="font-size:12px;font-weight:600;color:#1C1C1A">4.9</strong>
+          <span class="m-rv-ct">(87)</span>
+          <span class="m-rv-snp">"the most beautiful thing to give"</span>
+        </div>
+        <!-- USP strip -->
+        <div class="m-usp">
+          <div class="m-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M10 3v14M3 10h14"/><circle cx="10" cy="10" r="7"/></svg>
+            <span class="m-usp-l">Reusable<br>glass jars</span>
+          </div>
+          <div class="m-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M10 17s-6-3.5-6-8a6 6 0 1 1 12 0c0 4.5-6 8-6 8z"/></svg>
+            <span class="m-usp-l">Vegetable<br>wax blend</span>
+          </div>
+          <div class="m-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M3 10h14M10 3l7 7-7 7"/></svg>
+            <span class="m-usp-l">Made in<br>England</span>
+          </div>
+        </div>
+        <div class="m-co">
+          <!-- 1. Provenance + identity -->
+          <div class="m-br-lbl">anatomē · Sleep · Gift Set</div>
+          <div class="m-ti">Chamomile &amp; Lavender<br>Sleep Ritual Set</div>
+          <div class="m-sub">Candle · Sensory Oil · Pillow Spray · 3-piece evening practice</div>
+
+          <!-- 2. Value stack — earns the price -->
+          <div class="m-wi">
+            <div class="m-wi-l">What's included</div>
+            <div class="m-wi-items">
+              <div class="m-wi-item"><span class="m-wi-dash">—</span><span>Evening Blend Sleep Candle, Chamomile &amp; Lavender (200g · 40hr burn · alabaster vessel)</span></div>
+              <div class="m-wi-item"><span class="m-wi-dash">—</span><span>Chamomile &amp; Lavender Sensory Point Oil, 30ml (28 botanicals)</span></div>
+              <div class="m-wi-item"><span class="m-wi-dash">—</span><span>Chamomile &amp; Lavender Pillow Spray, 50ml</span></div>
+            </div>
+          </div>
+
+          <!-- 3. Price, now justified by value stack -->
+          <div class="m-pr">£95.00</div>
+          <div class="m-klarna">Or 3 payments of <strong>£31.67</strong> with Klarna — no interest</div>
+
+          <!-- 4. Purchase mode — immediately before sticky ATC -->
+          <div class="m-sb">
+            <div class="m-sb-o on">
+              <div class="m-radio filled"><div class="m-radio-d"></div></div>
+              <span class="m-sb-lbl">Subscribe &amp; Save 20%</span>
+              <span class="m-sb-pr">£76.00</span>
+              <span class="m-sb-save">−20%</span>
+            </div>
+            <div class="m-sb-o">
+              <div class="m-radio"></div>
+              <span class="m-sb-lbl">One-time purchase</span>
+              <span class="m-sb-pr">£95.00</span>
+            </div>
+          </div>
+          <div class="m-sub-note">Pause or cancel after your second order. First in glass — refill packs from month 2.</div>
+
+          <!-- 5. Post-decision add-on -->
+          <div class="m-gw">
+            <div class="m-gw-row">
+              <div class="m-gw-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <span class="m-gw-lbl">Add gift wrapping</span>
+              <span class="m-gw-pr">+ £2.50</span>
+            </div>
+            <div class="m-gw-note">Tissue paper, ribbon, and personal message option at checkout.</div>
+          </div>
+
+          <!-- 6. Description — truncated, further reading below -->
+          <div class="m-desc">A calming botanical candle blended to support evening rituals and moments of unwinding calm. Opening with gentle chamomile and soft French lavender, the fragrance soothes the senses with an immediate feeling of ease. Delicate herbal notes unfold into a comforting heart, while a warm, grounding base of cedarwood and subtle amber creates quiet depth and relaxation.</div>
+          <a href="#desc-section" class="m-more-link">More information</a>
+        </div>
+        <!-- spec strip -->
+        <div class="m-spec">
+          <div class="m-sp"><div class="m-sp-l">Wax</div><div class="m-sp-v">Soy &amp; vegetable, Sweden</div></div>
+          <div class="m-sp"><div class="m-sp-l">Wick</div><div class="m-sp-v">French linen</div></div>
+          <div class="m-sp"><div class="m-sp-l">Vessel</div><div class="m-sp-v">Faceted alabaster</div></div>
+          <div class="m-sp"><div class="m-sp-l">Origin</div><div class="m-sp-v">Made in England</div></div>
+        </div>
+        <!-- scent -->
+        <div class="m-scent">
+          <div class="m-scent-l">Scent story</div>
+          <div class="m-notes">
+            <div class="m-note"><span class="m-nt">Top</span><span>Chamomile, French lavender — immediate ease</span></div>
+            <div class="m-note"><span class="m-nt">Heart</span><span>Soft herbal notes, delicate floral warmth</span></div>
+            <div class="m-note"><span class="m-nt">Base</span><span>Cedarwood, subtle amber — quiet depth</span></div>
+          </div>
+        </div>
+        <!-- ingredients -->
+        <div class="m-ingr">
+          <div class="m-ingr-l">Ingredients</div>
+          <p class="m-ingr p">Candle: Botanical wax blend (soy and vegetable), fragrance and essential oils including chamomile, lavender, sage, cypress, rose, sandalwood and frankincense, with notes of vanilla, opoponax, tonka and tolu. Sensory Oil: Caprylic/Capric Triglyceride, Parfum (as essential oils). Contains Linalool, Coumarin, Limonene, Geraniol, Hexyl cinnamal. Pillow Spray: Alcohol, Aqua (Water), Parfum (as essential oils). May produce an allergic reaction.</p>
+        </div>
+        <!-- sticky ATC -->
+        <div class="sticky-atc">
+          <div class="sticky-atc-info">
+            <div class="sticky-atc-name">Chamomile &amp; Lavender Sleep Ritual Set</div>
+            <div class="sticky-atc-price">£76.00 on subscription · £95.00 one-time</div>
+          </div>
+          <div class="sticky-atc-btn">Add to bag</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESKTOP MOCKUP -->
+    <div class="desk">
+      <div class="ml">Desktop — full page</div>
+      <div class="mf">
+
+        <!-- nav -->
+        <div class="d-nv">
+          <div class="d-nv-links"><span>Sleep</span><span>Focus</span><span>Calm</span><span>Movement</span><span>Skin</span><span>Gifts</span><span>Experiences</span></div>
+          <div class="d-nv-br">anatomē</div>
+          <div class="d-nv-ics"><div class="d-nv-ic"></div><div class="d-nv-ic"></div><div class="d-nv-ic"></div></div>
+        </div>
+
+        <!-- USP bar -->
+        <div class="d-usp">
+          <div class="d-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M7 10h6M10 7v6"/></svg>
+            <span class="d-usp-t">Reusable glass jars</span>
+          </div>
+          <div class="d-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M10 17s-6-3.5-6-8a6 6 0 1 1 12 0c0 4.5-6 8-6 8z"/><path d="M10 7v4"/></svg>
+            <span class="d-usp-t">Vegetable wax blend, Sweden</span>
+          </div>
+          <div class="d-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M3 6l7-3 7 3v8l-7 3-7-3V6z"/><path d="M10 3v14M3 6l7 4 7-4"/></svg>
+            <span class="d-usp-t">Made in England</span>
+          </div>
+          <div class="d-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M4 4h12l-1.5 9H5.5L4 4z"/><path d="M2 4h16"/><circle cx="8" cy="17" r="1"/><circle cx="13" cy="17" r="1"/></svg>
+            <span class="d-usp-t">Free delivery over £50</span>
+          </div>
+        </div>
+
+        <!-- breadcrumb -->
+        <div class="d-bc">Sleep / Gift Sets / <span>Chamomile &amp; Lavender Sleep Ritual Set</span></div>
+
+        <!-- ATF -->
+        <div class="d-atf">
+          <div class="d-gal-wrap">
+          <div class="d-gal">
+            <div class="d-thumbs">
+              <div class="d-th on"><img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=200" alt="" onerror="this.parentNode.innerHTML='<div class=d-th-pl>01</div>'"></div>
+              <div class="d-th"><div class="d-th-pl">02</div></div>
+              <div class="d-th"><div class="d-th-pl">03</div></div>
+              <div class="d-th"><div class="d-th-pl">04</div></div>
+            </div>
+            <div class="d-main">
+              <img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=900" alt="Chamomile Lavender Sleep Ritual Set" onerror="this.style.background='var(--ae-stone)'">
+            </div>
+          </div>
+          </div>
+          <div class="d-rp">
+            <!-- 1. Provenance + identity -->
+            <div class="d-br">anatomē / Sleep / Gift Sets</div>
+            <div>
+              <div class="d-ti">Chamomile &amp; Lavender<br>Sleep Ritual Set</div>
+              <div class="d-sub-t">Candle · Sensory Oil · Pillow Spray · 3-piece evening practice</div>
+            </div>
+
+            <!-- 2. Social proof -->
+            <div class="d-rv">
+              <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+              <strong style="font-size:13px">4.9</strong>
+              <span style="color:#7A7A70;font-size:12px">(87 reviews)</span>
+              <a href="#">Read all reviews</a>
+            </div>
+            <div class="d-dv"></div>
+
+            <!-- 3. Value stack — earns the price before showing it -->
+            <div class="d-wi">
+              <div class="d-wi-l">What's included</div>
+              <div class="d-wi-is">
+                <div class="d-wi-i"><span class="d-wi-d">—</span><span>Evening Blend Sleep Candle, Chamomile &amp; Lavender (200g · 40hr burn · alabaster vessel)</span></div>
+                <div class="d-wi-i"><span class="d-wi-d">—</span><span>Chamomile &amp; Lavender Sensory Point Oil, 30ml — 28 botanical extracts</span></div>
+                <div class="d-wi-i"><span class="d-wi-d">—</span><span>Chamomile &amp; Lavender Pillow Spray, 50ml</span></div>
+              </div>
+            </div>
+            <div class="d-dv"></div>
+
+            <!-- 4. Price, now justified by the value stack above -->
+            <div>
+              <div class="d-pr">£95.00</div>
+              <div class="d-klarna">Or 3 payments of <strong>£31.67</strong> with Klarna — no interest</div>
+            </div>
+
+            <!-- 5. Purchase mode — immediately before the action -->
+            <div class="d-sb">
+              <div class="d-sb-o on">
+                <div class="d-radio on"><div class="d-radio-dot"></div></div>
+                <span class="d-sb-lbl">Subscribe &amp; Save 20%</span>
+                <span class="d-sb-pr">£76.00 / order</span>
+                <span class="d-save-badge">−20%</span>
+              </div>
+              <div class="d-sb-o">
+                <div class="d-radio"></div>
+                <span class="d-sb-lbl">One-time purchase</span>
+                <span class="d-sb-pr">£95.00</span>
+              </div>
+            </div>
+
+            <!-- 6. Conversion action — 3 steps from price -->
+            <div class="d-atc-row">
+              <div class="d-atc">Add to bag</div>
+              <div class="d-wish">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+
+            <!-- 7. Trust signals -->
+            <div class="d-pay">
+              <span>Pay in 3 with Klarna</span><div class="d-pay-dot"></div>
+              <span>Free UK delivery over £50</span><div class="d-pay-dot"></div>
+              <span>Dispatch before 5pm</span>
+            </div>
+            <div class="d-dv"></div>
+
+            <!-- 8. Post-decision add-on — customer has committed, now enhance -->
+            <div class="d-gw">
+              <div class="d-gw-row">
+                <div class="d-gw-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <span class="d-gw-lbl">Add gift wrapping</span>
+                <span class="d-gw-pr">+ £2.50</span>
+              </div>
+              <div class="d-gw-note">Tissue paper, ribbon, and personal message option at checkout.</div>
+            </div>
+
+            <!-- 9. Subscription reassurance -->
+            <div class="d-sub-note">Pause or cancel after your second order. First in glass — refill packs from month 2. Aromachology builds with consistency.</div>
+
+            <!-- 10. Description — truncated, further reading below fold -->
+            <div>
+              <div class="d-desc">A calming botanical candle blended to support evening rituals and moments of unwinding calm. Opening with gentle chamomile and soft French lavender, the fragrance soothes the senses with an immediate feeling of ease. Delicate herbal notes unfold into a comforting heart, while a warm, grounding base of cedarwood and subtle amber creates a sense of quiet depth and relaxation. Hand-poured using a fine soy and vegetable wax blend, finished with a French linen wick for a clean, even burn.</div>
+              <a href="#desc-section" class="d-more-link">More information</a>
+            </div>
+
+            <!-- 11. Spec grid — reference, not a conversion driver -->
+            <div class="d-ben">
+              <div class="d-bi"><div class="d-bi-l">Wax</div>Soy &amp; vegetable, Sweden</div>
+              <div class="d-bi"><div class="d-bi-l">Wick</div>French linen, clean burn</div>
+              <div class="d-bi"><div class="d-bi-l">Origin</div>Made in England</div>
+              <div class="d-bi"><div class="d-bi-l">Vessel</div>Faceted alabaster, reusable</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- description + ingredients -->
+        <div class="bf" id="desc-section">
+          <div class="band"><span class="band-l">Description &amp; Ingredients</span></div>
+          <div class="d-copy-grid">
+            <div class="d-copy-col">
+              <div class="d-copy-h">About this set</div>
+              <div class="d-copy-body">A calming botanical candle blended to support evening rituals and moments of unwinding calm. Opening with gentle chamomile and soft French lavender, the fragrance soothes the senses with an immediate feeling of ease. Delicate herbal notes unfold into a comforting heart, while a warm, grounding base of cedarwood and subtle amber creates a sense of quiet depth and relaxation.<br><br>Hand-poured using a fine soy and vegetable wax blend from Sweden, and finished with a French linen wick for a clean, even burn, it is designed to create a refined, tranquil atmosphere in the home. Housed in a faceted alabaster vessel with a lid, it signals a calm, serene scent environment — ideal for evening use while naturally preparing the body for rest.<br><br>To complete the ritual, the Chamomile &amp; Lavender Sleep Duo — a pillow spray and sensory point oil formulated with 28 botanical extracts — relaxes the mind and gently guides the body into sleep.</div>
+            </div>
+            <div class="d-copy-col">
+              <div class="d-copy-h">Ingredients</div>
+              <div class="d-ingr-list">Candle: Botanical wax blend (soy and vegetable), fragrance and essential oils including chamomile, lavender, sage, cypress, ginger root, rose, sandalwood and frankincense, with notes of vanilla, opoponax, tonka and tolu.<br><br>Sensory Oil: Caprylic/Capric Triglyceride, Parfum (as essential oils). Contains: Linalool, Coumarin, Limonene, Geraniol, Hexyl cinnamal.<br><br>Pillow Spray: Alcohol, Aqua (Water), Parfum (as essential oils). Contains: Linalool, Coumarin, Limonene, Geraniol, Hexyl cinnamal.</div>
+              <div class="d-ingr-note">May produce an allergic reaction. Always test on a small area of skin before full application.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- craftsmanship -->
+        <div class="bf">
+          <div class="band"><span class="band-l">Craftsmanship</span></div>
+          <div class="d-craft">
+            <div class="d-craft-img">
+              <img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=700" alt="Craftsmanship" style="object-position:20% center" onerror="this.style.background='var(--ae-stone)'">
+            </div>
+            <div class="d-craft-txt">
+              <div class="d-craft-ey">Made in England</div>
+              <div class="d-craft-h">Every detail considered,<br>every material chosen.</div>
+              <div class="d-craft-p">Each anatomē candle is hand-poured in small batches in England, using a fine soy and vegetable wax blend sourced from Sweden — chosen for its clean burn and the clarity it brings to every botanical note. The French linen wick is trimmed by hand; the faceted alabaster vessel is designed not to be discarded, but kept.</div>
+              <div class="d-craft-usps">
+                <div class="d-craft-usp"><span class="d-craft-usp-dash">—</span><span>Reusable glass vessels — refill with the subscription service from month two</span></div>
+                <div class="d-craft-usp"><span class="d-craft-usp-dash">—</span><span>Vegetable wax blend: no paraffin, no synthetic toxins, cleaner burn</span></div>
+                <div class="d-craft-usp"><span class="d-craft-usp-dash">—</span><span>Hand-poured in England in small batches, French linen wick</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- scent story -->
+        <div class="bf">
+          <div class="band"><span class="band-l">Scent Story</span></div>
+          <div class="d-scent-g">
+            <div class="d-sc"><div class="d-sc-l">Opening</div><div class="d-sc-v">Gentle chamomile, soft French lavender — immediate ease and stillness</div></div>
+            <div class="d-sc"><div class="d-sc-l">Heart</div><div class="d-sc-v">Delicate herbal notes unfolding into comforting warmth</div></div>
+            <div class="d-sc"><div class="d-sc-l">Base</div><div class="d-sc-v">Cedarwood, subtle amber — grounded, quiet depth</div></div>
+            <div class="d-sc" style="border-right:none"><div class="d-sc-l">Aromachology effect</div><div class="d-sc-v">Eases tension, prepares the body for rest, builds scent-sleep association over time</div></div>
+          </div>
+        </div>
+
+        <!-- how to use with video -->
+        <div class="bf">
+          <div class="band"><span class="band-l">How to Use</span></div>
+          <div class="d-how-wrap">
+            <div class="d-how-video">
+              <img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=700" alt="" style="object-position:center 60%" onerror="this.style.background='#1C1C1A'">
+              <div class="d-play">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+              <span class="d-play-lbl">Watch the ritual · 1:42</span>
+            </div>
+            <div class="d-how-steps">
+              <div class="d-hw"><div class="d-hw-n">Step 01</div><div class="d-hw-t">Light the candle</div><div class="d-hw-p">30 minutes before sleep. Trim the wick to ¼&quot; before each use. Allow the wax to pool evenly across the surface.</div></div>
+              <div class="d-hw"><div class="d-hw-n">Step 02</div><div class="d-hw-t">Apply the sensory oil</div><div class="d-hw-p">1–2 drops to sensory points — ears, back of neck, chest, wrists, soles of feet. Breathe slowly and intentionally.</div></div>
+              <div class="d-hw"><div class="d-hw-n">Step 03</div><div class="d-hw-t">Mist the pillow spray</div><div class="d-hw-p">A light mist across pillow and bedding. With regular use, the body learns to associate the scent with sleep.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- complete the ritual -->
+        <div class="bf">
+          <div class="band"><span class="band-l">Complete the Ritual</span><span class="band-a">Shop all sleep</span></div>
+          <div class="d-ritual">
+            <div class="d-ri">
+              <div class="d-ri-lbl">Deepen the practice</div>
+              <div class="d-ri-img"><img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=400" alt="" style="object-position:center 60%" onerror="this.style.background='var(--ae-stone)'"></div>
+              <div class="d-ri-n">Deep Sleep Supplement</div>
+              <div class="d-ri-p">From £28.00</div>
+            </div>
+            <div class="d-ri">
+              <div class="d-ri-lbl">For the bath</div>
+              <div class="d-ri-img"><img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=400" alt="" style="object-position:30% center" onerror="this.style.background='var(--ae-stone)'"></div>
+              <div class="d-ri-n">Chamomile Bath Salts</div>
+              <div class="d-ri-p">£30.00</div>
+            </div>
+            <div class="d-ri" style="border-right:none">
+              <div class="d-ri-lbl">Attend an experience</div>
+              <div class="d-ri-img"><img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=400" alt="" style="object-position:70% center" onerror="this.style.background='var(--ae-stone)'"></div>
+              <div class="d-ri-n">Evening Ritual Workshop</div>
+              <div class="d-ri-p">From £25.00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- reviews -->
+        <div class="bf">
+          <div class="band">
+            <div style="display:flex;align-items:center;gap:12px">
+              <span class="band-l">Customer Reviews</span>
+              <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+              <span style="font-size:12px;color:#7A7A70">4.9 · 87 reviews</span>
+            </div>
+            <span class="band-a">Write a review</span>
+          </div>
+          <div class="d-revs">
+            <div class="d-rev">
+              <div class="d-rev-hd"><div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><span class="d-rev-nm">Sarah M.</span><span class="d-rev-dt">March 2025</span></div>
+              <div class="d-rev-body">"The most beautiful thing to give or receive. The candle transforms an ordinary evening completely — I've slept better since building the ritual around it."</div>
+            </div>
+            <div class="d-rev">
+              <div class="d-rev-hd"><div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><span class="d-rev-nm">Tom H.</span><span class="d-rev-dt">February 2025</span></div>
+              <div class="d-rev-body">"Bought for my partner — she hasn't stopped using it. The set feels genuinely luxurious without being frivolous. The science behind it actually works."</div>
+            </div>
+            <div class="d-rev">
+              <div class="d-rev-hd"><div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><span class="d-rev-nm">Claire J.</span><span class="d-rev-dt">January 2025</span></div>
+              <div class="d-rev-body">"The packaging is impeccable, the candle burns perfectly, and the oil is now the last thing I do every night. Genuinely transformed my evenings."</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /mf -->
+    </div><!-- /desk -->
+  </div><!-- /sec pdp -->
+
+  <!-- CX -->
+  <div class="sec">
+    <p class="sl">Section 03</p>
+    <h2>Customer Experience</h2>
+    <div class="ir"><div class="il"><span class="il-t">Issue</span><span class="pill ph">High</span></div><div class="ib"><h4>Returns policy incongruent with premium brand promise</h4><p>Customers paying £4 to return an £8.50 product. Each Trustpilot review citing this is live marketing against the brand to every prospective buyer who searches "anatome reviews."</p><div class="rt">✦ Free returns on orders over £40. Self-service returns portal. Respond to all outstanding Trustpilot reviews with a public resolution.</div></div></div>
+    <div class="ir"><div class="il"><span class="il-t">Issue</span><span class="pill pm">Medium</span></div><div class="ib"><h4>Email cadence damaging deliverability and brand trust</h4><p>Daily send cadence and non-functional unsubscribe path have generated public complaints. A daily email barrage is a deep contradiction for a brand whose positioning is centred on calm and balance.</p><div class="rt">✦ Preference centre ("weekly / monthly / offers only"). Maximum 3x/week. One-click unsubscribe, functional within 10 days.</div></div></div>
+  </div>
+
+  <!-- RETENTION -->
+  <div class="sec">
+    <p class="sl">Section 04</p>
+    <h2>Retention &amp; Loyalty</h2>
+    <div class="ir"><div class="il"><span class="il-t">Issue</span><span class="pill pm">Medium</span></div><div class="ib"><h4>No loyalty programme for a repeat-purchase category</h4><p>Wellness is inherently repeat-purchase. A loyalty programme extends the subscription mechanic to non-subscribers, incentivises reviews, and gives customers a reason to create accounts.</p><div class="rt">✦ Smile.io or Yotpo Loyalty. Points on purchases, reviews, and referrals. Launch with a founding-member double-points window.</div></div></div>
+    <div class="ir"><div class="il"><span class="il-t">Issue</span><span class="pill pm">Medium</span></div><div class="ib"><h4>Workshops are a buried brand asset</h4><p>Breathwork workshops, scent consultations, and practitioner collaborations build loyalty, justify premium pricing, and create shareable moments. Currently visible only at the bottom of the homepage.</p><div class="rt">✦ Dedicated Experiences page. "Experiences" in primary nav. PDP cross-sell: "Pair your sleep ritual with our Evening Workshop."</div></div></div>
+  </div>
+
+  <!-- QUICK WINS -->
+  <div class="sec">
+    <p class="sl">Implementation</p>
+    <h2>Quick wins — 30 days</h2>
+    <ul class="qwl">
+      <li class="qwi"><div class="qwicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="qwtx"><strong>Install a reviews platform and launch post-purchase email flow</strong><span>Target top 20 SKUs. Okendo integrates directly with Shopify and Klaviyo. Even 10 reviews per product moves conversion visibly.</span></div></li>
+      <li class="qwi"><div class="qwicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="qwtx"><strong>Rewrite subscription copy across all PDPs</strong><span>Replace "minimum commitment of 2 months" with "cancel after your second order." Copy change only — no dev time required.</span></div></li>
+      <li class="qwi"><div class="qwicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="qwtx"><strong>Add Klarna on-site messaging to PDPs</strong><span>At £34–£210, the per-payment breakdown meaningfully lowers the purchase barrier — especially for gift sets.</span></div></li>
+      <li class="qwi"><div class="qwicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="qwtx"><strong>Add free shipping threshold to announcement bar</strong><span>Single change with consistent AOV lift. Cart-drawer progress bar: "£X away from free delivery."</span></div></li>
+      <li class="qwi"><div class="qwicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="qwtx"><strong>Audit email cadence and fix unsubscribe path</strong><span>Spam complaints are visible on Trustpilot to every prospective buyer. Max 3x/week. Functional one-click unsubscribe.</span></div></li>
+      <li class="qwi"><div class="qwicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="qwtx"><strong>Claim Trustpilot and respond to negative reviews</strong><span>Public responses with resolutions directly mitigate trust damage for every future visitor who reads them.</span></div></li>
+    </ul>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="sec">
+    <p class="sl">Plan</p>
+    <h2>90-day roadmap</h2>
+    <div class="rmg">
+      <div class="rmc"><div class="rmh"><h4>Phase 1 · Weeks 1–4</h4><p>Trust &amp; quick conversion</p></div><ul class="rml"><li>Reviews platform + post-purchase flow</li><li>Subscription copy rewrite on all PDPs</li><li>Klarna on-site messaging enabled</li><li>Free shipping bar + cart progress</li><li>Email cadence audit + unsubscribe fix</li><li>Trustpilot claimed + responses</li></ul></div>
+      <div class="rmc"><div class="rmh"><h4>Phase 2 · Weeks 5–8</h4><p>Navigation &amp; discovery</p></div><ul class="rml"><li>Nav restructure to concern-led IA</li><li>"What's included" panel on gift PDPs</li><li>Description + ingredients on all PDPs</li><li>USP strip + craftsmanship section</li><li>Experiences page + primary nav</li><li>Returns policy update</li></ul></div>
+      <div class="rmc"><div class="rmh"><h4>Phase 3 · Weeks 9–12</h4><p>Retention &amp; scale</p></div><ul class="rml"><li>Loyalty programme (Smile.io) launch</li><li>Referral mechanic live</li><li>Email preference centre</li><li>US/EU landing page test</li><li>Subscription-default A/B test</li><li>How to Use video produced + live</li></ul></div>
+    </div>
+  </div>
+
+  <!-- HELP -->
+  <div class="sec" style="background:var(--wh);margin:0 calc(-1*var(--px));padding:56px var(--px)">
+    <p class="sl">How Northbound Can Help</p>
+    <h2>The work behind the audit</h2>
+    <p style="font-size:14px;color:var(--mu);max-width:560px">Everything in this audit is actionable. Northbound brings the Shopify development, CRO strategy, and SEO expertise to execute it — as an extension of your team, not a project-based agency.</p>
+    <div class="hg">
+      <div class="hc"><div class="hct">Development</div><h3>Shopify build &amp; CRO dev</h3><p>PDP redesign, sticky ATC, subscription toggle, cart progress bar, Klarna, reviews platform, nav restructure, craftsmanship sections. Clean theme-native code.</p></div>
+      <div class="hc"><div class="hct">CRO &amp; Strategy</div><h3>Conversion testing</h3><p>A/B testing for subscription default variant, homepage hero, returns policy. Monthly CRO sprint with prioritised test backlog and clear revenue attribution.</p></div>
+      <div class="hc"><div class="hct">SEO</div><h3>Search visibility</h3><p>Concern-led collection page optimisation, structured data for reviews and products, meta rewrites, and editorial content strategy for aromachology search terms.</p></div>
+    </div>
+    <div class="hcb">
+      <div><div class="lbl">Working with Northbound</div><div class="desc">Monthly retainer — Development, CRO, and SEO available together or separately. Happy to start with a single sprint.</div></div>
+      <div class="em">hello@northboundcommerce.co.uk</div>
+    </div>
+  </div>
+
+</div><!-- /pw -->
+
+<footer>
+  <div class="ft-l">
+    <div class="ft-log">
+      <div class="ft-nb-box"><span>NB</span></div>
+      <span class="ft-wm">Northbound Commerce</span>
+    </div>
+    <p class="ft-tag">CRO, UX &amp; SEO for premium and luxury Shopify brands. Based in London.</p>
+  </div>
+  <div class="ft-r">
+    <span class="ft-ct">hello@northboundcommerce.co.uk</span>
+    <span class="ft-ct">northboundcommerce.co.uk</span>
+    <span class="ft-leg">Prepared for anatomē · April 2025 · Confidential</span>
+  </div>
+</footer>
+
+</body>
+</html>
