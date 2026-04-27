@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -166,14 +167,15 @@ p{margin-bottom:12px;color:var(--ink)}p:last-child{margin-bottom:0}
 .m-rv-snp{font-size:10.5px;color:var(--ae-mu);font-style:italic;border-left:1px solid #C8C4BC;padding-left:7px;margin-left:2px}
 
 /* USP strip */
-.m-usp{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #EAE6E0}
-.m-usp-i{padding:10px 8px;text-align:center;border-right:1px solid #EAE6E0;display:flex;flex-direction:column;align-items:center;gap:3px}
+.m-usp{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #000;background:#1C1C1A}
+.m-usp-i{padding:10px 8px;text-align:center;border-right:1px solid #333;display:flex;flex-direction:column;align-items:center;gap:3px}
 .m-usp-i:last-child{border-right:none}
-.m-usp-l{font-family:"DM Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--ae-mu);line-height:1.3;text-align:center}
+.m-usp-i svg{stroke:rgba(255,255,255,.5)!important}
+.m-usp-l{font-family:"DM Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.65);line-height:1.3;text-align:center}
 
-.m-co{padding:16px}
-.m-br-lbl{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--ae-mu);margin-bottom:6px}
-.m-ti{font-family:"Instrument Serif",serif;font-size:22px;line-height:1.2;color:var(--ae-ink);margin-bottom:3px}
+.m-ti-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:3px}
+.m-ti{font-family:"Instrument Serif",serif;font-size:19px;line-height:1.2;color:var(--ae-ink);flex:1;min-width:0}
+.m-pr-inline{font-size:19px;font-weight:600;color:var(--ae-ink);letter-spacing:-.02em;white-space:nowrap;flex-shrink:0}
 .m-sub{font-size:12px;color:var(--ae-mu);margin-bottom:14px;line-height:1.45}
 
 /* product description */
@@ -187,7 +189,9 @@ p{margin-bottom:12px;color:var(--ink)}p:last-child{margin-bottom:0}
 .m-wi-item{display:flex;gap:10px;align-items:baseline;font-size:12px;color:var(--ae-ink)}
 .m-wi-dash{font-family:"DM Mono",monospace;font-size:10px;color:var(--ae-mu);flex-shrink:0}
 
-.m-pr{font-size:22px;font-weight:600;color:var(--ae-ink);margin-bottom:4px;letter-spacing:-.02em}
+.m-co{padding:16px}
+.m-br-lbl{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--ae-mu);margin-bottom:6px}
+.m-pr{display:none} /* price now inline with title via .m-pr-inline */
 .m-klarna{font-size:11.5px;color:var(--ae-mu);margin-bottom:14px}
 .m-klarna strong{color:var(--ae-ink);font-weight:500}
 
@@ -253,22 +257,23 @@ p{margin-bottom:12px;color:var(--ink)}p:last-child{margin-bottom:0}
 .d-bc span{color:#3A3A38}
 
 /* USP bar desktop */
-.d-usp{display:flex;border-bottom:1px solid #EAE6E0;background:var(--ae-stone)}
-.d-usp-i{flex:1;padding:11px 20px;border-right:1px solid #EAE6E0;display:flex;align-items:center;gap:8px}
+.d-usp{display:flex;border-bottom:1px solid #000;background:#1C1C1A}
+.d-usp-i{flex:1;padding:11px 20px;border-right:1px solid #333;display:flex;align-items:center;gap:8px}
 .d-usp-i:last-child{border-right:none}
-.d-usp-icon{width:16px;height:16px;flex-shrink:0}
-.d-usp-t{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ae-mu)}
+.d-usp-icon{width:16px;height:16px;flex-shrink:0;stroke:rgba(255,255,255,.5)!important}
+.d-usp-t{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65)}
 
 /* ATF */
 .d-atf{display:grid;grid-template-columns:52% 48%;min-height:260px}
 .d-gal-wrap{background:var(--ae-stone)} /* stretches full column height — stone fills below image */
 .d-gal{padding:10px 10px 10px 8px;display:flex;gap:8px;position:sticky;top:0}
+.d-gal{padding:10px 10px 10px 8px;display:flex;gap:8px;position:sticky;top:24px}
 .d-thumbs{display:flex;flex-direction:column;gap:7px;flex-shrink:0}
 .d-th{width:44px;height:52px;background:#DDD9D1;border:1px solid var(--ae-bd);overflow:hidden;cursor:pointer}
 .d-th img,.d-th-pl{width:100%;height:100%;object-fit:cover}
 .d-th-pl{display:flex;align-items:center;justify-content:center;font-family:"DM Mono",monospace;font-size:9px;color:#9A9690;background:#E0DBD3}
 .d-th.on{border-color:var(--ae-ink);border-width:1.5px}
-.d-main{flex:1;overflow:hidden;background:var(--ae-stone);position:relative;height:240px}
+.d-main{flex:1;overflow:hidden;background:var(--ae-stone);position:relative;height:420px;transition:height .15s ease}
 .d-main img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
 
 /* right panel */
@@ -329,7 +334,7 @@ p{margin-bottom:12px;color:var(--ink)}p:last-child{margin-bottom:0}
 
 /* BELOW FOLD */
 .bf{border-top:1px solid #EAE6E0}
-.band{padding:14px 28px;border-bottom:1px solid #EAE6E0;display:flex;justify-content:space-between;align-items:center;background:var(--ae-wh)}
+.band{padding:14px 28px;border-bottom:1px solid #d8d4cc;display:flex;justify-content:space-between;align-items:center;background:#e8e3d8}
 .band-l{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ae-mu)}
 .band-a{font-size:12px;color:var(--ae-ink);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
 
@@ -344,7 +349,7 @@ p{margin-bottom:12px;color:var(--ink)}p:last-child{margin-bottom:0}
 
 /* craftsmanship */
 .d-craft{display:grid;grid-template-columns:1fr 1fr}
-.d-craft-img{background:var(--ae-stone);overflow:hidden;min-height:280px}
+.d-craft-img{background:var(--ae-stone);overflow:hidden;min-height:260px;order:2}
 .d-craft-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
 .d-craft-txt{padding:36px 36px;display:flex;flex-direction:column;justify-content:center;gap:16px;background:var(--ae-wh)}
 .d-craft-ey{font-family:"DM Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--ae-mu)}
@@ -363,7 +368,7 @@ p{margin-bottom:12px;color:var(--ink)}p:last-child{margin-bottom:0}
 
 /* how to use with video */
 .d-how-wrap{display:grid;grid-template-columns:1fr 1fr}
-.d-how-video{background:#1C1C1A;position:relative;overflow:hidden;min-height:260px;display:flex;align-items:center;justify-content:center}
+.d-how-video{background:#1C1C1A;position:relative;overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center}
 .d-how-video img{width:100%;height:100%;object-fit:cover;opacity:.55;position:absolute;inset:0}
 .d-play{position:relative;z-index:2;width:52px;height:52px;border:1.5px solid rgba(255,255,255,.7);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .d-play svg{width:18px;height:18px;fill:rgba(255,255,255,.9);margin-left:3px}
@@ -393,6 +398,14 @@ p{margin-bottom:12px;color:var(--ink)}p:last-child{margin-bottom:0}
 .d-rev-nm{font-size:12px;font-weight:600;color:var(--ae-ink)}
 .d-rev-dt{font-size:11px;color:var(--ae-mu)}
 .d-rev-body{font-size:12.5px;color:var(--ae-mu);line-height:1.65;font-style:italic}
+
+/* desktop sticky ATC */
+.d-satc{position:sticky;bottom:0;background:var(--ae-wh);border-top:1px solid var(--ae-bd);padding:12px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:50;box-shadow:0 -4px 24px rgba(0,0,0,.08)}
+.d-satc-left{display:flex;flex-direction:column;gap:2px}
+.d-satc-name{font-size:13px;font-weight:600;color:var(--ae-ink)}
+.d-satc-price{font-size:12px;color:var(--ae-mu)}
+.d-satc-price strong{color:var(--ae-ink);font-weight:500}
+.d-satc-btn{background:var(--ae-ink);color:#fff;padding:11px 28px;font-size:13px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;white-space:nowrap;cursor:pointer;flex-shrink:0}
 
 /* FOOTER */
 footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -595,10 +608,17 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
         <div class="m-co">
           <!-- 1. Provenance + identity -->
           <div class="m-br-lbl">anatomē · Sleep · Gift Set</div>
-          <div class="m-ti">Chamomile &amp; Lavender<br>Sleep Ritual Set</div>
+          <div class="m-ti-row">
+            <div class="m-ti">Chamomile &amp; Lavender<br>Sleep Ritual Set</div>
+            <div class="m-pr-inline">£95.00</div>
+          </div>
           <div class="m-sub">Candle · Sensory Oil · Pillow Spray · 3-piece evening practice</div>
 
-          <!-- 2. Value stack — earns the price -->
+          <!-- 3. Price first -->
+          <div class="m-pr">£95.00</div>
+          <div class="m-klarna">Or 3 payments of <strong>£31.67</strong> with Klarna — no interest</div>
+
+          <!-- 4. What's included — directly beneath price -->
           <div class="m-wi">
             <div class="m-wi-l">What's included</div>
             <div class="m-wi-items">
@@ -608,11 +628,7 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
             </div>
           </div>
 
-          <!-- 3. Price, now justified by value stack -->
-          <div class="m-pr">£95.00</div>
-          <div class="m-klarna">Or 3 payments of <strong>£31.67</strong> with Klarna — no interest</div>
-
-          <!-- 4. Purchase mode — immediately before sticky ATC -->
+          <!-- 5. Purchase mode -->
           <div class="m-sb">
             <div class="m-sb-o on">
               <div class="m-radio filled"><div class="m-radio-d"></div></div>
@@ -686,27 +702,7 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
           <div class="d-nv-ics"><div class="d-nv-ic"></div><div class="d-nv-ic"></div><div class="d-nv-ic"></div></div>
         </div>
 
-        <!-- USP bar -->
-        <div class="d-usp">
-          <div class="d-usp-i">
-            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M7 10h6M10 7v6"/></svg>
-            <span class="d-usp-t">Reusable glass jars</span>
-          </div>
-          <div class="d-usp-i">
-            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M10 17s-6-3.5-6-8a6 6 0 1 1 12 0c0 4.5-6 8-6 8z"/><path d="M10 7v4"/></svg>
-            <span class="d-usp-t">Vegetable wax blend, Sweden</span>
-          </div>
-          <div class="d-usp-i">
-            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M3 6l7-3 7 3v8l-7 3-7-3V6z"/><path d="M10 3v14M3 6l7 4 7-4"/></svg>
-            <span class="d-usp-t">Made in England</span>
-          </div>
-          <div class="d-usp-i">
-            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M4 4h12l-1.5 9H5.5L4 4z"/><path d="M2 4h16"/><circle cx="8" cy="17" r="1"/><circle cx="13" cy="17" r="1"/></svg>
-            <span class="d-usp-t">Free delivery over £50</span>
-          </div>
-        </div>
-
-        <!-- breadcrumb -->
+        <!-- breadcrumb — now directly below nav -->
         <div class="d-bc">Sleep / Gift Sets / <span>Chamomile &amp; Lavender Sleep Ritual Set</span></div>
 
         <!-- ATF -->
@@ -741,7 +737,13 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
             </div>
             <div class="d-dv"></div>
 
-            <!-- 3. Value stack — earns the price before showing it -->
+            <!-- 3. Price first — then value stack immediately below -->
+            <div>
+              <div class="d-pr">£95.00</div>
+              <div class="d-klarna">Or 3 payments of <strong>£31.67</strong> with Klarna — no interest</div>
+            </div>
+
+            <!-- 4. What's included — directly beneath price -->
             <div class="d-wi">
               <div class="d-wi-l">What's included</div>
               <div class="d-wi-is">
@@ -751,12 +753,6 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
               </div>
             </div>
             <div class="d-dv"></div>
-
-            <!-- 4. Price, now justified by the value stack above -->
-            <div>
-              <div class="d-pr">£95.00</div>
-              <div class="d-klarna">Or 3 payments of <strong>£31.67</strong> with Klarna — no interest</div>
-            </div>
 
             <!-- 5. Purchase mode — immediately before the action -->
             <div class="d-sb">
@@ -818,6 +814,26 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
           </div>
         </div>
 
+        <!-- USP bar — above description + ingredients -->
+        <div class="d-usp">
+          <div class="d-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M7 10h6M10 7v6"/></svg>
+            <span class="d-usp-t">Reusable glass jars</span>
+          </div>
+          <div class="d-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M10 17s-6-3.5-6-8a6 6 0 1 1 12 0c0 4.5-6 8-6 8z"/><path d="M10 7v4"/></svg>
+            <span class="d-usp-t">Vegetable wax blend, Sweden</span>
+          </div>
+          <div class="d-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M3 6l7-3 7 3v8l-7 3-7-3V6z"/><path d="M10 3v14M3 6l7 4 7-4"/></svg>
+            <span class="d-usp-t">Made in England</span>
+          </div>
+          <div class="d-usp-i">
+            <svg class="d-usp-icon" viewBox="0 0 20 20" fill="none" stroke="#7A7A70" stroke-width="1.4" stroke-linecap="round"><path d="M4 4h12l-1.5 9H5.5L4 4z"/><path d="M2 4h16"/><circle cx="8" cy="17" r="1"/><circle cx="13" cy="17" r="1"/></svg>
+            <span class="d-usp-t">Free delivery over £50</span>
+          </div>
+        </div>
+
         <!-- description + ingredients -->
         <div class="bf" id="desc-section">
           <div class="band"><span class="band-l">Description &amp; Ingredients</span></div>
@@ -830,26 +846,6 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
               <div class="d-copy-h">Ingredients</div>
               <div class="d-ingr-list">Candle: Botanical wax blend (soy and vegetable), fragrance and essential oils including chamomile, lavender, sage, cypress, ginger root, rose, sandalwood and frankincense, with notes of vanilla, opoponax, tonka and tolu.<br><br>Sensory Oil: Caprylic/Capric Triglyceride, Parfum (as essential oils). Contains: Linalool, Coumarin, Limonene, Geraniol, Hexyl cinnamal.<br><br>Pillow Spray: Alcohol, Aqua (Water), Parfum (as essential oils). Contains: Linalool, Coumarin, Limonene, Geraniol, Hexyl cinnamal.</div>
               <div class="d-ingr-note">May produce an allergic reaction. Always test on a small area of skin before full application.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- craftsmanship -->
-        <div class="bf">
-          <div class="band"><span class="band-l">Craftsmanship</span></div>
-          <div class="d-craft">
-            <div class="d-craft-img">
-              <img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=700" alt="Craftsmanship" style="object-position:20% center" onerror="this.style.background='var(--ae-stone)'">
-            </div>
-            <div class="d-craft-txt">
-              <div class="d-craft-ey">Made in England</div>
-              <div class="d-craft-h">Every detail considered,<br>every material chosen.</div>
-              <div class="d-craft-p">Each anatomē candle is hand-poured in small batches in England, using a fine soy and vegetable wax blend sourced from Sweden — chosen for its clean burn and the clarity it brings to every botanical note. The French linen wick is trimmed by hand; the faceted alabaster vessel is designed not to be discarded, but kept.</div>
-              <div class="d-craft-usps">
-                <div class="d-craft-usp"><span class="d-craft-usp-dash">—</span><span>Reusable glass vessels — refill with the subscription service from month two</span></div>
-                <div class="d-craft-usp"><span class="d-craft-usp-dash">—</span><span>Vegetable wax blend: no paraffin, no synthetic toxins, cleaner burn</span></div>
-                <div class="d-craft-usp"><span class="d-craft-usp-dash">—</span><span>Hand-poured in England in small batches, French linen wick</span></div>
-              </div>
             </div>
           </div>
         </div>
@@ -880,6 +876,26 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
               <div class="d-hw"><div class="d-hw-n">Step 01</div><div class="d-hw-t">Light the candle</div><div class="d-hw-p">30 minutes before sleep. Trim the wick to ¼&quot; before each use. Allow the wax to pool evenly across the surface.</div></div>
               <div class="d-hw"><div class="d-hw-n">Step 02</div><div class="d-hw-t">Apply the sensory oil</div><div class="d-hw-p">1–2 drops to sensory points — ears, back of neck, chest, wrists, soles of feet. Breathe slowly and intentionally.</div></div>
               <div class="d-hw"><div class="d-hw-n">Step 03</div><div class="d-hw-t">Mist the pillow spray</div><div class="d-hw-p">A light mist across pillow and bedding. With regular use, the body learns to associate the scent with sleep.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- craftsmanship — moved after How to Use -->
+        <div class="bf">
+          <div class="band"><span class="band-l">Craftsmanship</span></div>
+          <div class="d-craft">
+            <div class="d-craft-img">
+              <img src="https://www.anatome.co/cdn/shop/articles/apothecary-notes-oceanic-ingredients-6502369.png?v=1753452554&width=700" alt="Craftsmanship" style="object-position:20% center" onerror="this.style.background='var(--ae-stone)'">
+            </div>
+            <div class="d-craft-txt">
+              <div class="d-craft-ey">Made in England</div>
+              <div class="d-craft-h">Every detail considered,<br>every material chosen.</div>
+              <div class="d-craft-p">Each anatomē candle is hand-poured in small batches in England, using a fine soy and vegetable wax blend sourced from Sweden — chosen for its clean burn and the clarity it brings to every botanical note. The French linen wick is trimmed by hand; the faceted alabaster vessel is designed not to be discarded, but kept.</div>
+              <div class="d-craft-usps">
+                <div class="d-craft-usp"><span class="d-craft-usp-dash">—</span><span>Reusable glass vessels — refill with the subscription service from month two</span></div>
+                <div class="d-craft-usp"><span class="d-craft-usp-dash">—</span><span>Vegetable wax blend: no paraffin, no synthetic toxins, cleaner burn</span></div>
+                <div class="d-craft-usp"><span class="d-craft-usp-dash">—</span><span>Hand-poured in England in small batches, French linen wick</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -933,6 +949,15 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
               <div class="d-rev-body">"The packaging is impeccable, the candle burns perfectly, and the oil is now the last thing I do every night. Genuinely transformed my evenings."</div>
             </div>
           </div>
+        </div>
+
+        <!-- desktop sticky ATC -->
+        <div class="d-satc">
+          <div class="d-satc-left">
+            <div class="d-satc-name">Chamomile &amp; Lavender Sleep Ritual Set</div>
+            <div class="d-satc-price">£76.00 on subscription &nbsp;·&nbsp; <strong>£95.00</strong> one-time</div>
+          </div>
+          <div class="d-satc-btn">Add to bag</div>
         </div>
 
       </div><!-- /mf -->
@@ -1013,5 +1038,23 @@ footer{background:#0F1A0B;padding:44px var(--px);display:flex;align-items:flex-s
   </div>
 </footer>
 
+<script>
+function fitGallery() {
+  const pay  = document.querySelector('.d-pay');
+  const main = document.querySelector('.d-main');
+  const gal  = document.querySelector('.d-gal');
+  if (!pay || !main || !gal) return;
+  // measure distance from top of .d-gal to bottom of .d-pay
+  const galTop  = gal.getBoundingClientRect().top + window.scrollY;
+  const payBot  = pay.getBoundingClientRect().bottom + window.scrollY;
+  const h = payBot - galTop - 20; // 20px = gal top+bottom padding
+  if (h > 100) main.style.height = h + 'px';
+}
+// run after fonts + images have had a chance to settle
+window.addEventListener('load', fitGallery);
+window.addEventListener('resize', fitGallery);
+// also run on next frame in case load fires before layout is complete
+requestAnimationFrame(() => setTimeout(fitGallery, 100));
+</script>
 </body>
 </html>
