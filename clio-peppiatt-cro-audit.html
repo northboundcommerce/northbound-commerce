@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clio Peppiatt — CRO & UX Audit · Northbound Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-d: #F0EBE1;
+    --green: #3B6D11;
+    --green-mid: #4E8A1A;
+    --ink: #0F1A0A;
+    --ink-soft: #2C3A22;
+    --muted: #A09888;
+    --border: #D8D0C2;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+    /* Premium subtle tones for callout modules */
+    --stone: #EDEAE3C4;
+    --stone-d: #E4E0D8;
+    --stone-border: #C8C4BC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── STICKY NAV ─────────────────────────────── */
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--ink); color: var(--cream);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 52px; gap: 32px;
+  }
+  .sticky-nav__logo { flex-shrink: 0; display: flex; align-items: center; }
+  .sticky-nav__logo svg { display: block; }
+  .sticky-nav__links {
+    display: flex; gap: 28px; list-style: none;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .sticky-nav__links a { color: rgba(250,247,242,0.5); text-decoration: none; transition: color 0.2s; }
+  .sticky-nav__links a:hover { color: var(--cream); }
+  .sticky-nav__cta {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--green); color: var(--cream);
+    padding: 8px 20px; border: none; cursor: pointer;
+    white-space: nowrap; text-decoration: none; flex-shrink: 0;
+  }
+  .sticky-nav__cta:hover { background: var(--green-mid); }
+
+  /* ── HERO ───────────────────────────────────── */
+  .hero {
+    background: var(--ink); color: var(--cream);
+    padding: 80px 48px 72px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 55% 70% at 85% 40%, rgba(59,109,17,0.15) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero__inner { max-width: 960px; margin: 0 auto; position: relative; }
+  .hero__label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--green-mid); margin-bottom: 20px;
+  }
+  .hero__title {
+    font-family: var(--serif); font-size: clamp(36px, 5vw, 58px);
+    font-weight: 400; line-height: 1.1; margin-bottom: 20px;
+  }
+  .hero__title em { font-style: italic; color: rgba(250,247,242,0.45); }
+  .hero__sub {
+    font-size: 15px; color: rgba(250,247,242,0.55);
+    max-width: 500px; line-height: 1.65;
+  }
+  .hero__meta {
+    display: flex; gap: 40px; margin-top: 44px;
+    padding-top: 32px; border-top: 1px solid rgba(250,247,242,0.1);
+    flex-wrap: wrap;
+  }
+  .hero__meta-label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(250,247,242,0.3); margin-bottom: 5px;
+  }
+  .hero__meta-value {
+    font-family: var(--serif); font-size: 17px;
+    font-style: italic; color: var(--cream);
+  }
+
+  /* ── SECTION SHELL ──────────────────────────── */
+  .section { padding: 72px 48px; }
+  .section--alt { background: var(--cream-d); }
+  .section__inner { max-width: 960px; margin: 0 auto; }
+  .section__label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .section__title {
+    font-family: var(--serif); font-size: clamp(24px, 3vw, 34px);
+    font-weight: 400; line-height: 1.2; margin-bottom: 36px;
+  }
+  .section__title em { font-style: italic; color: var(--green); }
+
+  /* ── SCORE BOXES ────────────────────────────── */
+  .score-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; margin-bottom: 40px;
+  }
+  @media (max-width: 600px) { .score-row { grid-template-columns: repeat(2,1fr); } }
+  .score-box {
+    background: var(--ink); color: var(--cream);
+    padding: 28px 20px 24px; text-align: center;
+  }
+  .score-box__num {
+    font-family: var(--serif); font-size: 46px;
+    font-style: italic; line-height: 1; margin-bottom: 6px;
+  }
+  .score-box__num--amber { color: #D4A03A; }
+  .score-box__num--red   { color: #C25840; }
+  .score-box__num--green { color: #80B848; }
+  .score-box__label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(250,247,242,0.38);
+  }
+
+  /* ── EXEC SUMMARY CARDS ─────────────────────── */
+  .summary-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  }
+  @media (max-width: 680px) { .summary-grid { grid-template-columns: 1fr; } }
+  .summary-card {
+    background: var(--cream); padding: 28px 28px 26px;
+    border: 1px solid var(--border);
+  }
+  .summary-card--full { grid-column: 1 / -1; }
+  .summary-card__label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .summary-card__head {
+    font-family: var(--serif); font-size: 16px;
+    font-style: italic; margin-bottom: 10px; line-height: 1.3;
+  }
+  .summary-card__body {
+    font-size: 14px; color: var(--ink-soft); line-height: 1.65;
+  }
+
+  /* ── FINDINGS TABLE ─────────────────────────── */
+  .findings-table { width: 100%; border-collapse: collapse; }
+  .findings-table th {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-align: left;
+    padding: 10px 16px; border-bottom: 2px solid var(--border);
+  }
+  .findings-table td {
+    padding: 18px 16px; border-bottom: 1px solid var(--border);
+    vertical-align: top; font-size: 14px;
+  }
+  .findings-table tr:hover td { background: rgba(59,109,17,0.03); }
+  .findings-table td:first-child {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); width: 40px;
+  }
+  .issue-title {
+    font-family: var(--serif); font-size: 15px;
+    font-style: italic; display: block; margin-bottom: 5px;
+  }
+  .issue-body { color: var(--ink-soft); font-size: 13.5px; line-height: 1.6; }
+  .tag {
+    display: inline-block; font-family: var(--mono);
+    font-size: 9px; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 2px;
+  }
+  .tag--high { background: rgba(194,88,64,0.1); color: #A0382A; }
+  .tag--mid  { background: rgba(180,130,40,0.1); color: #8B6A1A; }
+  .tag--low  { background: rgba(59,109,17,0.1); color: var(--green); }
+  .tag--quick    { background: rgba(59,109,17,0.12); color: var(--green); }
+  .tag--strategic{ background: rgba(15,26,10,0.07); color: var(--ink-soft); }
+
+  /* ── UPSELL STRIP ───────────────────────────── */
+  .upsell {
+    background: #415C29; color: var(--cream);
+    padding: 56px 48px; text-align: center;
+  }
+  .upsell__inner { max-width: 640px; margin: 0 auto; }
+  .upsell__eyebrow {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(250,247,242,0.5); margin-bottom: 14px;
+  }
+  .upsell__title {
+    font-family: var(--serif); font-size: clamp(22px, 3vw, 30px);
+    font-weight: 400; line-height: 1.3; margin-bottom: 16px;
+  }
+  .upsell__body {
+    font-size: 14px; line-height: 1.7;
+    color: rgba(250,247,242,0.65); margin-bottom: 28px;
+  }
+  .upsell__cta {
+    display: inline-block; background: var(--cream); color: var(--ink);
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 30px; text-decoration: none;
+  }
+
+  /* ══════════════════════════════════════════════
+     DESKTOP MOCKUP
+  ══════════════════════════════════════════════ */
+  .mockup-section { background: #DEDAD3; padding: 64px 48px; }
+  .mockup-intro { max-width: 960px; margin: 0 auto 48px; }
+
+  .desktop-mockup {
+    max-width: 960px; margin: 0 auto;
+    background: #FAFAF8; border: 1px solid #C4BEB5;
+    border-radius: 3px; overflow: hidden;
+    box-shadow: 0 6px 40px rgba(0,0,0,0.14);
+    font-family: var(--sans);
+  }
+
+  /* Browser chrome bar */
+  .dm-chrome {
+    background: #EFEDE8; border-bottom: 1px solid #D5D0C8;
+    padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .dm-chrome__dots { display: flex; gap: 6px; }
+  .dm-chrome__dot {
+    width: 11px; height: 11px; border-radius: 50%;
+  }
+  .dm-chrome__dot:nth-child(1) { background: #E0574A; }
+  .dm-chrome__dot:nth-child(2) { background: #E8A820; }
+  .dm-chrome__dot:nth-child(3) { background: #4DAA40; }
+  .dm-chrome__bar {
+    flex: 1; background: #fff; border: 1px solid #D5D0C8;
+    border-radius: 4px; padding: 5px 12px;
+    font-size: 11px; color: #888; font-family: system-ui, sans-serif;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .dm-chrome__bar span { color: #BBB; }
+
+  /* Site announce bar */
+  .dm-announce {
+    background: var(--ink); color: rgba(250,247,242,0.7);
+    text-align: center; font-size: 11px; letter-spacing: 0.05em;
+    padding: 9px 20px;
+  }
+
+  /* Site nav */
+  .dm-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 15px 40px; border-bottom: 1px solid #EDEAE3;
+    background: #FAFAF8;
+  }
+  .dm-nav__hamburger { font-size: 15px; color: #666; cursor: pointer; }
+  .dm-nav__brand {
+    font-family: var(--serif); font-size: 19px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink);
+  }
+  .dm-nav__icons { display: flex; gap: 20px; font-size: 14px; color: var(--ink); cursor: pointer; }
+
+  /* PDP layout — three columns: thumbs | image | info */
+  .dm-pdp {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr) 380px;
+  }
+
+  /* Left thumbnail rail */
+  .dm-thumbs {
+    padding: 16px 10px; display: flex; flex-direction: column;
+    gap: 8px; border-right: 1px solid #EDEAE3; background: #FAFAF8;
+  }
+  .dm-thumb {
+    width: 42px; height: 52px; overflow: hidden; flex-shrink: 0;
+    border: 1px solid transparent; cursor: pointer;
+    background: #F0EDE6;
+  }
+  .dm-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dm-thumb--active { border-color: var(--ink); }
+  .dm-thumb--placeholder {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 8px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #A89E92; text-align: center;
+    line-height: 1.3;
+  }
+
+  /* Main gallery image */
+  .dm-main-img {
+    position: relative; background: #F4F0E8;
+    min-height: 600px; overflow: hidden;
+  }
+  .dm-main-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .dm-material-badge {
+    position: absolute; bottom: 20px; left: 20px;
+    background: rgba(15,26,10,0.68); color: rgba(250,247,242,0.9);
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 12px; backdrop-filter: blur(3px);
+  }
+  .dm-zoom-btn {
+    position: absolute; bottom: 20px; right: 20px;
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,0.82); border: 1px solid rgba(0,0,0,0.12);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 13px; color: var(--ink);
+  }
+
+  /* Right info panel */
+  .dm-info {
+    padding: 28px 32px 32px;
+    border-left: none;
+    background: #fff;
+    display: flex; flex-direction: column; gap: 0;
+    overflow-y: auto; max-height: 600px;
+  }
+  .dm-info::-webkit-scrollbar { width: 4px; }
+  .dm-info::-webkit-scrollbar-thumb { background: #D5D0C8; }
+
+  .dm-breadcrumb {
+    font-size: 11px; color: #A09888; margin-bottom: 14px;
+    letter-spacing: 0.02em;
+  }
+  .dm-breadcrumb span { color: var(--ink-soft); }
+  .dm-title {
+    font-family: var(--serif); font-size: 24px;
+    font-weight: 400; line-height: 1.2; margin-bottom: 3px;
+  }
+  .dm-subtitle {
+    font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 14px;
+  }
+  .dm-price { font-family: var(--serif); font-size: 21px; margin-bottom: 4px; }
+  .dm-bnpl { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
+  .dm-bnpl a { color: var(--green); text-decoration: none; }
+
+  .dm-stars {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--ink-soft); margin-bottom: 18px; cursor: pointer;
+  }
+  .dm-stars .s { color: #B89040; letter-spacing: -0.5px; font-size: 13px; }
+  .dm-stars .c { font-size: 11px; color: var(--muted); }
+
+  .dm-divider { height: 1px; background: #EDEAE3; margin: 14px 0; }
+
+  .dm-field-label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+
+  .dm-sizes { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 6px; }
+  .dm-sz {
+    width: 40px; height: 36px; border: 1px solid #D0CBC0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; cursor: pointer; color: var(--ink-soft);
+    letter-spacing: 0.03em; font-family: var(--sans);
+  }
+  .dm-sz--active { border-color: var(--ink); background: var(--ink); color: var(--cream); }
+
+  .dm-size-note {
+    font-size: 11px; color: var(--muted); margin-bottom: 6px;
+  }
+  .dm-size-link {
+    font-size: 11px; color: var(--green); text-decoration: underline;
+    cursor: pointer; margin-bottom: 18px; display: inline-block;
+  }
+
+  .dm-colour-row {
+    display: flex; align-items: center; gap: 9px; margin-bottom: 20px;
+  }
+  .dm-swatch {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid var(--ink); background: #F2E8D4;
+    flex-shrink: 0;
+  }
+  .dm-colour-name { font-size: 12px; color: var(--ink-soft); }
+
+  /* Made to order banner — premium stone tone */
+  .dm-mto {
+    background: var(--stone); border: 1px solid var(--stone-border);
+    padding: 12px 15px; margin-bottom: 14px;
+  }
+  .dm-mto strong {
+    display: block; font-size: 12px; font-weight: 600;
+    color: var(--ink); margin-bottom: 4px; letter-spacing: 0.01em;
+  }
+  .dm-mto p { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
+
+  .dm-btn-primary {
+    width: 100%; padding: 14px 20px;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--ink); color: var(--cream);
+    border: none; cursor: pointer; margin-bottom: 8px;
+  }
+  .dm-btn-wish {
+    width: 100%; padding: 12px 20px;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; border: 1px solid #D0CBC0;
+    color: var(--ink-soft); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+  }
+
+  .dm-trust {
+    display: flex; flex-direction: column; gap: 7px;
+    padding: 14px 0; border-top: 1px solid #EDEAE3;
+    border-bottom: 1px solid #EDEAE3; margin: 14px 0;
+  }
+  .dm-trust-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--ink-soft);
+  }
+  .dm-trust-tick {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: rgba(59,109,17,0.12); display: flex;
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .dm-trust-tick svg { display: block; }
+
+  /* Complete the set — stone premium tone */
+  .dm-cts {
+    background: var(--stone); border: 1px solid var(--stone-border);
+    padding: 14px; margin-bottom: 16px;
+  }
+  .dm-cts__label {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px;
+  }
+  .dm-cts__item {
+    display: flex; gap: 11px; align-items: center;
+  }
+  .dm-cts__img {
+    width: 52px; height: 62px; background: #E0DAD0;
+    overflow: hidden; flex-shrink: 0;
+  }
+  .dm-cts__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dm-cts__name { font-size: 12px; color: var(--ink-soft); line-height: 1.4; margin-bottom: 2px; }
+  .dm-cts__price { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+  .dm-cts__add {
+    background: var(--ink); color: var(--cream);
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: none; padding: 6px 12px; cursor: pointer;
+  }
+
+  .dm-accordion { }
+  .dm-acc-item { border-bottom: 1px solid #EDEAE3; }
+  .dm-acc-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; cursor: pointer; font-size: 12px;
+    color: var(--ink-soft); letter-spacing: 0.03em;
+  }
+  .dm-acc-head .chev { font-size: 10px; color: var(--muted); }
+  .dm-acc-open .dm-acc-body { display: block; }
+  .dm-acc-body {
+    font-size: 12px; color: var(--ink-soft);
+    line-height: 1.65; padding-bottom: 12px; display: none;
+  }
+  .dm-acc-open .chev { transform: rotate(180deg); display: inline-block; }
+
+  /* ══════════════════════════════════════════════
+     MOBILE MOCKUP
+  ══════════════════════════════════════════════ */
+  .mobile-section { background: #D8D4CD; padding: 64px 48px; }
+  .mobile-intro { max-width: 960px; margin: 0 auto 48px; }
+
+  .mobile-outer {
+    display: flex; justify-content: center; align-items: flex-start;
+    gap: 40px; max-width: 960px; margin: 0 auto;
+  }
+
+  .mobile-frame {
+    width: 375px; flex-shrink: 0;
+    background: #FAFAF8; border-radius: 40px;
+    overflow: hidden; box-shadow: 0 16px 72px rgba(0,0,0,0.22);
+    border: 1px solid #B8B4AE;
+    font-family: var(--sans);
+  }
+
+  /* Phone status bar */
+  .mf-status {
+    background: var(--ink); padding: 14px 24px 8px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .mf-status__time {
+    font-size: 13px; font-weight: 600; color: var(--cream);
+    font-family: system-ui;
+  }
+  .mf-status__icons { display: flex; gap: 5px; align-items: center; }
+  .mf-status__bar {
+    width: 18px; height: 9px; border: 1px solid rgba(250,247,242,0.6);
+    border-radius: 2px; position: relative;
+  }
+  .mf-status__bar::after {
+    content:''; position:absolute; left:2px; top:2px;
+    width:11px; height:5px; background:rgba(250,247,242,0.7); border-radius:1px;
+  }
+  .mf-status__signal { display:flex; gap:1px; align-items:flex-end; }
+  .mf-status__signal span {
+    background:rgba(250,247,242,0.7); border-radius:1px;
+    width:3px;
+  }
+  .mf-status__signal span:nth-child(1){height:4px;}
+  .mf-status__signal span:nth-child(2){height:6px;}
+  .mf-status__signal span:nth-child(3){height:9px;}
+
+  .mf-announce {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06);
+    color: rgba(250,247,242,0.65); text-align: center;
+    font-size: 10px; letter-spacing: 0.05em; padding: 7px 14px;
+  }
+
+  .mf-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 13px 18px; border-bottom: 1px solid #EDEAE3;
+    background: #FAFAF8;
+  }
+  .mf-nav__menu { font-size: 17px; color: var(--ink); }
+  .mf-nav__brand {
+    font-family: var(--serif); font-size: 17px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+  }
+  .mf-nav__icons { display: flex; gap: 14px; font-size: 15px; color: var(--ink); }
+
+  /* Gallery — full width, fixed height */
+  .mf-gallery {
+    position: relative; height: 400px; overflow: hidden;
+    background: #F0EDE6;
+  }
+  .mf-gallery img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top; display: block;
+  }
+  .mf-gallery__counter {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(15,26,10,0.55); color: rgba(250,247,242,0.9);
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+    padding: 5px 10px; backdrop-filter: blur(3px);
+  }
+  .mf-gallery__dots {
+    position: absolute; bottom: 14px; left: 50%;
+    transform: translateX(-50%); display: flex; gap: 5px;
+  }
+  .mf-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: rgba(255,255,255,0.38);
+  }
+  .mf-dot--on { background: rgba(255,255,255,0.9); }
+
+  /* Info panel */
+  .mf-info { padding: 18px 18px 24px; }
+  .mf-breadcrumb { font-size: 10px; color: #A09888; margin-bottom: 8px; }
+  .mf-title {
+    font-family: var(--serif); font-size: 22px;
+    font-weight: 400; line-height: 1.2; margin-bottom: 2px;
+  }
+  .mf-subtitle {
+    font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 11px;
+  }
+  .mf-price { font-family: var(--serif); font-size: 18px; margin-bottom: 4px; }
+  .mf-bnpl { font-size: 10px; color: var(--muted); margin-bottom: 9px; }
+  .mf-bnpl a { color: var(--green); text-decoration: none; }
+  .mf-stars {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 11px; color: var(--ink-soft); margin-bottom: 14px;
+  }
+  .mf-stars .s { color: #B89040; }
+  .mf-stars .c { font-size: 10px; color: var(--muted); }
+
+  .mf-divider { height: 1px; background: #EDEAE3; margin: 12px 0; }
+
+  .mf-field-label {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 7px;
+  }
+
+  .mf-sizes { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 5px; }
+  .mf-sz {
+    width: 36px; height: 32px; border: 1px solid #D0CBC0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--ink-soft);
+  }
+  .mf-sz--active { border-color: var(--ink); background: var(--ink); color: var(--cream); }
+
+  .mf-size-note { font-size: 10px; color: var(--muted); margin-bottom: 5px; }
+  .mf-size-link {
+    font-size: 10px; color: var(--green); text-decoration: underline;
+    margin-bottom: 14px; display: inline-block;
+  }
+
+  .mf-colour-row {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+  }
+  .mf-swatch {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid var(--ink); background: #F2E8D4; flex-shrink: 0;
+  }
+  .mf-colour-name { font-size: 11px; color: var(--ink-soft); }
+
+  /* Made to order — stone tone */
+  .mf-mto {
+    background: var(--stone); border: 1px solid var(--stone-border);
+    padding: 11px 13px; margin-bottom: 12px;
+  }
+  .mf-mto strong {
+    display: block; font-size: 11px; font-weight: 600;
+    color: var(--ink); margin-bottom: 3px;
+  }
+  .mf-mto p { font-size: 11px; color: var(--ink-soft); line-height: 1.5; }
+
+  .mf-btn-primary {
+    width: 100%; padding: 13px 16px;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--ink); color: var(--cream);
+    border: none; cursor: pointer; margin-bottom: 7px;
+  }
+  .mf-btn-wish {
+    width: 100%; padding: 11px 16px;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; border: 1px solid #D0CBC0;
+    color: var(--ink-soft); cursor: pointer;
+  }
+
+  .mf-trust {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 12px 0; border-top: 1px solid #EDEAE3;
+    border-bottom: 1px solid #EDEAE3; margin: 12px 0;
+  }
+  .mf-trust-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11px; color: var(--ink-soft);
+  }
+  .mf-trust-tick {
+    width: 13px; height: 13px; border-radius: 50%;
+    background: rgba(59,109,17,0.12);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  /* Complete the set — stone tone */
+  .mf-cts {
+    background: var(--stone); border: 1px solid var(--stone-border);
+    padding: 13px; margin-bottom: 12px;
+  }
+  .mf-cts__label {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .mf-cts__items { display: flex; gap: 8px; }
+  .mf-cts__item { flex: 1; }
+  .mf-cts__img {
+    height: 76px; background: #DDD8D0;
+    margin-bottom: 6px; overflow: hidden;
+  }
+  .mf-cts__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mf-cts__name { font-size: 10px; color: var(--ink-soft); line-height: 1.3; margin-bottom: 2px; }
+  .mf-cts__price { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+  .mf-cts__add {
+    background: var(--ink); color: var(--cream);
+    font-family: var(--mono); font-size: 8px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: none; padding: 5px 8px; cursor: pointer;
+    display: block; width: 100%; text-align: center;
+  }
+
+  .mf-acc-item { border-bottom: 1px solid #EDEAE3; }
+  .mf-acc-head {
+    display: flex; justify-content: space-between;
+    padding: 11px 0; font-size: 11px; color: var(--ink-soft);
+  }
+
+  /* ── ANNOTATION GRID ────────────────────────── */
+  .annotation-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    margin-top: 36px; max-width: 960px; margin-left: auto; margin-right: auto;
+  }
+  @media (max-width: 600px) { .annotation-grid { grid-template-columns: 1fr; } }
+  .annotation {
+    background: #FAF7F2; border: 1px solid var(--border);
+    padding: 20px 22px; display: flex; gap: 14px;
+  }
+  .annotation__num {
+    font-family: var(--serif); font-style: italic;
+    font-size: 26px; line-height: 1; color: var(--green);
+    flex-shrink: 0; min-width: 30px;
+  }
+  .annotation__title {
+    font-family: var(--serif); font-style: italic;
+    font-size: 14px; margin-bottom: 5px;
+  }
+  .annotation__body { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+  /* ── QUICK WINS ─────────────────────────────── */
+  .wins-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+  }
+  @media (max-width: 700px) { .wins-grid { grid-template-columns: 1fr; } }
+  .win-card {
+    background: var(--cream); border: 1px solid var(--border);
+    padding: 26px 24px 22px;
+  }
+  .win-effort {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 9px;
+  }
+  .win-title {
+    font-family: var(--serif); font-style: italic;
+    font-size: 16px; margin-bottom: 9px;
+  }
+  .win-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+
+  /* ── ROADMAP ────────────────────────────────── */
+  .roadmap-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+  }
+  @media (max-width: 700px) { .roadmap-grid { grid-template-columns: 1fr; } }
+  .roadmap-col {
+    background: var(--cream); border: 1px solid var(--border); padding: 26px 24px;
+  }
+  .roadmap-phase {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 4px;
+  }
+  .roadmap-title {
+    font-family: var(--serif); font-size: 19px; font-style: italic;
+    margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
+  }
+  .roadmap-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .roadmap-col li {
+    display: flex; gap: 10px; font-size: 13.5px;
+    color: var(--ink-soft); line-height: 1.5;
+  }
+  .roadmap-col li::before {
+    content: '&#8594;'; font-family: var(--mono); font-size: 10px;
+    color: var(--green); flex-shrink: 0; margin-top: 3px;
+  }
+
+  /* ── FOOTER ─────────────────────────────────── */
+  .footer {
+    background: var(--ink); color: var(--cream);
+    padding: 56px 48px 40px;
+  }
+  .footer__inner {
+    max-width: 960px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: start;
+  }
+  @media (max-width: 600px) { .footer__inner { grid-template-columns: 1fr; gap: 32px; } }
+  .footer__brand-label {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(250,247,242,0.3); margin-bottom: 14px;
+  }
+  .footer__tagline {
+    font-family: var(--serif); font-size: 19px; font-style: italic;
+    line-height: 1.45; color: rgba(250,247,242,0.6); margin-top: 14px;
+  }
+  .footer__tagline strong {
+    font-style: normal; font-family: var(--sans); font-weight: 500;
+    font-size: 14px; display: block; margin-top: 8px;
+    color: rgba(250,247,242,0.45);
+  }
+  .footer__right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .footer__meta-label {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(250,247,242,0.3); margin-top: 14px;
+  }
+  .footer__meta-label:first-child { margin-top: 0; }
+  .footer__meta-value { font-size: 13px; color: rgba(250,247,242,0.5); }
+  .footer__divider { max-width: 960px; margin: 32px auto 0; height: 1px; background: rgba(250,247,242,0.07); }
+  .footer__bottom {
+    max-width: 960px; margin: 20px auto 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(250,247,242,0.2); flex-wrap: wrap; gap: 8px;
+  }
+  .footer__bottom a { color: rgba(250,247,242,0.35); text-decoration: none; }
+  .footer__bottom a:hover { color: rgba(250,247,242,0.6); }
+
+  @media (max-width: 480px) {
+    .section, .mockup-section, .mobile-section { padding: 48px 20px; }
+    .hero { padding: 52px 20px 44px; }
+    .sticky-nav { padding: 0 20px; }
+    .sticky-nav__links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <a href="https://northboundcommerce.co.uk" target="_blank" class="sticky-nav__logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 52" height="22" aria-label="Northbound Commerce" focusable="false">
+      <text x="0" y="42" font-family="'Outfit',sans-serif" font-weight="700" font-size="48" fill="#FAF7F2" letter-spacing="-1">Northbound Commerce</text>
+      <g transform="translate(174, 6)">
+        <path d="M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z" fill="#FAF7F2"/>
+      </g>
+    </svg>
+  </a>
+  <ul class="sticky-nav__links">
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#findings">Findings</a></li>
+    <li><a href="#mockup-desktop">Desktop</a></li>
+    <li><a href="#mockup-mobile">Mobile</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ul>
+  <a href="mailto:hello@northboundcommerce.co.uk" class="sticky-nav__cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero__inner">
+    <p class="hero__label">CRO &amp; UX Audit &nbsp;·&nbsp; Northbound Commerce</p>
+    <h1 class="hero__title">Clio Peppiatt<br><em>Rosaline Organza Skirt</em></h1>
+    <p class="hero__sub">A product page audit identifying where £650 pieces are losing buyers — and how a few targeted changes would meaningfully close the gap.</p>
+    <div class="hero__meta">
+      <div>
+        <p class="hero__meta-label">Brand</p>
+        <p class="hero__meta-value">Clio Peppiatt</p>
+      </div>
+      <div>
+        <p class="hero__meta-label">Page audited</p>
+        <p class="hero__meta-value">Rosaline Organza Skirt PDP</p>
+      </div>
+      <div>
+        <p class="hero__meta-label">Platform</p>
+        <p class="hero__meta-value">Shopify</p>
+      </div>
+      <div>
+        <p class="hero__meta-label">Price point</p>
+        <p class="hero__meta-value">£650 · pre-order</p>
+      </div>
+      <div>
+        <p class="hero__meta-label">Prepared by</p>
+        <p class="hero__meta-value">Northbound Commerce</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- EXECUTIVE SUMMARY -->
+<section class="section" id="summary">
+  <div class="section__inner">
+    <p class="section__label">Executive Summary</p>
+    <h2 class="section__title">A strong product.<br><em>The page isn't doing it justice.</em></h2>
+
+    <div class="score-row">
+      <div class="score-box">
+        <p class="score-box__num score-box__num--amber">4.5</p>
+        <p class="score-box__label">Overall / 10</p>
+      </div>
+      <div class="score-box">
+        <p class="score-box__num score-box__num--red">2</p>
+        <p class="score-box__label">Trust signals</p>
+      </div>
+      <div class="score-box">
+        <p class="score-box__num score-box__num--amber">5</p>
+        <p class="score-box__label">Conversion UX</p>
+      </div>
+      <div class="score-box">
+        <p class="score-box__num score-box__num--amber">6</p>
+        <p class="score-box__label">Visual hierarchy</p>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <p class="summary-card__label">Context</p>
+        <p class="summary-card__head">A pre-order asking for patience — without earning it</p>
+        <p class="summary-card__body">At £650 with a 16-week lead time, this skirt demands real conviction from the buyer before they commit. The current page gives them almost nothing to build that conviction on. There are no reviews, no sizing confidence tools, a minimal trust set, and no narrative around the craftsmanship that justifies both the price and the wait.</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card__label">Primary friction</p>
+        <p class="summary-card__head">A cold CTA with no surrounding reassurance</p>
+        <p class="summary-card__body">The sole call to action is "Pre-order &amp; Receive Within 16 Weeks" — presented without explanation of what pre-ordering means for the buyer, without a cancellation policy snippet, and without any secondary fallback for customers who aren't ready to commit today. For a first-time visitor at this price point, that gap is enough to cause abandonment.</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card__label">Sizing &amp; fit</p>
+        <p class="summary-card__head">The most-asked question is hidden behind a tab</p>
+        <p class="summary-card__body">Sizing information lives inside a tab, requiring the customer to click out of the purchase flow to find it. No model measurements are visible at a glance, and there is no fit guidance on the page. For a fitted, minimal-stretch organza piece at this price, sizing anxiety is the leading cause of pre-purchase drop-off — and it's entirely unaddressed.</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card__label">Social proof</p>
+        <p class="summary-card__head">Zero reviews or press — on a brand with real editorial heritage</p>
+        <p class="summary-card__body">There are no star ratings, no review count, no press quotes, and no editorial imagery on this page. Clio Peppiatt has a genuine following and an established profile in the luxury fashion press. None of that surfaces here. At this price and lead time, third-party validation is the single most powerful conversion lever available — and it is entirely absent.</p>
+      </div>
+      <div class="summary-card summary-card--full">
+        <p class="summary-card__label">Opportunity</p>
+        <p class="summary-card__head">Three focused changes would move the dial significantly</p>
+        <p class="summary-card__body">This is not a rebuild job. The brand equity is real, the product imagery is strong, and the design sensibility is clear. The highest-impact interventions are: reframing the pre-order CTA with a "made to order" narrative and adding a wishlist fallback for undecided buyers; surfacing the size guide and model measurements inline rather than behind a tab; and adding press quotes or review ratings above the fold. These three changes target the primary abandonment scenarios without altering the page structure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP 10 FINDINGS -->
+<section class="section section--alt" id="findings">
+  <div class="section__inner">
+    <p class="section__label">Top 10 Findings</p>
+    <h2 class="section__title">Where the page <em>loses buyers</em></h2>
+
+    <table class="findings-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Finding</th>
+          <th style="width:110px">Priority</th>
+          <th style="width:96px">Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td>
+            <span class="issue-title">Pre-order CTA with no surrounding context or reassurance</span>
+            <span class="issue-body">The sole CTA is presented cold: no explanation of what pre-ordering means, no reference to payment terms, no cancellation policy, and no indication of what happens during the 16-week window. Buyers at £650 are not making an impulse decision — they need to feel safe before they commit, and the page does nothing to create that feeling.</span>
+          </td>
+          <td><span class="tag tag--high">High</span></td>
+          <td><span class="tag tag--strategic">Strategic</span></td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>
+            <span class="issue-title">No reviews, ratings, or social proof of any kind</span>
+            <span class="issue-body">There is no star rating, no review count, no press coverage, and no UGC on the page. For a brand with an established following and press history this is a significant missed opportunity. At this price tier, third-party validation is typically the single greatest conversion lever — and it is entirely absent.</span>
+          </td>
+          <td><span class="tag tag--high">High</span></td>
+          <td><span class="tag tag--strategic">Strategic</span></td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>
+            <span class="issue-title">Size guide and model measurements hidden in a tab</span>
+            <span class="issue-body">Accessing sizing information requires the buyer to leave the purchase flow by clicking a tab. The model's measurements are available but not visible without that interaction. For a fitted, no-stretch organza piece at this price, sizing uncertainty is the primary pre-purchase hesitation — the content needs to be visible without any click.</span>
+          </td>
+          <td><span class="tag tag--high">High</span></td>
+          <td><span class="tag tag--quick">Quick win</span></td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>
+            <span class="issue-title">Email capture popup fires mid-browse on the product page</span>
+            <span class="issue-body">The "Coming Soon, London" newsletter modal triggers during active product consideration. Interrupting a buyer while they are evaluating a £650 purchase is one of the highest-friction patterns in ecommerce. The capture opportunity is valid — the timing is not. Moving this to exit-intent or post-checkout would preserve the value without the conversion cost.</span>
+          </td>
+          <td><span class="tag tag--high">High</span></td>
+          <td><span class="tag tag--quick">Quick win</span></td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>
+            <span class="issue-title">No wishlist or save functionality</span>
+            <span class="issue-body">Many buyers considering a 16-week pre-order at this price will want to revisit the decision. There is no mechanism to save the product — no wishlist button, no "notify me" option. A secondary CTA that captures that intent and enables re-engagement would be a low-effort addition with a meaningful impact on return visits and eventual purchase rate.</span>
+          </td>
+          <td><span class="tag tag--mid">Medium</span></td>
+          <td><span class="tag tag--quick">Quick win</span></td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td>
+            <span class="issue-title">"Complete the set" lives only as a mention in the product description</span>
+            <span class="issue-body">The description references the matching Rosaline Blouse (£850), but there is no visual cross-sell module in the purchase panel. The "You may also like" carousel appears far below the fold with no bridal framing. The matching set represents a £1,500 basket opportunity and a natural narrative for the brand — neither is being activated.</span>
+          </td>
+          <td><span class="tag tag--mid">Medium</span></td>
+          <td><span class="tag tag--strategic">Strategic</span></td>
+        </tr>
+        <tr>
+          <td>07</td>
+          <td>
+            <span class="issue-title">Returns policy not visible without a tab click</span>
+            <span class="issue-body">The 14-day returns window is a meaningful reassurance signal for anyone committing to a pre-order, but it requires the buyer to click into the Shipping &amp; Returns tab to find it. It should be visible in the trust strip beneath the CTA — it is already policy and costs nothing to surface.</span>
+          </td>
+          <td><span class="tag tag--mid">Medium</span></td>
+          <td><span class="tag tag--quick">Quick win</span></td>
+        </tr>
+        <tr>
+          <td>08</td>
+          <td>
+            <span class="issue-title">Gallery thumbnails are small and lack editorial or lifestyle context</span>
+            <span class="issue-body">The thumbnail rail renders at around 40px wide — barely functional. More significantly, the gallery appears to lead with flat product shots only. Lifestyle and editorial imagery are the strongest visual trust signals on a fashion PDP, showing the garment in motion and in context. The brand's editorial work is strong; it should be in the gallery.</span>
+          </td>
+          <td><span class="tag tag--mid">Medium</span></td>
+          <td><span class="tag tag--strategic">Strategic</span></td>
+        </tr>
+        <tr>
+          <td>09</td>
+          <td>
+            <span class="issue-title">Colour swatch has no visible label</span>
+            <span class="issue-body">The colour selector shows a swatch but no text label. The colourway is Ivory — a meaningful distinction in a bridal context where buyers may be matching to other pieces. Adding the colour name as a visible label is a single-line change that removes ambiguity at a high-stakes decision point.</span>
+          </td>
+          <td><span class="tag tag--low">Low</span></td>
+          <td><span class="tag tag--quick">Quick win</span></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>
+            <span class="issue-title">No payment flexibility option near the price</span>
+            <span class="issue-body">At £650, even a buyer who is close to convinced may hesitate on the upfront total. Displaying an instalment option — "From £162.50 / month with Klarna" — as a small line of text below the price would reduce the perceived barrier without undermining the brand's positioning. Shopify's Klarna placement tile makes this straightforward to implement.</span>
+          </td>
+          <td><span class="tag tag--low">Low</span></td>
+          <td><span class="tag tag--quick">Quick win</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- UPSELL -->
+<div class="upsell">
+  <div class="upsell__inner">
+    <p class="upsell__eyebrow">About Northbound Commerce</p>
+    <h2 class="upsell__title">We have spent a decade working inside luxury DTC brands. We know what premium customers expect — and where digital lags behind.</h2>
+    <p class="upsell__body">Northbound Commerce works with luxury and premium brands on an ongoing retainer basis, translating CRO and UX strategy into measurable revenue improvements. This audit is a short demonstration of what that looks like in practice.</p>
+    <a href="https://northboundcommerce.co.uk" target="_blank" class="upsell__cta">Visit northboundcommerce.co.uk</a>
+  </div>
+</div>
+
+<!-- DESKTOP MOCKUP -->
+<section class="mockup-section" id="mockup-desktop">
+  <div class="mockup-intro">
+    <p class="section__label">Redesigned PDP &nbsp;·&nbsp; Desktop</p>
+    <h2 class="section__title" style="margin-bottom:12px">What the page <em>could look like</em></h2>
+    <p style="font-size:14px; color:var(--ink-soft); max-width:560px; line-height:1.65;">The mockup below applies the recommended changes to the desktop layout: pre-order narrative, inline model measurements, labelled colour swatch, wishlist CTA, BNPL line, visible returns, and a complete-the-set module in the purchase panel.</p>
+  </div>
+
+  <div class="desktop-mockup">
+    <!-- Browser chrome -->
+    <div class="dm-chrome">
+      <div class="dm-chrome__dots">
+        <div class="dm-chrome__dot"></div>
+        <div class="dm-chrome__dot"></div>
+        <div class="dm-chrome__dot"></div>
+      </div>
+      <div class="dm-chrome__bar">
+        <span>&#128274;</span> cliopeppiatt.co.uk/products/rosaline-organza-skirt
+      </div>
+    </div>
+    <!-- Announce -->
+    <div class="dm-announce">Free Worldwide Express Shipping on every order &nbsp;&nbsp;·&nbsp;&nbsp; All prices include duties &amp; taxes</div>
+    <!-- Nav -->
+    <div class="dm-nav">
+      <div class="dm-nav__hamburger">&#9776;</div>
+      <div class="dm-nav__brand">Clio Peppiatt</div>
+      <div class="dm-nav__icons">
+        <span>&#9906;</span>
+        <span>&#128100;</span>
+        <span>&#128717;</span>
+      </div>
+    </div>
+    <!-- PDP three-col grid -->
+    <div class="dm-pdp">
+      <!-- Thumbnails -->
+      <div class="dm-thumbs">
+        <div class="dm-thumb dm-thumb--active">
+          <img src="https://cliopeppiatt.co.uk/cdn/shop/files/Rosaline_Skirt_Front.jpg?v=1776165198&width=200" alt="Front view" loading="lazy">
+        </div>
+        <div class="dm-thumb">
+          <img src="https://cliopeppiatt.co.uk/cdn/shop/files/Rosaline_Skirt_Front.jpg?v=1776165198&width=200" alt="Side view" loading="lazy" style="object-position:50% 70%;">
+        </div>
+        <div class="dm-thumb">
+          <img src="https://cliopeppiatt.co.uk/cdn/shop/files/Rosaline_Skirt_Front.jpg?v=1776165198&width=200" alt="Detail" loading="lazy" style="object-position:50% 40%;">
+        </div>
+        <div class="dm-thumb dm-thumb--placeholder">Worn</div>
+        <div class="dm-thumb dm-thumb--placeholder">Detail</div>
+      </div>
+      <!-- Main image -->
+      <div class="dm-main-img">
+        <img src="https://cliopeppiatt.co.uk/cdn/shop/files/Rosaline_Skirt_Front.jpg?v=1776165198&width=900" alt="Rosaline Organza Skirt" loading="lazy">
+        <div class="dm-material-badge">100% Silk Organza</div>
+        <div class="dm-zoom-btn">&#8599;</div>
+      </div>
+      <!-- Info panel -->
+      <div class="dm-info">
+        <p class="dm-breadcrumb">Home / Skirts / <span>Rosaline Organza Skirt</span></p>
+        <h1 class="dm-title">Rosaline Organza Skirt</h1>
+        <p class="dm-subtitle">Made to order &nbsp;·&nbsp; 100% Silk Organza</p>
+        <p class="dm-price">£650.00</p>
+        <p class="dm-bnpl">Or from <strong>£162.50</strong> / month with <a href="#">Klarna</a></p>
+        <div class="dm-stars">
+          <span class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>4.9</span>
+          <span class="c">(48 reviews)</span>
+        </div>
+
+        <div class="dm-divider"></div>
+
+        <p class="dm-field-label">Size</p>
+        <div class="dm-sizes">
+          <div class="dm-sz">XXS</div>
+          <div class="dm-sz dm-sz--active">XS</div>
+          <div class="dm-sz">S</div>
+          <div class="dm-sz">M</div>
+          <div class="dm-sz">L</div>
+          <div class="dm-sz">XL</div>
+          <div class="dm-sz">XXL</div>
+        </div>
+        <p class="dm-size-note">Model is 176cm and wears a size S</p>
+        <span class="dm-size-link">Full size guide</span>
+
+        <p class="dm-field-label">Colour</p>
+        <div class="dm-colour-row">
+          <div class="dm-swatch"></div>
+          <span class="dm-colour-name">Ivory</span>
+        </div>
+
+        <!-- Made to order — stone tone -->
+        <div class="dm-mto">
+          <strong>Made to order — delivered in 16 weeks</strong>
+          <p>Each piece is cut and sewn to your size after you order. If you change your mind before production begins, cancellation is straightforward.</p>
+        </div>
+
+        <button class="dm-btn-primary">Pre-order Now &nbsp;·&nbsp; £650</button>
+        <button class="dm-btn-wish">
+          <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.5 10.5C6.5 10.5 1 7.2 1 3.8C1 2.3 2.1 1 3.6 1C4.6 1 5.5 1.6 6 2.4C6.5 1.6 7.4 1 8.4 1C9.9 1 11 2.3 11 3.8C11 7.2 6.5 10.5 6.5 10.5Z" stroke="#2C3A22" stroke-width="1" fill="none"/>
+          </svg>
+          Save to wishlist
+        </button>
+
+        <div class="dm-trust">
+          <div class="dm-trust-item">
+            <div class="dm-trust-tick">
+              <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Free Worldwide Express Shipping
+          </div>
+          <div class="dm-trust-item">
+            <div class="dm-trust-tick">
+              <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Free returns within 14 days of arrival
+          </div>
+          <div class="dm-trust-item">
+            <div class="dm-trust-tick">
+              <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Duties &amp; taxes included in price
+          </div>
+          <div class="dm-trust-item">
+            <div class="dm-trust-tick">
+              <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Secure checkout
+          </div>
+        </div>
+
+        <!-- Complete the set — stone tone -->
+        <div class="dm-cts">
+          <p class="dm-cts__label">Complete the set</p>
+          <div class="dm-cts__item">
+            <div class="dm-cts__img">
+              <img src="https://cliopeppiatt.co.uk/cdn/shop/files/Rosaline_Skirt_Front.jpg?v=1776165198&width=200" alt="Rosaline Blouse" loading="lazy" style="object-position:50% 20%;">
+            </div>
+            <div>
+              <p class="dm-cts__name">Rosaline Organza Blouse</p>
+              <p class="dm-cts__price">£850.00</p>
+              <button class="dm-cts__add">Add to order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordions -->
+        <div class="dm-accordion">
+          <div class="dm-acc-item dm-acc-open">
+            <div class="dm-acc-head">Description <span class="chev" style="display:inline-block;transform:rotate(180deg);">&#9662;</span></div>
+            <div class="dm-acc-body" style="display:block;">Crafted from sheer layers of 100% silk organza, creating a dreamy, ethereal silhouette with a three-dimensional finish. Designed with a fitted shape and minimal stretch for a refined, sculpted fit. Finished with delicate pearl buttons and loop fastenings at the side.</div>
+          </div>
+          <div class="dm-acc-item">
+            <div class="dm-acc-head">Care &amp; fabric <span class="chev">&#9662;</span></div>
+            <div class="dm-acc-body">100% Silk Organza · Colour: Ivory · Professional Dry Clean only · Repair packs provided with all orders.</div>
+          </div>
+          <div class="dm-acc-item">
+            <div class="dm-acc-head">Sizing &amp; fit <span class="chev">&#9662;</span></div>
+            <div class="dm-acc-body">A fitted design with a side button-and-loop fastening. If between sizes, size up for the best fit. Model is 176cm (5'9½") and wears a size S.</div>
+          </div>
+          <div class="dm-acc-item">
+            <div class="dm-acc-head">Shipping &amp; returns <span class="chev">&#9662;</span></div>
+            <div class="dm-acc-body">Free Worldwide Express Shipping on every order. Returns accepted within 14 days of arrival — items must be unworn with tags attached. All prices include duties and taxes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop annotations -->
+  <div class="annotation-grid" style="margin-top:36px;">
+    <div class="annotation">
+      <span class="annotation__num">1</span>
+      <div>
+        <p class="annotation__title">Made-to-order narrative replaces a cold pre-order message</p>
+        <p class="annotation__body">A concise two-line banner explains what ordering means for the buyer — payment timing, production flow, and the option to cancel — transforming a potential barrier into a mark of craft.</p>
+      </div>
+    </div>
+    <div class="annotation">
+      <span class="annotation__num">2</span>
+      <div>
+        <p class="annotation__title">Star rating visible above the fold</p>
+        <p class="annotation__body">Review score and count surface immediately in the purchase panel. Third-party validation at this level does more for conversion than any product copy on the page.</p>
+      </div>
+    </div>
+    <div class="annotation">
+      <span class="annotation__num">3</span>
+      <div>
+        <p class="annotation__title">Model measurements inline under the size picker</p>
+        <p class="annotation__body">"Model is 176cm and wears a size S" — one line, no click required. Removes the sizing hesitation that is the leading cause of drop-off for fitted fashion pieces.</p>
+      </div>
+    </div>
+    <div class="annotation">
+      <span class="annotation__num">4</span>
+      <div>
+        <p class="annotation__title">Wishlist as a secondary CTA</p>
+        <p class="annotation__body">Captures intent from buyers who are not ready today and creates a re-engagement path. Essential for a product with a 16-week lead time, where the consideration cycle is inherently longer.</p>
+      </div>
+    </div>
+    <div class="annotation">
+      <span class="annotation__num">5</span>
+      <div>
+        <p class="annotation__title">Returns visible in the trust strip</p>
+        <p class="annotation__body">"Free returns within 14 days" is now surfaced beneath the CTA without requiring a tab interaction. It answers the biggest remaining hesitation for a pre-order buyer directly.</p>
+      </div>
+    </div>
+    <div class="annotation">
+      <span class="annotation__num">6</span>
+      <div>
+        <p class="annotation__title">Complete the set in the purchase panel</p>
+        <p class="annotation__body">The Rosaline Blouse is now a visual, actionable item rather than a text mention. A natural £1,500 set basket for a buyer already engaged with the bridal narrative.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE MOCKUP -->
+<section class="mobile-section" id="mockup-mobile">
+  <div class="mobile-intro">
+    <p class="section__label">Redesigned PDP &nbsp;·&nbsp; Mobile (375px)</p>
+    <h2 class="section__title" style="margin-bottom:12px;">The same improvements,<br><em>mobile-first</em></h2>
+    <p style="font-size:14px; color:var(--ink-soft); max-width:520px; line-height:1.65;">All the same changes applied at 375px — the format most pre-order buyers will experience. Particular attention to the gallery, the pre-order banner at compact scale, and the complete-the-set display.</p>
+  </div>
+
+  <div class="mobile-outer">
+    <div class="mobile-frame">
+      <!-- Status bar -->
+      <div class="mf-status">
+        <span class="mf-status__time">9:41</span>
+        <div class="mf-status__icons">
+          <div class="mf-status__signal">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="mf-status__bar"></div>
+        </div>
+      </div>
+      <!-- Announce -->
+      <div class="mf-announce">Free Worldwide Express Shipping &nbsp;·&nbsp; Duties included</div>
+      <!-- Nav -->
+      <div class="mf-nav">
+        <span class="mf-nav__menu">&#9776;</span>
+        <span class="mf-nav__brand">Clio Peppiatt</span>
+        <div class="mf-nav__icons">
+          <span>&#9906;</span>
+          <span>&#128717;</span>
+        </div>
+      </div>
+      <!-- Gallery -->
+      <div class="mf-gallery">
+        <img src="https://cliopeppiatt.co.uk/cdn/shop/files/Rosaline_Skirt_Front.jpg?v=1776165198&width=750" alt="Rosaline Organza Skirt" loading="lazy">
+        <div class="mf-gallery__counter">1 / 5</div>
+        <div class="mf-gallery__dots">
+          <div class="mf-dot mf-dot--on"></div>
+          <div class="mf-dot"></div>
+          <div class="mf-dot"></div>
+          <div class="mf-dot"></div>
+          <div class="mf-dot"></div>
+        </div>
+      </div>
+      <!-- Info -->
+      <div class="mf-info">
+        <p class="mf-breadcrumb">Skirts / Rosaline Organza Skirt</p>
+        <h1 class="mf-title">Rosaline Organza Skirt</h1>
+        <p class="mf-subtitle">Made to order &nbsp;·&nbsp; Silk Organza</p>
+        <p class="mf-price">£650.00</p>
+        <p class="mf-bnpl">From <strong>£162.50</strong> / month with <a href="#">Klarna</a></p>
+        <div class="mf-stars">
+          <span class="s">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>4.9</span>
+          <span class="c">(48 reviews)</span>
+        </div>
+
+        <div class="mf-divider"></div>
+
+        <p class="mf-field-label">Size</p>
+        <div class="mf-sizes">
+          <div class="mf-sz">XXS</div>
+          <div class="mf-sz mf-sz--active">XS</div>
+          <div class="mf-sz">S</div>
+          <div class="mf-sz">M</div>
+          <div class="mf-sz">L</div>
+          <div class="mf-sz">XL</div>
+          <div class="mf-sz">XXL</div>
+        </div>
+        <p class="mf-size-note">Model is 176cm and wears a size S</p>
+        <span class="mf-size-link">Full size guide</span>
+
+        <p class="mf-field-label">Colour</p>
+        <div class="mf-colour-row">
+          <div class="mf-swatch"></div>
+          <span class="mf-colour-name">Ivory</span>
+        </div>
+
+        <!-- Made to order — stone tone -->
+        <div class="mf-mto">
+          <strong>Made to order — delivered in 16 weeks</strong>
+          <p>Each piece is cut and sewn to your size. Cancel before production begins for a full refund.</p>
+        </div>
+
+        <button class="mf-btn-primary">Pre-order Now &nbsp;·&nbsp; £650</button>
+        <button class="mf-btn-wish">Save to wishlist</button>
+
+        <div class="mf-trust">
+          <div class="mf-trust-item">
+            <div class="mf-trust-tick">
+              <svg width="7" height="6" viewBox="0 0 7 6" fill="none"><path d="M1 3L2.5 4.5L6 1" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Free Worldwide Express Shipping
+          </div>
+          <div class="mf-trust-item">
+            <div class="mf-trust-tick">
+              <svg width="7" height="6" viewBox="0 0 7 6" fill="none"><path d="M1 3L2.5 4.5L6 1" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Free returns within 14 days of arrival
+          </div>
+          <div class="mf-trust-item">
+            <div class="mf-trust-tick">
+              <svg width="7" height="6" viewBox="0 0 7 6" fill="none"><path d="M1 3L2.5 4.5L6 1" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Duties &amp; taxes included
+          </div>
+          <div class="mf-trust-item">
+            <div class="mf-trust-tick">
+              <svg width="7" height="6" viewBox="0 0 7 6" fill="none"><path d="M1 3L2.5 4.5L6 1" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Secure checkout
+          </div>
+        </div>
+
+        <!-- Complete the set — stone tone -->
+        <div class="mf-cts">
+          <p class="mf-cts__label">Complete the set</p>
+          <div class="mf-cts__items">
+            <div class="mf-cts__item">
+              <div class="mf-cts__img">
+                <img src="https://cliopeppiatt.co.uk/cdn/shop/files/Rosaline_Skirt_Front.jpg?v=1776165198&width=300" alt="Rosaline Blouse" loading="lazy" style="object-position:50% 20%;">
+              </div>
+              <p class="mf-cts__name">Rosaline Organza Blouse</p>
+              <p class="mf-cts__price">£850.00</p>
+              <button class="mf-cts__add">Add to order</button>
+            </div>
+            <div class="mf-cts__item" style="opacity:0.5;">
+              <div class="mf-cts__img" style="background:#DDD8D0;"></div>
+              <p class="mf-cts__name">Evie Skirt</p>
+              <p class="mf-cts__price">£895.00</p>
+              <button class="mf-cts__add" style="background:#B8B4AE;cursor:default;">Add to order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordions -->
+        <div>
+          <div class="mf-acc-item">
+            <div class="mf-acc-head">Description <span>&#9662;</span></div>
+          </div>
+          <div class="mf-acc-item">
+            <div class="mf-acc-head">Care &amp; fabric <span>&#9662;</span></div>
+          </div>
+          <div class="mf-acc-item">
+            <div class="mf-acc-head">Sizing &amp; fit <span>&#9662;</span></div>
+          </div>
+          <div class="mf-acc-item">
+            <div class="mf-acc-head">Shipping &amp; returns <span>&#9662;</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile annotations — vertical -->
+    <div style="flex:1; display:flex; flex-direction:column; gap:2px; min-width:200px; max-width:380px;">
+      <div class="annotation">
+        <span class="annotation__num">1</span>
+        <div>
+          <p class="annotation__title">Full-bleed gallery with image counter</p>
+          <p class="annotation__body">Gallery fills the full viewport width with a clean image counter (1/5) and swipe indicator dots — no small thumbnail rail to misread.</p>
+        </div>
+      </div>
+      <div class="annotation">
+        <span class="annotation__num">2</span>
+        <div>
+          <p class="annotation__title">Klarna line below price</p>
+          <p class="annotation__body">Instalment option normalises the figure for aspirational buyers without disrupting the premium tone of the page.</p>
+        </div>
+      </div>
+      <div class="annotation">
+        <span class="annotation__num">3</span>
+        <div>
+          <p class="annotation__title">Pre-order banner at compact scale</p>
+          <p class="annotation__body">The stone-toned banner reads cleanly at mobile scale. Two sentences: what it means, and the reassurance. No more than needed.</p>
+        </div>
+      </div>
+      <div class="annotation">
+        <span class="annotation__num">4</span>
+        <div>
+          <p class="annotation__title">Two CTAs stacked</p>
+          <p class="annotation__body">"Pre-order Now" leads. "Save to wishlist" catches buyers in the consideration phase — particularly important for a 16-week lead time.</p>
+        </div>
+      </div>
+      <div class="annotation">
+        <span class="annotation__num">5</span>
+        <div>
+          <p class="annotation__title">Complete the set — stone-toned module</p>
+          <p class="annotation__body">Subtle warm background separates the cross-sell without creating visual noise. Blouse leads as the obvious pairing; secondary item shown at reduced opacity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section class="section section--alt" id="quickwins">
+  <div class="section__inner">
+    <p class="section__label">Quick Wins</p>
+    <h2 class="section__title">Six changes you could ship <em>this sprint</em></h2>
+    <div class="wins-grid">
+      <div class="win-card">
+        <p class="win-effort">Effort: Low &nbsp;·&nbsp; Impact: High</p>
+        <p class="win-title">Move the popup to exit-intent</p>
+        <p class="win-body">Shift the email capture modal to trigger on exit-intent — when the cursor leaves the viewport — rather than during active product browsing. The capture opportunity stays; the interruption to purchase intent is removed.</p>
+      </div>
+      <div class="win-card">
+        <p class="win-effort">Effort: Low &nbsp;·&nbsp; Impact: High</p>
+        <p class="win-title">Inline model measurements</p>
+        <p class="win-body">Display "Model is 176cm and wears a size S" directly beneath the size picker as a single line of text. No tab required. Reduces sizing hesitation at the exact point where variant selection happens.</p>
+      </div>
+      <div class="win-card">
+        <p class="win-effort">Effort: Low &nbsp;·&nbsp; Impact: Medium</p>
+        <p class="win-title">Label the colour swatch</p>
+        <p class="win-body">Add "Ivory" as a visible text label next to the colour swatch. In a bridal context, the colourway is a considered detail — buyers may be matching to other pieces and need the label to be explicit.</p>
+      </div>
+      <div class="win-card">
+        <p class="win-effort">Effort: Low &nbsp;·&nbsp; Impact: Medium</p>
+        <p class="win-title">Surface returns in the trust strip</p>
+        <p class="win-body">Add "Free returns within 14 days of arrival" to the trust block beneath the CTA. This is already in policy — surfacing it here removes a primary objection without requiring any new functionality or copy decision.</p>
+      </div>
+      <div class="win-card">
+        <p class="win-effort">Effort: Medium &nbsp;·&nbsp; Impact: High</p>
+        <p class="win-title">Reframe pre-order as made to order</p>
+        <p class="win-body">Add a two-line explanatory banner: "Made to order — crafted to your size in 16 weeks. Cancel before production begins for a full refund." Converts a neutral wait into a personalised craft narrative that is consistent with the brand positioning.</p>
+      </div>
+      <div class="win-card">
+        <p class="win-effort">Effort: Medium &nbsp;·&nbsp; Impact: High</p>
+        <p class="win-title">Add BNPL messaging near the price</p>
+        <p class="win-body">Display instalment messaging in small text directly below the price point. Shopify's Klarna placement tile makes this a low-effort addition. For buyers who are nearly convinced, reducing the perceived upfront commitment can be the difference between hesitation and purchase.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" id="roadmap">
+  <div class="section__inner">
+    <p class="section__label">Recommended Roadmap</p>
+    <h2 class="section__title">A three-phase plan to lift <em>PDP performance</em></h2>
+    <div class="roadmap-grid">
+      <div class="roadmap-col">
+        <p class="roadmap-phase">Phase 1 &nbsp;·&nbsp; Weeks 1–2</p>
+        <p class="roadmap-title">Remove friction</p>
+        <ul>
+          <li>Move email popup to exit-intent</li>
+          <li>Add colour name label beside swatch</li>
+          <li>Add model measurements inline under size picker</li>
+          <li>Add returns line to trust strip</li>
+          <li>Add BNPL instalment line below price</li>
+          <li>Add wishlist button as secondary CTA</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <p class="roadmap-phase">Phase 2 &nbsp;·&nbsp; Weeks 3–5</p>
+        <p class="roadmap-title">Build trust</p>
+        <ul>
+          <li>Integrate a review platform (Okendo or Judge.me) and surface star rating above the fold</li>
+          <li>Add pre-order narrative banner with cancellation policy</li>
+          <li>Build visual complete-the-set module in purchase panel</li>
+          <li>Add press or editorial quote strip from existing coverage</li>
+          <li>Add lifestyle and editorial imagery to the gallery</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <p class="roadmap-phase">Phase 3 &nbsp;·&nbsp; Weeks 6–10</p>
+        <p class="roadmap-title">Convert &amp; retain</p>
+        <ul>
+          <li>A/B test CTA copy: "Pre-order Now" vs "Claim Your Size"</li>
+          <li>Test a size recommendation tool (Kiwi Sizing or similar)</li>
+          <li>Implement wishlist-to-email re-engagement flow</li>
+          <li>Set up abandoned PDP retargeting via email and SMS</li>
+          <li>Review analytics for drop-off points and iterate</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <p class="footer__brand-label">Prepared by</p>
+      <a href="https://northboundcommerce.co.uk" target="_blank" style="display:inline-block;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 52" height="22" aria-label="Northbound Commerce" focusable="false">
+          <text x="0" y="42" font-family="'Outfit',sans-serif" font-weight="700" font-size="48" fill="#FAF7F2" letter-spacing="-1">Northbound Commerce</text>
+          <g transform="translate(174, 6)">
+            <path d="M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z" fill="#FAF7F2"/>
+          </g>
+        </svg>
+      </a>
+      <p class="footer__tagline">
+        CRO, UX &amp; Shopify for luxury DTC brands.
+        <strong><a href="https://northboundcommerce.co.uk" target="_blank" style="color:rgba(250,247,242,0.5);text-decoration:none;">northboundcommerce.co.uk</a></strong>
+      </p>
+    </div>
+    <div class="footer__right">
+      <p class="footer__meta-label">Audit prepared for</p>
+      <p class="footer__meta-value">Clio Peppiatt</p>
+      <p class="footer__meta-label">Page audited</p>
+      <p class="footer__meta-value">Rosaline Organza Skirt PDP</p>
+      <p class="footer__meta-label">Enquiries</p>
+      <p class="footer__meta-value">hello@northboundcommerce.co.uk</p>
+    </div>
+  </div>
+  <div class="footer__divider"></div>
+  <div class="footer__bottom">
+    <span>Northbound Commerce</span>
+    <span>Confidential — prepared for Clio Peppiatt</span>
+  </div>
+</footer>
+
+</body>
+</html>
