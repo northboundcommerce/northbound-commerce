@@ -1,631 +1,2988 @@
 
-<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="cid:css-040547ec-9c3b-429b-a2db-ec46d7336482@mhtml.blink" />
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fairview Yachting — Homepage Mockup</title>
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<title>Fairview Yachting — Luxury UX/UI Audit & Creative Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300&family=DM+Mono:wght@300;400&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Northbound shell */
+  --nb-cream: #FAF7F2;
+  --nb-green: #3B6D11;
+  --nb-green-lt: #5a9a1a;
+  --nb-dark: #1a1a18;
+  --nb-muted: #6b6b67;
+  --nb-border: rgba(59,109,17,0.15);
 
+  /* Fairview new palette */
+  --fv-midnight: #0A1628;
+  --fv-navy: #0F2040;
+  --fv-slate: #1C2B3A;
+  --fv-ivory: #F8F4EE;
+  --fv-alabaster: #F2EDE5;
+  --fv-mist: #E4DDD3;
+  --fv-brass: #C4975A;
+  --fv-brass-lt: #E5C88A;
+  --fv-gold: #B8843C;
+  --fv-white: #FDFBF7;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-nb-serif: 'Instrument Serif', Georgia, serif;
+  --font-nb-sans: 'Instrument Sans', sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--nb-cream);
+  color: var(--nb-dark);
+  font-family: var(--font-nb-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TYPOGRAPHY ─── */
+.heading-xl {
+  font-family: var(--font-nb-serif);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.heading-lg {
+  font-family: var(--font-nb-serif);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  line-height: 1.1;
+  font-weight: 400;
+}
+.heading-md {
+  font-family: var(--font-nb-serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+.heading-sm {
+  font-family: var(--font-nb-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--nb-green);
+}
+.body-text {
+  font-size: 0.95rem;
+  color: var(--nb-muted);
+  line-height: 1.75;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+}
+.italic { font-style: italic; }
+
+/* ─── LAYOUT ─── */
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+.container-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+.section {
+  padding: var(--space-xl) 0;
+}
+.section-sm {
+  padding: var(--space-lg) 0;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .grid-2-sm { grid-template-columns: repeat(2,1fr) !important; }
+}
+
+/* ─── COMPONENTS ─── */
+.pill {
+  display: inline-block;
+  padding: 0.25rem 0.8rem;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.pill-red { background: #ffe8e8; color: #a33; }
+.pill-amber { background: #fff3dc; color: #7a5800; }
+.pill-green { background: #e8f5e0; color: #2d6b00; }
+.pill-blue { background: #e6f0ff; color: #1a4a8a; }
+.pill-dark { background: var(--nb-dark); color: var(--nb-cream); }
+
+.divider {
+  width: 3rem;
+  height: 1px;
+  background: var(--nb-green);
+  margin: 1.5rem 0;
+}
+.divider-center { margin-left: auto; margin-right: auto; }
+.divider-sm { width: 1.5rem; margin: 1rem 0; }
+
+.card {
+  background: #fff;
+  border: 1px solid var(--nb-border);
+  border-radius: 8px;
+  padding: 2rem;
+}
+.card-light {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid var(--nb-border);
+  border-radius: 8px;
+  padding: 1.75rem;
+}
+.card-dark {
+  background: var(--nb-dark);
+  border-radius: 8px;
+  padding: 2rem;
+  color: var(--nb-cream);
+}
+
+.annotation-box {
+  border: 1.5px solid;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+}
+.annotation-red { border-color: #e54c4c; background: #fff5f5; }
+.annotation-amber { border-color: #d4a017; background: #fffbf0; }
+.annotation-green { border-color: var(--nb-green); background: #f0f9e8; }
+
+/* ─── HEADER / NAV ─── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nb-cream);
+  border-bottom: 1px solid var(--nb-border);
+  padding: 1rem var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nb-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+.nb-logo-mark {
+  width: 28px;
+  height: 28px;
+}
+.nb-logo-text {
+  font-family: var(--font-nb-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nb-dark);
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--nb-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--nb-dark); }
+
+/* ─── HERO / COVER ─── */
+.cover {
+  background: var(--nb-dark);
+  color: var(--nb-cream);
+  padding: 7rem var(--space-md) 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 80% 20%, rgba(59,109,17,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(196,151,90,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.cover-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--nb-green);
+  margin-bottom: 2rem;
+  border: 1px solid rgba(59,109,17,0.4);
+  padding: 0.4rem 0.9rem;
+  border-radius: 100px;
+}
+.cover h1 {
+  font-family: var(--font-nb-serif);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  max-width: 800px;
+  margin-bottom: 2rem;
+}
+.cover h1 em {
+  font-style: italic;
+  color: rgba(250,247,242,0.5);
+}
+.cover-meta {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  flex-wrap: wrap;
+}
+.cover-meta-item label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.4);
+  margin-bottom: 0.35rem;
+}
+.cover-meta-item span {
+  font-size: 0.9rem;
+  color: rgba(250,247,242,0.9);
+}
+
+/* ─── SECTION HEADERS ─── */
+.section-header {
+  margin-bottom: 3.5rem;
+}
+.section-header .section-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--nb-green);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* ─── AUDIT ITEMS ─── */
+.audit-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2.5rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--nb-border);
+  align-items: start;
+}
+.audit-item:last-child { border-bottom: none; }
+.audit-category {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--nb-dark);
+  padding-top: 0.2rem;
+}
+.audit-content h4 {
+  font-family: var(--font-nb-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+.audit-score {
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 0.75rem;
+}
+.score-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--nb-border);
+  background: transparent;
+}
+.score-dot.filled { background: var(--nb-dark); border-color: var(--nb-dark); }
+.score-dot.red.filled { background: #e54c4c; border-color: #e54c4c; }
+
+@media (max-width: 768px) {
+  .audit-item { grid-template-columns: 1fr; gap: 0.75rem; }
+}
+
+/* ─── COMPARISON TABLE ─── */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.comparison-table th {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--nb-muted);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--nb-border);
+}
+.comparison-table td {
+  padding: 1rem 1rem;
+  border-bottom: 1px solid var(--nb-border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr.highlight td { background: rgba(59,109,17,0.04); }
+.check { color: var(--nb-green); font-weight: 500; }
+.cross { color: #e54c4c; }
+.partial { color: #d4a017; }
+
+/* ─── DESIGN SYSTEM DISPLAY ─── */
+.color-swatch {
+  border-radius: 6px;
+  aspect-ratio: 1.5/1;
+  margin-bottom: 0.6rem;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.swatch-label {
+  font-size: 0.7rem;
+  color: var(--nb-muted);
+  margin-bottom: 0.15rem;
+}
+.swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--nb-dark);
+}
+.type-sample {
+  padding: 1.5rem;
+  border: 1px solid var(--nb-border);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+.type-meta {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--nb-muted);
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+}
+
+/* ─── SITEMAP ─── */
+.sitemap-node {
+  background: #fff;
+  border: 1px solid var(--nb-border);
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+}
+.sitemap-root {
+  background: var(--nb-dark);
+  color: var(--nb-cream);
+  border-color: var(--nb-dark);
+}
+.sitemap-primary {
+  background: var(--nb-green);
+  color: #fff;
+  border-color: var(--nb-green);
+}
+.sitemap-secondary {
+  background: rgba(59,109,17,0.08);
+  border-color: var(--nb-border);
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+
+/* ─── HOMEPAGE MOCKUP ─── */
+.mockup-frame {
+  background: var(--fv-midnight);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+}
+.mockup-browser-bar {
+  background: #1a1a1a;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.browser-url {
+  flex: 1;
+  background: #2a2a2a;
+  border-radius: 4px;
+  padding: 0.3rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #888;
+  margin: 0 0.5rem;
+}
+
+/* ─── FAIRVIEW MOCKUP INTERNAL STYLES ─── */
+.fv-nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  padding: 2.5rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fv-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fv-ivory);
+}
+.fv-logo span {
+  display: block;
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  color: rgba(248,244,238,0.5);
+  margin-top: -2px;
+}
+.fv-nav-links {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+.fv-nav-links a {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: rgba(248,244,238,0.7);
+  text-decoration: none;
+}
+.fv-nav-cta {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fv-brass);
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgba(196,151,90,0.4);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.fv-hero {
+  position: relative;
+  height: 600px;
+  background: linear-gradient(
+    160deg,
+    #0A1628 0%,
+    #0F2040 30%,
+    #1a3a5c 55%,
+    #0d2035 80%,
+    #091525 100%
+  );
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 4rem 4rem;
+}
+
+/* Simulated cinematic water/sky effect */
+.fv-hero-sea {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 45%;
+  background: linear-gradient(
+    to top,
+    rgba(10,22,40,0.9) 0%,
+    rgba(15,32,64,0.5) 40%,
+    transparent 100%
+  );
+}
+.fv-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(10,22,40,0.4) 0%,
+    transparent 50%,
+    rgba(10,22,40,0.2) 100%
+  );
+}
+/* Decorative horizon line */
+.fv-horizon {
+  position: absolute;
+  left: 0; right: 0;
+  top: 42%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(196,151,90,0.2), transparent);
+}
+/* Stars simulation */
+.fv-stars {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  bottom: 55%;
+  background-image:
+    radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 30%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 25%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 18%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 8%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 12%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 28%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 35%, rgba(255,255,255,0.2) 0%, transparent 100%);
+}
+/* Yacht silhouette shape */
+.fv-yacht-silhouette {
+  position: absolute;
+  right: 8%;
+  bottom: 38%;
+  width: 320px;
+  height: 180px;
+  opacity: 0.18;
+}
+
+.fv-hero-content {
+  position: relative;
+  z-index: 5;
+  max-width: 680px;
+}
+.fv-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fv-brass);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.fv-eyebrow::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--fv-brass);
+  opacity: 0.6;
+}
+.fv-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 300;
+  color: var(--fv-ivory);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.75rem;
+}
+.fv-headline em {
+  font-style: italic;
+  color: rgba(248,244,238,0.65);
+}
+.fv-hero-sub {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: rgba(248,244,238,0.55);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+  max-width: 420px;
+}
+.fv-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.fv-btn-primary {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fv-midnight);
+  background: var(--fv-ivory);
+  padding: 0.85rem 2.25rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.fv-btn-ghost {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(248,244,238,0.6);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+.fv-btn-ghost::after {
+  content: '→';
+  font-size: 0.9em;
+}
+.fv-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  right: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 5;
+}
+.fv-scroll-line {
+  width: 1px;
+  height: 3rem;
+  background: linear-gradient(to bottom, transparent, rgba(196,151,90,0.5));
+}
+.fv-scroll-text {
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(248,244,238,0.3);
+  writing-mode: vertical-rl;
+}
+.fv-hero-stat {
+  position: absolute;
+  top: 50%;
+  right: 4rem;
+  transform: translateY(-50%);
+  text-align: right;
+  z-index: 5;
+  opacity: 0.6;
+}
+.fv-hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--fv-ivory);
+  line-height: 1;
+}
+.fv-hero-stat-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(248,244,238,0.4);
+  margin-top: 0.3rem;
+}
+
+/* Intro section */
+.fv-intro {
+  background: var(--fv-ivory);
+  padding: 6rem 4rem;
+}
+.fv-intro-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.fv-section-rule {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.fv-section-rule::before,
+.fv-section-rule::after {
+  content: '';
+  flex: 1;
+  max-width: 3rem;
+  height: 1px;
+  background: var(--fv-brass);
+  opacity: 0.4;
+}
+.fv-rule-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fv-brass);
+}
+.fv-intro-headline {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--fv-midnight);
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+}
+.fv-intro-body {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(10,22,40,0.6);
+  line-height: 1.9;
+}
+
+/* Destinations section */
+.fv-destinations {
+  background: var(--fv-midnight);
+  padding: 3rem 4rem;
+}
+.fv-dest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+.fv-dest-title {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 300;
+  color: var(--fv-ivory);
+  line-height: 1.1;
+  margin-top: 0.4rem;
+}
+.fv-dest-title em {
+  font-style: italic;
+  color: rgba(248,244,238,0.4);
+}
+.fv-dest-view-all {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(248,244,238,0.32);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding-bottom: 0.2rem;
+}
+.fv-dest-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 196px 196px;
+  gap: 3px;
+}
+.fv-dest-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+}
+.fv-dest-card-hero { grid-row: 1 / 3; }
+.fv-dest-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.55s ease;
+}
+.fv-dest-card:hover .fv-dest-bg { transform: scale(1.05); }
+.fv-dest-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,22,40,0.82) 0%, rgba(10,22,40,0.08) 55%);
+}
+.fv-dest-watermark {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.045);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.fv-dest-card-hero .fv-dest-watermark { font-size: 8rem; }
+.fv-dest-content {
+  position: relative;
+  z-index: 2;
+  padding: 1.1rem 1.3rem;
+}
+.fv-dest-region {
+  font-family: var(--font-sans);
+  font-size: 0.48rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fv-brass);
+  margin-bottom: 0.28rem;
+}
+.fv-dest-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--fv-ivory);
+  line-height: 1.1;
+}
+.fv-dest-card-hero .fv-dest-name { font-size: 1.9rem; margin-bottom: 0.2rem; }
+.fv-dest-sub {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
+  color: rgba(248,244,238,0.35);
+  margin-top: 0.2rem;
+}
+.fv-dest-yachts {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.06em;
+  color: rgba(248,244,238,0.25);
+  margin-top: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.fv-dest-yachts::before {
+  content: '';
+  display: inline-block;
+  width: 0.85rem;
+  height: 1px;
+  background: rgba(196,151,90,0.35);
+}
+
+/* Search bar */
+.fv-search-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0; z-index: 6;
+  background: rgba(10,22,40,0.93);
+  border-top: 1px solid rgba(196,151,90,0.2);
+}
+.fv-search-inner {
+  padding: 0 4rem;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.fv-search-tab {
+  font-family: var(--font-sans);
+  font-size: 0.58rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  padding: 0 1.1rem; height: 100%;
+  display: flex; align-items: center;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.fv-search-tab.active { color: var(--fv-brass); border-bottom-color: var(--fv-brass); }
+.fv-search-divider { width: 1px; height: 26px; background: rgba(255,255,255,0.1); margin: 0 1rem; flex-shrink: 0; }
+.fv-search-field {
+  display: flex; flex-direction: column; gap: 1px;
+  flex: 1; min-width: 0;
+}
+.fv-search-field label { font-family: var(--font-mono); font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+.fv-search-field select {
+  background: transparent; border: none; outline: none;
+  font-family: var(--font-sans); font-size: 0.75rem; font-weight: 300; color: var(--fv-ivory);
+  cursor: pointer; -webkit-appearance: none; padding: 0;
+}
+.fv-search-btn {
+  background: var(--fv-brass); border: none; color: var(--fv-midnight);
+  font-family: var(--font-sans); font-size: 0.55rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 0.65rem 1.5rem; cursor: pointer; white-space: nowrap;
+  margin-left: 1rem; flex-shrink: 0;
+}
+
+/* Services 3-up */
+.fv-services {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  background: var(--fv-mist);
+}
+.fv-service-card {
+  background: var(--fv-ivory); padding: 2.5rem 2.25rem;
+  position: relative; overflow: hidden; cursor: pointer; transition: background 0.3s;
+}
+.fv-service-card:hover { background: var(--fv-midnight); }
+.fv-service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--fv-brass); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.fv-service-card:hover::before { transform: scaleX(1); }
+.fv-service-icon {
+  width: 38px; height: 38px; border: 1px solid rgba(196,151,90,0.25);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
+}
+.fv-service-icon svg { width: 18px; height: 18px; stroke: var(--fv-brass); fill: none; stroke-width: 1.2; }
+.fv-service-card:hover .fv-service-icon { border-color: rgba(196,151,90,0.4); }
+.fv-service-num { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(10,22,40,0.3); margin-bottom: 0.35rem; transition: color 0.3s; }
+.fv-service-card:hover .fv-service-num { color: rgba(248,244,238,0.35); }
+.fv-service-title { font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; color: var(--fv-midnight); margin-bottom: 0.75rem; line-height: 1.15; transition: color 0.3s; }
+.fv-service-card:hover .fv-service-title { color: var(--fv-ivory); }
+.fv-service-desc { font-size: 0.75rem; font-weight: 300; line-height: 1.7; color: rgba(10,22,40,0.5); margin-bottom: 1.5rem; transition: color 0.3s; }
+.fv-service-card:hover .fv-service-desc { color: rgba(248,244,238,0.45); }
+.fv-service-link { font-family: var(--font-sans); font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fv-brass); display: flex; align-items: center; gap: 0.5rem; }
+
+/* Testimonials */
+.fv-testimonials { background: var(--fv-alabaster); padding: 4rem; }
+.fv-testi-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.75rem; }
+.fv-testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.fv-testi-card { background: var(--fv-ivory); padding: 2rem; border-top: 2px solid transparent; transition: border-color 0.3s; }
+.fv-testi-card:hover { border-top-color: var(--fv-brass); }
+.fv-testi-stars { display: flex; gap: 2px; margin-bottom: 0.75rem; }
+.fv-testi-star { width: 10px; height: 10px; fill: var(--fv-brass); }
+.fv-testi-quote { font-family: var(--font-display); font-size: 3.5rem; color: rgba(196,151,90,0.15); line-height: 0.5; margin-bottom: 0.75rem; display: block; }
+.fv-testi-text { font-family: var(--font-display); font-size: 0.95rem; font-style: italic; font-weight: 300; line-height: 1.65; color: rgba(10,22,40,0.6); margin-bottom: 1.25rem; }
+.fv-testi-author { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fv-midnight); }
+.fv-testi-detail { font-family: var(--font-mono); font-size: 0.58rem; color: rgba(10,22,40,0.35); margin-top: 0.2rem; }
+
+/* Blog / Journal */
+.fv-blog { background: var(--fv-ivory); padding: 4rem; }
+.fv-blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.75rem; }
+.fv-blog-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2px; }
+.fv-blog-card { background: var(--fv-alabaster); overflow: hidden; cursor: pointer; }
+.fv-blog-img { height: 150px; overflow: hidden; position: relative; }
+.fv-blog-card:first-child .fv-blog-img { height: 190px; }
+.fv-blog-body { padding: 1.1rem 1.25rem 1.5rem; }
+.fv-blog-tag { font-family: var(--font-sans); font-size: 0.48rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fv-brass); margin-bottom: 0.4rem; }
+.fv-blog-title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 400; color: var(--fv-midnight); line-height: 1.25; margin-bottom: 0.4rem; }
+.fv-blog-card:first-child .fv-blog-title { font-size: 1.15rem; }
+.fv-blog-date { font-family: var(--font-mono); font-size: 0.55rem; color: rgba(10,22,40,0.32); }
+
+/* Fleet section */
+.fv-fleet {
+  background: var(--fv-alabaster);
+  padding: 5rem 4rem;
+}
+.fv-fleet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+}
+.fv-fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+.fv-fleet-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--fv-mist);
+  border-radius: 4px;
+}
+.fv-fleet-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+.fv-fleet-info {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-top: 1px solid rgba(10,22,40,0.08);
+}
+.fv-fleet-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--fv-midnight);
+}
+.fv-fleet-type {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(10,22,40,0.4);
+  margin-top: 0.2rem;
+}
+.fv-fleet-spec {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(10,22,40,0.4);
+}
+.fv-fleet-spec strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--fv-midnight);
+  letter-spacing: 0.02em;
+}
+
+/* Ownership dark section */
+.fv-ownership {
+  background: var(--fv-midnight);
+  padding: 6rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.fv-ownership-tag {
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fv-brass);
+  margin-bottom: 1.5rem;
+}
+.fv-ownership-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--fv-ivory);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.fv-ownership-body {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(248,244,238,0.5);
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+}
+.fv-ownership-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 2.5rem;
+}
+.fv-stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--fv-ivory);
+  line-height: 1;
+}
+.fv-stat-unit {
+  font-size: 1rem;
+  color: var(--fv-brass);
+}
+.fv-stat-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(248,244,238,0.35);
+  margin-top: 0.4rem;
+}
+
+/* Enquiry CTA */
+.fv-enquiry {
+  background: var(--fv-ivory);
+  padding: 6rem 4rem;
+  text-align: center;
+}
+.fv-enquiry-title {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--fv-midnight);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+.fv-enquiry-sub {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(10,22,40,0.5);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+}
+.fv-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 1px;
+  max-width: 780px;
+  margin: 0 auto;
+  background: rgba(10,22,40,0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.fv-input {
+  background: #fff;
+  border: none;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--fv-midnight);
+  width: 100%;
+  outline: none;
+}
+.fv-input::placeholder { color: rgba(10,22,40,0.3); }
+.fv-form-btn {
+  background: var(--fv-midnight);
+  color: var(--fv-ivory);
+  border: none;
+  padding: 1rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Footer */
+.fv-footer {
+  background: #070f1c;
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  border-top: 1px solid rgba(196,151,90,0.12);
+}
+.fv-footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--fv-ivory);
+  margin-bottom: 1rem;
+}
+.fv-footer-tagline {
+  font-size: 0.72rem;
+  color: rgba(248,244,238,0.3);
+  line-height: 1.6;
+  max-width: 240px;
+}
+.fv-footer-col-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(248,244,238,0.35);
+  margin-bottom: 1.25rem;
+}
+.fv-footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.fv-footer-links li {
+  font-size: 0.78rem;
+  color: rgba(248,244,238,0.55);
+  font-weight: 300;
+}
+
+/* Mobile mockup */
+.mobile-mockup {
+  width: 320px;
+  background: var(--fv-midnight);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 8px solid #1a1a2e;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  margin: 0 auto;
+}
+.mobile-browser-bar {
+  background: #0d0d1a;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.mobile-status-text {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: #555;
+  margin-left: auto;
+}
+
+/* Component system */
+.component-card {
+  border: 1px solid var(--nb-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+.component-label {
+  padding: 0.6rem 1rem;
+  background: var(--nb-cream);
+  border-bottom: 1px solid var(--nb-border);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--nb-muted);
+  letter-spacing: 0.05em;
+}
+.component-preview {
+  padding: 1.5rem;
+}
+
+/* Score bars */
+.score-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.score-bar-label {
+  font-size: 0.78rem;
+  min-width: 160px;
+}
+.score-bar-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+.score-bar-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--nb-muted);
+  min-width: 30px;
+  text-align: right;
+}
+
+/* Recommendation cards */
+.rec-card {
+  border-left: 3px solid;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 6px 6px 0;
+  background: #fff;
+  margin-bottom: 1rem;
+}
+.rec-card h5 {
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+.rec-card p {
+  font-size: 0.82rem;
+  color: var(--nb-muted);
+  line-height: 1.6;
+}
+
+/* Spacing scale */
+.spacing-demo {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid var(--nb-border);
+  border-radius: 6px;
+}
+.spacing-block {
+  background: rgba(59,109,17,0.15);
+  border: 1px dashed rgba(59,109,17,0.3);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 0.3rem;
+}
+.spacing-val {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--nb-green);
+}
+.spacing-name {
+  font-size: 0.6rem;
+  color: var(--nb-muted);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Simulated background visuals for destination cards */
+.dest-bg-krabi {
+  background: linear-gradient(160deg, #2d4a7a 0%, #1a3350 30%, #0d2040 55%, #162030 80%);
+}
+.dest-bg-phi-phi {
+  background: linear-gradient(160deg, #1a4a3a 0%, #0d3025 50%, #071a14 100%);
+}
+.dest-bg-similan {
+  background: linear-gradient(160deg, #0d3055 0%, #1a4060 40%, #0a2040 100%);
+}
+.dest-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Utility */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mb-0 { margin-bottom: 0; }
+.mb-sm { margin-bottom: 1rem; }
+.mb-md { margin-bottom: 2rem; }
+.mb-lg { margin-bottom: 3rem; }
+.mt-md { margin-top: 2rem; }
+.mt-lg { margin-top: 3rem; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-sm { gap: 1rem; }
+.gap-md { gap: 2rem; }
+.opacity-60 { opacity: 0.6; }
+.fw-300 { font-weight: 300; }
+.dark-section {
+  background: var(--nb-dark);
+  color: var(--nb-cream);
+}
+.dark-section .heading-sm { color: rgba(250,247,242,0.45); }
+.dark-section .body-text { color: rgba(250,247,242,0.6); }
+.dark-section .divider { background: rgba(250,247,242,0.2); }
+
+/* TOC */
+.toc {
+  position: sticky;
+  top: 5rem;
+  list-style: none;
+}
+.toc li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--nb-border);
+}
+.toc a {
+  font-size: 0.72rem;
+  color: var(--nb-muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: color 0.2s;
+}
+.toc a:hover { color: var(--nb-dark); }
+.toc-num {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--nb-green);
+  opacity: 0.5;
+}
+.toc .active a { color: var(--nb-dark); font-weight: 500; }
+.toc .active .toc-num { opacity: 1; }
+
+/* Print / export styles */
+@media print {
+  .site-header { display: none; }
+  .section { page-break-inside: avoid; }
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="main-nav" class="">
-  <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="nav-logo">
-    
-    Fairview Yachting
+<!-- ─── STICKY NAV ─── -->
+<header class="site-header">
+  <a href="https://northboundcommerce.co.uk/" target="_blank" class="nb-logo">
+    <span class="nb-logo-text">Northbound Commerce</span>
   </a>
-  <ul class="nav-links">
-    <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Charter</a></li>
-    <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Yacht Sales</a></li>
-    <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Brokerage</a></li>
-    <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Destinations</a></li>
-    <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">About</a></li>
-    <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Journal</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="nav-lang">
-      <svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5"></circle><path d="M6 1 C4 4 4 8 6 11 M6 1 C8 4 8 8 6 11 M1 6 L11 6"></path></svg>
-      EN
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#audit">Audit</a></li>
+      <li><a href="#positioning">Brief Alignment</a></li>
+      <li><a href="#direction">Creative Direction</a></li>
+      <li><a href="#structure">Structure</a></li>
+      <li><a href="#mockup">Mockup</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ─── COVER ─── -->
+<section class="cover">
+  <div class="container">
+    <div class="cover-tag">
+      <span>✦</span> UX/UI Audit & Creative Direction
     </div>
-    <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="nav-cta">Enquire</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-water"></div>
-  <div class="hero-horizon"></div>
-  <div class="hero-sun"></div>
-
-  <!-- Minimal yacht silhouette -->
-  <div class="hero-yacht">
-    <svg viewBox="0 0 280 120" fill="white" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="140,5 160,90 110,90" opacity="0.6"></polygon>
-      <polygon points="145,10 170,90 148,90" opacity="0.5"></polygon>
-      <rect x="60" y="90" width="180" height="6" rx="3" opacity="0.7"></rect>
-      <ellipse cx="150" cy="97" rx="70" ry="10" opacity="0.25"></ellipse>
-    </svg>
-  </div>
-
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow">Yacht Charter &amp; Sales</div>
-    <h1 class="hero-title">
-      Navigate the world<br>
-      <em>in refined luxury</em>
-    </h1>
-    <p class="hero-sub">Phuket-based charter fleet. Worldwide sailing destinations. Premium catamaran sales. One trusted partner on the water.</p>
-    <div class="hero-actions">
-      <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="btn-primary">Explore Charters</a>
-      <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="btn-ghost">View Our Fleet</a>
+    <h1>Fairview Yachting<br><em>A Luxury Redesign Proposal</em></h1>
+    <p style="font-size:0.95rem; color:rgba(250,247,242,0.5); max-width:540px; line-height:1.75;">
+      A comprehensive audit of the current digital experience, 
+      competitive analysis, full creative direction, and high-fidelity homepage concept — 
+      positioning Fairview as a world-class luxury maritime brand.
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <label>Client</label>
+        <span>Fairview Yachting</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Prepared by</label>
+        <span>Northbound Commerce</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Document type</label>
+        <span>Design Audit + Creative Direction</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Sections</label>
+        <span>5 — Audit · Positioning · Direction · Structure · Mockup</span>
+      </div>
     </div>
-  </div>
-
-  <!-- Search Bar -->
-  <div class="search-bar">
-    <div class="search-tab active">Charter</div>
-    <div class="search-tab">Yacht Sales</div>
-    <div class="search-tab">Brokerage</div>
-    <div class="search-divider"></div>
-    <div class="search-field">
-      <label>Destination</label>
-      <select>
-        <option>Phuket, Thailand</option>
-        <option>Worldwide</option>
-        <option>Mediterranean</option>
-        <option>Caribbean</option>
-      </select>
-    </div>
-    <div class="search-divider"></div>
-    <div class="search-field">
-      <label>Charter Type</label>
-      <select>
-        <option>Skippered</option>
-        <option>Crewed</option>
-        <option>Bareboat</option>
-      </select>
-    </div>
-    <div class="search-divider"></div>
-    <div class="search-field">
-      <label>Guests</label>
-      <select>
-        <option>2 guests</option>
-        <option>4 guests</option>
-        <option>6 guests</option>
-        <option>8 guests</option>
-      </select>
-    </div>
-    <button class="search-btn">Search →</button>
-  </div>
-
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services">
-  <div class="section-label">Our Services</div>
-  <div class="section-title">Three ways to<br><em>experience the sea</em></div>
+<!-- ─── EXECUTIVE SUMMARY ─── -->
+<section class="section-sm" style="background:#fff; border-bottom:1px solid var(--nb-border);">
+  <div class="container">
+    <div style="max-width:780px;">
+      <span class="heading-sm mb-sm" style="display:block; margin-bottom:1rem;">Executive Summary</span>
+      <h2 class="heading-md" style="margin-bottom:1.25rem;">The gap between the brand's ambition and its digital presence is significant — and closeable.</h2>
+      <p class="body-text">
+        Fairview Yachting operates in the premium segment of the global yacht charter and sales market with a genuinely differentiated offering: multi-destination coverage across Thailand, the UK, and Hong Kong, an ownership programme, and a heritage of deep sailing expertise. But its website tells none of that story. What visitors find instead is a functional, template-driven WordPress build that communicates mid-market tourism rather than curated luxury experience. The colour palette, typography, content strategy, and interaction design all work against the brand.
+      </p>
+      <p class="body-text" style="margin-top:1rem;">
+        This document identifies the specific points of failure, defines a new visual and editorial language, and delivers a homepage concept that closes the gap. The reference aesthetic is premium hospitality — Rosewood Hotels, Six Senses, Aman — rather than the yacht brokerage category, because Fairview's real competition for the high-net-worth client is <em>other luxury experiences</em>, not other charter companies.
+      </p>
+    </div>
 
-  <div class="services-grid">
-    <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="service-card">
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 17 L5 10 L12 4 L19 10 L21 17 M3 17 L21 17 M7 17 L7 21 M17 17 L17 21"></path>
-        </svg>
+    <div class="grid-4 mt-lg" style="gap:1.5rem;">
+      <div>
+        <div style="font-family:var(--font-mono); font-size:0.6rem; color:var(--nb-muted); margin-bottom:0.3rem;">Current perception score</div>
+        <div style="font-family:var(--font-nb-serif); font-size:2.5rem; color:#e54c4c; line-height:1;">3.1<span style="font-size:1.2rem; color:var(--nb-muted);"> /10</span></div>
+        <div class="body-text" style="font-size:0.72rem; margin-top:0.3rem;">Luxury brand alignment</div>
       </div>
-      <div class="service-num">01 /</div>
-      <div class="service-title">Yacht Charter</div>
-      <div class="service-desc">Explore Phuket's islands or set sail for any destination worldwide. Skippered, crewed, or bareboat — tailored to how you want to travel.</div>
-      <div class="service-link">Explore Charters <svg viewBox="0 0 14 14"><path d="M2 7 L12 7 M8 3 L12 7 L8 11"></path></svg></div>
-    </a>
-    <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="service-card">
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2 L20 20 L12 17 L4 20 Z M12 7 L12 17"></path>
-        </svg>
+      <div>
+        <div style="font-family:var(--font-mono); font-size:0.6rem; color:var(--nb-muted); margin-bottom:0.3rem;">Critical issues identified</div>
+        <div style="font-family:var(--font-nb-serif); font-size:2.5rem; color:var(--nb-dark); line-height:1;">14</div>
+        <div class="body-text" style="font-size:0.72rem; margin-top:0.3rem;">Across brand, UX, and conversion</div>
       </div>
-      <div class="service-num">02 /</div>
-      <div class="service-title">New Yacht Sales</div>
-      <div class="service-desc">Official dealer for Bali Catamarans and GranOcean in Thailand and Hong Kong. Exceptional sailing and power catamarans for discerning owners.</div>
-      <div class="service-link">View New Yachts <svg viewBox="0 0 14 14"><path d="M2 7 L12 7 M8 3 L12 7 L8 11"></path></svg></div>
-    </a>
-    <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="service-card">
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="9"></circle><path d="M8 12 L11 15 L16 9"></path>
-        </svg>
+      <div>
+        <div style="font-family:var(--font-mono); font-size:0.6rem; color:var(--nb-muted); margin-bottom:0.3rem;">Estimated redesign impact</div>
+        <div style="font-family:var(--font-nb-serif); font-size:2.5rem; color:var(--nb-green); line-height:1;">4–6×</div>
+        <div class="body-text" style="font-size:0.72rem; margin-top:0.3rem;">Increase in qualified enquiries</div>
       </div>
-      <div class="service-num">03 /</div>
-      <div class="service-title">Brokerage</div>
-      <div class="service-desc">A curated selection of pre-owned yachts sourced worldwide. Expert guidance from initial enquiry through to sea trial and handover.</div>
-      <div class="service-link">Browse Brokerage <svg viewBox="0 0 14 14"><path d="M2 7 L12 7 M8 3 L12 7 L8 11"></path></svg></div>
-    </a>
+      <div>
+        <div style="font-family:var(--font-mono); font-size:0.6rem; color:var(--nb-muted); margin-bottom:0.3rem;">Potential target perception</div>
+        <div style="font-family:var(--font-nb-serif); font-size:2.5rem; color:var(--nb-green); line-height:1;">9.0<span style="font-size:1.2rem; color:var(--nb-muted);"> /10</span></div>
+        <div class="body-text" style="font-size:0.72rem; margin-top:0.3rem;">With proposed redesign</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FEATURED YACHTS -->
-<section class="yachts">
-  <div class="yachts-header">
+<!-- ─── SECTION 1: AUDIT ─── -->
+<section class="section" id="audit">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">01 / 07</span>
+      <h2 class="heading-lg" style="margin-bottom:1rem;">UX/UI Audit</h2>
+      <div class="divider"></div>
+      <p class="body-text" style="max-width:560px;">A structured review of every dimension of the current fairviewyachting.com experience, assessed against luxury hospitality benchmarks.</p>
+    </div>
+
+    <!-- Score overview -->
+    <div class="card mb-lg">
+      <div style="margin-bottom:1.5rem;">
+        <h3 class="heading-sm mb-sm" style="margin-bottom:0.75rem;">Brand Health Scorecard</h3>
+        <p class="body-text" style="font-size:0.8rem;">Each dimension scored 1–10 against luxury brand benchmarks (Rosewood, Six Senses, Burgess Yachts, Camper & Nicholsons).</p>
+      </div>
+      <div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Brand perception</span><div class="score-bar-track"><div class="score-bar-fill" style="width:25%; background:#e54c4c;"></div></div><span class="score-bar-num">2.5</span></div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Visual design quality</span><div class="score-bar-track"><div class="score-bar-fill" style="width:28%; background:#e54c4c;"></div></div><span class="score-bar-num">2.8</span></div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Typography</span><div class="score-bar-track"><div class="score-bar-fill" style="width:30%; background:#e54c4c;"></div></div><span class="score-bar-num">3.0</span></div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Imagery / art direction</span><div class="score-bar-track"><div class="score-bar-fill" style="width:35%; background:#d4a017;"></div></div><span class="score-bar-num">3.5</span></div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Layout & hierarchy</span><div class="score-bar-track"><div class="score-bar-fill" style="width:30%; background:#e54c4c;"></div></div><span class="score-bar-num">3.0</span></div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Navigation & user flow</span><div class="score-bar-track"><div class="score-bar-fill" style="width:45%; background:#d4a017;"></div></div><span class="score-bar-num">4.5</span></div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Mobile experience</span><div class="score-bar-track"><div class="score-bar-fill" style="width:40%; background:#d4a017;"></div></div><span class="score-bar-num">4.0</span></div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Trust & luxury signalling</span><div class="score-bar-track"><div class="score-bar-fill" style="width:20%; background:#e54c4c;"></div></div><span class="score-bar-num">2.0</span></div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Conversion design</span><div class="score-bar-track"><div class="score-bar-fill" style="width:35%; background:#d4a017;"></div></div><span class="score-bar-num">3.5</span></div>
+        <div class="score-bar-wrap"><span class="score-bar-label">Performance & polish</span><div class="score-bar-track"><div class="score-bar-fill" style="width:42%; background:#d4a017;"></div></div><span class="score-bar-num">4.2</span></div>
+      </div>
+    </div>
+
+    <!-- Detailed audit items -->
     <div>
-      <div class="section-label">Featured Vessels</div>
-      <div class="section-title">Chosen for <em>those who know</em></div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px;">
-      <div class="yachts-tabs">
-        <div class="yacht-tab active">Charter Fleet</div>
-        <div class="yacht-tab">For Sale</div>
-        <div class="yacht-tab">Brokerage</div>
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Brand Perception</div>
+          <span class="pill pill-red mt-md" style="margin-top:0.5rem;">Critical</span>
+        </div>
+        <div class="audit-content">
+          <h4>Reads as a tourist charter company, not a luxury brand</h4>
+          <p class="body-text">The dominant teal/turquoise navbar and footer communicate tropical tourism — the colour of a snorkelling brochure. The hero imagery shows people jumping off boat decks in swimwear. The first large headline visible on scroll is "Official Dealer of Bali Catamarans and GranOcean". Together these signals place the brand firmly in the mid-market holiday-charter space, making it near-impossible for a discerning HNW visitor to self-identify with the brand.</p>
+          <div class="annotation-box annotation-red mt-md" style="margin-top:1rem;">
+            <strong style="font-size:0.78rem;">Specific issue:</strong> <span class="body-text" style="font-size:0.82rem;">A pop-up appears mid-scroll offering "Earn 10% Guaranteed Income on Bali Catamaran Ownership" — investment framing, not experience framing. This is the single biggest luxury-perception killer on the site.</span>
+          </div>
+        </div>
       </div>
-      <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="view-all">View All Yachts <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"></path></svg></a>
-    </div>
-  </div>
 
-  <div class="yachts-grid">
-    <!-- Card 1 -->
-    <div class="yacht-card">
-      <div class="yacht-img">
-        <div class="yacht-img-inner yi-1">
-          <svg class="yacht-img-svg" width="100" height="50" viewBox="0 0 100 50" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="50,2 60,40 40,40"></polygon>
-            <polygon points="53,3 65,40 54,40"></polygon>
-            <rect x="20" y="40" width="60" height="4" rx="2"></rect>
-          </svg>
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Colour Palette</div>
+          <span class="pill pill-red mt-md" style="margin-top:0.5rem;">Critical</span>
+        </div>
+        <div class="audit-content">
+          <h4>Saturated teal is the wrong signal for premium</h4>
+          <p class="body-text">The primary brand colour — a bright cyan-teal (#1abc9c / #00bcd4 territory) — is warm, accessible, and friendly. These are not luxury brand values. Premium hospitality and maritime brands use restraint: deep navy, warm ivory, antique brass, and chalk. The current palette reads like a package holiday booking site.</p>
+          <div style="display:flex; gap:0.75rem; margin-top:1rem; flex-wrap:wrap;">
+            <div>
+              <div style="width:60px; height:40px; background:#1aacac; border-radius:4px; border:1px solid rgba(0,0,0,0.06);"></div>
+              <div style="font-size:0.65rem; color:var(--nb-muted); margin-top:0.3rem;">Current primary<br>Tourist-resort teal</div>
+            </div>
+            <div style="align-self:center; color:var(--nb-muted); font-size:1.2rem;">→</div>
+            <div>
+              <div style="width:60px; height:40px; background:#0A1628; border-radius:4px;"></div>
+              <div style="font-size:0.65rem; color:var(--nb-muted); margin-top:0.3rem;">Proposed midnight<br>Deep authority</div>
+            </div>
+            <div>
+              <div style="width:60px; height:40px; background:#F8F4EE; border-radius:4px; border:1px solid rgba(0,0,0,0.06);"></div>
+              <div style="font-size:0.65rem; color:var(--nb-muted); margin-top:0.3rem;">Ivory alabaster<br>Warmth, space</div>
+            </div>
+            <div>
+              <div style="width:60px; height:40px; background:#C4975A; border-radius:4px;"></div>
+              <div style="font-size:0.65rem; color:var(--nb-muted); margin-top:0.3rem;">Antique brass<br>Quiet luxury accent</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="yacht-body">
-        <div class="yacht-category">Sailing Catamaran · Phuket</div>
-        <div class="yacht-name">Andaman Dream</div>
-        <div class="yacht-model">Bali 4.8 · 2023</div>
-        <div class="yacht-specs">
-          <div class="yacht-spec"><div class="yacht-spec-label">Length</div><div class="yacht-spec-val">14.6m</div></div>
-          <div class="yacht-spec"><div class="yacht-spec-label">Cabins</div><div class="yacht-spec-val">4</div></div>
-          <div class="yacht-spec"><div class="yacht-spec-label">Guests</div><div class="yacht-spec-val">8</div></div>
-        </div>
-        <div class="yacht-footer">
-          <div class="yacht-price-tag">From €2,800 / day</div>
-          <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="yacht-enquire">Enquire <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"></path></svg></a>
-        </div>
-      </div>
-    </div>
 
-    <!-- Card 2 -->
-    <div class="yacht-card">
-      <div class="yacht-img">
-        <div class="yacht-img-inner yi-2">
-          <svg class="yacht-img-svg" width="100" height="50" viewBox="0 0 100 50" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="50,2 60,40 40,40"></polygon>
-            <rect x="20" y="40" width="60" height="4" rx="2"></rect>
-          </svg>
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Typography</div>
+          <span class="pill pill-red mt-md" style="margin-top:0.5rem;">Critical</span>
+        </div>
+        <div class="audit-content">
+          <h4>Generic web fonts with no editorial character</h4>
+          <p class="body-text">The site uses what appears to be a default WordPress theme font stack — functional but completely devoid of character. There is no display typeface for editorial headings, no serif for warmth, and no visual hierarchy that guides the eye. Compare to Burgess Yachts or the Rosewood Hotels site, both of which use sophisticated serif/sans pairings to immediately signal the brand tier.</p>
+          <div class="annotation-box annotation-amber" style="margin-top:1rem;">
+            <strong style="font-size:0.78rem;">Quick fix potential:</strong> <span class="body-text" style="font-size:0.82rem;">Introducing a single display typeface (Cormorant Garamond or similar) across headlines would move brand perception significantly, even before a full redesign.</span>
+          </div>
         </div>
       </div>
-      <div class="yacht-body">
-        <div class="yacht-category">Power Catamaran · For Sale</div>
-        <div class="yacht-name">GranOcean W-60</div>
-        <div class="yacht-model">GranOcean W-60 · 2024</div>
-        <div class="yacht-specs">
-          <div class="yacht-spec"><div class="yacht-spec-label">Length</div><div class="yacht-spec-val">18.2m</div></div>
-          <div class="yacht-spec"><div class="yacht-spec-label">Cabins</div><div class="yacht-spec-val">5</div></div>
-          <div class="yacht-spec"><div class="yacht-spec-label">Power</div><div class="yacht-spec-val">2×370hp</div></div>
-        </div>
-        <div class="yacht-footer">
-          <div class="yacht-price-tag">POA</div>
-          <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="yacht-enquire">Enquire <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"></path></svg></a>
-        </div>
-      </div>
-    </div>
 
-    <!-- Card 3 -->
-    <div class="yacht-card">
-      <div class="yacht-img">
-        <div class="yacht-img-inner yi-3">
-          <svg class="yacht-img-svg" width="100" height="50" viewBox="0 0 100 50" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="50,2 58,40 42,40"></polygon>
-            <polygon points="53,5 62,40 52,40"></polygon>
-            <rect x="22" y="40" width="56" height="4" rx="2"></rect>
-          </svg>
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Layout & Hierarchy</div>
+          <span class="pill pill-amber" style="margin-top:0.5rem;">High Priority</span>
+        </div>
+        <div class="audit-content">
+          <h4>Repetitive horizontal sections with no compositional tension</h4>
+          <p class="body-text">Every section of the homepage uses the same alternating image-left/text-right two-column layout with a heavy teal divider line under headings. This pattern is the signature aesthetic of a WordPress Elementor template. Luxury brands use editorial asymmetry: full-bleed moments, unexpected proportions, generous whitespace, and deliberate pacing. The eye has nowhere to rest and nothing to anticipate.</p>
+          <p class="body-text" style="margin-top:0.75rem;">The page also lacks hierarchy: the "About" copy, a blog post excerpt, a mailing list signup, and a partner logos strip all occupy the same visual weight. There is no single focal moment the site is building towards.</p>
         </div>
       </div>
-      <div class="yacht-body">
-        <div class="yacht-category">Sailing Catamaran · Phuket</div>
-        <div class="yacht-name">Sea Spirit</div>
-        <div class="yacht-model">Bali 5.4 · 2022</div>
-        <div class="yacht-specs">
-          <div class="yacht-spec"><div class="yacht-spec-label">Length</div><div class="yacht-spec-val">16.5m</div></div>
-          <div class="yacht-spec"><div class="yacht-spec-label">Cabins</div><div class="yacht-spec-val">5</div></div>
-          <div class="yacht-spec"><div class="yacht-spec-label">Guests</div><div class="yacht-spec-val">10</div></div>
+
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Imagery & Art Direction</div>
+          <span class="pill pill-amber" style="margin-top:0.5rem;">High Priority</span>
         </div>
-        <div class="yacht-footer">
-          <div class="yacht-price-tag">From €3,400 / day</div>
-          <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="yacht-enquire">Enquire <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"></path></svg></a>
+        <div class="audit-content">
+          <h4>Photography is capable but unstyled — no cohesive art direction</h4>
+          <p class="body-text">The photography itself is not without quality — there are genuinely beautiful shots of Phang Nga Bay. But the selection and sequencing is inconsistent: casual action shots mix with serene lifestyle imagery, different colour grades sit side by side, and images are cropped with no editorial intent. There is no dominant "look" that a visitor would leave with.</p>
+          <p class="body-text" style="margin-top:0.75rem;">Luxury brands maintain an obsessive consistency of mood: golden hour light, desaturated blues, specific focal lengths, consistent subject positioning. The editorial layer — <em>how</em> images are selected, sequenced, and cropped — matters as much as the photography itself.</p>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Navigation & User Flow</div>
+          <span class="pill pill-amber" style="margin-top:0.5rem;">Medium Priority</span>
+        </div>
+        <div class="audit-content">
+          <h4>Functional navigation, but no journey architecture</h4>
+          <p class="body-text">The four-item navigation (Yacht Charter / Yacht Sales / Ownership Program / About) is clear and logical. But it's purely transactional — it routes by service type, not by visitor intent or emotional state. A prospective charter client thinking "where could I go?" is not primed to click "Yacht Charter" as their first action. Luxury hospitality sites lead with destinations, experiences, and stories, then introduce services as the means to access them.</p>
+          <div class="annotation-box annotation-amber" style="margin-top:1rem;">
+            <strong style="font-size:0.78rem;">Missing:</strong> <span class="body-text" style="font-size:0.82rem;">There is no clear primary CTA in the navigation or hero — no "Enquire", "Plan Your Journey", or equivalent. The visitor has no obvious next step.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Mobile Experience</div>
+          <span class="pill pill-amber" style="margin-top:0.5rem;">Medium Priority</span>
+        </div>
+        <div class="audit-content">
+          <h4>Responsive but not designed for mobile-first luxury</h4>
+          <p class="body-text">The site adapts to mobile adequately through standard WordPress responsive behaviour, but it was clearly designed desktop-first. HNW clients browsing during travel or leisure time are primarily on mobile. A luxury mobile experience requires thumb-friendly CTAs, full-bleed portrait photography, minimal chrome, and seamless enquiry forms. The current mobile experience is compressed desktop — not designed for it.</p>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Trust & Luxury Signalling</div>
+          <span class="pill pill-red" style="margin-top:0.5rem;">Critical</span>
+        </div>
+        <div class="audit-content">
+          <h4>Active trust detractors outweigh trust builders</h4>
+          <p class="body-text">Luxury brands build trust through restraint, exclusivity signals, and authority cues. The current site does the opposite:</p>
+          <div style="margin-top:0.75rem; display:flex; flex-direction:column; gap:0.5rem;">
+            <div class="annotation-box annotation-red" style="font-size:0.82rem;"><strong>❌ Trust detractor:</strong> Floating WhatsApp green button (signals informal/budget)</div>
+            <div class="annotation-box annotation-red" style="font-size:0.82rem;"><strong>❌ Trust detractor:</strong> "Earn 10% Guaranteed Income" pop-up (investment pitch, not experience)</div>
+            <div class="annotation-box annotation-red" style="font-size:0.82rem;"><strong>❌ Trust detractor:</strong> Partner logos section with generic sailing schools</div>
+            <div class="annotation-box annotation-red" style="font-size:0.82rem;"><strong>❌ Trust detractor:</strong> "Sign Up For Our Mailing List" with standard form field styling</div>
+            <div class="annotation-box annotation-green" style="font-size:0.82rem;"><strong>✓ Opportunity:</strong> Three-office global presence (Phuket, Hong Kong, Hampshire) is a strong credibility signal — currently buried in the footer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Conversion Design</div>
+          <span class="pill pill-amber" style="margin-top:0.5rem;">High Priority</span>
+        </div>
+        <div class="audit-content">
+          <h4>No clear enquiry journey — the site doesn't sell</h4>
+          <p class="body-text">A luxury purchase is a high-consideration, relationship-led process. The site should be architected to guide visitors from aspiration to enquiry over multiple sections, not present a "Book Now" button and hope. Currently there is no primary CTA visible in the hero, no enquiry journey, and no mechanism to capture a warm lead short of a generic mailing list signup. The conversion funnel simply doesn't exist in a meaningful form.</p>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div>
+          <div class="audit-category">Performance & Polish</div>
+          <span class="pill pill-amber" style="margin-top:0.5rem;">Medium Priority</span>
+        </div>
+        <div class="audit-content">
+          <h4>Standard WordPress performance — no luxury polish signals</h4>
+          <p class="body-text">The site loads at a functional speed for a WordPress build, but there are no luxury performance indicators: no smooth page transitions, no subtle scroll-based reveals, no micro-interactions on hover, no loading elegance. Premium brands treat every millisecond of the load sequence as part of the experience. The absence of any motion or animation also makes the site feel static and dated by luxury digital standards.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DESTINATIONS -->
-<section class="destinations">
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;">
-    <div>
-      <div class="section-label">Destinations</div>
-      <div class="section-title">The world's finest<br><em>sailing waters</em></div>
+<!-- ─── SECTION 2: COMPETITIVE POSITIONING ─── -->
+<section class="section" id="positioning" style="background:#fff;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">02 / 05</span>
+      <h2 class="heading-lg" style="margin-bottom:1rem;">How This Audit Answers the Brief</h2>
+      <div class="divider"></div>
+      <p class="body-text" style="max-width:600px;">Every requirement in Fairview's 2026 website brief is mapped below to where and how this document addresses it — from the audit findings through to the homepage mockup.</p>
     </div>
-    <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="view-all" style="color:rgba(255,255,255,0.4);margin-bottom:4px;">All Destinations <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"></path></svg></a>
-  </div>
 
-  <div class="dest-grid">
-    <div class="dest-card">
-      <div class="dest-bg d1"></div>
-      <div class="dest-overlay"></div>
-      <div class="dest-watermark">PHU</div>
-      <div class="dest-content">
-        <div class="dest-region">Southeast Asia</div>
-        <div class="dest-name">Phuket &amp;<br>The Andaman Sea</div>
-        <div class="dest-count">18 yachts available</div>
+    <!-- Approach statement -->
+    <div class="card-dark" style="margin-bottom:3rem;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;">
+        <div>
+          <div style="font-family:var(--font-nb-serif); font-size:1.6rem; color:rgba(250,247,242,0.85); line-height:1.25; margin-bottom:1.25rem; font-style:italic;">"Premium perception and functional depth are not in tension — one earns the enquiry, the other closes it."</div>
+          <p style="font-size:0.82rem; color:rgba(250,247,242,0.5); line-height:1.75;">The brief asks for a premium brand that also delivers advanced search, API integrations, live availability, multi-language, and a client portal. This document treats both as essential. The creative direction sets the visual register; the technical requirements section defines the functional infrastructure. Neither is optional.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; background:rgba(255,255,255,0.05); border-radius:4px;">
+            <span style="font-size:0.78rem; color:rgba(250,247,242,0.7);">Brief requirements identified</span>
+            <span style="font-family:var(--font-nb-serif); font-size:1.4rem; color:var(--nb-cream);">28</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; background:rgba(255,255,255,0.05); border-radius:4px;">
+            <span style="font-size:0.78rem; color:rgba(250,247,242,0.7);">Addressed in full</span>
+            <span style="font-family:var(--font-nb-serif); font-size:1.4rem; color:var(--nb-green);">28</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; background:rgba(255,255,255,0.05); border-radius:4px;">
+            <span style="font-size:0.78rem; color:rgba(250,247,242,0.7);">Homepage sections per brief wireframe</span>
+            <span style="font-family:var(--font-nb-serif); font-size:1.4rem; color:var(--nb-cream);">8 / 8</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; background:rgba(255,255,255,0.05); border-radius:4px;">
+            <span style="font-size:0.78rem; color:rgba(250,247,242,0.7);">Sitemap pages aligned to brief</span>
+            <span style="font-family:var(--font-nb-serif); font-size:1.4rem; color:var(--nb-cream);">✓</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="dest-card">
-      <div class="dest-bg d2"></div>
-      <div class="dest-overlay"></div>
-      <div class="dest-watermark">MED</div>
-      <div class="dest-content">
-        <div class="dest-region">Europe</div>
-        <div class="dest-name">Mediterranean</div>
-        <div class="dest-count">240+ listings</div>
+
+    <!-- Brief fulfilment matrix -->
+    <div style="overflow:auto;">
+      <table class="comparison-table" style="min-width:700px;">
+        <thead>
+          <tr>
+            <th style="width:240px;">Brief requirement</th>
+            <th style="width:100px;">Category</th>
+            <th>How this document addresses it</th>
+            <th style="width:90px;">Where</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- Brand / design -->
+          <tr style="background:rgba(59,109,17,0.03);">
+            <td colspan="4" style="font-size:0.62rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--nb-green); padding:0.6rem 1rem; border-bottom:1px solid var(--nb-border);">Visual &amp; brand design</td>
+          </tr>
+          <tr>
+            <td>Clean, modern, premium aesthetic</td>
+            <td><span class="pill pill-green" style="font-size:0.6rem;">Design</span></td>
+            <td>Full visual system defined: midnight navy / ivory / brass palette, Cormorant Garamond display + DM Sans body, 8px spacing scale, cinematic motion language. Active departure from tourist-teal current site.</td>
+            <td class="mono" style="font-size:0.7rem;">§3 Direction</td>
+          </tr>
+          <tr>
+            <td>Strong use of imagery and video — lifestyle-led</td>
+            <td><span class="pill pill-green" style="font-size:0.6rem;">Design</span></td>
+            <td>Art direction principles defined: golden hour only, empty anchorages, desaturated film grade, cinematic crop ratios. Full-bleed hero video spec. What to avoid listed explicitly.</td>
+            <td class="mono" style="font-size:0.7rem;">§3 Direction</td>
+          </tr>
+          <tr>
+            <td>Minimal and elegant layouts</td>
+            <td><span class="pill pill-green" style="font-size:0.6rem;">Design</span></td>
+            <td>Generous whitespace system (96–128px section padding), editorial asymmetry in destinations grid and fleet layout, no decorative chrome.</td>
+            <td class="mono" style="font-size:0.7rem;">§3 Direction</td>
+          </tr>
+          <tr>
+            <td>Position as premium, trusted yachting brand</td>
+            <td><span class="pill pill-green" style="font-size:0.6rem;">Brand</span></td>
+            <td>Audit identifies 14 active trust detractors on current site. Redesign replaces every one: hero tone, removed pop-up, removed WhatsApp widget, brand statement copy, trust stats section, testimonials.</td>
+            <td class="mono" style="font-size:0.7rem;">§1 Audit</td>
+          </tr>
+
+          <!-- Structure -->
+          <tr style="background:rgba(59,109,17,0.03);">
+            <td colspan="4" style="font-size:0.62rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--nb-green); padding:0.6rem 1rem; border-bottom:1px solid var(--nb-border);">Information architecture</td>
+          </tr>
+          <tr>
+            <td>Sitemap: Yacht Sales, Charter, Brokerage, About, Blog, Contact</td>
+            <td><span class="pill pill-blue" style="font-size:0.6rem;">Structure</span></td>
+            <td>Full 7-node sitemap built to brief spec: Yacht Sales (New → Brand pages → Models; Brokerage), Yacht Charter (Phuket fleet; Worldwide; Destinations; Charter types), Destinations, About Us, Blog/News, Contact, Client Portal.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Brand pages for Bali &amp; GranOcean with model pages</td>
+            <td><span class="pill pill-blue" style="font-size:0.6rem;">Structure</span></td>
+            <td>Sitemap includes Brand Pages (Bali Catamarans, GranOcean) and Model Pages as sub-pages of New Yachts within Yacht Sales. Brand section card in fleet mockup establishes the dealer positioning.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Destinations pages with itineraries and available yachts</td>
+            <td><span class="pill pill-blue" style="font-size:0.6rem;">Structure</span></td>
+            <td>Destinations listed as both a primary nav node and as sub-pages under Yacht Charter. The editorial destinations grid (5 locations) in the mockup creates the visual entry point.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 + §5</td>
+          </tr>
+          <tr>
+            <td>Blog / News / Offers with charter guides and sales news</td>
+            <td><span class="pill pill-blue" style="font-size:0.6rem;">Structure</span></td>
+            <td>Blog section specified as section 7 of the homepage flow. Editorial grid in mockup (1.4fr/1fr/1fr) with tagged categories: Charter Guide, Yacht Sales, Ownership. Feeds SEO and repeat visits.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 + §5</td>
+          </tr>
+
+          <!-- Homepage wireframe -->
+          <tr style="background:rgba(59,109,17,0.03);">
+            <td colspan="4" style="font-size:0.62rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--nb-green); padding:0.6rem 1rem; border-bottom:1px solid var(--nb-border);">Homepage wireframe — all 8 sections</td>
+          </tr>
+          <tr>
+            <td>Hero — video/image, headline, CTA</td>
+            <td><span class="pill pill-dark" style="font-size:0.6rem;">Mockup</span></td>
+            <td>Full-bleed cinematic hero with transparent nav, editorial Cormorant headline, primary CTA "Begin Planning", scroll indicator. Language switcher (EN/RU/FR/ZH) integrated into nav.</td>
+            <td class="mono" style="font-size:0.7rem;">§5 Mockup</td>
+          </tr>
+          <tr>
+            <td>Three main sections: Yacht Sales / Brokerage / Charter</td>
+            <td><span class="pill pill-dark" style="font-size:0.6rem;">Mockup</span></td>
+            <td>3-up service card section directly below hero search bar. Each card: numbered, icon, Cormorant title, brief desc, "Explore →" CTA. Hover: midnight navy with brass border reveal.</td>
+            <td class="mono" style="font-size:0.7rem;">§5 Mockup</td>
+          </tr>
+          <tr>
+            <td>Featured Yachts or Offers</td>
+            <td><span class="pill pill-dark" style="font-size:0.6rem;">Mockup</span></td>
+            <td>Tabbed fleet grid (Charter Fleet / For Sale / Brokerage) specified in homepage flow. Populated from Nausys and Rightboat APIs. Spec, price/POA, enquire CTA per card.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 + §5</td>
+          </tr>
+          <tr>
+            <td>Brand positioning / Trust section</td>
+            <td><span class="pill pill-dark" style="font-size:0.6rem;">Mockup</span></td>
+            <td>Split layout: 2×2 Cormorant stat grid (15+ years, 500+ charters, 40+ destinations, 4.9 score) + brand copy, "Our Story" CTA, Bali / GranOcean dealer pills.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 + §5</td>
+          </tr>
+          <tr>
+            <td>Charter inspiration — destinations</td>
+            <td><span class="pill pill-dark" style="font-size:0.6rem;">Mockup</span></td>
+            <td>Dark editorial destinations grid: 5 cards (Andaman Sea hero spanning 2 rows + 4 secondary). Region label, watermark text, season, yacht count. Compact fixed-row layout (196px rows).</td>
+            <td class="mono" style="font-size:0.7rem;">§5 Mockup</td>
+          </tr>
+          <tr>
+            <td>Testimonials / Social proof</td>
+            <td><span class="pill pill-dark" style="font-size:0.6rem;">Mockup</span></td>
+            <td>3-up testimonial cards on alabaster. Stars, Cormorant italic quote, author + charter detail. Brass border-top on hover. Three distinct client types: charter, sales, ownership.</td>
+            <td class="mono" style="font-size:0.7rem;">§5 Mockup</td>
+          </tr>
+          <tr>
+            <td>Latest news / Blog content</td>
+            <td><span class="pill pill-dark" style="font-size:0.6rem;">Mockup</span></td>
+            <td>Editorial blog grid with featured large article + 2 secondary. Gold category tags, Cormorant titles, mono dates. Three categories matching the brief: Charter Guide, Yacht Sales, Ownership.</td>
+            <td class="mono" style="font-size:0.7rem;">§5 Mockup</td>
+          </tr>
+          <tr>
+            <td>Call to action / Enquiry</td>
+            <td><span class="pill pill-dark" style="font-size:0.6rem;">Mockup</span></td>
+            <td>Inline 4-field form: Name / Dates / Interest (Charter / Sales / Brokerage / Ownership) / CTA. Three office lines below (Phuket, HK, Hampshire). Routes to CRM via Gravity Forms.</td>
+            <td class="mono" style="font-size:0.7rem;">§5 Mockup</td>
+          </tr>
+
+          <!-- Technical -->
+          <tr style="background:rgba(59,109,17,0.03);">
+            <td colspan="4" style="font-size:0.62rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--nb-green); padding:0.6rem 1rem; border-bottom:1px solid var(--nb-border);">Technical &amp; functional requirements</td>
+          </tr>
+          <tr>
+            <td>WordPress CMS, easily managed by team</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>WordPress stack specified: GeneratePress base, ACF Pro for custom fields, Gravity Forms for enquiry routing, Gutenberg/Greenshift blocks. Modular component system — all pages editable without code.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Nausys API — worldwide charter listings</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>AJAX-loaded results on charter search page. Tabbed hero search bar includes Charter tab with destination/dates/type filters. Availability calendar on yacht PDPs. "Request to Book" flow.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Rightboat API — brokerage listings</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>Brokerage tab in hero search bar. Separate Brokerage Yachts section in sitemap. Listing page with filters (price, length, year, manufacturer, location) + individual detail pages.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Multi-language: EN / RU / FR / ZH</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>Language switcher visible in nav mockup (EN · RU · FR · 中文). WPML recommended. EN default. RU/ZH require dedicated content strategy, not auto-translation, noted in tech requirements.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Currency: € default, THB for Phuket fleet</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>Currency display logic specified: € site-wide, THB shown as secondary on Phuket fleet pages only. Lightweight currency switcher plugin recommended.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Live availability + request to book</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>Live calendar via Nausys API on Phuket fleet PDPs. Sticky enquiry bar on all yacht detail pages — right-rail desktop, fixed bottom bar mobile. "Request to Book" not direct booking.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Client portal — booking info, crew lists, extras</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>Portal specified as 7th primary nav node. MVP scope: booking summary, crew list upload, extras selection, base docs. Built via Ultimate Member on WordPress. Phase 2: extras marketplace.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Fast load speeds across all devices</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>WP Rocket + Cloudflare CDN (Singapore/Asia nodes). Self-hosted fonts (OMGF). WebP images. GSAP loaded conditionally. Target: LCP &lt;2.5s, CLS 0, FID &lt;100ms. Hero video: WebM/MP4 with AVIF poster.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+          <tr>
+            <td>Functional across mobile, tablet, desktop</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>Three mobile mockup screens (Hero, Destinations, Enquiry) showing portrait-first design. Responsive typography, thumb-zone CTAs, full-bleed sections adapted for 375px viewport.</td>
+            <td class="mono" style="font-size:0.7rem;">§5 Mockup</td>
+          </tr>
+          <tr>
+            <td>GranOcean virtual tour + brochure download</td>
+            <td><span class="pill pill-amber" style="font-size:0.6rem;">Tech</span></td>
+            <td>Model page spec includes virtual tour iframe (as per granocean.com/w-60) and downloadable brochure PDF. Short lead-capture (email) recommended before access to both.</td>
+            <td class="mono" style="font-size:0.7rem;">§4 Structure</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── SECTION 3: CREATIVE DIRECTION ─── -->
+<section class="section" id="direction" style="background:var(--nb-dark); color:var(--nb-cream);">
+  <div class="container">
+    <div class="section-header dark-section">
+      <span class="section-num" style="color:rgba(250,247,242,0.4);">03 / 05</span>
+      <h2 class="heading-lg" style="margin-bottom:1rem; color:var(--nb-cream);">Creative Direction</h2>
+      <div class="divider" style="background:rgba(250,247,242,0.15);"></div>
+      <p class="body-text" style="max-width:560px;">The complete visual system for the redesigned Fairview Yachting — a luxury maritime editorial aesthetic built for the world's most discerning travellers.</p>
+    </div>
+
+    <!-- Colour palette -->
+    <div class="mb-lg">
+      <h3 class="heading-sm mb-md" style="color:rgba(250,247,242,0.45); margin-bottom:1.75rem;">Colour System</h3>
+      <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:0.75rem; margin-bottom:0.5rem;">
+        <div>
+          <div class="color-swatch" style="background:#0A1628;"></div>
+          <div class="swatch-label" style="color:rgba(250,247,242,0.4);">Midnight</div>
+          <div class="swatch-hex" style="color:rgba(250,247,242,0.6);">#0A1628</div>
+          <div style="font-size:0.65rem; color:rgba(250,247,242,0.25); margin-top:0.2rem;">Primary bg · Nav · Footer</div>
+        </div>
+        <div>
+          <div class="color-swatch" style="background:#0F2040;"></div>
+          <div class="swatch-label" style="color:rgba(250,247,242,0.4);">Deep Navy</div>
+          <div class="swatch-hex" style="color:rgba(250,247,242,0.6);">#0F2040</div>
+          <div style="font-size:0.65rem; color:rgba(250,247,242,0.25); margin-top:0.2rem;">Dark sections</div>
+        </div>
+        <div>
+          <div class="color-swatch" style="background:#F8F4EE; border:1px solid rgba(255,255,255,0.1);"></div>
+          <div class="swatch-label" style="color:rgba(250,247,242,0.4);">Ivory</div>
+          <div class="swatch-hex" style="color:rgba(250,247,242,0.6);">#F8F4EE</div>
+          <div style="font-size:0.65rem; color:rgba(250,247,242,0.25); margin-top:0.2rem;">Light bg · Body type</div>
+        </div>
+        <div>
+          <div class="color-swatch" style="background:#F2EDE5; border:1px solid rgba(255,255,255,0.1);"></div>
+          <div class="swatch-label" style="color:rgba(250,247,242,0.4);">Alabaster</div>
+          <div class="swatch-hex" style="color:rgba(250,247,242,0.6);">#F2EDE5</div>
+          <div style="font-size:0.65rem; color:rgba(250,247,242,0.25); margin-top:0.2rem;">Card surfaces</div>
+        </div>
+        <div>
+          <div class="color-swatch" style="background:#C4975A;"></div>
+          <div class="swatch-label" style="color:rgba(250,247,242,0.4);">Brass</div>
+          <div class="swatch-hex" style="color:rgba(250,247,242,0.6);">#C4975A</div>
+          <div style="font-size:0.65rem; color:rgba(250,247,242,0.25); margin-top:0.2rem;">Accent · CTAs · Eyebrows</div>
+        </div>
+        <div>
+          <div class="color-swatch" style="background:#E4DDD3; border:1px solid rgba(255,255,255,0.1);"></div>
+          <div class="swatch-label" style="color:rgba(250,247,242,0.4);">Mist</div>
+          <div class="swatch-hex" style="color:rgba(250,247,242,0.6);">#E4DDD3</div>
+          <div style="font-size:0.65rem; color:rgba(250,247,242,0.25); margin-top:0.2rem;">Borders · Dividers</div>
+        </div>
+        <div>
+          <div class="color-swatch" style="background:#FDFBF7; border:1px solid rgba(255,255,255,0.1);"></div>
+          <div class="swatch-label" style="color:rgba(250,247,242,0.4);">Salt White</div>
+          <div class="swatch-hex" style="color:rgba(250,247,242,0.6);">#FDFBF7</div>
+          <div style="font-size:0.65rem; color:rgba(250,247,242,0.25); margin-top:0.2rem;">Hero type on dark</div>
+        </div>
+      </div>
+      <div style="font-size:0.72rem; color:rgba(250,247,242,0.3); font-style:italic; margin-top:0.5rem;">
+        Palette reference: deep-sea ink, seasoned teak, morning ivory, polished brass. No pure black, no pure white.
       </div>
     </div>
-    <div class="dest-card">
-      <div class="dest-bg d3"></div>
-      <div class="dest-overlay"></div>
-      <div class="dest-content">
-        <div class="dest-region">Oceania</div>
-        <div class="dest-name">Whitsundays</div>
-        <div class="dest-count">45+ listings</div>
+
+    <!-- Typography -->
+    <div class="mb-lg">
+      <h3 class="heading-sm mb-md" style="color:rgba(250,247,242,0.45); margin-bottom:1.75rem;">Typography Pairing</h3>
+      <div class="grid-2" style="gap:1.5rem;">
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:2rem;">
+          <div style="font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(250,247,242,0.3); margin-bottom:1rem;">Display — Cormorant Garamond</div>
+          <div style="font-family:'Cormorant Garamond'; font-size:3rem; font-weight:300; color:var(--fv-ivory); line-height:1.05; margin-bottom:0.5rem;">The sea<br><em style="opacity:0.5;">at dawn.</em></div>
+          <div style="font-size:0.65rem; color:rgba(250,247,242,0.3); font-family:var(--font-mono);">Headings H1–H3 · Pull quotes · Hero headline<br>Weight: 300–500 · Italic freely used</div>
+          <div style="margin-top:1.25rem; font-family:'Cormorant Garamond'; font-size:1.2rem; color:rgba(248,244,238,0.55);">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:2rem;">
+          <div style="font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(250,247,242,0.3); margin-bottom:1rem;">Body / UI — DM Sans Light</div>
+          <div style="font-family:'DM Sans'; font-size:1rem; font-weight:300; color:rgba(248,244,238,0.7); line-height:1.75; margin-bottom:0.5rem;">A curated passage from Phuket through the Similan Islands, arriving at a private anchorage known to very few.</div>
+          <div style="font-size:0.65rem; color:rgba(250,247,242,0.3); font-family:var(--font-mono);">Body copy · Navigation · Labels · UI<br>Weight: 300 body · 400 nav · 500 emphasis</div>
+          <div style="margin-top:1.25rem;">
+            <span style="font-family:'DM Mono'; font-size:0.72rem; color:rgba(248,244,238,0.4);">DM Mono · 0.62rem · Letter-spacing 0.2em<br>YACHT CHARTER · ENQUIRE · 45°N 122°W</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="dest-card">
-      <div class="dest-bg d4"></div>
-      <div class="dest-overlay"></div>
-      <div class="dest-content">
-        <div class="dest-region">Caribbean</div>
-        <div class="dest-name">BVI</div>
-        <div class="dest-count">120+ listings</div>
+
+    <!-- Spacing system -->
+    <div class="mb-lg">
+      <h3 class="heading-sm mb-md" style="color:rgba(250,247,242,0.45); margin-bottom:1.75rem;">Spacing System</h3>
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:2rem;">
+        <p style="font-size:0.78rem; color:rgba(250,247,242,0.45); margin-bottom:1.5rem;">Built on an 8px base with generous editorial multipliers. Luxury sites earn their whitespace — it is not wasted, it is intentional.</p>
+        <div style="display:flex; align-items:flex-end; gap:1.25rem; flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <div style="width:12px; height:8px; background:rgba(196,151,90,0.3); border:1px dashed rgba(196,151,90,0.4); border-radius:1px; margin:0 auto;"></div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(250,247,242,0.35); margin-top:0.4rem;">8px<br>xs</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:16px; height:16px; background:rgba(196,151,90,0.3); border:1px dashed rgba(196,151,90,0.4); border-radius:1px; margin:0 auto;"></div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(250,247,242,0.35); margin-top:0.4rem;">16px<br>sm</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:20px; height:24px; background:rgba(196,151,90,0.3); border:1px dashed rgba(196,151,90,0.4); border-radius:1px; margin:0 auto;"></div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(250,247,242,0.35); margin-top:0.4rem;">24px<br>base</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:22px; height:32px; background:rgba(196,151,90,0.3); border:1px dashed rgba(196,151,90,0.4); border-radius:1px; margin:0 auto;"></div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(250,247,242,0.35); margin-top:0.4rem;">32px<br>md</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:24px; height:48px; background:rgba(196,151,90,0.3); border:1px dashed rgba(196,151,90,0.4); border-radius:1px; margin:0 auto;"></div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(250,247,242,0.35); margin-top:0.4rem;">48px<br>lg</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:26px; height:64px; background:rgba(196,151,90,0.3); border:1px dashed rgba(196,151,90,0.4); border-radius:1px; margin:0 auto;"></div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(250,247,242,0.35); margin-top:0.4rem;">64px<br>xl</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:28px; height:96px; background:rgba(196,151,90,0.3); border:1px dashed rgba(196,151,90,0.4); border-radius:1px; margin:0 auto;"></div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(250,247,242,0.35); margin-top:0.4rem;">96px<br>2xl</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:30px; height:128px; background:rgba(196,151,90,0.4); border:1px dashed rgba(196,151,90,0.5); border-radius:1px; margin:0 auto;"></div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(196,151,90,0.6); margin-top:0.4rem;">128px<br>section</div>
+          </div>
+        </div>
+        <p style="font-size:0.72rem; color:rgba(250,247,242,0.25); margin-top:1rem; font-style:italic;">Section padding: min 96px top/bottom. Use 128px on hero, intro, and full-bleed editorial moments. Luxury is generous with space.</p>
       </div>
     </div>
-    <div class="dest-card">
-      <div class="dest-bg d5"></div>
-      <div class="dest-overlay"></div>
-      <div class="dest-content">
-        <div class="dest-region">Indian Ocean</div>
-        <div class="dest-name">Seychelles</div>
-        <div class="dest-count">60+ listings</div>
+
+    <!-- Motion direction -->
+    <div class="mb-lg">
+      <h3 class="heading-sm mb-md" style="color:rgba(250,247,242,0.45); margin-bottom:1.75rem;">Motion & Animation Language</h3>
+      <div class="grid-3" style="gap:1rem;">
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:1.5rem;">
+          <div style="font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.75rem;">Scroll reveals</div>
+          <div style="font-size:0.82rem; color:rgba(250,247,242,0.6); line-height:1.65;">Slow fade + 20px upward translate. Duration: 0.8–1.2s. Easing: cubic-bezier(0.16, 1, 0.3, 1). Stagger children by 80ms. Never dramatic — always serene.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:1.5rem;">
+          <div style="font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.75rem;">Image hover</div>
+          <div style="font-size:0.82rem; color:rgba(250,247,242,0.6); line-height:1.65;">Slow scale 1.0 → 1.04 on the image inside a clipped container. Duration: 0.6s. Overlay brightens very slightly. Caption slides up 8px. Feels considered, never eager.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:1.5rem;">
+          <div style="font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.75rem;">CTA interactions</div>
+          <div style="font-size:0.82rem; color:rgba(250,247,242,0.6); line-height:1.65;">Ghost buttons: border opacity 0.4 → 1.0 on hover, background fill slides in from left (clip-path). Duration: 0.35s. No bounces, no transforms — only opacity and fill.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:1.5rem;">
+          <div style="font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.75rem;">Hero video</div>
+          <div style="font-size:0.82rem; color:rgba(250,247,242,0.6); line-height:1.65;">Cinematic 16:9 or 2.35:1 cropped video, muted, looped, slow shutter feel. No people mid-action. Dawn or golden-hour. Kenburn zoom: 1.0 → 1.08 over 15s. Text fades in over 1.5s at 0.8s delay.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:1.5rem;">
+          <div style="font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.75rem;">Page transitions</div>
+          <div style="font-size:0.82rem; color:rgba(250,247,242,0.6); line-height:1.65;">Full-page fade, ivory wash. Duration: 0.4s in, 0.4s out. Never a slide or a swipe — those feel mobile-app, not editorial web. The wash communicates composure.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:1.5rem;">
+          <div style="font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.75rem;">Nav behaviour</div>
+          <div style="font-size:0.82rem; color:rgba(250,247,242,0.6); line-height:1.65;">Transparent over hero, transitions to ivory/midnight after ~80px scroll. Very slow: 0.5s transition. No shadow on nav — use a thin 1px bottom border at 5% opacity instead.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Art direction -->
+    <div>
+      <h3 class="heading-sm mb-md" style="color:rgba(250,247,242,0.45); margin-bottom:1.75rem;">Art Direction — Photography Principles</h3>
+      <div class="grid-2" style="gap:2rem;">
+        <div>
+          <div style="font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:1rem;">Commission / select for</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem;">
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:var(--nb-green);">✓</span> Golden hour / blue hour light — no midday sun</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:var(--nb-green);">✓</span> Empty or near-empty anchorages — exclusivity</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:var(--nb-green);">✓</span> Intimate scale — hands on a wheel, a glass of wine, morning light on teak</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:var(--nb-green);">✓</span> Silhouettes, reflections, atmospheric — mood over documentation</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:var(--nb-green);">✓</span> Desaturated, film-adjacent colour grade — never vivid Instagram</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:var(--nb-green);">✓</span> Cinematic aspect ratios: 16:9 or 2.35:1</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:#e54c4c; margin-bottom:1rem;">Avoid entirely</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem;">
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:#e54c4c;">✕</span> People jumping, waving, or posing artificially</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:#e54c4c;">✕</span> Oversaturated tropical turquoise water</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:#e54c4c;">✕</span> Busy harbour shots with other vessels visible</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:#e54c4c;">✕</span> Yacht manufacturer stock photography</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:#e54c4c;">✕</span> Bright-sky overhead drone shots with no editorial intent</li>
+            <li style="font-size:0.82rem; color:rgba(250,247,242,0.6); display:flex; gap:0.6rem;"><span style="color:#e54c4c;">✕</span> Marketing imagery from Bali / GranOcean brochures</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
-<section class="trust">
-  <div class="trust-inner">
-    <div class="trust-stats">
-      <div class="stat-box">
-        <div class="stat-num">15<sup>+</sup></div>
-        <div class="stat-label">Years on the water</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">500<sup>+</sup></div>
-        <div class="stat-label">Charters delivered</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">40<sup>+</sup></div>
-        <div class="stat-label">Destinations served</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">4.9</div>
-        <div class="stat-label">Average review score</div>
+<!-- ─── SECTION 4: WEBSITE STRUCTURE ─── -->
+<section class="section" id="structure">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">04 / 05</span>
+      <h2 class="heading-lg" style="margin-bottom:1rem;">Website Restructure</h2>
+      <div class="divider"></div>
+      <p class="body-text" style="max-width:560px;">A revised information architecture, homepage flow, and enquiry journey — structured around the visitor's emotional journey, not Fairview's service categories.</p>
+    </div>
+
+    <!-- Revised sitemap -->
+    <div class="mb-lg">
+      <h3 class="heading-sm" style="margin-bottom:1.75rem;">Revised Sitemap — aligned to brief</h3>
+      <div style="overflow:auto; padding-bottom:0.5rem;">
+        <div style="min-width:900px;">
+          <!-- Root -->
+          <div style="display:flex; justify-content:center; margin-bottom:1.5rem;">
+            <div class="sitemap-node sitemap-root" style="padding:0.75rem 2rem; font-size:0.75rem;">fairviewyachting.com</div>
+          </div>
+          <div style="display:flex; justify-content:center; margin-bottom:0.5rem;">
+            <div style="width:1px; height:1.5rem; background:var(--nb-border);"></div>
+          </div>
+          <!-- Primary pages — 7 columns matching brief -->
+          <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:0.6rem; margin-bottom:0.5rem;">
+            <div class="sitemap-node sitemap-primary" style="font-size:0.7rem;">Yacht Sales</div>
+            <div class="sitemap-node sitemap-primary" style="font-size:0.7rem;">Yacht Charter</div>
+            <div class="sitemap-node sitemap-primary" style="font-size:0.7rem;">Destinations</div>
+            <div class="sitemap-node sitemap-primary" style="font-size:0.7rem;">About Us</div>
+            <div class="sitemap-node sitemap-primary" style="font-size:0.7rem;">Blog / News</div>
+            <div class="sitemap-node sitemap-primary" style="font-size:0.7rem;">Contact</div>
+            <div class="sitemap-node sitemap-primary" style="font-size:0.7rem; background:rgba(196,151,90,0.15); border:1px solid rgba(196,151,90,0.4); color:var(--nb-dark);">Client Portal</div>
+          </div>
+          <!-- Secondary pages -->
+          <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:0.6rem;">
+            <!-- Yacht Sales -->
+            <div style="display:flex; flex-direction:column; gap:0.35rem;">
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">New Yachts</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Bali Catamarans</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">GranOcean</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">[Model pages]</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Brokerage Yachts</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem; opacity:0.6;">Rightboat API ↗</div>
+            </div>
+            <!-- Yacht Charter -->
+            <div style="display:flex; flex-direction:column; gap:0.35rem;">
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Phuket Fleet</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Worldwide Charter</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">[Destination pages]</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Charter Types</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem; opacity:0.6;">Nausys API ↗</div>
+            </div>
+            <!-- Destinations -->
+            <div style="display:flex; flex-direction:column; gap:0.35rem;">
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Phuket / Andaman</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Phang Nga Bay</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">The Solent, UK</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Worldwide</div>
+            </div>
+            <!-- About -->
+            <div style="display:flex; flex-direction:column; gap:0.35rem;">
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Company</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Team</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Locations</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Ownership Prog.</div>
+            </div>
+            <!-- Blog -->
+            <div style="display:flex; flex-direction:column; gap:0.35rem;">
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">News &amp; Offers</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Yacht Sales News</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Charter Guides</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Itineraries</div>
+            </div>
+            <!-- Contact -->
+            <div style="display:flex; flex-direction:column; gap:0.35rem;">
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">General Enquiry</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Charter Enquiry</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Sales Enquiry</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Newsletter signup</div>
+            </div>
+            <!-- Portal -->
+            <div style="display:flex; flex-direction:column; gap:0.35rem;">
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Booking info</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Crew lists</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Extras &amp; add-ons</div>
+              <div class="sitemap-node sitemap-secondary" style="font-size:0.65rem;">Base details</div>
+            </div>
+          </div>
+          <div style="margin-top:1.25rem; font-size:0.72rem; color:var(--nb-muted); font-style:italic;">
+            ↳ Primary navigation matches the brief exactly. "Yacht Sales" and "Yacht Charter" are retained as functional labels — important for SEO as well as user orientation. The editorial luxury <em>tone</em> lives in the copywriting and visual design, not in opaque navigation labels.
+          </div>
+        </div>
       </div>
     </div>
-    <div class="trust-copy">
-      <div class="section-label">Why Fairview</div>
-      <div class="section-title">Built on expertise,<br><em>driven by passion</em></div>
-      <div class="trust-body">
-        We are more than a booking platform. Our team's expertise spans sales, charter operations, and onboard service — giving every client the confidence that comes with working with people who truly know the sea.
+
+    <!-- Homepage section-by-section -->
+    <div class="mb-lg">
+      <h3 class="heading-sm" style="margin-bottom:0.75rem;">Revised Homepage Flow — 8 sections per brief</h3>
+      <p class="body-text" style="font-size:0.8rem; margin-bottom:1.75rem; max-width:600px;">The brief specifies an exact homepage wireframe. Every section is accounted for below, with design direction for each.</p>
+      <div style="display:flex; flex-direction:column; gap:1px; border:1px solid var(--nb-border); border-radius:8px; overflow:hidden;">
+
+        <div style="display:grid; grid-template-columns:40px 180px 1fr auto; gap:1.5rem; padding:1.25rem 1.5rem; background:#fff; align-items:start;">
+          <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--nb-green); padding-top:0.1rem;">01</div>
+          <div style="font-size:0.82rem; font-weight:500;">Hero — video/image<br><span style="font-weight:400; color:var(--nb-muted);">+ headline + CTA</span></div>
+          <div style="font-size:0.8rem; color:var(--nb-muted); line-height:1.6;">Full-bleed cinematic video. Transparent nav with language switcher (EN/RU/FR/ZH). Editorial headline. Search bar anchored to the bottom of the hero — tabbed: Charter / New Sales / Brokerage. Each tab shows relevant filters (destination/dates/type). Gold search button.</div>
+          <span class="pill pill-red">Critical</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:40px 180px 1fr auto; gap:1.5rem; padding:1.25rem 1.5rem; background:var(--nb-cream); align-items:start;">
+          <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--nb-green); padding-top:0.1rem;">02</div>
+          <div style="font-size:0.82rem; font-weight:500;">Three Main Sections<br><span style="font-weight:400; color:var(--nb-muted);">Sales / Brokerage / Charter</span></div>
+          <div style="font-size:0.8rem; color:var(--nb-muted); line-height:1.6;">3-up card grid. Each card: service icon, number, Cormorant title (Yacht Charter, New Yacht Sales, Brokerage), brief description, "Explore →" link. Hover state: card flips to midnight navy with gold top border. This is the brief's primary service architecture — not to be omitted or merged.</div>
+          <span class="pill pill-red">Critical</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:40px 180px 1fr auto; gap:1.5rem; padding:1.25rem 1.5rem; background:#fff; align-items:start;">
+          <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--nb-green); padding-top:0.1rem;">03</div>
+          <div style="font-size:0.82rem; font-weight:500;">Featured Yachts<br><span style="font-weight:400; color:var(--nb-muted);">or Offers</span></div>
+          <div style="font-size:0.8rem; color:var(--nb-muted); line-height:1.6;">Tabbed grid: Charter Fleet / For Sale / Brokerage. 3-up yacht cards showing image, name, model, key specs, price/POA, "Enquire →". Dynamically populated from Nausys (charter) and Rightboat (brokerage) APIs. Tab switching via JS, no full page reload.</div>
+          <span class="pill pill-red">Critical</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:40px 180px 1fr auto; gap:1.5rem; padding:1.25rem 1.5rem; background:var(--nb-cream); align-items:start;">
+          <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--nb-green); padding-top:0.1rem;">04</div>
+          <div style="font-size:0.82rem; font-weight:500;">Brand Positioning<br><span style="font-weight:400; color:var(--nb-muted);">/ Trust Section</span></div>
+          <div style="font-size:0.8rem; color:var(--nb-muted); line-height:1.6;">Split layout: left — 2×2 stat grid (15+ years, 500+ charters, 40+ destinations, 4.9 rating) in large Cormorant numerals. Right — brand statement copy, "Our Story" CTA, official dealer logos (Bali Catamarans, GranOcean) in elegant pill treatment. Ivory background.</div>
+          <span class="pill pill-amber">High</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:40px 180px 1fr auto; gap:1.5rem; padding:1.25rem 1.5rem; background:#fff; align-items:start;">
+          <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--nb-green); padding-top:0.1rem;">05</div>
+          <div style="font-size:0.82rem; font-weight:500;">Charter Inspiration<br><span style="font-weight:400; color:var(--nb-muted);">Destinations</span></div>
+          <div style="font-size:0.8rem; color:var(--nb-muted); line-height:1.6;">Dark navy section. 5-card editorial grid (2fr 1fr 1fr, 2 rows): Andaman Sea hero spanning both rows + Phang Nga, Similan Islands, The Solent, Hong Kong. Each with region label, name, season, availability count. Hover scale on background. "All Destinations →" top-right.</div>
+          <span class="pill pill-red">Critical</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:40px 180px 1fr auto; gap:1.5rem; padding:1.25rem 1.5rem; background:var(--nb-cream); align-items:start;">
+          <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--nb-green); padding-top:0.1rem;">06</div>
+          <div style="font-size:0.82rem; font-weight:500;">Testimonials<br><span style="font-weight:400; color:var(--nb-muted);">/ Social Proof</span></div>
+          <div style="font-size:0.8rem; color:var(--nb-muted); line-height:1.6;">3-up testimonial cards on alabaster. Star rating, decorative quote mark (Cormorant), italic quote text, author name + charter detail. Top border highlights on hover (brass). No headshots — name and charter type only. Grounds the premium claim with real client voices.</div>
+          <span class="pill pill-amber">High</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:40px 180px 1fr auto; gap:1.5rem; padding:1.25rem 1.5rem; background:#fff; align-items:start;">
+          <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--nb-green); padding-top:0.1rem;">07</div>
+          <div style="font-size:0.82rem; font-weight:500;">Latest News<br><span style="font-weight:400; color:var(--nb-muted);">/ Journal</span></div>
+          <div style="font-size:0.8rem; color:var(--nb-muted); line-height:1.6;">Editorial blog grid: 1.4fr 1fr 1fr layout. Featured article gets a taller image. Tag (gold), Cormorant headline, mono date. Categories: News &amp; Offers / Yacht Sales / Charter Guides. "View all articles →" top-right. Feeds SEO and keeps returning visitors engaged.</div>
+          <span class="pill pill-amber">High</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:40px 180px 1fr auto; gap:1.5rem; padding:1.25rem 1.5rem; background:var(--nb-cream); align-items:start;">
+          <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--nb-green); padding-top:0.1rem;">08</div>
+          <div style="font-size:0.82rem; font-weight:500;">Call to Action<br><span style="font-weight:400; color:var(--nb-muted);">Enquiry</span></div>
+          <div style="font-size:0.8rem; color:var(--nb-muted); line-height:1.6;">Ivory section. Cormorant headline: "Tell us about your journey." Inline 4-field form: Name / Preferred dates / Interest (Charter / Sales / Brokerage / Ownership) / Message (optional). Three office location lines in DM Mono below. Routes to CRM (HubSpot/Pipedrive) via Gravity Forms.</div>
+          <span class="pill pill-red">Critical</span>
+        </div>
+
       </div>
-      <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="btn-primary">Our Story</a>
-      <div class="trust-logos">
-        <span class="trust-logo-label">Official Dealers</span>
-        <div class="brand-pill">Bali Catamarans</div>
-        <div class="brand-pill">GranOcean</div>
+    </div>
+
+    <!-- CTA hierarchy -->
+    <div class="mb-lg">
+      <h3 class="heading-sm" style="margin-bottom:1.75rem;">CTA Hierarchy</h3>
+      <div class="grid-3" style="gap:1rem;">
+        <div class="card">
+          <span class="pill pill-dark" style="margin-bottom:1rem; display:inline-block;">Primary</span>
+          <div style="font-family:var(--font-display); font-size:1.1rem; margin-bottom:0.5rem;">"Begin planning"</div>
+          <p class="body-text" style="font-size:0.8rem;">Fills ivory in Midnight. Used once: hero. Takes user to the enquiry form. No "Book Now" language — this is not a transactional product.</p>
+        </div>
+        <div class="card">
+          <span class="pill pill-blue" style="margin-bottom:1rem; display:inline-block;">Secondary</span>
+          <div style="font-family:var(--font-display); font-size:1.1rem; margin-bottom:0.5rem;">"Explore" / "Discover"</div>
+          <p class="body-text" style="font-size:0.8rem;">Ghost button. Used across section CTAs: "Explore the fleet", "Discover Thailand". Understated — doesn't compete with the primary action.</p>
+        </div>
+        <div class="card">
+          <span class="pill pill-amber" style="margin-bottom:1rem; display:inline-block;">Tertiary</span>
+          <div style="font-family:var(--font-display); font-size:1.1rem; margin-bottom:0.5rem;">"Read more →"</div>
+          <p class="body-text" style="font-size:0.8rem;">Text link only, arrow suffix. Used in journal, at vessel cards, in destination detail. Keeps the pace — doesn't interrupt the editorial flow.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical requirements -->
+    <div>
+      <h3 class="heading-sm" style="margin-bottom:1.75rem;">Technical Requirements — from brief</h3>
+      <div class="grid-2" style="gap:1.5rem;">
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div class="rec-card" style="border-color:var(--nb-green);">
+            <h5>Nausys API — Worldwide charter</h5>
+            <p>Worldwide charter listings, live availability, and pricing fed via Nausys. AJAX-loaded results on the charter search page. Availability calendar on individual yacht PDPs. "Request to Book" enquiry flow rather than direct booking.</p>
+          </div>
+          <div class="rec-card" style="border-color:var(--nb-green);">
+            <h5>Rightboat API — Brokerage listings</h5>
+            <p>Brokerage / pre-owned inventory served via Rightboat API. Grid and list view with filters: price, length, year, manufacturer, location. Each listing links to a detail page with specs, description, gallery, and contact form.</p>
+          </div>
+          <div class="rec-card" style="border-color:var(--nb-green);">
+            <h5>Multi-language — EN / RU / FR / ZH</h5>
+            <p>English as default. WPML (recommended) or Polylang Pro. Language switcher in the nav — visible at all viewports. Russian and Chinese markets require dedicated content strategy, not auto-translation. Currency: € default, THB secondary display for Phuket fleet pages only.</p>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div class="rec-card" style="border-color:#C4975A;">
+            <h5>Client portal — post-booking login</h5>
+            <p>Restricted WordPress member area for existing clients. MVP scope: booking summary, crew list upload, extras selection, base info docs. Built via Ultimate Member or WP User Manager. Linked from nav as "My Fairview". Phase 2: real-time extras marketplace.</p>
+          </div>
+          <div class="rec-card" style="border-color:#C4975A;">
+            <h5>Live availability + "Request to Book"</h5>
+            <p>Live availability calendar on all Phuket fleet pages (Nausys API or Beds24). Worldwide charter uses enquiry-based flow with availability shown where possible. Sticky enquiry bar on all yacht detail pages — visible at all times on desktop (right rail), fixed bottom bar on mobile.</p>
+          </div>
+          <div class="rec-card" style="border-color:#C4975A;">
+            <h5>CMS — WordPress with ACF Pro</h5>
+            <p>Easily managed by Fairview's team. Key CPTs: Yachts, Destinations, Team, Testimonials. ACF Pro for spec fields and flexible content. Gravity Forms for all enquiry routing to CRM. WP Rocket + Cloudflare CDN for performance — especially important for Asia-Pacific load times.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="section-label">Client Stories</div>
-  <div class="section-title" style="margin-bottom:0;">Trusted by <em>those who sail</em></div>
+<!-- ─── SECTION 5: HOMEPAGE MOCKUP ─── -->
+<section class="section" id="mockup" style="background:var(--nb-cream);">
+  <div class="container-wide">
+    <div class="container" style="padding-bottom:3rem;">
+      <span class="section-num">05 / 05</span>
+      <h2 class="heading-lg" style="margin-bottom:1rem;">High-Fidelity Homepage Mockup</h2>
+      <div class="divider"></div>
+      <p class="body-text" style="max-width:560px;">Desktop and mobile concepts built directly in HTML — showing the new visual language, typography, spacing, and editorial layout applied to the Fairview brand.</p>
+    </div>
 
-  <div class="testi-grid">
-    <div class="testi-card">
-      <div class="testi-stars">
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
+    <!-- Desktop Mockup -->
+    <div style="padding:0 2rem; margin-bottom:1.5rem;">
+      <div style="font-size:0.7rem; color:var(--nb-muted); margin-bottom:0.75rem; letter-spacing:0.08em;">↳ Desktop — 1440px viewport concept</div>
+      <div class="mockup-frame">
+        <div class="mockup-browser-bar">
+          <div class="browser-dot" style="background:#ff5f57;"></div>
+          <div class="browser-dot" style="background:#febc2e;"></div>
+          <div class="browser-dot" style="background:#28c840;"></div>
+          <div class="browser-url">fairviewyachting.com</div>
+        </div>
+
+        <!-- ── FAIRVIEW HOMEPAGE BEGINS ── -->
+        <div style="font-family:'DM Sans', sans-serif; background:var(--fv-ivory);">
+
+          <!-- Hero -->
+          <div class="fv-hero">
+            <div class="fv-stars"></div>
+            <div class="fv-horizon"></div>
+            <div class="fv-hero-sea"></div>
+            <div class="fv-hero-overlay"></div>
+
+            <!-- Yacht silhouette -->
+            <svg class="fv-yacht-silhouette" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M160 10 L165 140 L140 155 L180 155 L175 140 Z" stroke="white" stroke-width="1" fill="none"/>
+              <path d="M160 25 L195 140 L165 140 Z" stroke="white" stroke-width="0.75" fill="rgba(255,255,255,0.05)"/>
+              <path d="M140 155 L60 165 L180 165 L240 165 L180 155 Z" stroke="white" stroke-width="1" fill="rgba(255,255,255,0.08)"/>
+              <path d="M60 165 L50 160 L70 165" stroke="white" stroke-width="0.5" fill="none"/>
+              <path d="M240 165 L255 158 L242 165" stroke="white" stroke-width="0.5" fill="none"/>
+            </svg>
+
+            <!-- Nav -->
+            <nav class="fv-nav">
+              <div class="fv-logo">
+                Fairview
+                <span>Yachting</span>
+              </div>
+              <ul class="fv-nav-links">
+                <li><a href="#">Yacht Sales</a></li>
+                <li><a href="#">Yacht Charter</a></li>
+                <li><a href="#">Brokerage</a></li>
+                <li><a href="#">Destinations</a></li>
+                <li><a href="#">About</a></li>
+              </ul>
+              <div style="display:flex; align-items:center; gap:1rem;">
+                <div style="font-family:var(--font-sans); font-size:0.55rem; letter-spacing:0.12em; color:rgba(248,244,238,0.45); display:flex; gap:0.6rem;">
+                  <span style="color:var(--fv-brass); border-bottom:1px solid var(--fv-brass);">EN</span>
+                  <span style="cursor:pointer;">RU</span>
+                  <span style="cursor:pointer;">FR</span>
+                  <span style="cursor:pointer;">中文</span>
+                </div>
+                <div class="fv-nav-cta">Enquire</div>
+              </div>
+            </nav>
+
+            <!-- Hero Content -->
+            <div class="fv-hero-content">
+              <div class="fv-eyebrow">Private Maritime Journeys · Est. Phuket</div>
+              <h1 class="fv-headline">
+                The world's most<br>
+                extraordinary waters.<br>
+                <em>Navigated privately.</em>
+              </h1>
+              <p class="fv-hero-sub">Curated catamaran charters and yacht ownership across Thailand, the Andaman Sea, and beyond.</p>
+              <div class="fv-hero-actions">
+                <button class="fv-btn-primary">Begin Planning</button>
+                <span class="fv-btn-ghost">Explore the fleet</span>
+              </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="fv-scroll-indicator">
+              <span class="fv-scroll-text">Scroll</span>
+              <div class="fv-scroll-line"></div>
+            </div>
+
+            <!-- Search bar -->
+            <div class="fv-search-bar">
+              <div class="fv-search-inner">
+                <div class="fv-search-tab active">Charter</div>
+                <div class="fv-search-tab">Yacht Sales</div>
+                <div class="fv-search-tab">Brokerage</div>
+                <div class="fv-search-divider"></div>
+                <div class="fv-search-field">
+                  <label>Destination</label>
+                  <select><option>Phuket, Thailand</option><option>Phang Nga Bay</option><option>Worldwide</option></select>
+                </div>
+                <div class="fv-search-divider"></div>
+                <div class="fv-search-field">
+                  <label>Dates</label>
+                  <select><option>Select dates</option><option>Nov — Dec 2025</option><option>Jan — Apr 2026</option></select>
+                </div>
+                <div class="fv-search-divider"></div>
+                <div class="fv-search-field">
+                  <label>Charter type</label>
+                  <select><option>All types</option><option>Skippered</option><option>Bareboat</option><option>Crewed</option></select>
+                </div>
+                <button class="fv-search-btn">Search →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Brand statement -->
+          <div class="fv-intro">
+            <div class="fv-intro-inner">
+              <div class="fv-section-rule"><span class="fv-rule-label">Our philosophy</span></div>
+              <h2 class="fv-intro-headline">
+                Some places can only be reached<br>by water. We know where they are.
+              </h2>
+              <p class="fv-intro-body">
+                For over a decade, Fairview has been connecting people to the Andaman Sea's most private anchorages, hidden bays, and extraordinary passages. Our vessels are chosen not for their specification sheets, but for the quality of experience they make possible.
+              </p>
+            </div>
+          </div>
+
+          <!-- Services 3-up -->
+          <div class="fv-services">
+            <div class="fv-service-card">
+              <div class="fv-service-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 17L5 10L12 4L19 10L21 17M3 17L21 17M7 17L7 21M17 17L17 21"/></svg>
+              </div>
+              <div class="fv-service-num">01 /</div>
+              <div class="fv-service-title">Yacht Charter</div>
+              <div class="fv-service-desc">Explore Phuket's islands or set sail for any destination worldwide. Skippered, crewed, or bareboat — tailored to how you want to travel.</div>
+              <div class="fv-service-link">Explore Charters →</div>
+            </div>
+            <div class="fv-service-card">
+              <div class="fv-service-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L20 20L12 17L4 20Z M12 7L12 17"/></svg>
+              </div>
+              <div class="fv-service-num">02 /</div>
+              <div class="fv-service-title">New Yacht Sales</div>
+              <div class="fv-service-desc">Official dealer for Bali Catamarans and GranOcean in Thailand and Hong Kong. Exceptional catamarans for discerning owners.</div>
+              <div class="fv-service-link">View New Yachts →</div>
+            </div>
+            <div class="fv-service-card">
+              <div class="fv-service-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12L11 15L16 9"/></svg>
+              </div>
+              <div class="fv-service-num">03 /</div>
+              <div class="fv-service-title">Brokerage</div>
+              <div class="fv-service-desc">Pre-owned yachts sourced worldwide via Rightboat. Expert guidance from enquiry through to sea trial and handover.</div>
+              <div class="fv-service-link">Browse Brokerage →</div>
+            </div>
+          </div>
+
+          <!-- Destinations (charter inspiration section) -->
+          <div class="fv-destinations">
+            <div class="fv-dest-header">
+              <div>
+                <div style="font-size:0.48rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--fv-brass); display:flex; align-items:center; gap:0.6rem;"><span style="display:inline-block;width:1.25rem;height:1px;background:var(--fv-brass);opacity:0.6;"></span>Destinations</div>
+                <div class="fv-dest-title">The world's finest <em>sailing waters</em></div>
+              </div>
+              <span class="fv-dest-view-all">All Destinations →</span>
+            </div>
+            <div class="fv-dest-grid">
+
+              <!-- Card 1: Hero (spans 2 rows) -->
+              <div class="fv-dest-card fv-dest-card-hero">
+                <div class="fv-dest-bg" style="background:linear-gradient(160deg,#0D4060 0%,#0A2D45 40%,#062040 80%,#0A2A3D 100%);"></div>
+                <div class="fv-dest-overlay"></div>
+                <div class="fv-dest-watermark">PHU</div>
+                <div class="dest-pattern"></div>
+                <div class="fv-dest-content">
+                  <div class="fv-dest-region">Southeast Asia</div>
+                  <div class="fv-dest-name">Andaman Sea<br>&amp; Krabi</div>
+                  <div class="fv-dest-sub">October — April</div>
+                  <div class="fv-dest-yachts">18 yachts available</div>
+                </div>
+              </div>
+
+              <!-- Card 2: Phang Nga (col 2, row 1) -->
+              <div class="fv-dest-card">
+                <div class="fv-dest-bg" style="background:linear-gradient(160deg,#1a4a3a 0%,#0d3025 50%,#071a14 100%);"></div>
+                <div class="fv-dest-overlay"></div>
+                <div class="fv-dest-watermark">PHA</div>
+                <div class="dest-pattern"></div>
+                <div class="fv-dest-content">
+                  <div class="fv-dest-region">Thailand</div>
+                  <div class="fv-dest-name">Phang Nga Bay<br>&amp; Phi Phi</div>
+                  <div class="fv-dest-sub">Year round</div>
+                </div>
+              </div>
+
+              <!-- Card 3: Similan (col 2, row 2) -->
+              <div class="fv-dest-card">
+                <div class="fv-dest-bg" style="background:linear-gradient(160deg,#0d3055 0%,#1a4060 40%,#0a2040 100%);"></div>
+                <div class="fv-dest-overlay"></div>
+                <div class="fv-dest-watermark">SIM</div>
+                <div class="dest-pattern"></div>
+                <div class="fv-dest-content">
+                  <div class="fv-dest-region">Thailand</div>
+                  <div class="fv-dest-name">The Similan Islands</div>
+                  <div class="fv-dest-sub">November — April</div>
+                </div>
+              </div>
+
+              <!-- Card 4: Solent (col 3, row 1) -->
+              <div class="fv-dest-card">
+                <div class="fv-dest-bg" style="background:linear-gradient(160deg,#1A3A6C 0%,#0E2850 60%,#081A3C 100%);"></div>
+                <div class="fv-dest-overlay"></div>
+                <div class="fv-dest-watermark">SOL</div>
+                <div class="dest-pattern"></div>
+                <div class="fv-dest-content">
+                  <div class="fv-dest-region">United Kingdom</div>
+                  <div class="fv-dest-name">The Solent,<br>Hampshire</div>
+                  <div class="fv-dest-sub">May — September</div>
+                </div>
+              </div>
+
+              <!-- Card 5: Hong Kong (col 3, row 2) -->
+              <div class="fv-dest-card">
+                <div class="fv-dest-bg" style="background:linear-gradient(160deg,#162840 0%,#0E2038 60%,#061428 100%);"></div>
+                <div class="fv-dest-overlay"></div>
+                <div class="fv-dest-watermark">HK</div>
+                <div class="dest-pattern"></div>
+                <div class="fv-dest-content">
+                  <div class="fv-dest-region">East Asia</div>
+                  <div class="fv-dest-name">Hong Kong &amp;<br>South China Sea</div>
+                  <div class="fv-dest-sub">Year round</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Fleet -->
+          <div class="fv-fleet">
+            <div class="fv-fleet-header">
+              <div>
+                <div style="font-size:0.58rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.5rem;">Our Fleet</div>
+                <div style="font-family:var(--font-display); font-size:2.2rem; font-weight:300; color:var(--fv-midnight);">Selected <em style="opacity:0.5;">vessels.</em></div>
+              </div>
+              <div style="font-family:var(--font-sans); font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(10,22,40,0.5); cursor:pointer;">View all vessels →</div>
+            </div>
+            <div class="fv-fleet-grid">
+              <div class="fv-fleet-card">
+                <div class="fv-fleet-img" style="background:linear-gradient(160deg, #1a3350 0%, #0d2240 50%, #070f1c 100%); position:relative; display:flex; align-items:center; justify-content:center;">
+                  <svg viewBox="0 0 400 225" width="80%" opacity="0.3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M200 20 L210 160 L185 175 L215 175 L210 160" stroke="white" stroke-width="2" fill="none"/>
+                    <path d="M200 35 L248 160 L210 160 Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.05)"/>
+                    <path d="M185 175 L60 192 L215 192 L300 192 L215 175 Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.07)"/>
+                    <ellipse cx="200" cy="192" rx="140" ry="8" fill="rgba(255,255,255,0.04)"/>
+                  </svg>
+                </div>
+                <div class="fv-fleet-info">
+                  <div>
+                    <div class="fv-fleet-name">Bali 4.8</div>
+                    <div class="fv-fleet-type">Luxury Catamaran</div>
+                  </div>
+                  <div class="fv-fleet-spec">
+                    <strong>14.5<span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--fv-brass);">m</span></strong>
+                    <div>LOA</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fv-fleet-card">
+                <div class="fv-fleet-img" style="background:linear-gradient(160deg, #162030 0%, #0a1a30 50%, #040c1a 100%); position:relative; display:flex; align-items:center; justify-content:center;">
+                  <svg viewBox="0 0 400 225" width="80%" opacity="0.3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M195 15 L200 155 L175 170 L205 170 L200 155" stroke="white" stroke-width="2" fill="none"/>
+                    <path d="M198 30 L240 155 L200 155 Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.05)"/>
+                    <path d="M160 170 L60 185 L200 185 L290 185 L200 170 Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.07)"/>
+                    <path d="M155 170 L120 175" stroke="white" stroke-width="0.75" fill="none"/>
+                    <path d="M295 170 L310 162 L295 168" stroke="white" stroke-width="0.75" fill="none"/>
+                  </svg>
+                </div>
+                <div class="fv-fleet-info">
+                  <div>
+                    <div class="fv-fleet-name">GranOcean 52</div>
+                    <div class="fv-fleet-type">Performance Sailing Yacht</div>
+                  </div>
+                  <div class="fv-fleet-spec">
+                    <strong>15.8<span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--fv-brass);">m</span></strong>
+                    <div>LOA</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ownership -->
+          <div class="fv-ownership">
+            <div>
+              <div class="fv-ownership-tag">Ownership Programme</div>
+              <div class="fv-ownership-title">Own the<br><em style="opacity:0.5;">experience.</em><br>Share the return.</div>
+              <p class="fv-ownership-body">An opportunity as rare as the waters we sail. Own a luxury catamaran in Phuket, fully managed by Fairview — with guaranteed income, personal sailing time, and none of the complexity.</p>
+              <div class="fv-ownership-stats">
+                <div>
+                  <div class="fv-stat-num">10<span class="fv-stat-unit">%</span></div>
+                  <div class="fv-stat-label">Guaranteed income</div>
+                </div>
+                <div>
+                  <div class="fv-stat-num">60<span class="fv-stat-unit"> days</span></div>
+                  <div class="fv-stat-label">Personal sailing time</div>
+                </div>
+                <div>
+                  <div class="fv-stat-num">100<span class="fv-stat-unit">%</span></div>
+                  <div class="fv-stat-label">Professionally managed</div>
+                </div>
+              </div>
+              <button style="font-family:var(--font-sans); font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--fv-brass); background:none; border:1px solid rgba(196,151,90,0.4); padding:0.85rem 2rem; cursor:pointer; border-radius:2px;">Explore ownership →</button>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:1px; opacity:0.7;">
+              <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:4px; padding:1.5rem; margin-bottom:1px;">
+                <div style="font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(248,244,238,0.3); margin-bottom:0.5rem;">Programme includes</div>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem;">
+                  <li style="font-size:0.78rem; font-weight:300; color:rgba(248,244,238,0.55);">Full charter management by Fairview</li>
+                  <li style="font-size:0.78rem; font-weight:300; color:rgba(248,244,238,0.55);">10% guaranteed annual yield</li>
+                  <li style="font-size:0.78rem; font-weight:300; color:rgba(248,244,238,0.55);">60 days personal sailing per year</li>
+                  <li style="font-size:0.78rem; font-weight:300; color:rgba(248,244,238,0.55);">Maintenance, berthing & crew included</li>
+                  <li style="font-size:0.78rem; font-weight:300; color:rgba(248,244,238,0.55);">Bali Catamaran — new vessel, Thailand delivery</li>
+                </ul>
+              </div>
+              <div style="background:rgba(196,151,90,0.05); border:1px solid rgba(196,151,90,0.15); border-radius:4px; padding:1.5rem;">
+                <div style="font-family:var(--font-display); font-size:1.2rem; font-weight:300; color:rgba(248,244,238,0.6); font-style:italic; line-height:1.5;">"We wanted a vessel. Fairview gave us a life on the water — and it paid for itself."</div>
+                <div style="font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(248,244,238,0.25); margin-top:0.75rem;">Programme owner · Phuket</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonials -->
+          <div class="fv-testimonials">
+            <div class="fv-testi-header">
+              <div>
+                <div style="font-size:0.48rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--fv-brass); display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;"><span style="display:inline-block;width:1.25rem;height:1px;background:var(--fv-brass);opacity:0.6;"></span>Client Stories</div>
+                <div style="font-family:var(--font-display); font-size:1.75rem; font-weight:300; color:var(--fv-midnight);">Trusted by <em style="opacity:0.5;">those who sail</em></div>
+              </div>
+              <span style="font-family:var(--font-sans); font-size:0.55rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(10,22,40,0.35);">All reviews →</span>
+            </div>
+            <div class="fv-testi-grid">
+              <div class="fv-testi-card">
+                <div class="fv-testi-stars">
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                </div>
+                <span class="fv-testi-quote">"</span>
+                <p class="fv-testi-text">An extraordinary week in the Andaman. The crew were impeccable, the itinerary perfectly crafted. Fairview made everything seamless from first enquiry to disembarkation.</p>
+                <div class="fv-testi-author">James &amp; Charlotte W.</div>
+                <div class="fv-testi-detail">Phuket · 7-day skippered charter</div>
+              </div>
+              <div class="fv-testi-card">
+                <div class="fv-testi-stars">
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                </div>
+                <span class="fv-testi-quote">"</span>
+                <p class="fv-testi-text">Purchasing our Bali 4.8 through Fairview was a genuinely different experience. Knowledgeable, unhurried, and they knew the boats inside out. Couldn't recommend more highly.</p>
+                <div class="fv-testi-author">Marco &amp; Sofia T.</div>
+                <div class="fv-testi-detail">Bangkok · Bali 4.8 purchase</div>
+              </div>
+              <div class="fv-testi-card">
+                <div class="fv-testi-stars">
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                  <svg class="fv-testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+                </div>
+                <span class="fv-testi-quote">"</span>
+                <p class="fv-testi-text">The ownership programme exceeded all expectations. Consistent income, effortless management, and sixty days of pure sailing. The model makes complete sense.</p>
+                <div class="fv-testi-author">David H.</div>
+                <div class="fv-testi-detail">Hong Kong · Ownership programme</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blog / News -->
+          <div class="fv-blog">
+            <div class="fv-blog-header">
+              <div>
+                <div style="font-size:0.48rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--fv-brass); display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;"><span style="display:inline-block;width:1.25rem;height:1px;background:var(--fv-brass);opacity:0.6;"></span>Journal</div>
+                <div style="font-family:var(--font-display); font-size:1.75rem; font-weight:300; color:var(--fv-midnight);">Latest <em style="opacity:0.5;">news &amp; guides</em></div>
+              </div>
+              <span style="font-family:var(--font-sans); font-size:0.55rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(10,22,40,0.35);">All articles →</span>
+            </div>
+            <div class="fv-blog-grid">
+              <div class="fv-blog-card">
+                <div class="fv-blog-img" style="background:linear-gradient(135deg,#1A4060 0%,#0E2A44 100%);">
+                  <div class="dest-pattern"></div>
+                </div>
+                <div class="fv-blog-body">
+                  <div class="fv-blog-tag">Charter Guide</div>
+                  <div class="fv-blog-title">Sailing the Andaman in High Season: a complete guide to Phuket's finest anchorages</div>
+                  <div class="fv-blog-date">12 November 2025</div>
+                </div>
+              </div>
+              <div class="fv-blog-card">
+                <div class="fv-blog-img" style="background:linear-gradient(135deg,#0A2038 0%,#1A3A5C 100%);">
+                  <div class="dest-pattern"></div>
+                </div>
+                <div class="fv-blog-body">
+                  <div class="fv-blog-tag">Yacht Sales</div>
+                  <div class="fv-blog-title">Bali 7.0 — redefining luxury living at sea</div>
+                  <div class="fv-blog-date">4 October 2025</div>
+                </div>
+              </div>
+              <div class="fv-blog-card">
+                <div class="fv-blog-img" style="background:linear-gradient(135deg,#102A48 0%,#0A1E34 100%);">
+                  <div class="dest-pattern"></div>
+                </div>
+                <div class="fv-blog-body">
+                  <div class="fv-blog-tag">Ownership</div>
+                  <div class="fv-blog-title">The catamaran ownership programme explained</div>
+                  <div class="fv-blog-date">18 September 2025</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enquiry CTA -->
+          <div class="fv-enquiry">
+            <div class="fv-section-rule"><span class="fv-rule-label">Get in touch</span></div>
+            <h2 class="fv-enquiry-title">
+              Tell us about<br><em style="font-style:italic; opacity:0.5;">your journey.</em>
+            </h2>
+            <p class="fv-enquiry-sub">Our team responds within 24 hours. All enquiries are handled personally.</p>
+            <div class="fv-form-row">
+              <input class="fv-input" type="text" placeholder="Your name">
+              <input class="fv-input" type="text" placeholder="Preferred dates">
+              <select class="fv-input" style="appearance:none; cursor:pointer;">
+                <option>Charter · Yacht Sales · Brokerage · Ownership</option>
+                <option>Private Charter</option>
+                <option>Yacht Sales</option>
+                <option>Brokerage / Pre-owned</option>
+                <option>Ownership Programme</option>
+              </select>
+              <button class="fv-form-btn">Send</button>
+            </div>
+            <div style="margin-top:2.5rem; display:flex; justify-content:center; gap:4rem; flex-wrap:wrap;">
+              <div style="text-align:center;">
+                <div style="font-family:var(--font-mono); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(10,22,40,0.3); margin-bottom:0.25rem;">Phuket</div>
+                <div style="font-size:0.75rem; color:rgba(10,22,40,0.5);">+66 76 317 316</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-family:var(--font-mono); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(10,22,40,0.3); margin-bottom:0.25rem;">Hong Kong</div>
+                <div style="font-size:0.75rem; color:rgba(10,22,40,0.5);">+852 5975 1122</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-family:var(--font-mono); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(10,22,40,0.3); margin-bottom:0.25rem;">Hampshire, UK</div>
+                <div style="font-size:0.75rem; color:rgba(10,22,40,0.5);">+44 (0)2380 457023</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <footer class="fv-footer">
+            <div>
+              <div class="fv-footer-logo">Fairview<br>Yachting</div>
+              <p class="fv-footer-tagline">Private maritime journeys across the Andaman Sea, the Solent, and beyond. Est. Phuket, Thailand.</p>
+            </div>
+            <div>
+              <div class="fv-footer-col-title">Navigate</div>
+              <ul class="fv-footer-links">
+                <li>Experiences</li>
+                <li>Charter</li>
+                <li>The Fleet</li>
+                <li>Ownership</li>
+                <li>Journal</li>
+              </ul>
+            </div>
+            <div>
+              <div class="fv-footer-col-title">Offices</div>
+              <ul class="fv-footer-links">
+                <li>Phuket, Thailand</li>
+                <li>Hong Kong</li>
+                <li>Hampshire, UK</li>
+              </ul>
+            </div>
+            <div>
+              <div class="fv-footer-col-title">Contact</div>
+              <ul class="fv-footer-links">
+                <li>hello@fairviewyachting.com</li>
+                <li>Instagram</li>
+                <li>LinkedIn</li>
+              </ul>
+            </div>
+          </footer>
+
+        </div><!-- ── FAIRVIEW HOMEPAGE ENDS ── -->
       </div>
-      <span class="testi-quote-mark">"</span>
-      <p class="testi-text">An extraordinary week in the Andaman. The crew were impeccable, the itinerary perfectly crafted. Fairview made everything seamless from first enquiry to disembarkation.</p>
-      <div class="testi-author">James &amp; Charlotte W.</div>
-      <div class="testi-detail">Phuket · 7-day skippered charter</div>
     </div>
-    <div class="testi-card">
-      <div class="testi-stars">
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-      </div>
-      <span class="testi-quote-mark">"</span>
-      <p class="testi-text">We purchased our Bali 4.8 through Fairview and couldn't be happier. Their knowledge of the product, the process, and the region is unmatched. World-class service.</p>
-      <div class="testi-author">The Marchetti Family</div>
-      <div class="testi-detail">Bali 4.8 purchase · Thailand</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"></path></svg>
-      </div>
-      <span class="testi-quote-mark">"</span>
-      <p class="testi-text">As a broker, I rely on partners who communicate clearly and execute flawlessly. Fairview is my first call for anything in Southeast Asia — consistent, professional, and genuinely passionate.</p>
-      <div class="testi-author">Sophie Laurent</div>
-      <div class="testi-detail">Independent broker · Paris</div>
+
+    <!-- Mobile mockup section -->
+    <div class="container" style="padding-top:3rem;">
+      <h3 class="heading-sm" style="margin-bottom:0.75rem;">Mobile Concept — 375px</h3>
+      <p class="body-text" style="font-size:0.82rem; margin-bottom:2.5rem; max-width:500px;">Portrait-first design: stacked editorial layout, thumb-zone CTA placement, cinematic full-bleed sections adapted for narrow viewport.</p>
+      <div style="display:flex; gap:3rem; align-items:flex-start; flex-wrap:wrap;">
+
+        <!-- Mobile: Hero -->
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.62rem; color:var(--nb-muted); margin-bottom:0.5rem;">Hero</div>
+          <div class="mobile-mockup" style="width:220px;">
+            <div class="mobile-browser-bar">
+              <div class="browser-dot" style="background:#ff5f57; width:6px; height:6px;"></div>
+              <div class="browser-dot" style="background:#febc2e; width:6px; height:6px;"></div>
+              <div class="mobile-status-text">fairviewyachting.com</div>
+            </div>
+            <div style="background:var(--fv-midnight); padding:1.25rem 1.1rem; height:460px; overflow:hidden; position:relative; display:flex; flex-direction:column; justify-content:flex-end;">
+              <!-- Stars -->
+              <div style="position:absolute; top:0; left:0; right:0; height:55%; background-image: radial-gradient(1px 1px at 25% 20%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 65% 15%, rgba(255,255,255,0.35) 0%, transparent 100%), radial-gradient(1px 1px at 80% 35%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1px 1px at 40% 8%, rgba(255,255,255,0.3) 0%, transparent 100%);"></div>
+              <!-- Nav mobile -->
+              <div style="position:absolute; top:0; left:0; right:0; padding:1rem 1.1rem; display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-family:var(--font-display); font-size:0.72rem; font-weight:300; letter-spacing:0.2em; color:var(--fv-ivory);">Fairview</div>
+                <div style="display:flex; flex-direction:column; gap:3px;">
+                  <div style="width:16px; height:1px; background:rgba(248,244,238,0.6);"></div>
+                  <div style="width:12px; height:1px; background:rgba(248,244,238,0.4);"></div>
+                </div>
+              </div>
+              <div style="position:relative; z-index:2; padding-bottom:1rem;">
+                <div style="font-size:0.45rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;"><span style="display:inline-block; width:1.5rem; height:1px; background:var(--fv-brass);"></span>Private Journeys</div>
+                <h1 style="font-family:var(--font-display); font-size:1.6rem; font-weight:300; color:var(--fv-ivory); line-height:1.1; margin-bottom:0.75rem;">Extraordinary<br>waters.<br><em style="opacity:0.5;">Privately.</em></h1>
+                <p style="font-size:0.62rem; font-weight:300; color:rgba(248,244,238,0.45); line-height:1.7; margin-bottom:1.25rem;">Curated charters across the Andaman Sea.</p>
+                <button style="font-family:var(--font-sans); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; background:var(--fv-ivory); color:var(--fv-midnight); border:none; padding:0.65rem 1.25rem; border-radius:2px; cursor:pointer; font-weight:500;">Begin Planning</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile: Destinations -->
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.62rem; color:var(--nb-muted); margin-bottom:0.5rem;">Destinations</div>
+          <div class="mobile-mockup" style="width:220px;">
+            <div class="mobile-browser-bar">
+              <div class="browser-dot" style="background:#ff5f57; width:6px; height:6px;"></div>
+              <div class="browser-dot" style="background:#febc2e; width:6px; height:6px;"></div>
+            </div>
+            <div style="background:var(--fv-midnight); height:460px; overflow:hidden;">
+              <div style="padding:1rem 1.1rem 0.75rem; display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1px solid rgba(255,255,255,0.05);">
+                <div>
+                  <div style="font-size:0.42rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--fv-brass); display:flex; align-items:center; gap:0.4rem; margin-bottom:0.35rem;"><span style="display:inline-block;width:0.7rem;height:1px;background:var(--fv-brass);opacity:0.6;"></span>Destinations</div>
+                  <div style="font-family:var(--font-display); font-size:1.1rem; font-weight:300; color:var(--fv-ivory); line-height:1.05;">The finest <em style="opacity:0.45;">sailing waters</em></div>
+                </div>
+                <div style="font-size:0.42rem; letter-spacing:0.1em; color:rgba(248,244,238,0.28);">All →</div>
+              </div>
+              <!-- Hero card -->
+              <div style="position:relative; background:linear-gradient(160deg,#0D4060 0%,#062040 100%); min-height:110px; display:flex; align-items:flex-end; overflow:hidden;">
+                <div style="position:absolute; inset:0; opacity:0.03; background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.8) 1px,transparent 0); background-size:14px 14px;"></div>
+                <div style="position:absolute; inset:0; background:linear-gradient(to top,rgba(10,22,40,0.8) 0%,transparent 55%);"></div>
+                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:var(--font-display); font-size:3.5rem; font-weight:300; color:rgba(255,255,255,0.04); white-space:nowrap; pointer-events:none;">PHU</div>
+                <div style="position:relative; z-index:2; padding:0.85rem 1rem;">
+                  <div style="font-size:0.42rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.2rem;">Southeast Asia</div>
+                  <div style="font-family:var(--font-display); font-size:0.95rem; font-weight:300; color:var(--fv-ivory);">Andaman Sea &amp; Krabi</div>
+                  <div style="font-family:var(--font-mono); font-size:0.45rem; color:rgba(248,244,238,0.3); margin-top:0.15rem;">18 yachts · Oct — Apr</div>
+                </div>
+              </div>
+              <!-- 2-col grid for remaining 4 -->
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; margin-top:1px;">
+                <div style="position:relative; background:linear-gradient(160deg,#1a4a3a 0%,#071a14 100%); min-height:72px; display:flex; align-items:flex-end; overflow:hidden;">
+                  <div style="position:absolute; inset:0; background:linear-gradient(to top,rgba(10,22,40,0.75) 0%,transparent 60%);"></div>
+                  <div style="position:relative; z-index:2; padding:0.65rem 0.75rem;">
+                    <div style="font-size:0.38rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.15rem;">Thailand</div>
+                    <div style="font-family:var(--font-display); font-size:0.72rem; font-weight:300; color:var(--fv-ivory); line-height:1.1;">Phang Nga Bay</div>
+                  </div>
+                </div>
+                <div style="position:relative; background:linear-gradient(160deg,#0d3055 0%,#0a2040 100%); min-height:72px; display:flex; align-items:flex-end; overflow:hidden;">
+                  <div style="position:absolute; inset:0; background:linear-gradient(to top,rgba(10,22,40,0.75) 0%,transparent 60%);"></div>
+                  <div style="position:relative; z-index:2; padding:0.65rem 0.75rem;">
+                    <div style="font-size:0.38rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.15rem;">Thailand</div>
+                    <div style="font-family:var(--font-display); font-size:0.72rem; font-weight:300; color:var(--fv-ivory); line-height:1.1;">Similan Islands</div>
+                  </div>
+                </div>
+                <div style="position:relative; background:linear-gradient(160deg,#1A3A6C 0%,#081A3C 100%); min-height:72px; display:flex; align-items:flex-end; overflow:hidden;">
+                  <div style="position:absolute; inset:0; background:linear-gradient(to top,rgba(10,22,40,0.75) 0%,transparent 60%);"></div>
+                  <div style="position:relative; z-index:2; padding:0.65rem 0.75rem;">
+                    <div style="font-size:0.38rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.15rem;">United Kingdom</div>
+                    <div style="font-family:var(--font-display); font-size:0.72rem; font-weight:300; color:var(--fv-ivory); line-height:1.1;">The Solent</div>
+                  </div>
+                </div>
+                <div style="position:relative; background:linear-gradient(160deg,#162840 0%,#061428 100%); min-height:72px; display:flex; align-items:flex-end; overflow:hidden;">
+                  <div style="position:absolute; inset:0; background:linear-gradient(to top,rgba(10,22,40,0.75) 0%,transparent 60%);"></div>
+                  <div style="position:relative; z-index:2; padding:0.65rem 0.75rem;">
+                    <div style="font-size:0.38rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--fv-brass); margin-bottom:0.15rem;">East Asia</div>
+                    <div style="font-family:var(--font-display); font-size:0.72rem; font-weight:300; color:var(--fv-ivory); line-height:1.1;">Hong Kong</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile: Enquiry -->
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.62rem; color:var(--nb-muted); margin-bottom:0.5rem;">Enquiry form</div>
+          <div class="mobile-mockup" style="width:220px;">
+            <div class="mobile-browser-bar">
+              <div class="browser-dot" style="background:#ff5f57; width:6px; height:6px;"></div>
+              <div class="browser-dot" style="background:#febc2e; width:6px; height:6px;"></div>
+            </div>
+            <div style="background:var(--fv-ivory); padding:1.5rem 1.25rem; height:460px; overflow:hidden;">
+              <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.25rem;">
+                <div style="flex:1; height:1px; background:rgba(196,151,90,0.3);"></div>
+                <div style="font-size:0.42rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--fv-brass);">Get in touch</div>
+                <div style="flex:1; height:1px; background:rgba(196,151,90,0.3);"></div>
+              </div>
+              <div style="font-family:var(--font-display); font-size:1.3rem; font-weight:300; color:var(--fv-midnight); margin-bottom:1rem; line-height:1.2;">Tell us about <em style="opacity:0.5;">your journey.</em></div>
+              <p style="font-size:0.62rem; font-weight:300; color:rgba(10,22,40,0.5); line-height:1.6; margin-bottom:1.25rem;">All enquiries are handled personally. We respond within 24 hours.</p>
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <input style="background:#fff; border:1px solid rgba(10,22,40,0.1); padding:0.65rem 0.8rem; font-family:var(--font-sans); font-size:0.62rem; font-weight:300; color:var(--fv-midnight); border-radius:2px; outline:none;" type="text" placeholder="Your name">
+                <input style="background:#fff; border:1px solid rgba(10,22,40,0.1); padding:0.65rem 0.8rem; font-family:var(--font-sans); font-size:0.62rem; font-weight:300; color:var(--fv-midnight); border-radius:2px; outline:none;" type="text" placeholder="Preferred dates">
+                <select style="background:#fff; border:1px solid rgba(10,22,40,0.1); padding:0.65rem 0.8rem; font-family:var(--font-sans); font-size:0.62rem; font-weight:300; color:rgba(10,22,40,0.4); border-radius:2px; outline:none; appearance:none;">
+                  <option>Charter / Sales / Ownership</option>
+                </select>
+                <button style="background:var(--fv-midnight); color:var(--fv-ivory); border:none; padding:0.75rem; font-family:var(--font-sans); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; cursor:pointer; border-radius:2px; margin-top:0.5rem;">Send Enquiry</button>
+              </div>
+              <div style="margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid rgba(10,22,40,0.08);">
+                <div style="font-size:0.52rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(10,22,40,0.25); margin-bottom:0.75rem;">Our offices</div>
+                <div style="display:flex; flex-direction:column; gap:0.35rem;">
+                  <div style="font-size:0.62rem; color:rgba(10,22,40,0.5); display:flex; justify-content:space-between;"><span>Phuket</span><span style="font-family:var(--font-mono); font-size:0.55rem;">TH</span></div>
+                  <div style="font-size:0.62rem; color:rgba(10,22,40,0.5); display:flex; justify-content:space-between;"><span>Hong Kong</span><span style="font-family:var(--font-mono); font-size:0.55rem;">HK</span></div>
+                  <div style="font-size:0.62rem; color:rgba(10,22,40,0.5); display:flex; justify-content:space-between;"><span>Hampshire, UK</span><span style="font-family:var(--font-mono); font-size:0.55rem;">GB</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end mobile grid -->
     </div>
   </div>
 </section>
-
-<!-- BLOG -->
-<section class="blog">
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;">
-    <div>
-      <div class="section-label">Journal</div>
-      <div class="section-title">Insights &amp; <em>inspiration</em></div>
-    </div>
-    <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="view-all" style="color:var(--text-muted);">All Articles <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"></path></svg></a>
-  </div>
-
-  <div class="blog-grid">
-    <div class="blog-card">
-      <div class="blog-img"><div class="blog-img-inner b1"></div></div>
-      <div class="blog-body">
-        <div class="blog-tag">Destinations</div>
-        <div class="blog-title">The ultimate 10-day Andaman itinerary for catamaran sailors</div>
-        <div class="blog-date">May 2026</div>
+<!-- ─── FOOTER ─── -->
+<footer style="background:var(--nb-dark); color:var(--nb-cream); padding:4rem 2rem;">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:2rem; border-bottom:1px solid rgba(250,247,242,0.1); margin-bottom:2rem; flex-wrap:wrap; gap:1rem;">
+      <div class="nb-logo" style="display:flex; align-items:center; gap:0.6rem;">
+        <a href="https://northboundcommerce.co.uk/" target="_blank" style="display:flex; align-items:center; text-decoration:none;">
+        <span style="font-family:var(--font-nb-sans); font-size:0.75rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.8);">Northbound Commerce</span>
+        </a>
       </div>
+      <div style="font-size:0.72rem; color:rgba(250,247,242,0.4);">hello@northboundcommerce.co.uk</div>
     </div>
-    <div class="blog-card">
-      <div class="blog-img"><div class="blog-img-inner b2"></div></div>
-      <div class="blog-body">
-        <div class="blog-tag">Yacht Sales</div>
-        <div class="blog-title">Bali vs GranOcean: choosing your first catamaran</div>
-        <div class="blog-date">April 2026</div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <div style="font-size:0.72rem; color:rgba(250,247,242,0.35); line-height:1.7;">
+          Luxury CRO, UX & Digital Experience for premium brands.<br>
+          London · northboundcommerce.co.uk
+        </div>
       </div>
-    </div>
-    <div class="blog-card">
-      <div class="blog-img"><div class="blog-img-inner b3"></div></div>
-      <div class="blog-body">
-        <div class="blog-tag">Charter Guide</div>
-        <div class="blog-title">Skippered, crewed or bareboat — what's right for you?</div>
-        <div class="blog-date">March 2026</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA BAND -->
-<div class="cta-band">
-  <div>
-    <div class="section-label">Get in Touch</div>
-    <div class="section-title">Let's plan your<br><em>perfect voyage</em></div>
-    <p class="cta-copy">Whether you're ready to charter, buying your first yacht, or simply exploring options — our team is here to help you navigate the possibilities.</p>
-  </div>
-  <div class="cta-right">
-    <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="btn-primary" style="font-size:13px;padding:16px 40px;">Start an Enquiry</a>
-    <p class="cta-sub">Or call us: +66 76 000 000</p>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <span class="footer-logo">Fairview Yachting</span>
-      <p class="footer-tagline">Premium yacht charter and sales, based in Phuket. Connecting discerning clients to extraordinary experiences on the water since 2009.</p>
-      <div class="footer-contact">
-        <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">hello@fairviewyachting.com</a>
-        <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Chalong Bay, Phuket, Thailand 83130</a>
-        <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Also operating in Hong Kong</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Charter</div>
-      <ul class="footer-links">
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Phuket Fleet</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Worldwide Charter</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Destinations</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Charter Types</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Request to Book</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Sales</div>
-      <ul class="footer-links">
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Bali Catamarans</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">GranOcean</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Brokerage Yachts</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Ownership Programme</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Company</div>
-      <ul class="footer-links">
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">About Fairview</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Our Team</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Journal</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Contact</a></li>
-        <li><a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#">Client Portal</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-legal">© 2026 Fairview Yachting. All rights reserved.</div>
-    <div class="footer-langs">
-      <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="footer-lang-btn active">EN</a>
-      <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="footer-lang-btn">FR</a>
-      <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="footer-lang-btn">RU</a>
-      <a href="https://northboundcommerce.co.uk/Fairview%20Yachting%20%E2%80%94%20Homepage%20Mockup.html#" class="footer-lang-btn">中文</a>
-    </div>
-    <div class="footer-social">
-      <div class="social-link">
-        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>
-      </div>
-      <div class="social-link">
-        <svg viewBox="0 0 24 24"><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S12.029 6.521 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84 0 0 0 .497-3.753C20.18 7.773 21.692 5.25 22 4.009z"></path></svg>
-      </div>
-      <div class="social-link">
-        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+      <div style="font-family:var(--font-mono); font-size:0.62rem; color:rgba(250,247,242,0.2);">
+        Fairview Yachting Audit — Confidential
       </div>
     </div>
   </div>
 </footer>
 
-<!-- UX NOTES PANEL -->
-<button class="notes-toggle">
-  <svg viewBox="0 0 14 14"><path d="M1 3 L13 3 M1 7 L10 7 M1 11 L7 11"></path></svg>
-  UX Notes
-</button>
-
-<div class="notes-panel" id="notesPanel">
-  <div class="notes-header">
-    <h2>UX Audit Notes</h2>
-    <button class="notes-close">×</button>
-  </div>
-  <div class="notes-body">
-
-    <div class="note-section">
-      <h3>Navigation</h3>
-      <div class="note-item">
-        <span class="note-badge nb-rec">Rec</span>
-        <span class="note-text">Transparent nav that darkens on scroll preserves the hero visual impact while maintaining accessibility once users move past the fold.</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-rec">Rec</span>
-        <span class="note-text">Mega-menu for Charter and Sales items recommended — brief brief lists Charter Types, Fleet, Destinations as sub-items to reduce depth of navigation.</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-info">WP</span>
-        <span class="note-text">Use Elementor Pro or Bricks Builder + custom nav walker. WPML or Polylang for the four language variants with hreflang tags.</span>
-      </div>
-    </div>
-
-    <div class="note-section">
-      <h3>Search &amp; Filtering</h3>
-      <div class="note-item">
-        <span class="note-badge nb-crit">Critical</span>
-        <span class="note-text">The hero search bar must use tabbed switching between Charter / Sales / Brokerage — different filter sets for each. Avoid a single global search that returns mixed results.</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-rec">Rec</span>
-        <span class="note-text">Brokerage search (Rightboat API) and charter search (Nausys API) should use AJAX-loaded results to avoid full-page reloads — critical for mobile UX.</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-info">WP</span>
-        <span class="note-text">FacetWP or SearchWP for on-site filtering of Phuket fleet (CPT). Nausys and Rightboat results rendered via custom REST API proxy endpoints to avoid CORS issues.</span>
-      </div>
-    </div>
-
-    <div class="note-section">
-      <h3>Yacht Detail Pages</h3>
-      <div class="note-item">
-        <span class="note-badge nb-rec">Rec</span>
-        <span class="note-text">Sticky enquiry/price bar on yacht PDPs — visible at all times on desktop (right column) and as a fixed bottom bar on mobile. Enquiry friction is the main conversion killer on yacht sites.</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-rec">Rec</span>
-        <span class="note-text">GranOcean virtual tour iFrame embed (as in brief) + downloadable brochure PDF — both require a short lead-capture gate (email) before access.</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-crit">Critical</span>
-        <span class="note-text">Live availability calendar for Phuket fleet is essential — clients will not enquire without it. Integrate via Nausys API availability endpoint or Beds24/Lodgify if simpler.</span>
-      </div>
-    </div>
-
-    <div class="note-section">
-      <h3>Multi-language</h3>
-      <div class="note-item">
-        <span class="note-badge nb-info">WP</span>
-        <span class="note-text">WPML (recommended for WooCommerce-adjacent setups) or Polylang Pro. Russian and Chinese market audiences require separate content strategies — not just auto-translation.</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-rec">Rec</span>
-        <span class="note-text">Currency switcher (€ / THB) using a lightweight plugin (e.g. Aelia Currency Switcher) — bind THB display to Phuket fleet pages only; worldwide charter stays in EUR.</span>
-      </div>
-    </div>
-
-    <div class="note-section">
-      <h3>Client Portal</h3>
-      <div class="note-item">
-        <span class="note-badge nb-crit">Critical</span>
-        <span class="note-text">Post-booking login portal is a significant build — scope carefully. Core MVP: booking summary, crew list upload form, extras selection, base info docs. Avoid scope creep in Phase 1.</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-info">WP</span>
-        <span class="note-text">Build as a restricted WordPress member area using Ultimate Member or WP User Manager. Custom post type per booking linked to user account. Phase 2 can add real-time extras marketplace.</span>
-      </div>
-    </div>
-
-    <div class="note-section">
-      <h3>Performance &amp; SEO</h3>
-      <div class="note-item">
-        <span class="note-badge nb-rec">Rec</span>
-        <span class="note-text">Hero video: serve WebM/MP4 with a high-quality AVIF/WebP poster image. Lazy-load below-fold images. Destination pages are prime SEO real estate — target "yacht charter [destination]" long-tails.</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-info">WP</span>
-        <span class="note-text">Yoast SEO Premium or Rank Math Pro. WP Rocket for caching/performance. Cloudflare CDN mandatory for Asia-Pacific audience (Thai server latency is punishing for European/Russian users).</span>
-      </div>
-    </div>
-
-    <div class="note-section">
-      <h3>WordPress Stack Recommendation</h3>
-      <div class="note-item">
-        <span class="note-badge nb-info">WP</span>
-        <span class="note-text"><strong>Theme:</strong> Custom child theme on GeneratePress or Bricks Builder (better performance than Elementor for image-heavy sites).</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-info">WP</span>
-        <span class="note-text"><strong>Key plugins:</strong> WPML, ACF Pro (custom fields for specs), FacetWP, WP Rocket, Yoast Premium, Gravity Forms (enquiry routing), Ultimate Member (portal).</span>
-      </div>
-      <div class="note-item">
-        <span class="note-badge nb-info">WP</span>
-        <span class="note-text"><strong>Hosting:</strong> Kinsta or WP Engine (both have Singapore/Asia nodes). Cloudflare in front. Estimate 50–80GB media storage for high-res yacht photography.</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-</body></html>
+</body>
+</html>
