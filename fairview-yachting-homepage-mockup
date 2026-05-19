@@ -1,0 +1,1251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fairview Yachting — Homepage Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0A1628;
+  --navy-mid: #162744;
+  --navy-light: #1E3A5F;
+  --gold: #C49A3C;
+  --gold-light: #E8C97A;
+  --cream: #F5F0E6;
+  --cream-light: #FAF8F3;
+  --white: #FFFFFF;
+  --text-dark: #0A1628;
+  --text-mid: #3D4F63;
+  --text-muted: #7A8EA3;
+  --border: rgba(196,154,60,0.2);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--text-dark); background: var(--white); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 48px;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: transparent;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(10,22,40,0.97);
+  box-shadow: 0 1px 0 rgba(196,154,60,0.25);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-mark {
+  width: 32px; height: 32px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-logo-mark svg { width: 16px; height: 16px; fill: var(--gold); }
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: var(--gold); transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-lang {
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); cursor: pointer;
+  display: flex; align-items: center; gap: 4px;
+}
+.nav-lang svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.nav-cta {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(196,154,60,0.6);
+  padding: 9px 20px; text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.nav-cta:hover { background: var(--gold); border-color: var(--gold); }
+
+/* ── HERO ── */
+.hero {
+  height: 100vh; min-height: 700px;
+  position: relative; display: flex; align-items: flex-end;
+  background: linear-gradient(180deg, #0A1E35 0%, #0D2D4A 40%, #0E3D5C 70%, #143250 100%);
+  overflow: hidden;
+}
+.hero-water {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 90%, rgba(14,100,140,0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 40% at 20% 70%, rgba(10,60,100,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(8,45,80,0.5) 0%, transparent 65%);
+}
+.hero-horizon {
+  position: absolute; bottom: 28%; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), rgba(196,154,60,0.15), rgba(255,255,255,0.06), transparent);
+}
+.hero-sun {
+  position: absolute; bottom: 28%; left: 50%; transform: translateX(-50%);
+  width: 120px; height: 60px;
+  background: radial-gradient(ellipse at 50% 100%, rgba(220,170,60,0.35) 0%, transparent 70%);
+}
+.hero-yacht {
+  position: absolute; bottom: 28%; right: 18%;
+  width: 280px; height: 120px;
+  opacity: 0.15;
+}
+.hero-yacht svg { width: 100%; height: 100%; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(10,22,40,0.75) 0%, rgba(10,22,40,0.2) 50%, rgba(10,22,40,0.4) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 10% 100px;
+  max-width: 760px;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.hero-title em { font-style: italic; color: rgba(255,255,255,0.75); }
+.hero-sub {
+  font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.65);
+  line-height: 1.7; margin-bottom: 40px; max-width: 480px;
+}
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--gold); color: var(--navy); border: none;
+  padding: 15px 32px; cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--gold-light); }
+.btn-ghost {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  background: transparent; color: var(--white);
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 14px 32px; cursor: pointer; text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+  display: inline-block;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.hero-scroll span { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(180deg, rgba(196,154,60,0.6), transparent); animation: scrollPulse 2s ease infinite; }
+@keyframes scrollPulse { 0%,100%{opacity:.4; transform:scaleY(1)} 50%{opacity:1; transform:scaleY(1.2)} }
+
+/* ── SEARCH BAR ── */
+.search-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+  background: rgba(10,22,40,0.95);
+  border-top: 1px solid rgba(196,154,60,0.2);
+  padding: 20px 10%;
+  display: flex; align-items: center; gap: 0;
+}
+.search-tab {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); padding: 10px 24px; cursor: pointer;
+  border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.search-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.search-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.1); margin: 0 24px; }
+.search-field {
+  display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0;
+}
+.search-field label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+.search-field select {
+  background: transparent; border: none; outline: none;
+  font-family: var(--sans); font-size: 14px; color: var(--white);
+  cursor: pointer; -webkit-appearance: none; padding: 0;
+  option { background: var(--navy); }
+}
+.search-btn {
+  background: var(--gold); border: none; color: var(--navy);
+  font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 12px 28px; cursor: pointer; white-space: nowrap; transition: background 0.2s;
+  margin-left: 24px;
+}
+.search-btn:hover { background: var(--gold-light); }
+
+/* ── SECTION STRUCTURE ── */
+section { padding: 100px 10%; }
+.section-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.section-title {
+  font-family: var(--serif); font-size: clamp(34px, 4vw, 52px);
+  font-weight: 300; line-height: 1.12; color: var(--text-dark);
+  margin-bottom: 16px;
+}
+.section-title em { font-style: italic; color: var(--text-mid); }
+.section-intro {
+  font-size: 15px; font-weight: 300; color: var(--text-muted);
+  line-height: 1.75; max-width: 560px;
+}
+
+/* ── SERVICES ── */
+.services { background: var(--cream-light); padding: 100px 10% 0; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 56px;
+}
+.service-card {
+  background: var(--white);
+  padding: 52px 44px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+  cursor: pointer;
+  text-decoration: none; display: block;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover { background: var(--navy); }
+.service-card:hover .service-num,
+.service-card:hover .service-title,
+.service-card:hover .service-desc,
+.service-card:hover .service-link { color: rgba(255,255,255,0.85); }
+.service-card:hover .service-title { color: var(--white); }
+.service-card:hover .service-icon { border-color: rgba(196,154,60,0.4); }
+.service-card:hover .service-icon svg { stroke: var(--gold); }
+.service-icon {
+  width: 52px; height: 52px; border: 1px solid rgba(196,154,60,0.25);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 36px; transition: border-color 0.3s;
+}
+.service-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.2; }
+.service-num {
+  font-size: 11px; letter-spacing: 0.15em; color: var(--text-muted);
+  margin-bottom: 10px; transition: color 0.3s;
+}
+.service-title {
+  font-family: var(--serif); font-size: 26px; font-weight: 400; line-height: 1.2;
+  color: var(--text-dark); margin-bottom: 16px; transition: color 0.3s;
+}
+.service-desc {
+  font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-muted);
+  margin-bottom: 32px; transition: color 0.3s;
+}
+.service-link {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); display: flex; align-items: center; gap: 8px;
+  text-decoration: none; transition: color 0.3s;
+}
+.service-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform 0.2s; }
+.service-card:hover .service-link svg { transform: translateX(4px); }
+
+/* ── FEATURED YACHTS ── */
+.yachts { background: var(--white); }
+.yachts-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 48px;
+}
+.yachts-tabs {
+  display: flex; gap: 0; border-bottom: 1px solid rgba(10,22,40,0.1); margin-bottom: 0;
+}
+.yacht-tab {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 10px 20px; cursor: pointer; color: var(--text-muted);
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.yacht-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
+.view-all {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 6px;
+}
+.view-all svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
+.yachts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.yacht-card { background: var(--cream-light); overflow: hidden; cursor: pointer; }
+.yacht-img {
+  height: 220px; overflow: hidden; position: relative;
+}
+.yacht-img-inner {
+  height: 100%; width: 100%;
+  transition: transform 0.5s ease;
+}
+.yacht-card:hover .yacht-img-inner { transform: scale(1.04); }
+.yacht-card:hover .yacht-price-tag { background: var(--gold); color: var(--navy); }
+.yacht-body { padding: 28px 28px 32px; }
+.yacht-category {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 8px;
+}
+.yacht-name {
+  font-family: var(--serif); font-size: 22px; font-weight: 400;
+  color: var(--text-dark); margin-bottom: 6px; line-height: 1.2;
+}
+.yacht-model { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+.yacht-specs {
+  display: flex; gap: 20px; margin-bottom: 24px;
+  border-top: 1px solid rgba(10,22,40,0.08); padding-top: 18px;
+}
+.yacht-spec { display: flex; flex-direction: column; gap: 3px; }
+.yacht-spec-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.yacht-spec-val { font-size: 14px; font-weight: 500; color: var(--text-dark); }
+.yacht-footer { display: flex; align-items: center; justify-content: space-between; }
+.yacht-price-tag {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+  background: rgba(196,154,60,0.12); color: var(--gold);
+  padding: 6px 14px; transition: background 0.2s, color 0.2s;
+}
+.yacht-enquire {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.yacht-enquire:hover { border-bottom-color: var(--navy); }
+.yacht-enquire svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* Yacht image placeholders */
+.yi-1 { background: linear-gradient(135deg, #0D2D4A 0%, #1A4A6B 40%, #0E3D5C 100%); }
+.yi-2 { background: linear-gradient(135deg, #162744 0%, #0A3050 50%, #1E4A70 100%); }
+.yi-3 { background: linear-gradient(135deg, #0A2038 0%, #143058 50%, #1A3E62 100%); }
+.yi-4 { background: linear-gradient(135deg, #1A3A5C 0%, #0D2840 50%, #2A4E70 100%); }
+.yi-5 { background: linear-gradient(135deg, #0E2A44 0%, #1C3E60 50%, #0A1E32 100%); }
+.yi-6 { background: linear-gradient(135deg, #122038 0%, #1A3254 50%, #0C1E32 100%); }
+.yacht-img-svg { position: absolute; bottom: 16px; right: 16px; opacity: 0.18; }
+
+/* ── DESTINATIONS ── */
+.destinations { background: var(--navy); padding: 100px 10%; }
+.destinations .section-label::before { background: var(--gold); }
+.destinations .section-title { color: var(--white); }
+.destinations .section-title em { color: rgba(255,255,255,0.5); }
+.destinations .section-intro { color: rgba(255,255,255,0.5); }
+.dest-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 260px 260px;
+  gap: 3px; margin-top: 56px;
+}
+.dest-card {
+  position: relative; overflow: hidden; cursor: pointer;
+  display: flex; align-items: flex-end;
+}
+.dest-card:first-child { grid-row: 1 / 3; }
+.dest-bg {
+  position: absolute; inset: 0;
+  transition: transform 0.5s ease;
+}
+.dest-card:hover .dest-bg { transform: scale(1.05); }
+.d1 { background: linear-gradient(160deg, #0D4060 0%, #0A2D45 40%, #062040 80%, #0A2A3D 100%); }
+.d2 { background: linear-gradient(160deg, #1A3A6C 0%, #0E2850 60%, #081A3C 100%); }
+.d3 { background: linear-gradient(160deg, #1E4060 0%, #102840 60%, #06182C 100%); }
+.d4 { background: linear-gradient(160deg, #0A2A4A 0%, #0E3858 60%, #061830 100%); }
+.d5 { background: linear-gradient(160deg, #162840 0%, #0E2038 60%, #061428 100%); }
+.dest-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(10,22,40,0.8) 0%, rgba(10,22,40,0.1) 60%);
+}
+.dest-content { position: relative; z-index: 2; padding: 28px 32px; }
+.dest-region {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+}
+.dest-name {
+  font-family: var(--serif); font-size: 24px; font-weight: 300; color: var(--white);
+  margin-bottom: 4px;
+}
+.dest-card:first-child .dest-name { font-size: 38px; margin-bottom: 8px; }
+.dest-count { font-size: 12px; color: rgba(255,255,255,0.45); }
+.dest-watermark {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-family: var(--serif); font-size: 100px; font-weight: 300; letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.04); white-space: nowrap; pointer-events: none;
+}
+.dest-card:first-child .dest-watermark { font-size: 160px; }
+
+/* ── TRUST ── */
+.trust { background: var(--cream-light); padding: 80px 10%; }
+.trust-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.trust-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+}
+.stat-box {
+  background: var(--white); padding: 40px 36px;
+  border-bottom: 2px solid var(--gold);
+}
+.stat-num {
+  font-family: var(--serif); font-size: 52px; font-weight: 300;
+  color: var(--navy); line-height: 1; margin-bottom: 8px;
+}
+.stat-num sup { font-size: 24px; vertical-align: super; }
+.stat-label { font-size: 12px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.05em; }
+.trust-copy { }
+.trust-copy .section-label { margin-bottom: 14px; }
+.trust-copy .section-title { margin-bottom: 20px; }
+.trust-body {
+  font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--text-mid);
+  margin-bottom: 32px;
+}
+.trust-logos {
+  display: flex; align-items: center; gap: 32px;
+  border-top: 1px solid rgba(10,22,40,0.1); padding-top: 28px; margin-top: 28px;
+}
+.trust-logo-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+.brand-pill {
+  font-family: var(--serif); font-size: 15px; font-weight: 600;
+  color: var(--text-dark); padding: 7px 16px;
+  border: 1px solid rgba(10,22,40,0.15);
+  letter-spacing: 0.03em;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials { background: var(--white); padding: 100px 10%; }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+.testi-card {
+  background: var(--cream-light); padding: 44px 40px;
+  border-top: 2px solid transparent;
+  transition: border-color 0.3s;
+  position: relative;
+}
+.testi-card:hover { border-top-color: var(--gold); }
+.testi-quote-mark {
+  font-family: var(--serif); font-size: 72px; color: rgba(196,154,60,0.2);
+  line-height: 0.6; margin-bottom: 20px; display: block;
+}
+.testi-text {
+  font-family: var(--serif); font-size: 17px; font-style: italic; font-weight: 300;
+  line-height: 1.7; color: var(--text-mid); margin-bottom: 28px;
+}
+.testi-author { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dark); }
+.testi-detail { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+.testi-stars { display: flex; gap: 3px; margin-bottom: 20px; }
+.testi-star { width: 12px; height: 12px; fill: var(--gold); }
+
+/* ── BLOG ── */
+.blog { background: var(--cream-light); padding: 100px 10%; }
+.blog-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2px; margin-top: 48px; }
+.blog-card { background: var(--white); overflow: hidden; cursor: pointer; }
+.blog-img { height: 200px; overflow: hidden; }
+.blog-img-inner { height: 100%; width: 100%; transition: transform 0.5s; }
+.blog-card:hover .blog-img-inner { transform: scale(1.04); }
+.b1 { background: linear-gradient(135deg, #1A4060 0%, #0E2A44 100%); }
+.b2 { background: linear-gradient(135deg, #0A2038 0%, #1A3A5C 100%); }
+.b3 { background: linear-gradient(135deg, #102A48 0%, #0A1E34 100%); }
+.blog-body { padding: 28px; }
+.blog-tag {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+.blog-title {
+  font-family: var(--serif); font-size: 19px; font-weight: 400;
+  color: var(--text-dark); line-height: 1.3; margin-bottom: 10px;
+}
+.blog-date { font-size: 12px; color: var(--text-muted); }
+.blog-card:first-child .blog-img { height: 260px; }
+.blog-card:first-child .blog-title { font-size: 24px; }
+
+/* ── CTA BAND ── */
+.cta-band {
+  background: var(--navy);
+  background-image: radial-gradient(ellipse 80% 100% at 90% 50%, rgba(196,154,60,0.08) 0%, transparent 60%);
+  padding: 100px 10%;
+  display: flex; align-items: center; justify-content: space-between; gap: 60px;
+}
+.cta-band .section-label::before { background: var(--gold); }
+.cta-band .section-title { color: var(--white); margin-bottom: 16px; }
+.cta-band .section-title em { color: rgba(255,255,255,0.45); }
+.cta-copy { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 480px; }
+.cta-right { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; flex-shrink: 0; }
+.cta-sub { font-size: 13px; color: rgba(255,255,255,0.35); }
+
+/* ── FOOTER ── */
+footer {
+  background: #060F1C; padding: 72px 10% 40px;
+  border-top: 1px solid rgba(196,154,60,0.15);
+}
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+  padding-bottom: 56px; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.footer-brand { }
+.footer-logo {
+  font-family: var(--serif); font-size: 20px; color: var(--white);
+  letter-spacing: 0.05em; margin-bottom: 16px; display: block;
+}
+.footer-tagline { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 260px; margin-bottom: 28px; }
+.footer-contact a { display: block; font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 6px; transition: color 0.2s; }
+.footer-contact a:hover { color: var(--gold); }
+.footer-col-title { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.75); }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 32px;
+}
+.footer-legal { font-size: 12px; color: rgba(255,255,255,0.2); }
+.footer-langs { display: flex; gap: 16px; }
+.footer-lang-btn { font-size: 12px; color: rgba(255,255,255,0.2); cursor: pointer; text-decoration: none; transition: color 0.2s; }
+.footer-lang-btn:hover, .footer-lang-btn.active { color: rgba(255,255,255,0.6); }
+.footer-social { display: flex; gap: 16px; }
+.social-link { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; cursor: pointer; }
+.social-link:hover { border-color: var(--gold); }
+.social-link svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.4); fill: none; stroke-width: 1.5; }
+
+/* ── UX NOTES PANEL ── */
+.notes-toggle {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  background: var(--gold); color: var(--navy);
+  font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  border: none; padding: 12px 20px; cursor: pointer;
+  display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.notes-toggle svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+.notes-panel {
+  position: fixed; right: 0; top: 0; bottom: 0; z-index: 998;
+  width: 380px; background: var(--white);
+  box-shadow: -4px 0 40px rgba(0,0,0,0.15);
+  transform: translateX(100%); transition: transform 0.35s ease;
+  overflow-y: auto;
+  border-left: 3px solid var(--gold);
+}
+.notes-panel.open { transform: translateX(0); }
+.notes-header {
+  background: var(--navy); padding: 24px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 2;
+}
+.notes-header h2 {
+  font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--white);
+}
+.notes-close {
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.5); font-size: 22px; line-height: 1; padding: 0;
+}
+.notes-body { padding: 28px; }
+.note-section { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(10,22,40,0.08); }
+.note-section:last-child { border-bottom: none; }
+.note-section h3 {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+}
+.note-item {
+  display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;
+}
+.note-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 3px 7px; white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+}
+.nb-crit { background: #FDECEC; color: #B03030; }
+.nb-rec { background: #EAF3DE; color: #3B6D11; }
+.nb-info { background: #E6F1FB; color: #185FA5; }
+.note-text { font-size: 13px; line-height: 1.6; color: var(--text-mid); }
+
+/* ── RESPONSIVE HINTS ── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  section { padding: 72px 6%; }
+  .services-grid, .yachts-grid, .testi-grid, .blog-grid { grid-template-columns: 1fr; }
+  .dest-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .dest-card:first-child { grid-row: auto; }
+  .trust-inner { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .cta-band { flex-direction: column; align-items: flex-start; }
+  .search-bar { flex-wrap: wrap; gap: 12px; padding: 16px 6%; }
+  .hero-content { padding: 0 6% 180px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 2 L14 12 L8 10 L2 12 Z"/>
+      </svg>
+    </div>
+    Fairview Yachting
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Charter</a></li>
+    <li><a href="#">Yacht Sales</a></li>
+    <li><a href="#">Brokerage</a></li>
+    <li><a href="#">Destinations</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Journal</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-lang">
+      <svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5"/><path d="M6 1 C4 4 4 8 6 11 M6 1 C8 4 8 8 6 11 M1 6 L11 6"/></svg>
+      EN
+    </div>
+    <a href="#" class="nav-cta">Enquire</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-water"></div>
+  <div class="hero-horizon"></div>
+  <div class="hero-sun"></div>
+
+  <!-- Minimal yacht silhouette -->
+  <div class="hero-yacht">
+    <svg viewBox="0 0 280 120" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="140,5 160,90 110,90" opacity="0.6"/>
+      <polygon points="145,10 170,90 148,90" opacity="0.5"/>
+      <rect x="60" y="90" width="180" height="6" rx="3" opacity="0.7"/>
+      <ellipse cx="150" cy="97" rx="70" ry="10" opacity="0.25"/>
+    </svg>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Yacht Charter &amp; Sales</div>
+    <h1 class="hero-title">
+      Navigate the world<br>
+      <em>in refined luxury</em>
+    </h1>
+    <p class="hero-sub">Phuket-based charter fleet. Worldwide sailing destinations. Premium catamaran sales. One trusted partner on the water.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Explore Charters</a>
+      <a href="#" class="btn-ghost">View Our Fleet</a>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <div class="search-tab active">Charter</div>
+    <div class="search-tab">Yacht Sales</div>
+    <div class="search-tab">Brokerage</div>
+    <div class="search-divider"></div>
+    <div class="search-field">
+      <label>Destination</label>
+      <select>
+        <option>Phuket, Thailand</option>
+        <option>Worldwide</option>
+        <option>Mediterranean</option>
+        <option>Caribbean</option>
+      </select>
+    </div>
+    <div class="search-divider"></div>
+    <div class="search-field">
+      <label>Charter Type</label>
+      <select>
+        <option>Skippered</option>
+        <option>Crewed</option>
+        <option>Bareboat</option>
+      </select>
+    </div>
+    <div class="search-divider"></div>
+    <div class="search-field">
+      <label>Guests</label>
+      <select>
+        <option>2 guests</option>
+        <option>4 guests</option>
+        <option>6 guests</option>
+        <option>8 guests</option>
+      </select>
+    </div>
+    <button class="search-btn">Search →</button>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="section-label">Our Services</div>
+  <div class="section-title">Three ways to<br><em>experience the sea</em></div>
+
+  <div class="services-grid">
+    <a href="#" class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 17 L5 10 L12 4 L19 10 L21 17 M3 17 L21 17 M7 17 L7 21 M17 17 L17 21"/>
+        </svg>
+      </div>
+      <div class="service-num">01 /</div>
+      <div class="service-title">Yacht Charter</div>
+      <div class="service-desc">Explore Phuket's islands or set sail for any destination worldwide. Skippered, crewed, or bareboat — tailored to how you want to travel.</div>
+      <div class="service-link">Explore Charters <svg viewBox="0 0 14 14"><path d="M2 7 L12 7 M8 3 L12 7 L8 11"/></svg></div>
+    </a>
+    <a href="#" class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2 L20 20 L12 17 L4 20 Z M12 7 L12 17"/>
+        </svg>
+      </div>
+      <div class="service-num">02 /</div>
+      <div class="service-title">New Yacht Sales</div>
+      <div class="service-desc">Official dealer for Bali Catamarans and GranOcean in Thailand and Hong Kong. Exceptional sailing and power catamarans for discerning owners.</div>
+      <div class="service-link">View New Yachts <svg viewBox="0 0 14 14"><path d="M2 7 L12 7 M8 3 L12 7 L8 11"/></svg></div>
+    </a>
+    <a href="#" class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9"/><path d="M8 12 L11 15 L16 9"/>
+        </svg>
+      </div>
+      <div class="service-num">03 /</div>
+      <div class="service-title">Brokerage</div>
+      <div class="service-desc">A curated selection of pre-owned yachts sourced worldwide. Expert guidance from initial enquiry through to sea trial and handover.</div>
+      <div class="service-link">Browse Brokerage <svg viewBox="0 0 14 14"><path d="M2 7 L12 7 M8 3 L12 7 L8 11"/></svg></div>
+    </a>
+  </div>
+</section>
+
+<!-- FEATURED YACHTS -->
+<section class="yachts">
+  <div class="yachts-header">
+    <div>
+      <div class="section-label">Featured Vessels</div>
+      <div class="section-title">Chosen for <em>those who know</em></div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px;">
+      <div class="yachts-tabs">
+        <div class="yacht-tab active">Charter Fleet</div>
+        <div class="yacht-tab">For Sale</div>
+        <div class="yacht-tab">Brokerage</div>
+      </div>
+      <a href="#" class="view-all">View All Yachts <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"/></svg></a>
+    </div>
+  </div>
+
+  <div class="yachts-grid">
+    <!-- Card 1 -->
+    <div class="yacht-card">
+      <div class="yacht-img">
+        <div class="yacht-img-inner yi-1">
+          <svg class="yacht-img-svg" width="100" height="50" viewBox="0 0 100 50" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,2 60,40 40,40"/>
+            <polygon points="53,3 65,40 54,40"/>
+            <rect x="20" y="40" width="60" height="4" rx="2"/>
+          </svg>
+        </div>
+      </div>
+      <div class="yacht-body">
+        <div class="yacht-category">Sailing Catamaran · Phuket</div>
+        <div class="yacht-name">Andaman Dream</div>
+        <div class="yacht-model">Bali 4.8 · 2023</div>
+        <div class="yacht-specs">
+          <div class="yacht-spec"><div class="yacht-spec-label">Length</div><div class="yacht-spec-val">14.6m</div></div>
+          <div class="yacht-spec"><div class="yacht-spec-label">Cabins</div><div class="yacht-spec-val">4</div></div>
+          <div class="yacht-spec"><div class="yacht-spec-label">Guests</div><div class="yacht-spec-val">8</div></div>
+        </div>
+        <div class="yacht-footer">
+          <div class="yacht-price-tag">From €2,800 / day</div>
+          <a href="#" class="yacht-enquire">Enquire <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="yacht-card">
+      <div class="yacht-img">
+        <div class="yacht-img-inner yi-2">
+          <svg class="yacht-img-svg" width="100" height="50" viewBox="0 0 100 50" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,2 60,40 40,40"/>
+            <rect x="20" y="40" width="60" height="4" rx="2"/>
+          </svg>
+        </div>
+      </div>
+      <div class="yacht-body">
+        <div class="yacht-category">Power Catamaran · For Sale</div>
+        <div class="yacht-name">GranOcean W-60</div>
+        <div class="yacht-model">GranOcean W-60 · 2024</div>
+        <div class="yacht-specs">
+          <div class="yacht-spec"><div class="yacht-spec-label">Length</div><div class="yacht-spec-val">18.2m</div></div>
+          <div class="yacht-spec"><div class="yacht-spec-label">Cabins</div><div class="yacht-spec-val">5</div></div>
+          <div class="yacht-spec"><div class="yacht-spec-label">Power</div><div class="yacht-spec-val">2×370hp</div></div>
+        </div>
+        <div class="yacht-footer">
+          <div class="yacht-price-tag">POA</div>
+          <a href="#" class="yacht-enquire">Enquire <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="yacht-card">
+      <div class="yacht-img">
+        <div class="yacht-img-inner yi-3">
+          <svg class="yacht-img-svg" width="100" height="50" viewBox="0 0 100 50" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,2 58,40 42,40"/>
+            <polygon points="53,5 62,40 52,40"/>
+            <rect x="22" y="40" width="56" height="4" rx="2"/>
+          </svg>
+        </div>
+      </div>
+      <div class="yacht-body">
+        <div class="yacht-category">Sailing Catamaran · Phuket</div>
+        <div class="yacht-name">Sea Spirit</div>
+        <div class="yacht-model">Bali 5.4 · 2022</div>
+        <div class="yacht-specs">
+          <div class="yacht-spec"><div class="yacht-spec-label">Length</div><div class="yacht-spec-val">16.5m</div></div>
+          <div class="yacht-spec"><div class="yacht-spec-label">Cabins</div><div class="yacht-spec-val">5</div></div>
+          <div class="yacht-spec"><div class="yacht-spec-label">Guests</div><div class="yacht-spec-val">10</div></div>
+        </div>
+        <div class="yacht-footer">
+          <div class="yacht-price-tag">From €3,400 / day</div>
+          <a href="#" class="yacht-enquire">Enquire <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;">
+    <div>
+      <div class="section-label">Destinations</div>
+      <div class="section-title">The world's finest<br><em>sailing waters</em></div>
+    </div>
+    <a href="#" class="view-all" style="color:rgba(255,255,255,0.4);margin-bottom:4px;">All Destinations <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"/></svg></a>
+  </div>
+
+  <div class="dest-grid">
+    <div class="dest-card">
+      <div class="dest-bg d1"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-watermark">PHU</div>
+      <div class="dest-content">
+        <div class="dest-region">Southeast Asia</div>
+        <div class="dest-name">Phuket &amp;<br>The Andaman Sea</div>
+        <div class="dest-count">18 yachts available</div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-bg d2"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-watermark">MED</div>
+      <div class="dest-content">
+        <div class="dest-region">Europe</div>
+        <div class="dest-name">Mediterranean</div>
+        <div class="dest-count">240+ listings</div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-bg d3"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-region">Oceania</div>
+        <div class="dest-name">Whitsundays</div>
+        <div class="dest-count">45+ listings</div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-bg d4"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-region">Caribbean</div>
+        <div class="dest-name">BVI</div>
+        <div class="dest-count">120+ listings</div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-bg d5"></div>
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-region">Indian Ocean</div>
+        <div class="dest-name">Seychelles</div>
+        <div class="dest-count">60+ listings</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="trust-inner">
+    <div class="trust-stats">
+      <div class="stat-box">
+        <div class="stat-num">15<sup>+</sup></div>
+        <div class="stat-label">Years on the water</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">500<sup>+</sup></div>
+        <div class="stat-label">Charters delivered</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">40<sup>+</sup></div>
+        <div class="stat-label">Destinations served</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">4.9</div>
+        <div class="stat-label">Average review score</div>
+      </div>
+    </div>
+    <div class="trust-copy">
+      <div class="section-label">Why Fairview</div>
+      <div class="section-title">Built on expertise,<br><em>driven by passion</em></div>
+      <div class="trust-body">
+        We are more than a booking platform. Our team's expertise spans sales, charter operations, and onboard service — giving every client the confidence that comes with working with people who truly know the sea.
+      </div>
+      <a href="#" class="btn-primary">Our Story</a>
+      <div class="trust-logos">
+        <span class="trust-logo-label">Official Dealers</span>
+        <div class="brand-pill">Bali Catamarans</div>
+        <div class="brand-pill">GranOcean</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label">Client Stories</div>
+  <div class="section-title" style="margin-bottom:0;">Trusted by <em>those who sail</em></div>
+
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+      </div>
+      <span class="testi-quote-mark">"</span>
+      <p class="testi-text">An extraordinary week in the Andaman. The crew were impeccable, the itinerary perfectly crafted. Fairview made everything seamless from first enquiry to disembarkation.</p>
+      <div class="testi-author">James &amp; Charlotte W.</div>
+      <div class="testi-detail">Phuket · 7-day skippered charter</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+      </div>
+      <span class="testi-quote-mark">"</span>
+      <p class="testi-text">We purchased our Bali 4.8 through Fairview and couldn't be happier. Their knowledge of the product, the process, and the region is unmatched. World-class service.</p>
+      <div class="testi-author">The Marchetti Family</div>
+      <div class="testi-detail">Bali 4.8 purchase · Thailand</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+        <svg class="testi-star" viewBox="0 0 12 12"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z"/></svg>
+      </div>
+      <span class="testi-quote-mark">"</span>
+      <p class="testi-text">As a broker, I rely on partners who communicate clearly and execute flawlessly. Fairview is my first call for anything in Southeast Asia — consistent, professional, and genuinely passionate.</p>
+      <div class="testi-author">Sophie Laurent</div>
+      <div class="testi-detail">Independent broker · Paris</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;">
+    <div>
+      <div class="section-label">Journal</div>
+      <div class="section-title">Insights &amp; <em>inspiration</em></div>
+    </div>
+    <a href="#" class="view-all" style="color:var(--text-muted);">All Articles <svg viewBox="0 0 12 12"><path d="M1 6 L11 6 M7 2 L11 6 L7 10"/></svg></a>
+  </div>
+
+  <div class="blog-grid">
+    <div class="blog-card">
+      <div class="blog-img"><div class="blog-img-inner b1"></div></div>
+      <div class="blog-body">
+        <div class="blog-tag">Destinations</div>
+        <div class="blog-title">The ultimate 10-day Andaman itinerary for catamaran sailors</div>
+        <div class="blog-date">May 2026</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-img"><div class="blog-img-inner b2"></div></div>
+      <div class="blog-body">
+        <div class="blog-tag">Yacht Sales</div>
+        <div class="blog-title">Bali vs GranOcean: choosing your first catamaran</div>
+        <div class="blog-date">April 2026</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-img"><div class="blog-img-inner b3"></div></div>
+      <div class="blog-body">
+        <div class="blog-tag">Charter Guide</div>
+        <div class="blog-title">Skippered, crewed or bareboat — what's right for you?</div>
+        <div class="blog-date">March 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div>
+    <div class="section-label">Get in Touch</div>
+    <div class="section-title">Let's plan your<br><em>perfect voyage</em></div>
+    <p class="cta-copy">Whether you're ready to charter, buying your first yacht, or simply exploring options — our team is here to help you navigate the possibilities.</p>
+  </div>
+  <div class="cta-right">
+    <a href="#" class="btn-primary" style="font-size:13px;padding:16px 40px;">Start an Enquiry</a>
+    <p class="cta-sub">Or call us: +66 76 000 000</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo">Fairview Yachting</span>
+      <p class="footer-tagline">Premium yacht charter and sales, based in Phuket. Connecting discerning clients to extraordinary experiences on the water since 2009.</p>
+      <div class="footer-contact">
+        <a href="#">hello@fairviewyachting.com</a>
+        <a href="#">Chalong Bay, Phuket, Thailand 83130</a>
+        <a href="#">Also operating in Hong Kong</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Charter</div>
+      <ul class="footer-links">
+        <li><a href="#">Phuket Fleet</a></li>
+        <li><a href="#">Worldwide Charter</a></li>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">Charter Types</a></li>
+        <li><a href="#">Request to Book</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Sales</div>
+      <ul class="footer-links">
+        <li><a href="#">Bali Catamarans</a></li>
+        <li><a href="#">GranOcean</a></li>
+        <li><a href="#">Brokerage Yachts</a></li>
+        <li><a href="#">Ownership Programme</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About Fairview</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Client Portal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2026 Fairview Yachting. All rights reserved.</div>
+    <div class="footer-langs">
+      <a href="#" class="footer-lang-btn active">EN</a>
+      <a href="#" class="footer-lang-btn">FR</a>
+      <a href="#" class="footer-lang-btn">RU</a>
+      <a href="#" class="footer-lang-btn">中文</a>
+    </div>
+    <div class="footer-social">
+      <div class="social-link">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <div class="social-link">
+        <svg viewBox="0 0 24 24"><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S12.029 6.521 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84 0 0 0 .497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg>
+      </div>
+      <div class="social-link">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- UX NOTES PANEL -->
+<button class="notes-toggle" onclick="document.getElementById('notesPanel').classList.toggle('open')">
+  <svg viewBox="0 0 14 14"><path d="M1 3 L13 3 M1 7 L10 7 M1 11 L7 11"/></svg>
+  UX Notes
+</button>
+
+<div class="notes-panel" id="notesPanel">
+  <div class="notes-header">
+    <h2>UX Audit Notes</h2>
+    <button class="notes-close" onclick="document.getElementById('notesPanel').classList.remove('open')">×</button>
+  </div>
+  <div class="notes-body">
+
+    <div class="note-section">
+      <h3>Navigation</h3>
+      <div class="note-item">
+        <span class="note-badge nb-rec">Rec</span>
+        <span class="note-text">Transparent nav that darkens on scroll preserves the hero visual impact while maintaining accessibility once users move past the fold.</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-rec">Rec</span>
+        <span class="note-text">Mega-menu for Charter and Sales items recommended — brief brief lists Charter Types, Fleet, Destinations as sub-items to reduce depth of navigation.</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-info">WP</span>
+        <span class="note-text">Use Elementor Pro or Bricks Builder + custom nav walker. WPML or Polylang for the four language variants with hreflang tags.</span>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <h3>Search & Filtering</h3>
+      <div class="note-item">
+        <span class="note-badge nb-crit">Critical</span>
+        <span class="note-text">The hero search bar must use tabbed switching between Charter / Sales / Brokerage — different filter sets for each. Avoid a single global search that returns mixed results.</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-rec">Rec</span>
+        <span class="note-text">Brokerage search (Rightboat API) and charter search (Nausys API) should use AJAX-loaded results to avoid full-page reloads — critical for mobile UX.</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-info">WP</span>
+        <span class="note-text">FacetWP or SearchWP for on-site filtering of Phuket fleet (CPT). Nausys and Rightboat results rendered via custom REST API proxy endpoints to avoid CORS issues.</span>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <h3>Yacht Detail Pages</h3>
+      <div class="note-item">
+        <span class="note-badge nb-rec">Rec</span>
+        <span class="note-text">Sticky enquiry/price bar on yacht PDPs — visible at all times on desktop (right column) and as a fixed bottom bar on mobile. Enquiry friction is the main conversion killer on yacht sites.</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-rec">Rec</span>
+        <span class="note-text">GranOcean virtual tour iFrame embed (as in brief) + downloadable brochure PDF — both require a short lead-capture gate (email) before access.</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-crit">Critical</span>
+        <span class="note-text">Live availability calendar for Phuket fleet is essential — clients will not enquire without it. Integrate via Nausys API availability endpoint or Beds24/Lodgify if simpler.</span>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <h3>Multi-language</h3>
+      <div class="note-item">
+        <span class="note-badge nb-info">WP</span>
+        <span class="note-text">WPML (recommended for WooCommerce-adjacent setups) or Polylang Pro. Russian and Chinese market audiences require separate content strategies — not just auto-translation.</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-rec">Rec</span>
+        <span class="note-text">Currency switcher (€ / THB) using a lightweight plugin (e.g. Aelia Currency Switcher) — bind THB display to Phuket fleet pages only; worldwide charter stays in EUR.</span>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <h3>Client Portal</h3>
+      <div class="note-item">
+        <span class="note-badge nb-crit">Critical</span>
+        <span class="note-text">Post-booking login portal is a significant build — scope carefully. Core MVP: booking summary, crew list upload form, extras selection, base info docs. Avoid scope creep in Phase 1.</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-info">WP</span>
+        <span class="note-text">Build as a restricted WordPress member area using Ultimate Member or WP User Manager. Custom post type per booking linked to user account. Phase 2 can add real-time extras marketplace.</span>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <h3>Performance & SEO</h3>
+      <div class="note-item">
+        <span class="note-badge nb-rec">Rec</span>
+        <span class="note-text">Hero video: serve WebM/MP4 with a high-quality AVIF/WebP poster image. Lazy-load below-fold images. Destination pages are prime SEO real estate — target "yacht charter [destination]" long-tails.</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-info">WP</span>
+        <span class="note-text">Yoast SEO Premium or Rank Math Pro. WP Rocket for caching/performance. Cloudflare CDN mandatory for Asia-Pacific audience (Thai server latency is punishing for European/Russian users).</span>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <h3>WordPress Stack Recommendation</h3>
+      <div class="note-item">
+        <span class="note-badge nb-info">WP</span>
+        <span class="note-text"><strong>Theme:</strong> Custom child theme on GeneratePress or Bricks Builder (better performance than Elementor for image-heavy sites).</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-info">WP</span>
+        <span class="note-text"><strong>Key plugins:</strong> WPML, ACF Pro (custom fields for specs), FacetWP, WP Rocket, Yoast Premium, Gravity Forms (enquiry routing), Ultimate Member (portal).</span>
+      </div>
+      <div class="note-item">
+        <span class="note-badge nb-info">WP</span>
+        <span class="note-text"><strong>Hosting:</strong> Kinsta or WP Engine (both have Singapore/Asia nodes). Cloudflare in front. Estimate 50–80GB media storage for high-res yacht photography.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+document.querySelectorAll('.yacht-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.yacht-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+document.querySelectorAll('.search-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
