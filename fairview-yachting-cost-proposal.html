@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fairview Yachting — Cost Proposal · Northbound Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF7F2;
+  --dark: #1a1a18;
+  --green: #3B6D11;
+  --green-lt: rgba(59,109,17,0.08);
+  --muted: #6b6b67;
+  --border: rgba(59,109,17,0.14);
+  --amber: #b87a1a;
+  --amber-lt: rgba(184,122,26,0.08);
+  --red: #c0392b;
+  --red-lt: rgba(192,57,43,0.07);
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Instrument Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--dark);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── LAYOUT ── */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 2.5rem; }
+.section { padding: 5rem 0; }
+.section-sm { padding: 3.5rem 0; }
+
+/* ── TYPOGRAPHY ── */
+.serif { font-family: var(--serif); }
+.mono { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; }
+.label {
+  font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--green);
+}
+.muted { color: var(--muted); }
+h1 { font-family: var(--serif); font-size: clamp(2.6rem,5vw,4rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; }
+h2 { font-family: var(--serif); font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 400; line-height: 1.1; }
+h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; }
+p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+
+/* ── HEADER ── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nb-wordmark {
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--dark); text-decoration: none;
+}
+.header-meta {
+  font-size: 0.72rem; color: var(--muted);
+  display: flex; align-items: center; gap: 2rem;
+}
+.status-pill {
+  font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.25rem 0.7rem;
+  border-radius: 100px; border: 1px solid;
+}
+.status-draft { border-color: rgba(184,122,26,0.4); color: var(--amber); background: var(--amber-lt); }
+
+/* ── COVER ── */
+.cover {
+  background: var(--dark); color: var(--cream);
+  padding: 6rem 2.5rem 5rem;
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 40%;
+  background: radial-gradient(ellipse at 80% 30%, rgba(59,109,17,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-inner { max-width: 1080px; margin: 0 auto; }
+.cover-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--green); border: 1px solid rgba(59,109,17,0.35);
+  padding: 0.35rem 0.8rem; border-radius: 100px; margin-bottom: 2rem;
+}
+.cover h1 { color: var(--cream); max-width: 700px; margin-bottom: 1.5rem; }
+.cover h1 em { font-style: italic; color: rgba(250,247,242,0.45); }
+.cover p { color: rgba(250,247,242,0.55); max-width: 520px; font-size: 0.88rem; margin-bottom: 3rem; }
+.cover-meta {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+  padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+}
+.cover-meta-item label {
+  display: block; font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(250,247,242,0.3); margin-bottom: 0.25rem;
+}
+.cover-meta-item span { font-size: 0.88rem; color: rgba(250,247,242,0.8); }
+
+/* ── SUMMARY STRIP ── */
+.summary-strip {
+  background: #fff; border-bottom: 1px solid var(--border);
+  padding: 2rem 2.5rem;
+}
+.summary-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+.summary-stat {}
+.summary-stat .num {
+  font-family: var(--serif); font-size: 2.2rem; line-height: 1;
+  margin-bottom: 0.2rem; color: var(--dark);
+}
+.summary-stat .num sup { font-size: 1rem; vertical-align: super; }
+.summary-stat .desc { font-size: 0.75rem; color: var(--muted); line-height: 1.45; }
+.summary-stat.green .num { color: var(--green); }
+
+/* ── DIVIDER ── */
+.divider { width: 2.5rem; height: 1px; background: var(--green); margin: 1.25rem 0; }
+.divider-sm { width: 1.5rem; height: 1px; background: var(--border); margin: 1rem 0; }
+
+/* ── PHASE TABLE ── */
+.phase-table { width: 100%; border-collapse: collapse; }
+.phase-table th {
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted);
+  padding: 0.7rem 1rem; text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.phase-table td {
+  padding: 1.4rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  font-size: 0.85rem;
+}
+.phase-table tr:last-child td { border-bottom: none; }
+.phase-table tr:hover td { background: rgba(250,247,242,0.7); }
+.phase-num {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--green); opacity: 0.7;
+}
+.phase-name { font-weight: 500; font-size: 0.92rem; margin-bottom: 0.2rem; }
+.phase-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+.phase-weeks {
+  font-family: var(--mono); font-size: 0.75rem;
+  color: var(--dark); white-space: nowrap;
+}
+.phase-price {
+  font-family: var(--serif); font-size: 1.4rem; font-weight: 400;
+  color: var(--dark); white-space: nowrap; text-align: right;
+}
+.phase-price.optional { color: var(--muted); }
+.scope-list {
+  list-style: none; margin-top: 0.5rem;
+  display: flex; flex-direction: column; gap: 0.2rem;
+}
+.scope-list li {
+  font-size: 0.76rem; color: var(--muted); line-height: 1.45;
+  display: flex; gap: 0.4rem;
+}
+.scope-list li::before { content: '—'; color: var(--border); flex-shrink: 0; }
+.tag {
+  display: inline-block; font-size: 0.58rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem;
+  border-radius: 3px; margin-bottom: 0.35rem;
+}
+.tag-green { background: var(--green-lt); color: var(--green); }
+.tag-amber { background: var(--amber-lt); color: var(--amber); }
+.tag-red { background: var(--red-lt); color: var(--red); }
+.tag-dark { background: rgba(26,26,24,0.08); color: var(--dark); }
+
+/* ── TOTAL ROW ── */
+.total-row td {
+  background: var(--dark) !important;
+  color: var(--cream) !important;
+  border: none !important;
+  padding: 1.4rem 1rem;
+}
+.total-row .label-col {
+  font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(250,247,242,0.45);
+}
+.total-row .total-name {
+  font-family: var(--serif); font-size: 1.1rem;
+  color: rgba(250,247,242,0.9); margin-top: 0.2rem;
+}
+.total-row .total-price {
+  font-family: var(--serif); font-size: 2rem;
+  color: var(--cream); text-align: right; white-space: nowrap;
+}
+
+/* ── TIMELINE ── */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 160px repeat(24, 1fr);
+  gap: 0;
+  font-size: 0.72rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.tl-header {
+  background: var(--dark); color: rgba(250,247,242,0.55);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  white-space: nowrap; overflow: hidden;
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+.tl-row-label {
+  background: #fff; padding: 0.55rem 0.75rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.tl-row-label .ph-num { font-family: var(--mono); font-size: 0.58rem; color: var(--green); opacity: 0.7; }
+.tl-row-label .ph-name { font-size: 0.72rem; font-weight: 500; line-height: 1.2; margin-top: 0.1rem; }
+.tl-cell {
+  background: #fff;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  min-height: 44px;
+}
+.tl-bar {
+  position: absolute; top: 8px; bottom: 8px; left: 2px; right: 2px;
+  border-radius: 3px;
+}
+
+/* ── RETAINER ── */
+.retainer-card {
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 1.75rem 2rem; background: #fff;
+  position: relative;
+}
+.retainer-card.featured {
+  border-color: var(--green);
+  border-width: 2px;
+}
+.retainer-card.featured::before {
+  content: 'Recommended';
+  position: absolute; top: -1px; left: 1.5rem;
+  font-size: 0.58rem; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; background: var(--green); color: #fff;
+  padding: 0.25rem 0.7rem; border-radius: 0 0 4px 4px;
+}
+.retainer-price {
+  font-family: var(--serif); font-size: 1.8rem; font-weight: 400;
+  margin: 0.5rem 0 0.25rem;
+}
+.retainer-period { font-size: 0.75rem; color: var(--muted); }
+.retainer-features {
+  list-style: none; margin-top: 1.25rem;
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+.retainer-features li { font-size: 0.82rem; color: var(--muted); display: flex; gap: 0.5rem; }
+.retainer-features li::before { content: '✓'; color: var(--green); font-size: 0.8rem; flex-shrink: 0; }
+
+/* ── EXCLUSIONS ── */
+.excl-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+}
+.excl-item {
+  background: #fff; padding: 1rem 1.25rem;
+  display: flex; gap: 0.75rem; align-items: flex-start;
+}
+.excl-icon { font-size: 0.8rem; color: var(--muted); flex-shrink: 0; margin-top: 0.15rem; }
+.excl-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.15rem; }
+.excl-note { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+
+/* ── TERMS ── */
+.terms-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+.term-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 6px;
+  padding: 1.5rem;
+}
+.term-title { font-weight: 500; font-size: 0.85rem; margin-bottom: 0.5rem; }
+.term-body { font-size: 0.78rem; color: var(--muted); line-height: 1.65; }
+
+/* ── PAYMENT SCHEDULE ── */
+.payment-steps {
+  display: flex; gap: 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+}
+.payment-step {
+  flex: 1; padding: 1.5rem 1.25rem; background: #fff;
+  border-right: 1px solid var(--border); text-align: center;
+}
+.payment-step:last-child { border-right: none; }
+.payment-pct {
+  font-family: var(--serif); font-size: 2.2rem; font-weight: 400;
+  color: var(--dark); line-height: 1;
+}
+.payment-milestone { font-size: 0.72rem; font-weight: 500; margin: 0.4rem 0 0.2rem; }
+.payment-when { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+
+/* ── FOOTER ── */
+.doc-footer {
+  background: var(--dark); color: var(--cream); padding: 3.5rem 2.5rem 2.5rem;
+}
+.doc-footer-inner { max-width: 1080px; margin: 0 auto; }
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 1.75rem; gap: 2rem; flex-wrap: wrap;
+}
+.footer-nb { font-family: var(--sans); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
+.footer-contact { font-size: 0.8rem; color: rgba(250,247,242,0.5); }
+.footer-contact a { color: rgba(250,247,242,0.6); text-decoration: none; }
+.footer-note { font-size: 0.72rem; color: rgba(250,247,242,0.25); }
+
+/* ── UTILITY ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+.mb-sm { margin-bottom: 1rem; }
+.mb-md { margin-bottom: 2rem; }
+.mb-lg { margin-bottom: 3rem; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem; }
+.card-dark { background: var(--dark); border-radius: 8px; padding: 2rem; color: var(--cream); }
+.annotation {
+  border-left: 3px solid; padding: 0.9rem 1.1rem; border-radius: 0 4px 4px 0;
+  font-size: 0.82rem; line-height: 1.6;
+}
+.annotation.green { border-color: var(--green); background: var(--green-lt); }
+.annotation.amber { border-color: var(--amber); background: var(--amber-lt); color: var(--dark); }
+
+@media print {
+  .site-header { display: none; }
+  .section { page-break-inside: avoid; }
+  body { background: #fff; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="https://northboundcommerce.co.uk/" target="_blank" class="nb-wordmark">Northbound Commerce</a>
+  <div class="header-meta">
+    <span>Fairview Yachting — Cost Proposal</span>
+    <span class="status-pill status-draft">Draft for review</span>
+  </div>
+</header>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-inner">
+    <div class="cover-tag">✦ Website Proposal</div>
+    <h1>Fairview Yachting<br><em>Investment Proposal 2026</em></h1>
+    <p>A phased cost breakdown for the full design, build, and integration of Fairview's new WordPress website — scoped directly from the 2026 brief.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <label>Prepared for</label>
+        <span>Fairview Yachting</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Prepared by</label>
+        <span>Northbound Commerce</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Proposed start</label>
+        <span>Q2 2026</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Estimated completion</label>
+        <span>Q4 2026 (full build)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY STRIP -->
+<div class="summary-strip">
+  <div class="summary-inner">
+    <div class="summary-stat">
+      <div class="num">£63,500</div>
+      <div class="desc">Core project investment<br>Phases 1–6 + QA &amp; launch</div>
+    </div>
+    <div class="summary-stat green">
+      <div class="num">£72,500</div>
+      <div class="desc">Full build including<br>Client Portal (Phase 7 — post-launch)</div>
+    </div>
+    <div class="summary-stat">
+      <div class="num">26<sup>wks</sup></div>
+      <div class="desc">Estimated timeline<br>discovery through to launch</div>
+    </div>
+    <div class="summary-stat">
+      <div class="num">8</div>
+      <div class="desc">Project phases,<br>each independently scoped</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: APPROACH -->
+<section class="section" style="background:#fff; border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="label mb-sm">Our approach</div>
+    <h2 style="max-width:640px; margin-bottom:1.25rem;">A project structured to manage risk, control cost, and deliver usable output at every phase.</h2>
+    <div class="divider"></div>
+    <div class="grid-2" style="gap:2.5rem; margin-bottom:2rem;">
+      <div>
+        <p style="margin-bottom:1rem;">Each phase has a defined scope, fixed cost, and a clear sign-off point. This means Fairview retains full control of the project investment at every stage — no phase begins until the previous one is approved and paid.</p>
+        <p>Phases 3–6 follow a design-then-build workflow: no development begins until the corresponding design templates have been reviewed and signed off. This prevents expensive rework and keeps the project predictable.</p>
+      </div>
+      <div>
+        <div class="annotation green" style="margin-bottom:1rem;">
+          <strong>On the API integrations:</strong> Nausys (worldwide charter) and Rightboat (brokerage) are the most technically complex elements of this build. We recommend allocating adequate discovery time in Phase 1 to review both APIs before committing to Phase 5 costs. Any undocumented complexity discovered at that stage will be flagged before development begins.
+        </div>
+        <div class="annotation amber">
+          <strong>On translations:</strong> WPML is included in Phase 6. The cost covers technical setup and the translation workflow infrastructure. Content translation itself (RU, FR, ZH) is excluded — see the exclusions section.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: PHASE BREAKDOWN -->
+<section class="section">
+  <div class="container">
+    <div class="label mb-sm">Phased scope &amp; investment</div>
+    <h2 style="margin-bottom:0.5rem;">Phase breakdown</h2>
+    <div class="divider" style="margin-bottom:2.5rem;"></div>
+
+    <div style="overflow:auto; margin-bottom:1.5rem;">
+    <table class="phase-table" style="min-width:780px;">
+      <thead>
+        <tr>
+          <th style="width:56px;">#</th>
+          <th style="width:200px;">Phase</th>
+          <th>Scope</th>
+          <th style="width:100px;">Duration</th>
+          <th style="width:130px; text-align:right;">Investment</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Phase 1 -->
+        <tr>
+          <td><span class="phase-num">01</span></td>
+          <td>
+            <div class="tag tag-dark">Foundation</div>
+            <div class="phase-name">Discovery &amp; Strategy</div>
+          </td>
+          <td>
+            <ul class="scope-list">
+              <li>Nausys and Rightboat API documentation review — scope, endpoints, limitations</li>
+              <li>Technical architecture plan (WordPress stack, hosting, CDN, caching)</li>
+              <li>SEO keyword research (EN) — charter, yacht sales, brokerage target terms</li>
+              <li>Final sitemap sign-off, URL structure planning</li>
+              <li>Content inventory and migration plan</li>
+              <li>Project plan, milestone schedule, and communication protocols</li>
+            </ul>
+          </td>
+          <td><span class="phase-weeks">2 weeks</span></td>
+          <td><div class="phase-price">£5,500</div></td>
+        </tr>
+
+        <!-- Phase 2 -->
+        <tr>
+          <td><span class="phase-num">02</span></td>
+          <td>
+            <div class="tag tag-dark">Foundation</div>
+            <div class="phase-name">UX &amp; Design</div>
+          </td>
+          <td>
+            <ul class="scope-list">
+              <li>Full design system: colour tokens, typography scale, component library, spacing</li>
+              <li>Homepage design — desktop (1440px) and mobile (375px)</li>
+              <li>10 page template designs: Yacht PDP, Charter search, Brokerage search, Destination, Blog article, New Yacht brand page, Model page, About, Contact, Client Portal</li>
+              <li>Hero search bar interaction states (Charter / Sales / Brokerage tabs)</li>
+              <li>Sticky enquiry bar design for yacht PDPs (desktop + mobile)</li>
+              <li>2 rounds of client revisions included</li>
+            </ul>
+          </td>
+          <td><span class="phase-weeks">4–5 weeks</span></td>
+          <td><div class="phase-price">£10,500</div></td>
+        </tr>
+
+        <!-- Phase 3 -->
+        <tr>
+          <td><span class="phase-num">03</span></td>
+          <td>
+            <div class="tag tag-green">Build</div>
+            <div class="phase-name">Core WordPress Build</div>
+          </td>
+          <td>
+            <ul class="scope-list">
+              <li>WordPress setup: GeneratePress base, custom child theme, ACF Pro, Gravity Forms, WP Rocket</li>
+              <li>Modular block/component library — all templates from Phase 2 built in Gutenberg/Greenshift</li>
+              <li>Homepage (all 8 sections per brief wireframe)</li>
+              <li>Yacht Sales section: New Yachts hub, Bali Catamarans brand page, GranOcean brand page, model page template</li>
+              <li>GranOcean virtual tour iframe embed + gated PDF brochure download (email capture)</li>
+              <li>Destinations hub + 5 destination page templates</li>
+              <li>About Us (overview, team, locations, ownership programme)</li>
+              <li>Blog/News listing + article template, Contact page</li>
+              <li>Cloudflare CDN setup, self-hosted fonts, image compression pipeline</li>
+            </ul>
+          </td>
+          <td><span class="phase-weeks">6–7 weeks</span></td>
+          <td><div class="phase-price">£12,500</div></td>
+        </tr>
+
+        <!-- Phase 4 -->
+        <tr>
+          <td><span class="phase-num">04</span></td>
+          <td>
+            <div class="tag tag-green">Build</div>
+            <div class="phase-name">Charter &amp; Brokerage Sections</div>
+          </td>
+          <td>
+            <ul class="scope-list">
+              <li>Yacht Charter hub page</li>
+              <li>Phuket Fleet: listing page + search/filter (boat type, cabins, year, manufacturer) via ACF/CPT</li>
+              <li>Up to 12 Phuket fleet individual PDPs with spec, gallery, itinerary sections, pricing, extras (skipper/cook/add-ons)</li>
+              <li>Sticky enquiry bar implementation (right-rail desktop, fixed bottom mobile)</li>
+              <li>Worldwide Charter hub + search structure (results populated via Phase 5 Nausys integration)</li>
+              <li>Charter Types pages (Skippered, Crewed, Flotilla / Bareboat)</li>
+              <li>Brokerage Yachts listing page + detail page template (populated via Phase 5 Rightboat integration)</li>
+            </ul>
+          </td>
+          <td><span class="phase-weeks">5–6 weeks</span></td>
+          <td><div class="phase-price">£11,000</div></td>
+        </tr>
+
+        <!-- Phase 5 -->
+        <tr>
+          <td><span class="phase-num">05</span></td>
+          <td>
+            <div class="tag tag-amber">Integration</div>
+            <div class="phase-name">API Integrations</div>
+          </td>
+          <td>
+            <ul class="scope-list">
+              <li><strong style="color:var(--dark);">Nausys API</strong> — worldwide charter listings, AJAX search + filter (destination, dates, boat type, cabins, bareboat/skippered), results display, individual vessel detail, availability calendar, request-to-book enquiry flow</li>
+              <li><strong style="color:var(--dark);">Rightboat API</strong> — brokerage listings, AJAX search + filter (price, length, year, manufacturer, location), results grid/list toggle, detail page population</li>
+              <li>Phuket fleet live availability calendar (Nausys or Beds24, TBC in Phase 1)</li>
+              <li>CRM routing via Gravity Forms to HubSpot (or client's preferred CRM) — enquiry forms on all key pages</li>
+              <li>Custom REST API proxy endpoints to avoid CORS issues on both external APIs</li>
+            </ul>
+            <div style="margin-top:0.75rem;" class="annotation amber">
+              Phase 5 pricing is based on standard API documentation. Any undocumented API complexity identified in Phase 1 will be requoted before this phase begins.
+            </div>
+          </td>
+          <td><span class="phase-weeks">5–6 weeks</span></td>
+          <td><div class="phase-price">£11,500</div></td>
+        </tr>
+
+        <!-- Phase 6 -->
+        <tr>
+          <td><span class="phase-num">06</span></td>
+          <td>
+            <div class="tag tag-dark">Localisation</div>
+            <div class="phase-name">Multi-language &amp; Currency</div>
+          </td>
+          <td>
+            <ul class="scope-list">
+              <li>WPML setup across all pages and templates (EN as base language)</li>
+              <li>4-language infrastructure: English (default), Russian, French, Chinese (Simplified)</li>
+              <li>Language switcher in nav — all viewports — with hreflang tags and language-specific URL structure</li>
+              <li>Currency display: € site-wide, THB as secondary on Phuket fleet pages only</li>
+              <li>Lightweight currency switcher plugin configuration</li>
+              <li>Translation management workflow setup for client team (or translator handoff)</li>
+            </ul>
+            <div style="margin-top:0.75rem;" class="annotation amber">
+              Content translation (RU, FR, ZH) is not included — see exclusions. Northbound can manage a translation agency brief if required, quoted separately.
+            </div>
+          </td>
+          <td><span class="phase-weeks">2–3 weeks</span></td>
+          <td><div class="phase-price">£6,500</div></td>
+        </tr>
+
+        <!-- Phase 7 — Optional -->
+        <tr style="opacity:0.85;">
+          <td><span class="phase-num">07</span></td>
+          <td>
+            <div class="tag tag-amber">Optional</div>
+            <div class="phase-name">Client Portal — MVP</div>
+          </td>
+          <td>
+            <ul class="scope-list">
+              <li>Restricted WordPress member area (Ultimate Member or WP User Manager)</li>
+              <li>Secure login — linked from nav as "My Fairview"</li>
+              <li>Booking summary page — linked to booking reference</li>
+              <li>Crew list upload form (PDF/Word upload)</li>
+              <li>Extras &amp; add-ons selection (presented from a configurable list)</li>
+              <li>Base details document download (marina info, arrival instructions)</li>
+              <li>Admin interface for Fairview team to manage bookings and documents</li>
+            </ul>
+            <div style="margin-top:0.75rem;" class="annotation amber">
+              Strongly recommended for Phase 2 delivery post-launch rather than at initial go-live. Scoping the portal into the first build extends timeline and adds complexity to an already large project. Launching without it, proving the site commercially, then building the portal on a clean codebase is the more pragmatic approach. Price above reflects a post-launch scope.
+            </div>
+          </td>
+          <td><span class="phase-weeks">Post-launch</span></td>
+          <td><div class="phase-price optional">£9,000</div></td>
+        </tr>
+
+        <!-- Phase 8 -->
+        <tr>
+          <td><span class="phase-num">08</span></td>
+          <td>
+            <div class="tag tag-dark">Launch</div>
+            <div class="phase-name">QA, Performance &amp; Launch</div>
+          </td>
+          <td>
+            <ul class="scope-list">
+              <li>Cross-browser QA: Chrome, Safari, Firefox, Edge (latest 2 versions)</li>
+              <li>Cross-device QA: mobile (iOS/Android), tablet, desktop</li>
+              <li>Core Web Vitals optimisation — target all green: LCP &lt;2.5s, CLS 0, FID &lt;100ms</li>
+              <li>Hero video format optimisation (WebM/MP4, AVIF poster image)</li>
+              <li>SEO setup: Yoast Premium, schema markup, redirects from old URLs, XML sitemap</li>
+              <li>Staging to production migration</li>
+              <li>5 business days post-launch support</li>
+            </ul>
+          </td>
+          <td><span class="phase-weeks">2–3 weeks</span></td>
+          <td><div class="phase-price">£6,000</div></td>
+        </tr>
+
+        <!-- TOTALS -->
+        <tr class="total-row">
+          <td colspan="3">
+            <div class="label-col">Core project</div>
+            <div class="total-name">Phases 1–6 + QA &amp; Launch (Phase 8)</div>
+          </td>
+          <td><span style="font-family:var(--mono); font-size:0.75rem; color:rgba(250,247,242,0.45);">~26 weeks</span></td>
+          <td class="total-price">£63,500</td>
+        </tr>
+        <tr class="total-row" style="">
+          <td colspan="3" style="padding-top:0.75rem; padding-bottom:1.4rem;">
+            <div class="label-col">Full build</div>
+            <div class="total-name">All phases including Client Portal (Phase 7 — recommended post-launch)</div>
+          </td>
+          <td><span style="font-family:var(--mono); font-size:0.75rem; color:rgba(250,247,242,0.45);">~26 wks + portal</span></td>
+          <td class="total-price" style="color:var(--green);">£72,500</td>
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+
+    <p class="muted" style="font-size:0.78rem;">All prices quoted exclusive of VAT. Payment terms detailed below. Prices valid for 60 days from proposal date.</p>
+  </div>
+</section>
+
+<!-- SECTION: TIMELINE -->
+<section class="section-sm" style="background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="label mb-sm">Project timeline</div>
+    <h2 style="margin-bottom:0.5rem;">26-week indicative schedule</h2>
+    <div class="divider" style="margin-bottom:2rem;"></div>
+
+    <div style="overflow:auto; margin-bottom:1.5rem;">
+      <div style="min-width:900px;">
+
+        <!-- Month headers -->
+        <div style="display:grid; grid-template-columns:160px repeat(6,1fr); gap:0; margin-bottom:0;">
+          <div style="background:var(--dark); padding:0.5rem 0.75rem; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,242,0.4); border-radius:6px 0 0 0;">Phase</div>
+          <div style="background:var(--dark); padding:0.5rem 0.75rem; font-size:0.65rem; color:rgba(250,247,242,0.6); border-left:1px solid rgba(255,255,255,0.06);">Month 1–2</div>
+          <div style="background:var(--dark); padding:0.5rem 0.75rem; font-size:0.65rem; color:rgba(250,247,242,0.6); border-left:1px solid rgba(255,255,255,0.06);">Month 3–4</div>
+          <div style="background:var(--dark); padding:0.5rem 0.75rem; font-size:0.65rem; color:rgba(250,247,242,0.6); border-left:1px solid rgba(255,255,255,0.06);">Month 5–6</div>
+          <div style="background:var(--dark); padding:0.5rem 0.75rem; font-size:0.65rem; color:rgba(250,247,242,0.6); border-left:1px solid rgba(255,255,255,0.06);">Month 7–8</div>
+          <div style="background:var(--dark); padding:0.5rem 0.75rem; font-size:0.65rem; color:rgba(250,247,242,0.6); border-left:1px solid rgba(255,255,255,0.06);">Month 9–10</div>
+          <div style="background:var(--dark); padding:0.5rem 0.75rem; font-size:0.65rem; color:rgba(250,247,242,0.6); border-left:1px solid rgba(255,255,255,0.06); border-radius:0 6px 0 0;">Month 11–12</div>
+        </div>
+
+        <!-- Phase rows -->
+        <div style="border:1px solid var(--border); border-top:none; border-radius:0 0 6px 6px; overflow:hidden;">
+
+          <!-- P1 Discovery -->
+          <div style="display:grid; grid-template-columns:160px repeat(6,1fr); border-bottom:1px solid var(--border);">
+            <div style="background:#fff; padding:0.65rem 0.75rem; border-right:1px solid var(--border);">
+              <div style="font-family:var(--mono); font-size:0.58rem; color:var(--green); opacity:0.7;">01</div>
+              <div style="font-size:0.72rem; font-weight:500; line-height:1.2; margin-top:0.1rem;">Discovery</div>
+            </div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="background:var(--dark); border-radius:3px; height:28px; display:flex; align-items:center; padding:0 0.6rem;">
+                <span style="font-size:0.58rem; color:rgba(250,247,242,0.6);">2 wks</span>
+              </div>
+            </div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff;"></div>
+          </div>
+
+          <!-- P2 Design -->
+          <div style="display:grid; grid-template-columns:160px repeat(6,1fr); border-bottom:1px solid var(--border);">
+            <div style="background:#fff; padding:0.65rem 0.75rem; border-right:1px solid var(--border);">
+              <div style="font-family:var(--mono); font-size:0.58rem; color:var(--green); opacity:0.7;">02</div>
+              <div style="font-size:0.72rem; font-weight:500; line-height:1.2; margin-top:0.1rem;">UX &amp; Design</div>
+            </div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:0.5rem; left:50%; top:0.5rem; bottom:0.5rem; background:rgba(59,109,17,0.15); border-radius:3px;"></div>
+            </div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:50%; left:0.5rem; top:0.5rem; bottom:0.5rem; background:rgba(59,109,17,0.15); border-radius:3px; display:flex; align-items:center; padding:0 0.6rem;">
+                <span style="font-size:0.55rem; color:var(--green);">4–5 wks</span>
+              </div>
+            </div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff;"></div>
+          </div>
+
+          <!-- P3 Core build -->
+          <div style="display:grid; grid-template-columns:160px repeat(6,1fr); border-bottom:1px solid var(--border);">
+            <div style="background:#fff; padding:0.65rem 0.75rem; border-right:1px solid var(--border);">
+              <div style="font-family:var(--mono); font-size:0.58rem; color:var(--green); opacity:0.7;">03</div>
+              <div style="font-size:0.72rem; font-weight:500; line-height:1.2; margin-top:0.1rem;">Core Build</div>
+            </div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:0; left:0.5rem; top:0.5rem; bottom:0.5rem; background:rgba(59,109,17,0.2); border-radius:3px;"></div>
+            </div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:50%; left:0; top:0.5rem; bottom:0.5rem; background:rgba(59,109,17,0.2); border-radius:3px; display:flex; align-items:center; padding:0 0.6rem;">
+                <span style="font-size:0.55rem; color:var(--green);">6–7 wks</span>
+              </div>
+            </div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff;"></div>
+          </div>
+
+          <!-- P4 Charter sections -->
+          <div style="display:grid; grid-template-columns:160px repeat(6,1fr); border-bottom:1px solid var(--border);">
+            <div style="background:#fff; padding:0.65rem 0.75rem; border-right:1px solid var(--border);">
+              <div style="font-family:var(--mono); font-size:0.58rem; color:var(--green); opacity:0.7;">04</div>
+              <div style="font-size:0.72rem; font-weight:500; line-height:1.2; margin-top:0.1rem;">Charter &amp; Brokerage</div>
+            </div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:0; left:50%; top:0.5rem; bottom:0.5rem; background:rgba(59,109,17,0.2); border-radius:3px;"></div>
+            </div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:0; left:0; top:0.5rem; bottom:0.5rem; background:rgba(59,109,17,0.2); border-radius:3px; display:flex; align-items:center; padding:0 0.6rem;">
+                <span style="font-size:0.55rem; color:var(--green);">5–6 wks</span>
+              </div>
+            </div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff;"></div>
+          </div>
+
+          <!-- P5 APIs -->
+          <div style="display:grid; grid-template-columns:160px repeat(6,1fr); border-bottom:1px solid var(--border);">
+            <div style="background:#fff; padding:0.65rem 0.75rem; border-right:1px solid var(--border);">
+              <div style="font-family:var(--mono); font-size:0.58rem; color:var(--green); opacity:0.7;">05</div>
+              <div style="font-size:0.72rem; font-weight:500; line-height:1.2; margin-top:0.1rem;">API Integrations</div>
+            </div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:0; left:50%; top:0.5rem; bottom:0.5rem; background:rgba(184,122,26,0.2); border-radius:3px;"></div>
+            </div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:0; left:0; top:0.5rem; bottom:0.5rem; background:rgba(184,122,26,0.2); border-radius:3px; display:flex; align-items:center; padding:0 0.6rem;">
+                <span style="font-size:0.55rem; color:var(--amber);">5–6 wks</span>
+              </div>
+            </div>
+            <div style="background:#fff;"></div>
+          </div>
+
+          <!-- P6 Multi-language -->
+          <div style="display:grid; grid-template-columns:160px repeat(6,1fr); border-bottom:1px solid var(--border);">
+            <div style="background:#fff; padding:0.65rem 0.75rem; border-right:1px solid var(--border);">
+              <div style="font-family:var(--mono); font-size:0.58rem; color:var(--green); opacity:0.7;">06</div>
+              <div style="font-size:0.72rem; font-weight:500; line-height:1.2; margin-top:0.1rem;">Multi-language</div>
+            </div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; border-right:1px solid var(--border);"></div>
+            <div style="background:#fff; padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:50%; left:0; top:0.5rem; bottom:0.5rem; background:rgba(26,26,24,0.08); border-radius:3px; display:flex; align-items:center; padding:0 0.6rem;">
+                <span style="font-size:0.55rem; color:var(--muted);">2–3 wks</span>
+              </div>
+            </div>
+            <div style="background:#fff;"></div>
+          </div>
+
+          <!-- P8 QA & Launch -->
+          <div style="display:grid; grid-template-columns:160px repeat(6,1fr);">
+            <div style="background:#fff; padding:0.65rem 0.75rem; border-right:1px solid var(--border);">
+              <div style="font-family:var(--mono); font-size:0.58rem; color:var(--green); opacity:0.7;">08</div>
+              <div style="font-size:0.72rem; font-weight:500; line-height:1.2; margin-top:0.1rem;">QA &amp; Launch</div>
+            </div>
+            <div style="border-right:1px solid var(--border);"></div>
+            <div style="border-right:1px solid var(--border);"></div>
+            <div style="border-right:1px solid var(--border);"></div>
+            <div style="border-right:1px solid var(--border);"></div>
+            <div style="padding:0.5rem; border-right:1px solid var(--border); position:relative;">
+              <div style="position:absolute; right:0; left:50%; top:0.5rem; bottom:0.5rem; background:rgba(59,109,17,0.35); border-radius:3px;"></div>
+            </div>
+            <div style="padding:0.5rem; position:relative;">
+              <div style="position:absolute; right:50%; left:0; top:0.5rem; bottom:0.5rem; background:rgba(59,109,17,0.35); border-radius:3px; display:flex; align-items:center; padding:0 0.6rem;">
+                <span style="font-size:0.55rem; color:var(--green); font-weight:500;">↳ Launch</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <p class="muted" style="font-size:0.75rem; font-style:italic;">Timeline is indicative. Actual dates depend on project start, client review turnaround, and API access availability. Phases 3–5 can run in parallel with client content preparation.</p>
+  </div>
+</section>
+
+<!-- SECTION: PAYMENT SCHEDULE -->
+<section class="section-sm">
+  <div class="container">
+    <div class="label mb-sm">Payment schedule</div>
+    <h2 style="margin-bottom:0.5rem;">Four-stage payment plan</h2>
+    <div class="divider" style="margin-bottom:2rem;"></div>
+    <div class="payment-steps mb-md">
+      <div class="payment-step">
+        <div class="payment-pct">30%</div>
+        <div class="payment-milestone">Project commencement</div>
+        <div class="payment-when">Due on contract signing, before Phase 1 begins</div>
+      </div>
+      <div class="payment-step">
+        <div class="payment-pct">30%</div>
+        <div class="payment-milestone">Design sign-off</div>
+        <div class="payment-when">Due on written approval of Phase 2 designs</div>
+      </div>
+      <div class="payment-step">
+        <div class="payment-pct">30%</div>
+        <div class="payment-milestone">Development complete</div>
+        <div class="payment-when">Due on staging site delivery, prior to Phase 8 QA</div>
+      </div>
+      <div class="payment-step">
+        <div class="payment-pct">10%</div>
+        <div class="payment-milestone">Launch</div>
+        <div class="payment-when">Due on live site handover</div>
+      </div>
+    </div>
+    <p class="muted" style="font-size:0.78rem;">Invoices issued on 14-day payment terms. All amounts exclusive of VAT. For the full build including portal (£72,500), the 30% stage payments scale accordingly.</p>
+  </div>
+</section>
+
+<!-- SECTION: ONGOING RETAINER -->
+<section class="section-sm" style="background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="label mb-sm">Post-launch</div>
+    <h2 style="margin-bottom:0.5rem;">Ongoing retainer options</h2>
+    <div class="divider" style="margin-bottom:2rem;"></div>
+    <div class="grid-3 mb-md">
+
+      <div class="retainer-card">
+        <div class="label">Maintenance</div>
+        <div class="retainer-price">£450<span style="font-size:1rem;">/mo</span></div>
+        <div class="retainer-period">+ VAT · monthly rolling</div>
+        <ul class="retainer-features">
+          <li>WordPress core, plugin &amp; theme updates</li>
+          <li>Security monitoring and malware scanning</li>
+          <li>Daily off-site backups</li>
+          <li>Uptime monitoring and incident response</li>
+          <li>Hosting liaison (Kinsta or WP Engine)</li>
+        </ul>
+      </div>
+
+      <div class="retainer-card featured">
+        <div class="label">Maintenance + Support</div>
+        <div class="retainer-price">£950<span style="font-size:1rem;">/mo</span></div>
+        <div class="retainer-period">+ VAT · monthly rolling</div>
+        <ul class="retainer-features">
+          <li>Everything in Maintenance</li>
+          <li>4 hours of development support per month</li>
+          <li>Content updates (text, images, blog posts)</li>
+          <li>API monitoring — Nausys and Rightboat</li>
+          <li>Monthly performance report</li>
+          <li>Unused hours do not roll over</li>
+        </ul>
+      </div>
+
+      <div class="retainer-card">
+        <div class="label">Growth</div>
+        <div class="retainer-price">£2,500<span style="font-size:1rem;">/mo</span></div>
+        <div class="retainer-period">+ VAT · 3-month minimum</div>
+        <ul class="retainer-features">
+          <li>Everything in Maintenance + Support</li>
+          <li>Up to 15 hours per month</li>
+          <li>Monthly CRO analysis and A/B test recommendations</li>
+          <li>SEO monitoring, technical audit and optimisation</li>
+          <li>Conversion reporting across all enquiry routes</li>
+          <li>Quarterly strategy review call</li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="muted" style="font-size:0.78rem;">Hosting is not included in retainer pricing. Recommended: Kinsta Business plan (~£130–200/month), which includes a Singapore CDN node for Asia-Pacific performance.</p>
+  </div>
+</section>
+
+<!-- SECTION: EXCLUSIONS -->
+<section class="section-sm">
+  <div class="container">
+    <div class="label mb-sm">Scope boundaries</div>
+    <h2 style="margin-bottom:0.5rem;">What's not included</h2>
+    <div class="divider" style="margin-bottom:2rem;"></div>
+    <div class="excl-grid mb-md">
+
+      <div class="excl-item">
+        <div class="excl-icon">—</div>
+        <div>
+          <div class="excl-name">Content writing</div>
+          <div class="excl-note">All page copy, yacht descriptions, destination narratives, and blog articles. Northbound can manage a copywriting brief and quote separately.</div>
+        </div>
+      </div>
+
+      <div class="excl-item">
+        <div class="excl-icon">—</div>
+        <div>
+          <div class="excl-name">Content translation (RU / FR / ZH)</div>
+          <div class="excl-note">WPML infrastructure is included in Phase 6. Translation of all content into Russian, French, and Chinese is excluded and should be commissioned separately. Note: Chinese and Russian markets require dedicated content strategy, not auto-translation.</div>
+        </div>
+      </div>
+
+      <div class="excl-item">
+        <div class="excl-icon">—</div>
+        <div>
+          <div class="excl-name">Photography &amp; videography</div>
+          <div class="excl-note">All photography, video production, and post-production. The art direction guidelines produced in the audit are provided to guide commissioning.</div>
+        </div>
+      </div>
+
+      <div class="excl-item">
+        <div class="excl-icon">—</div>
+        <div>
+          <div class="excl-name">Third-party software licences</div>
+          <div class="excl-note">Annual costs for: WPML (~£99), ACF Pro (~£49), WP Rocket (~£49), Yoast Premium (~£99), Gravity Forms (~£159), Ultimate Member Pro (~£149 if portal in scope). Total ~£604/year.</div>
+        </div>
+      </div>
+
+      <div class="excl-item">
+        <div class="excl-icon">—</div>
+        <div>
+          <div class="excl-name">API subscription costs</div>
+          <div class="excl-note">Nausys API and Rightboat API subscription/access fees charged by those platforms directly. These will be confirmed during Phase 1 discovery.</div>
+        </div>
+      </div>
+
+      <div class="excl-item">
+        <div class="excl-icon">—</div>
+        <div>
+          <div class="excl-name">CRM platform (HubSpot / Pipedrive)</div>
+          <div class="excl-note">CRM platform licensing. Gravity Forms integration to connect enquiry forms to the chosen CRM is included in the build. CRM setup and configuration is excluded.</div>
+        </div>
+      </div>
+
+      <div class="excl-item">
+        <div class="excl-icon">—</div>
+        <div>
+          <div class="excl-name">Ongoing hosting</div>
+          <div class="excl-note">WordPress hosting on Kinsta or WP Engine. Recommended: Kinsta Business (~£130–200/month) for Singapore CDN node. Cloudflare free tier is included in the build scope.</div>
+        </div>
+      </div>
+
+      <div class="excl-item">
+        <div class="excl-icon">—</div>
+        <div>
+          <div class="excl-name">Post-launch changes outside retainer</div>
+          <div class="excl-note">Any development work requested after the 5-day post-launch support window will be quoted and billed at our standard day rate of £875 + VAT.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: TERMS -->
+<section class="section-sm" style="background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="label mb-sm">Terms &amp; conditions</div>
+    <h2 style="margin-bottom:0.5rem;">Key terms</h2>
+    <div class="divider" style="margin-bottom:2rem;"></div>
+    <div class="terms-grid mb-md">
+      <div class="term-card">
+        <div class="term-title">Revisions</div>
+        <div class="term-body">2 rounds of revisions are included per phase. Additional revision rounds are billed at £875/day + VAT. Revision rounds do not carry over between phases.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-title">Client delays</div>
+        <div class="term-body">Timelines assume prompt feedback within 5 business days of each milestone delivery. Delays exceeding 10 business days may result in timeline extension and rebooking. Northbound reserves the right to charge a holding fee of £500/week for delays beyond 15 business days.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-title">Intellectual property</div>
+        <div class="term-body">All design and development work is transferred to Fairview Yachting in full upon receipt of final payment. Northbound Commerce retains the right to reference the project in case studies and portfolio materials.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-title">Scope changes</div>
+        <div class="term-body">Material changes to project scope (new features, additional pages, integration changes) will be quoted as a change request before work begins. Minor scope additions of under 4 hours are absorbed where reasonable.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-title">API dependency</div>
+        <div class="term-body">Phase 5 pricing is contingent on standard API access and documentation. Should Nausys or Rightboat API access involve non-standard authentication, rate limiting, or missing endpoints, a revised quote will be issued before Phase 5 commences.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-title">Proposal validity</div>
+        <div class="term-body">This proposal is valid for 60 days from the date of issue. Northbound Commerce reserves the right to requote if the project start date is more than 90 days after proposal acceptance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: NEXT STEPS -->
+<section class="section-sm">
+  <div class="container">
+    <div class="grid-2" style="gap:3rem; align-items:start;">
+      <div>
+        <div class="label mb-sm">Next steps</div>
+        <h2 style="margin-bottom:1rem;">How to proceed</h2>
+        <div class="divider"></div>
+        <div style="display:flex; flex-direction:column; gap:1.25rem; margin-top:1.5rem;">
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <div style="font-family:var(--mono); font-size:0.68rem; color:var(--green); background:var(--green-lt); padding:0.3rem 0.55rem; border-radius:3px; flex-shrink:0; margin-top:0.1rem;">01</div>
+            <div>
+              <div style="font-size:0.88rem; font-weight:500; margin-bottom:0.2rem;">Proposal review call</div>
+              <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">30-minute call to walk through the phased approach, confirm scope assumptions, and address any questions — particularly around the API integrations and multi-language requirements.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <div style="font-family:var(--mono); font-size:0.68rem; color:var(--green); background:var(--green-lt); padding:0.3rem 0.55rem; border-radius:3px; flex-shrink:0; margin-top:0.1rem;">02</div>
+            <div>
+              <div style="font-size:0.88rem; font-weight:500; margin-bottom:0.2rem;">Confirm phase scope</div>
+              <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Confirm which phases to include at project start (Core vs. Full build, with or without Client Portal). The portal can be deferred to a Phase 2 delivery post-launch if budget requires.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <div style="font-family:var(--mono); font-size:0.68rem; color:var(--green); background:var(--green-lt); padding:0.3rem 0.55rem; border-radius:3px; flex-shrink:0; margin-top:0.1rem;">03</div>
+            <div>
+              <div style="font-size:0.88rem; font-weight:500; margin-bottom:0.2rem;">Contract &amp; 30% commencement invoice</div>
+              <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">On agreement, Northbound will issue a project contract and the first-stage invoice. Phase 1 discovery begins upon receipt of the signed contract and cleared payment.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card-dark">
+          <div style="font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(250,247,242,0.35); margin-bottom:1rem;">Investment summary</div>
+          <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.07);">
+              <span style="font-size:0.85rem; color:rgba(250,247,242,0.6);">Discovery &amp; Strategy</span>
+              <span style="font-family:var(--serif); font-size:1.1rem; color:var(--cream);">£5,500</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.07);">
+              <span style="font-size:0.85rem; color:rgba(250,247,242,0.6);">UX &amp; Design</span>
+              <span style="font-family:var(--serif); font-size:1.1rem; color:var(--cream);">£10,500</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.07);">
+              <span style="font-size:0.85rem; color:rgba(250,247,242,0.6);">Core WordPress Build</span>
+              <span style="font-family:var(--serif); font-size:1.1rem; color:var(--cream);">£12,500</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.07);">
+              <span style="font-size:0.85rem; color:rgba(250,247,242,0.6);">Charter &amp; Brokerage Sections</span>
+              <span style="font-family:var(--serif); font-size:1.1rem; color:var(--cream);">£11,000</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.07);">
+              <span style="font-size:0.85rem; color:rgba(250,247,242,0.6);">API Integrations (Nausys + Rightboat)</span>
+              <span style="font-family:var(--serif); font-size:1.1rem; color:var(--cream);">£11,500</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.07);">
+              <span style="font-size:0.85rem; color:rgba(250,247,242,0.6);">Multi-language &amp; Currency</span>
+              <span style="font-family:var(--serif); font-size:1.1rem; color:var(--cream);">£6,500</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.07);">
+              <span style="font-size:0.85rem; color:rgba(250,247,242,0.6);">QA, Performance &amp; Launch</span>
+              <span style="font-family:var(--serif); font-size:1.1rem; color:var(--cream);">£6,000</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.15);">
+              <span style="font-size:0.82rem; color:rgba(250,247,242,0.35); font-style:italic;">Client Portal (Phase 7 — post-launch)</span>
+              <span style="font-family:var(--serif); font-size:1rem; color:rgba(250,247,242,0.35);">£9,000</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.4rem;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+              <span style="font-size:0.78rem; color:rgba(250,247,242,0.45); text-transform:uppercase; letter-spacing:0.1em;">Core project</span>
+              <span style="font-family:var(--serif); font-size:1.8rem; color:var(--cream);">£63,500</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+              <span style="font-size:0.78rem; color:rgba(250,247,242,0.45); text-transform:uppercase; letter-spacing:0.1em;">Inc. portal (post-launch)</span>
+              <span style="font-family:var(--serif); font-size:1.8rem; color:var(--green);">£72,500</span>
+            </div>
+            <div style="font-size:0.7rem; color:rgba(250,247,242,0.25); margin-top:0.25rem;">All prices exclude VAT. 30% commencement invoice on contract signing.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-nb">Northbound Commerce</div>
+        <div class="footer-contact" style="margin-top:0.5rem;">
+          <a href="mailto:hello@northboundcommerce.co.uk">hello@northboundcommerce.co.uk</a><br>
+          <a href="https://northboundcommerce.co.uk" target="_blank">northboundcommerce.co.uk</a>
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <div class="footer-nb" style="color:rgba(250,247,242,0.35); margin-bottom:0.5rem;">Prepared for</div>
+        <div style="font-size:0.85rem; color:rgba(250,247,242,0.6);">Fairview Yachting</div>
+        <div style="font-family:var(--mono); font-size:0.65rem; color:rgba(250,247,242,0.25); margin-top:0.25rem;">Proposal valid 60 days · Confidential</div>
+      </div>
+    </div>
+    <div class="footer-note">
+      This proposal is prepared by Northbound Commerce (trading name of Studio Yune Ltd). All prices are exclusive of VAT at the prevailing UK rate. This document is confidential and intended solely for the named recipient.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
