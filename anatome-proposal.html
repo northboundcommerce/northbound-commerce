@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>anatomē — Proposed Engagement · Northbound Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --ink: #1A1A18;
+    --green: #3B6D11;
+    --green-light: #E8F0DC;
+    --muted: #6B6B60;
+    --border: #E2DDD5;
+    --white: #FFFFFF;
+    --stone: #F0EBE2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 40px 56px 36px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .nb-wordmark {
+    font-family: 'Instrument Serif', serif;
+    font-size: 17px;
+    font-style: italic;
+    letter-spacing: .02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .header-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .06em;
+    text-align: right;
+  }
+
+  /* ── HERO STATEMENT ── */
+  .hero-statement {
+    padding: 52px 56px 48px;
+    border-bottom: 1px solid var(--border);
+    max-width: 760px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--green);
+  }
+
+  .hero-sub {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 56px;
+  }
+
+  .section {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .sec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+
+  /* ── QUICK WINS ── */
+  .wins-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .win-item {
+    background: var(--white);
+    padding: 22px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .win-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    flex-shrink: 0;
+    padding-top: 2px;
+    letter-spacing: .04em;
+  }
+
+  .win-content h3 {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.35;
+  }
+
+  .win-content p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .win-tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--green);
+    background: var(--green-light);
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+
+  /* ── ROADMAP TIMELINE ── */
+  .timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin-top: 4px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    right: 28px;
+    height: 1px;
+    background: var(--border);
+    z-index: 0;
+  }
+
+  .phase {
+    position: relative;
+    z-index: 1;
+    padding: 0 32px 32px 0;
+  }
+
+  .phase:last-child { padding-right: 0; }
+
+  .phase-dot-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .phase-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .phase-dot.active {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .phase-dot.sprint {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+
+  .phase-timing {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+  }
+
+  .phase-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.25;
+  }
+
+  .phase-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .phase-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .phase-items li {
+    font-size: 12.5px;
+    color: var(--ink);
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    line-height: 1.4;
+  }
+
+  .phase-items li::before {
+    content: '—';
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .phase-items li.advisory {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .phase-sprint-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+    background: var(--ink);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .week-block {
+    margin-bottom: 16px;
+  }
+
+  .week-block:last-child { margin-bottom: 0; }
+
+  .week-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--muted);
+    margin-bottom: 6px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── PAYMENT OPTIONS ── */
+  .payment-intro {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 28px;
+  }
+
+  /* Project phase cards */
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1px;
+  }
+
+  .project-card {
+    background: var(--white);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .project-card.featured {
+    background: #F5F8F2;
+  }
+
+  .project-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .project-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .project-card-top { flex: 1; }
+
+  .project-card-bottom {
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .project-price {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .project-price-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+  }
+
+  /* Bundle bar */
+  .bundle-bar {
+    background: var(--ink);
+    border-radius: 0 0 6px 6px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+
+  .bundle-left { flex: 1; min-width: 0; }
+
+  .bundle-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 4px;
+  }
+
+  .bundle-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,.65);
+    line-height: 1.5;
+  }
+
+  .bundle-right {
+    flex-shrink: 0;
+    text-align: right;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .bundle-was {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(255,255,255,.3);
+    text-decoration: line-through;
+    letter-spacing: .03em;
+  }
+
+  .bundle-price {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .bundle-saving {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--green-light);
+    background: rgba(255,255,255,.1);
+    padding: 3px 8px;
+    border-radius: 2px;
+    align-self: center;
+  }
+
+  /* Sprint featured block */
+  .sprint-block {
+    background: var(--ink);
+    border-radius: 6px;
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sprint-left {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sprint-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 8px;
+  }
+
+  .sprint-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .sprint-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+    line-height: 1.6;
+    max-width: 440px;
+  }
+
+  .sprint-right {
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .sprint-price {
+    font-family: 'Instrument Serif', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .sprint-price-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,.45);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* Retainer options */
+  .retainer-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--muted);
+    margin-bottom: 14px;
+    margin-top: 8px;
+  }
+
+  .retainer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .retainer-card {
+    background: var(--white);
+    padding: 24px 24px;
+    position: relative;
+  }
+
+  .retainer-card.recommended {
+    background: #F5F8F2;
+  }
+
+  .rec-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--green);
+    background: var(--green-light);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .retainer-tier {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .retainer-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .retainer-days {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .retainer-price {
+    font-family: 'Instrument Serif', serif;
+    font-size: 30px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .retainer-price-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .retainer-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 14px;
+  }
+
+  .retainer-scope {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .retainer-scope li {
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    gap: 8px;
+    line-height: 1.4;
+  }
+
+  .retainer-scope li::before {
+    content: '—';
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    flex-shrink: 0;
+    color: #C8C4BC;
+  }
+
+  .retainer-note {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: var(--stone);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0F1A0B;
+    padding: 36px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .ft-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ft-sq {
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid #6A7A62;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ft-sq span {
+    font-size: 8px;
+    font-weight: 700;
+    color: #8A9A82;
+  }
+
+  .ft-wordmark {
+    font-family: 'Instrument Serif', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: #8A9A82;
+    letter-spacing: .02em;
+  }
+  .ft-right { font-family: 'DM Mono', monospace; font-size: 11px; color: #6A7A62; letter-spacing: .06em; }
+
+  /* ── EMAIL ADD-ON ── */
+  .addon-block {
+    margin-top: 32px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .addon-header {
+    padding: 14px 22px;
+    background: var(--stone);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .addon-header-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .addon-optional-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--muted);
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 2px;
+  }
+
+  .addon-body {
+    background: var(--white);
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .addon-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .addon-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 500px;
+    margin-bottom: 14px;
+  }
+
+  .addon-scope {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .addon-scope li {
+    font-size: 12.5px;
+    color: var(--ink);
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    line-height: 1.4;
+  }
+
+  .addon-scope li::before {
+    content: '—';
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .addon-pricing {
+    flex-shrink: 0;
+    text-align: right;
+    padding-top: 4px;
+  }
+
+  .addon-price {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .addon-price-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .addon-caveat {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    padding: 12px 22px;
+    border-top: 1px solid var(--border);
+    background: var(--stone);
+    font-style: italic;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    header, .page, footer { padding-left: 24px; padding-right: 24px; }
+    .hero-statement { padding: 40px 24px; }
+    .wins-grid, .retainer-grid, .timeline, .project-grid { grid-template-columns: 1fr; }
+    .timeline::before { display: none; }
+    .phase { padding: 0 0 24px 0; }
+    .sprint-block { flex-direction: column; gap: 20px; text-align: left; }
+    .sprint-right { text-align: left; }
+  }
+  @media print {
+    @page { size: A4; margin: 0; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { break-inside: avoid; }
+    .project-grid { break-inside: avoid; }
+    .bundle-bar { break-inside: avoid; }
+    .retainer-grid { break-inside: avoid; }
+    .addon-block { break-inside: avoid; }
+    .wins-grid { break-inside: avoid; }
+    .timeline { break-inside: avoid; }
+    footer { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <!-- ⬇ REPLACE THIS SPAN WITH THE ACTUAL LOGO SVG FROM northboundcommerce.co.uk -->
+  <a href="https://northboundcommerce.co.uk/" class="nb-wordmark">Northbound Commerce</a>
+  <!-- ⬆ LOGO SWAP HERE -->
+  <div class="header-meta">
+    anatomē · Proposed Engagement<br>
+    <a href="mailto:hello@northboundcommerce.co.uk" style="color:inherit;text-decoration:none">hello@northboundcommerce.co.uk</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero-statement">
+  <div class="hero-eyebrow">Northbound Commerce · anatomē</div>
+  <h1 class="hero-title">Start small.<br><em>See results. Then decide.</em></h1>
+  <p class="hero-sub">A focused first sprint, a clear roadmap, and no commitment beyond what you've seen work. Everything below is fixed-price or transparent day rate — no surprises.</p>
+</div>
+
+<div class="page">
+
+  <!-- QUICK WINS -->
+  <div class="section">
+    <div class="sec-label">Quick Wins · 30 Days</div>
+    <div class="wins-grid">
+
+      <div class="win-item">
+        <span class="win-num">01</span>
+        <div class="win-content">
+          <h3>Activate review stars on collection tiles and PDPs</h3>
+          <p>Platform is installed — stars aren't surfacing on browse or product pages. A display configuration change, no new tooling.</p>
+          <span class="win-tag">Configuration</span>
+        </div>
+      </div>
+
+      <div class="win-item">
+        <span class="win-num">02</span>
+        <div class="win-content">
+          <h3>Rewrite subscription copy across all PDPs</h3>
+          <p>"Minimum commitment of 2 months" → "cancel after your second order." The 20% saving is a strong mechanic; the framing works against it.</p>
+          <span class="win-tag">Copy change</span>
+        </div>
+      </div>
+
+      <div class="win-item">
+        <span class="win-num">03</span>
+        <div class="win-content">
+          <h3>Replace rotating shipping message with permanent threshold</h3>
+          <p>Free shipping appears as a time-limited promo line. A persistent announcement bar + cart drawer progress bar drives AOV every session.</p>
+          <span class="win-tag">Development</span>
+        </div>
+      </div>
+
+      <div class="win-item">
+        <span class="win-num">04</span>
+        <div class="win-content">
+          <h3>Add Klarna on-site messaging to PDPs</h3>
+          <p>At £34–£210, the per-payment breakdown lowers the purchase barrier at the moment of decision. Shopify app, same-day install.</p>
+          <span class="win-tag">Development</span>
+        </div>
+      </div>
+
+      <div class="win-item">
+        <span class="win-num">05</span>
+        <div class="win-content">
+          <h3>Set subscription as default on top repeat-purchase SKUs</h3>
+          <p>Currently one-time is pre-selected. Switching the default on high-velocity SKUs is a single app configuration change.</p>
+          <span class="win-tag">Configuration</span>
+        </div>
+      </div>
+
+      <div class="win-item">
+        <span class="win-num">06</span>
+        <div class="win-content">
+          <h3>Configure post-purchase review email flow</h3>
+          <p>The platform is installed but a triggered post-purchase review sequence is likely inactive. A few hours of setup that compounds with every order.</p>
+          <span class="win-tag">Configuration</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="section">
+    <div class="sec-label">90-Day Roadmap</div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-dot-row">
+          <div class="phase-dot sprint"></div>
+          <span class="phase-timing">Weeks 1–2</span>
+        </div>
+        <div class="phase-name">First Sprint</div>
+        <div class="phase-sub">3 days total across 2 weeks · fixed price</div>
+
+        <div class="week-block">
+          <div class="week-label">Week 1</div>
+          <ul class="phase-items">
+            <li>Fix subscription widget layout on affected PDPs</li>
+            <li>Resolve mobile nav translation string</li>
+            <li>Subscription copy rewrite across all PDPs</li>
+          </ul>
+        </div>
+
+        <div class="week-block">
+          <div class="week-label">Week 2</div>
+          <ul class="phase-items">
+            <li>Klarna on-site messaging enabled</li>
+            <li>Free shipping bar + cart drawer progress</li>
+            <li>Post-purchase review flow configured</li>
+          </ul>
+        </div>
+
+        <div class="phase-sprint-tag">Entry point</div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-dot-row">
+          <div class="phase-dot active"></div>
+          <span class="phase-timing">Weeks 3–6</span>
+        </div>
+        <div class="phase-name">Navigation &amp;<br>Discovery</div>
+        <div class="phase-sub">Active build · retainer</div>
+
+        <div class="week-block">
+          <div class="week-label">Weeks 3–4</div>
+          <ul class="phase-items">
+            <li>Nav restructure to concern-led IA</li>
+            <li>"What's included" panel on gift PDPs</li>
+            <li>Description + ingredients on all PDPs</li>
+          </ul>
+        </div>
+
+        <div class="week-block">
+          <div class="week-label">Weeks 5–6</div>
+          <ul class="phase-items">
+            <li>Experiences page + primary nav</li>
+            <li>Returns policy update</li>
+            <li>Email preference centre</li>
+            <li>Review and QA pass</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-dot-row">
+          <div class="phase-dot"></div>
+          <span class="phase-timing">Weeks 7–12</span>
+        </div>
+        <div class="phase-name">Retention &amp;<br>Scale</div>
+        <div class="phase-sub">Ongoing · retainer</div>
+
+        <div class="week-block">
+          <div class="week-label">Weeks 7–8</div>
+          <ul class="phase-items">
+            <li>Loyalty programme (Smile.io) setup</li>
+            <li>Referral mechanic live</li>
+          </ul>
+        </div>
+
+        <div class="week-block">
+          <div class="week-label">Weeks 9–10</div>
+          <ul class="phase-items">
+            <li>Subscription-default A/B test</li>
+            <li>US/EU landing page test</li>
+          </ul>
+        </div>
+
+        <div class="week-block">
+          <div class="week-label">Weeks 11–12</div>
+          <ul class="phase-items">
+            <li>UGC + review surfacing strategy</li>
+            <li>Roadmap review and planning</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PAYMENT OPTIONS -->
+  <div class="section">
+    <div class="sec-label">How This Works</div>
+
+    <p class="payment-intro">Each phase is a fixed-price project with defined deliverables — you know what you're paying before work begins. Commit to one phase at a time, or all three upfront at a reduced rate. A retainer is available after the project is complete for ongoing maintenance and iteration.</p>
+
+    <!-- Phase project cards -->
+    <div class="project-grid">
+
+      <div class="project-card featured">
+        <div class="project-card-top">
+          <div class="project-eyebrow">Phase 1 · Weeks 1–2</div>
+          <div class="project-name">First Sprint</div>
+          <div class="project-desc">Bug fixes, subscription rewrite, Klarna, free shipping bar, review flow. The highest-impact, lowest-risk work delivered first.</div>
+        </div>
+        <div class="project-card-bottom">
+          <div class="project-price">£1,950</div>
+          <div class="project-price-note">Fixed · 3 days</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-eyebrow">Phase 2 · Weeks 3–6</div>
+          <div class="project-name">Navigation &amp; Discovery</div>
+          <div class="project-desc">Nav restructure, PDP content, experiences page, email preference centre, returns policy. Core site architecture and content improvements.</div>
+        </div>
+        <div class="project-card-bottom">
+          <div class="project-price">£3,900</div>
+          <div class="project-price-note">Fixed · 6 days</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-eyebrow">Phase 3 · Weeks 7–12</div>
+          <div class="project-name">Retention &amp; Scale</div>
+          <div class="project-desc">Loyalty programme, referral mechanic, A/B testing, landing pages. Long-term retention and acquisition mechanics.</div>
+        </div>
+        <div class="project-card-bottom">
+          <div class="project-price">£3,250</div>
+          <div class="project-price-note">Fixed · 5 days</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bundle -->
+    <div class="bundle-bar">
+      <div class="bundle-left">
+        <div class="bundle-label">All three phases</div>
+        <div class="bundle-desc">Commit to the full 90-day roadmap upfront. Same fixed deliverables, same fixed weeks — one agreed price.</div>
+      </div>
+      <div class="bundle-right">
+        <div class="bundle-was">£9,100</div>
+        <div class="bundle-price">£8,500</div>
+        <div class="bundle-saving">Save £600</div>
+      </div>
+    </div>
+
+    <!-- Retainer after -->
+    <div class="retainer-label">After the project — ongoing retainer</div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.65;max-width:580px;margin-bottom:20px">Once the project work is delivered, a monthly retainer keeps the site improving. All plans are month-to-month with 30 days written notice to cancel. Final pricing confirmed after audit based on store size and task volume.</p>
+
+    <div class="retainer-grid">
+
+      <div class="retainer-card">
+        <div class="retainer-tier">Maintain</div>
+        <div class="retainer-name">Light touch</div>
+        <div class="retainer-days">Entry plan</div>
+        <div class="retainer-price">from £1,200</div>
+        <div class="retainer-price-sub">Per month</div>
+        <div class="retainer-divider"></div>
+        <ul class="retainer-scope">
+          <li>Product uploads &amp; catalogue management</li>
+          <li>Collection &amp; navigation management</li>
+          <li>Ongoing store health monitoring &amp; fixes</li>
+          <li>Monthly performance report</li>
+        </ul>
+      </div>
+
+      <div class="retainer-card recommended">
+        <div class="rec-badge">Recommended</div>
+        <div class="retainer-tier">Build</div>
+        <div class="retainer-name">Active growth</div>
+        <div class="retainer-days">Ops, SEO, CRO &amp; design</div>
+        <div class="retainer-price">from £2,000</div>
+        <div class="retainer-price-sub">Per month</div>
+        <div class="retainer-divider"></div>
+        <ul class="retainer-scope">
+          <li>Everything in Maintain</li>
+          <li>On-page SEO optimisation</li>
+          <li>Conversion rate testing &amp; improvements</li>
+          <li>Design assets — banners &amp; imagery (up to 5/mo)</li>
+          <li>Quarterly store speed &amp; UX audit</li>
+        </ul>
+      </div>
+
+      <div class="retainer-card">
+        <div class="retainer-tier">Full Partner</div>
+        <div class="retainer-name">Full service</div>
+        <div class="retainer-days">End-to-end operations</div>
+        <div class="retainer-price">from £3,500</div>
+        <div class="retainer-price-sub">Per month</div>
+        <div class="retainer-divider"></div>
+        <ul class="retainer-scope">
+          <li>Everything in Build</li>
+          <li>End-to-end ecommerce operations</li>
+          <li>Campaign &amp; promotion management</li>
+          <li>Priority comms &amp; faster response</li>
+          <li>Weekly strategy call with senior lead</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="retainer-note">
+      All plans are month-to-month. 30 days written notice required to cancel. No setup fees. The project phases are fixed-price and independent — you can start with Phase 1 only and decide on Phase 2 after seeing the work. Email and CRM are scoped separately below.
+    </div>
+
+    <!-- Email / CRM add-on -->
+    <div class="addon-block">
+      <div class="addon-header">
+        <span class="addon-header-label">Email &amp; CRM</span>
+        <span class="addon-optional-tag">Optional add-on</span>
+      </div>
+      <div class="addon-body">
+        <div>
+          <div class="addon-title">Email &amp; CRM Audit</div>
+          <p class="addon-desc">A standalone half-day advisory covering the email and CRM issues identified in the audit. Delivered as a written report with specific recommendations — scoped separately from the development work because it's a different discipline and a different risk profile.</p>
+          <ul class="addon-scope">
+            <li>Send cadence review — current frequency vs. benchmark for premium wellness</li>
+            <li>Klaviyo flow audit — post-purchase, welcome, and re-engagement sequences</li>
+            <li>Unsubscribe path check — compliance and one-click functionality</li>
+            <li>Preference centre recommendation and brief</li>
+            <li>Written recommendations for your team or a CRM specialist to implement</li>
+          </ul>
+        </div>
+        <div class="addon-pricing">
+          <div class="addon-price">£325</div>
+          <div class="addon-price-note">Fixed · half day</div>
+        </div>
+      </div>
+      <div class="addon-caveat">This is an audit and advisory service — implementation of email campaigns, list management, and ongoing CRM strategy sits outside the scope of this engagement. Happy to recommend a specialist for that work.</div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="ft-left">
+    <span class="ft-wordmark">Northbound Commerce</span>
+  </div>
+  <div class="ft-right">
+    <a href="mailto:hello@northboundcommerce.co.uk" style="color:inherit;text-decoration:none">hello@northboundcommerce.co.uk</a>
+    &nbsp;·&nbsp;
+    <a href="https://northboundcommerce.co.uk/" style="color:inherit;text-decoration:none">northboundcommerce.co.uk</a>
+  </div>
+</footer>
+
+</body>
+</html>
