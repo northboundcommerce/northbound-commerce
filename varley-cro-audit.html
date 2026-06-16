@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varley — CRO & UX Audit · Northbound Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF7F2;
+    --green:#3B6D11;
+    --green-deep:#2C520C;
+    --ink:#1A1A17;
+    --muted:#6B6B63;
+    --line:#E6E0D4;
+    --line-soft:#EFEAE0;
+    --dark:#161613;
+    /* Varley brand tokens — used only inside mockups */
+    --v-bg:#F6F4EF;
+    --v-ink:#1C1C1A;
+    --v-line:#DED8CC;
+    --v-taupe:#B8AD9B;
+    --v-sage:#7E8A72;
+    --serif:'Instrument Serif',Georgia,serif;
+    --sans:'Instrument Sans',system-ui,sans-serif;
+    --mono:'DM Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  .mono{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:88vh;display:flex;flex-direction:column;justify-content:space-between;
+    background:#23231f url('https://res.cloudinary.com/dc0gdxsth/image/upload/w_1600,h_900,c_fill/q_80,f_auto/v1780576618/1_Hero_banner_desktop_pxyw8u.jpg') center 30%/cover no-repeat;color:#fff}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,15,12,.55) 0%,rgba(15,15,12,.25) 40%,rgba(15,15,12,.78) 100%);z-index:0}
+  .hero-top,.hero-foot{position:relative;z-index:2}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;padding:30px 40px}
+  .hero-nav{display:flex;gap:30px}
+  .hero-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;opacity:.85;transition:opacity .2s}
+  .hero-nav a:hover{opacity:1}
+  .nb-logo{display:flex;align-items:center;gap:0;text-decoration:none}
+  .hero-foot{padding:0 40px 54px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.8;margin-bottom:18px}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(58px,11vw,128px);line-height:.92;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic;color:#cdd9b8}
+  .hero-sub{font-size:clamp(16px,2vw,20px);max-width:540px;margin-top:20px;opacity:.92;font-weight:400}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:34px;margin-top:34px;border-top:1px solid rgba(255,255,255,.22);padding-top:20px}
+  .hero-meta div{font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+  .hero-meta span{display:block;opacity:.6;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px}
+
+  /* ---------- STICKY NAV ---------- */
+  .subnav{position:sticky;top:0;z-index:50;background:var(--dark);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+  .subnav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;overflow-x:auto}
+  .subnav-links{display:flex;gap:26px;white-space:nowrap}
+  .subnav-links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;opacity:.62;transition:opacity .2s}
+  .subnav-links a:hover{opacity:1}
+  .subnav .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.5}
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{padding:84px 0}
+  .sec-label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .sec-label::before{content:"";width:26px;height:1px;background:var(--green)}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5vw,52px);line-height:1.04;letter-spacing:-.01em;margin-bottom:22px}
+  h2 em{font-style:italic;color:var(--green)}
+  .lead{font-size:18px;color:#3a3a33;max-width:680px;line-height:1.6}
+  .lead strong{color:var(--ink);font-weight:600}
+
+  /* ---------- SCORECARD ---------- */
+  .score-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;margin-top:54px;align-items:center}
+  .score-ring{display:flex;align-items:center;gap:30px}
+  .ring{position:relative;width:172px;height:172px;flex-shrink:0}
+  .ring svg{transform:rotate(-90deg)}
+  .ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring-num b{font-family:var(--serif);font-size:52px;font-weight:400;line-height:1}
+  .ring-num span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .score-note{font-size:15px;color:#3a3a33;line-height:1.6}
+  .score-note p+p{margin-top:14px}
+  .subscores{display:flex;flex-direction:column;gap:16px}
+  .sub{display:grid;grid-template-columns:1fr auto;gap:8px 14px;align-items:center}
+  .sub .name{font-size:13.5px;font-weight:500}
+  .sub .val{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .bar{grid-column:1/-1;height:5px;background:var(--line);border-radius:4px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--green);border-radius:4px}
+
+  /* ---------- STAT STRIP ---------- */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:62px}
+  .stat{background:var(--cream);padding:28px 26px}
+  .stat b{font-family:var(--serif);font-size:40px;font-weight:400;display:block;line-height:1}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.45}
+
+  /* ---------- TABLE ---------- */
+  .t10{width:100%;border-collapse:collapse;margin-top:46px;font-size:14px}
+  .t10 th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 16px 14px;border-bottom:1px solid var(--ink)}
+  .t10 td{padding:18px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+  .t10 tr:hover td{background:#fff}
+  .t10 .rank{font-family:var(--serif);font-size:24px;color:var(--green);width:40px;line-height:1}
+  .t10 .issue b{display:block;font-weight:600;margin-bottom:3px;font-size:14.5px}
+  .t10 .issue span{color:var(--muted);font-size:13px;line-height:1.5}
+  .pill{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:20px;white-space:nowrap}
+  .p-high{background:#F3E2DC;color:#9A3B1E}
+  .p-med{background:#F2EBD6;color:#896A12}
+  .p-area{background:#E7EEDD;color:var(--green-deep)}
+
+  /* ---------- UPSELL ---------- */
+  .up-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:46px}
+  .up-card{border:1px solid var(--line);background:#fff;padding:28px 26px;border-radius:3px}
+  .up-card .n{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:.1em;margin-bottom:12px}
+  .up-card h4{font-family:var(--serif);font-size:23px;font-weight:400;margin-bottom:10px}
+  .up-card p{font-size:14px;color:#46463e;line-height:1.6}
+  .up-card .lift{margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px dashed var(--line);padding-top:13px}
+
+  /* ---------- MOCKUP COMMON ---------- */
+  .mock-intro{max-width:680px}
+  .mock-frame{margin-top:46px;background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .browser-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;background:#EDE8DE;border-bottom:1px solid var(--line)}
+  .browser-bar i{width:10px;height:10px;border-radius:50%;background:#cfc8ba;display:block}
+  .browser-bar .url{margin-left:14px;font-family:var(--mono);font-size:11px;color:#8a8478;background:#fff;padding:5px 14px;border-radius:20px}
+
+  /* Varley mock navigation */
+  .vnav{background:var(--v-bg);color:var(--v-ink);font-family:var(--sans)}
+  .vnav-util{background:var(--v-ink);color:#fff;text-align:center;font-size:11px;letter-spacing:.04em;padding:7px}
+  .vnav-main{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;border-bottom:1px solid var(--v-line)}
+  .vnav-logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:23px;letter-spacing:.30em;text-indent:.30em}
+  .vnav-links{display:flex;gap:26px;font-size:13px}
+  .vnav-links a{text-decoration:none}
+  .vnav-links .added{color:var(--green);font-weight:600;position:relative}
+  .vnav-links .added::after{content:"NEW";position:absolute;top:-12px;right:-22px;font-family:var(--mono);font-size:7px;background:var(--green);color:#fff;padding:1px 4px;border-radius:3px;letter-spacing:.06em}
+  .vnav-icons{display:flex;gap:16px;font-size:13px;color:var(--v-ink)}
+  .vmega{display:grid;grid-template-columns:repeat(4,1fr) 1.2fr;gap:24px;padding:26px 30px;background:#fff;border-bottom:1px solid var(--v-line)}
+  .vmega h5{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--v-taupe);margin-bottom:12px}
+  .vmega ul{list-style:none;font-size:13px}
+  .vmega li{padding:5px 0;color:#3a3a33}
+  .vmega .promo{background:var(--v-bg);border-radius:3px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end}
+  .vmega .promo b{font-family:var(--serif);font-size:18px;font-weight:400}
+  .vmega .promo span{font-size:12px;color:var(--muted);margin-top:4px}
+
+  /* annotation chips */
+  .anno{position:relative}
+  .pin{position:absolute;z-index:5;width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.22);font-weight:500;transition:transform .22s ease, box-shadow .22s ease}
+  .pin.active{transform:scale(1.32);box-shadow:0 0 0 7px rgba(59,109,17,.22),0 2px 10px rgba(0,0,0,.3);z-index:9}
+
+  .anno-key{margin-top:26px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 30px}
+  .anno-key .row{display:flex;gap:12px;font-size:13.5px;line-height:1.5}
+  .anno-key .num{flex-shrink:0;width:21px;height:21px;border-radius:50%;background:var(--green);color:#fff;font-family:var(--mono);font-size:11px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .anno-key b{font-weight:600}
+  .anno-key span{color:var(--muted)}
+
+  /* interactive key points */
+  .pdp-lower{display:grid;grid-template-columns:380px 1fr;gap:50px;align-items:start;margin-top:8px}
+  .keypoints{display:flex;flex-direction:column}
+  .kp{display:flex;gap:16px;padding:19px 16px;border-top:1px solid var(--line);cursor:default;border-radius:3px;transition:background .2s ease}
+  .kp:first-child{border-top:none}
+  .kp:hover{background:#fff}
+  .kp .kn{flex-shrink:0;width:30px;height:30px;border-radius:50%;border:1px solid var(--green);color:var(--green);font-family:var(--mono);font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:background .2s ease,color .2s ease}
+  .kp:hover .kn{background:var(--green);color:#fff}
+  .kp .kt b{font-weight:600;font-size:15px;display:block;margin-bottom:3px}
+  .kp .kt span{color:var(--muted);font-size:13.5px;line-height:1.55}
+  .kp-hint{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 18px 16px}
+  .kp-hint b{color:var(--green)}
+
+  /* ---------- PDP MOCKUP ---------- */
+  .pdp-wrap{display:flex;flex-direction:column;gap:48px;margin-top:46px}
+  .pdp-block-mobile{margin:0 auto;width:100%}
+  .device-cap{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .device-cap::before{content:"";width:18px;height:1px;background:var(--muted)}
+
+  /* mobile frame 375 */
+  .phone{width:375px;max-width:100%;margin:0 auto;border:9px solid #1d1d1a;border-radius:34px;overflow:hidden;background:var(--v-bg);box-shadow:0 22px 50px rgba(0,0,0,.16)}
+  .phone .vbar{background:var(--v-ink);color:#fff;text-align:center;font-size:9px;padding:5px;letter-spacing:.03em}
+  .phone .ptop{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;font-size:11px}
+  .phone .plogo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:15px;letter-spacing:.30em;text-indent:.30em}
+  .pgallery{position:relative;background:#ECE7DD}
+  .pgallery img{width:100%;height:380px;object-fit:cover;object-position:top}
+  .pg-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:5px}
+  .pg-dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55)}
+  .pg-dots i.on{background:#fff}
+  .pbody{padding:16px 16px 84px;background:var(--v-bg)}
+  .ptitle{font-family:var(--serif);font-size:22px;font-weight:400;line-height:1.1}
+  .pprice{font-size:15px;margin-top:5px}
+  .pproof{font-family:var(--serif);font-style:italic;font-size:13px;color:#6f6a5f;margin-top:7px}
+  .pfitconf{display:flex;align-items:center;gap:6px;font-size:11px;color:#46463e;margin-top:11px;line-height:1.3}
+  .pfitconf .pdot{width:5px;height:5px;border-radius:50%;background:var(--v-sage);flex-shrink:0}
+  .prating{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:12px;color:#46463e}
+  .stars{color:#B98900;letter-spacing:2px;font-size:13px}
+  .pdesc{font-size:12.5px;color:#46463e;line-height:1.55;margin-top:12px;padding-bottom:13px;border-bottom:1px solid var(--v-line)}
+  .pfit{display:flex;gap:8px;align-items:center;font-size:11.5px;color:#46463e;margin-top:12px}
+  .pfit .chip{background:#fff;border:1px solid var(--v-line);border-radius:20px;padding:3px 10px;font-size:10.5px}
+  .plabel{font-size:11px;margin-top:16px;margin-bottom:7px;display:flex;justify-content:space-between}
+  .plabel a{font-size:10.5px;color:var(--v-ink);text-decoration:underline}
+  .swatches{display:flex;gap:8px}
+  .swatches i{width:24px;height:24px;border-radius:50%;border:1px solid var(--v-line);display:block}
+  .swatches i.sel{outline:1.5px solid var(--v-ink);outline-offset:2px}
+  .sizes{display:flex;gap:6px;flex-wrap:wrap}
+  .sizes b{flex:1;min-width:40px;text-align:center;border:1px solid var(--v-line);background:#fff;padding:9px 0;font-size:11px;font-weight:500;border-radius:2px}
+  .sizes b.sel{background:var(--v-ink);color:#fff;border-color:var(--v-ink)}
+  .sizes b.oos{position:relative;color:#b9b3a6;background:#F1ECE2}
+  .notify{margin-top:9px;font-size:10.5px;background:#EEF2E6;border:1px solid #D6E2C2;color:var(--green-deep);padding:8px 10px;border-radius:3px;display:flex;align-items:center;gap:7px}
+  .bnpl{font-size:10.5px;color:#46463e;margin-top:11px;display:flex;align-items:center;gap:6px}
+  .bnpl b{font-weight:600}
+  .pstore{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:11px 12px;border:1px solid var(--v-line);border-radius:3px;background:#fff;font-size:11.5px;color:var(--v-ink)}
+  .pstore .pstore-in{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--green-deep)}
+  .pstyled{margin-top:14px;padding-top:13px;border-top:1px solid var(--v-line)}
+  .pstyled .ps-h{font-family:var(--serif);font-size:14px;margin-bottom:9px}
+  .pstyled .ps-row{display:flex;gap:8px}
+  .pstyled .ps-row img{width:33%;aspect-ratio:3/4;object-fit:cover;object-position:top center;border-radius:2px;background:#ECE7DD}
+  .stickyatc{position:absolute;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--v-line);padding:11px 14px;display:flex;gap:9px;align-items:center}
+  .stickyatc .mini{font-size:10px;line-height:1.2}
+  .stickyatc .mini b{font-family:var(--serif);font-size:13px;font-weight:400}
+  .atc{flex:1;background:var(--v-ink);color:#fff;text-align:center;padding:12px;border-radius:2px;font-size:12px;letter-spacing:.05em;font-weight:500}
+
+  /* desktop pdp */
+  .dpdp{background:var(--v-bg);border:1px solid var(--v-line);border-radius:4px}
+  .dpdp > .vnav{border-radius:4px 4px 0 0;overflow:hidden}
+  .dpdp > .ctl{border-radius:0 0 4px 4px}
+  .dpdp .vnav-main{padding:14px 22px}
+  .dpdp .vnav-logo{font-size:18px}
+  .dpdp-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:0;align-items:start}
+  .dgallery{display:grid;grid-template-columns:66px 1fr;gap:16px;padding:24px;background:#EFEAE1;position:sticky;top:66px;align-self:start}
+  .dthumbs{display:flex;flex-direction:column;gap:12px}
+  .dthumbs .th{position:relative;cursor:pointer}
+  .dthumbs img{width:66px;height:88px;object-fit:cover;object-position:top;border-radius:2px;display:block;transition:opacity .2s}
+  .dthumbs .th{opacity:.62;transition:opacity .2s}
+  .dthumbs .th.on{opacity:1}
+  .dthumbs .th.on::after{content:"";position:absolute;left:-8px;top:0;bottom:0;width:2px;background:var(--v-ink)}
+  .dmain{position:relative;overflow:hidden;border-radius:2px}
+  .dmain img{width:100%;height:560px;object-fit:cover;object-position:top center;display:block}
+  .dmain .gcount{position:absolute;bottom:14px;right:14px;background:rgba(255,255,255,.86);font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:5px 10px;border-radius:20px;color:var(--v-ink)}
+  .dinfo{padding:26px 26px 30px}
+  .dinfo .ttl{font-family:var(--serif);font-size:27px;font-weight:400;line-height:1.05}
+  .dinfo .pr{font-size:16px;margin-top:6px}
+  .dproof{font-family:var(--serif);font-style:italic;font-size:14.5px;color:#6f6a5f;margin-top:9px}
+  .dfitconf{display:flex;align-items:center;gap:8px;font-size:12px;color:#46463e;margin-top:13px}
+  .dfitconf .dot{width:6px;height:6px;border-radius:50%;background:var(--v-sage)}
+  .dinfo .rt{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12.5px;color:#46463e}
+  .dinfo .ds{font-size:13px;color:#46463e;line-height:1.6;margin-top:14px;padding-bottom:16px;border-bottom:1px solid var(--v-line)}
+  .dfit{display:flex;gap:8px;align-items:center;margin-top:14px;font-size:12px;color:#46463e}
+  .dfit .chip{background:#fff;border:1px solid var(--v-line);border-radius:20px;padding:4px 11px;font-size:11px}
+  .dlabel{font-size:12px;margin-top:18px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .dlabel a{font-size:11px;text-decoration:underline}
+  .dsw{display:flex;gap:9px}
+  .dsw i{width:27px;height:27px;border-radius:50%;border:1px solid var(--v-line);display:block}
+  .dsw i.sel{outline:1.5px solid var(--v-ink);outline-offset:2px}
+  .dsizes{display:flex;gap:7px;flex-wrap:wrap}
+  .dsizes b{min-width:46px;text-align:center;border:1px solid var(--v-line);background:#fff;padding:11px 0;font-size:12px;font-weight:500;border-radius:2px}
+  .dsizes b.sel{background:var(--v-ink);color:#fff;border-color:var(--v-ink)}
+  .dsizes b.oos{color:#b9b3a6;background:#F1ECE2}
+  .datc{background:var(--v-ink);color:#fff;text-align:center;padding:14px;border-radius:2px;font-size:13px;letter-spacing:.05em;font-weight:500;margin-top:18px}
+  .dbnpl{font-size:11.5px;color:#46463e;margin-top:11px;text-align:center}
+  /* in-store availability */
+  .dstore{margin-top:16px;border:1px solid var(--v-line);border-radius:3px;background:#fff;overflow:hidden;transition:box-shadow .22s ease,border-color .22s ease}
+  .dstore.active{border-color:var(--green);box-shadow:0 0 0 3px rgba(59,109,17,.18)}
+  .ds-head{display:flex;align-items:center;gap:8px;padding:12px 14px;font-size:12.5px;border-bottom:1px solid var(--v-line)}
+  .ds-head .ds-pin{color:var(--v-sage);font-size:14px}
+  .ds-head b{font-weight:600}
+  .ds-head .ds-toggle{margin-left:auto;font-size:11px;color:var(--muted)}
+  .ds-list{padding:4px 14px}
+  .ds-store{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line-soft);font-size:12px}
+  .ds-store:last-child{border-bottom:none}
+  .ds-store b{font-weight:600;display:block}
+  .ds-store span{font-size:11px;color:var(--muted)}
+  .ds-tag{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:20px}
+  .ds-tag.in{background:#E7EEDD;color:var(--green-deep)}
+  .ds-tag.low{background:#F2EBD6;color:#896A12}
+  .ds-foot{padding:11px 14px;font-size:11px;color:var(--v-ink);background:#FAF8F3;border-top:1px solid var(--v-line)}
+  .dtrust{display:flex;gap:18px;margin-top:16px;padding-top:16px;border-top:1px solid var(--v-line);font-size:11px;color:#46463e}
+  .dtrust div{display:flex;align-items:center;gap:6px}
+
+  /* complete the look */
+  .ctl{padding:30px 26px;border-top:1px solid var(--v-line);background:#fff}
+  .ctl h4{font-family:var(--serif);font-size:21px;font-weight:400;margin-bottom:4px}
+  .ctl .sub{font-size:12px;color:var(--muted);margin-bottom:20px}
+  .ctl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .ctl-item{display:flex;flex-direction:column}
+  .ctl-item img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;border-radius:2px;background:#EFEAE1;display:block}
+  .ctl-item .nm{font-size:12.5px;margin-top:11px;line-height:1.3}
+  .ctl-item .pc{font-size:12px;color:#46463e;margin-top:3px}
+  .ctl-item .add{margin-top:11px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--v-ink);text-align:center;padding:9px;border-radius:2px}
+
+  /* ---------- QUICK WINS ---------- */
+  .qw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
+  .qw{background:#fff;border:1px solid var(--line);border-radius:3px;padding:24px 22px}
+  .qw .qn{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:.1em;margin-bottom:13px}
+  .qw h4{font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.15;margin-bottom:9px}
+  .qw p{font-size:13.5px;color:#46463e;line-height:1.55}
+
+  /* ---------- MARKET LENS ---------- */
+  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:46px}
+  .market-col{background:var(--cream);padding:34px 30px}
+  .market-col.us{background:#fff}
+  .mc-flag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--green);margin-bottom:14px}
+  .market-col h3{font-family:var(--serif);font-size:30px;font-weight:400;line-height:1}
+  .mc-sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:8px 0 20px}
+  .market-col ul{list-style:none}
+  .market-col li{font-size:14px;color:#3a3a33;line-height:1.55;padding:13px 0 13px 18px;border-top:1px solid var(--line-soft);position:relative}
+  .market-col li:first-child{border-top:none}
+  .market-col li::before{content:"";position:absolute;left:0;top:19px;width:7px;height:7px;background:var(--green);transform:rotate(45deg)}
+  .market-col li b{font-weight:600;color:var(--ink)}
+  .market-foot{font-family:var(--serif);font-style:italic;font-size:19px;color:#46463e;line-height:1.5;max-width:760px;margin-top:30px}
+
+  /* ---------- ROADMAP ---------- */
+  .road{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:46px}
+  .phase{background:var(--cream);padding:30px 26px}
+  .phase .ph{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+  .phase h4{font-family:var(--serif);font-size:25px;font-weight:400;margin-bottom:4px}
+  .phase .win{font-size:12px;color:var(--muted);margin-bottom:18px}
+  .phase ul{list-style:none}
+  .phase li{font-size:13.5px;color:#3a3a33;padding:11px 0 11px 20px;border-top:1px solid var(--line-soft);position:relative;line-height:1.45}
+  .phase li::before{content:"→";position:absolute;left:0;color:var(--green)}
+  .phase li:first-child{border-top:none}
+
+  /* ---------- FOOTER ---------- */
+  .foot{background:var(--dark);color:#fff;padding:72px 0 44px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+  .foot h3{font-family:var(--serif);font-size:36px;font-weight:400;line-height:1.1;max-width:420px}
+  .foot h3 em{font-style:italic;color:#cdd9b8}
+  .foot p{font-size:14px;opacity:.7;margin-top:16px;max-width:380px;line-height:1.6}
+  .foot-cta{display:flex;flex-direction:column;gap:12px}
+  .foot-cta a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:14px 28px;border:1px solid rgba(255,255,255,.3);border-radius:2px;text-align:center;transition:all .2s}
+  .foot-cta a.solid{background:#fff;color:var(--dark);border-color:#fff}
+  .foot-cta a:hover{background:rgba(255,255,255,.1)}
+  .foot-cta a.solid:hover{background:#eee}
+  .foot-base{display:flex;justify-content:space-between;align-items:center;margin-top:54px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);flex-wrap:wrap;gap:14px}
+  .foot-base span{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;opacity:.55}
+
+  @media(max-width:860px){
+    .wrap{padding:0 20px}
+    .hero-top{padding:22px}
+    .hero-foot{padding:0 22px 40px}
+    .score-grid{grid-template-columns:1fr;gap:38px}
+    .stats{grid-template-columns:1fr}
+    .up-grid{grid-template-columns:1fr}
+    .qw-grid{grid-template-columns:1fr}
+    .road{grid-template-columns:1fr}
+    .market-grid{grid-template-columns:1fr}
+    .anno-key{grid-template-columns:1fr}
+    .pdp-lower{grid-template-columns:1fr;gap:34px}
+    .pdp-block-mobile{max-width:375px;margin:0 auto}
+    .dpdp-grid{grid-template-columns:1fr}
+    .dmain img{height:340px}
+    .vmega{grid-template-columns:repeat(2,1fr)}
+    .ctl-grid{grid-template-columns:repeat(2,1fr)}
+    .t10 .hide-m{display:none}
+    .vnav-links{display:none}
+    .foot-grid{flex-direction:column}
+  }
+
+  .nb-img{background-image:url('data:image/png;base64,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');background-repeat:no-repeat;background-position:left center;background-size:contain}
+  .foot .nb-img{margin-bottom:24px}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-top">
+    <a class="nb-logo nb-img" href="https://northboundcommerce.co.uk" target="_blank" aria-label="Northbound Commerce" style="width:215px;height:26px"></a>
+    <nav class="hero-nav">
+      <a href="https://northboundcommerce.co.uk/northbound-work.html" target="_blank">Work</a>
+      <a href="https://northboundcommerce.co.uk/#contact" target="_blank">Contact</a>
+    </nav>
+  </div>
+  <div class="hero-foot">
+    <div class="wrap" style="padding:0">
+      <div class="eyebrow">Conversion & Experience Audit</div>
+      <h1>Varley<em>.</em></h1>
+      <p class="hero-sub">A considered look at where a beautifully built store is quietly leaving conversion, discovery and basket value on the table.</p>
+      <div class="hero-meta">
+        <div><span>Prepared by</span>Northbound Commerce</div>
+        <div><span>Discipline</span>CRO · UX Design</div>
+        <div><span>Focus</span>PDP · Navigation · AOV</div>
+        <div><span>Reference</span>uk.varley.com</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STICKY SUBNAV ============ -->
+<div class="subnav">
+  <div class="subnav-inner">
+    <div class="subnav-links">
+      <a href="#summary">Summary</a>
+      <a href="#findings">Findings</a>
+      <a href="#upsell">Basket Value</a>
+      <a href="#nav">Navigation</a>
+      <a href="#pdp">Product Page</a>
+      <a href="#market">UK / US</a>
+      <a href="#wins">Quick Wins</a>
+      <a href="#roadmap">Roadmap</a>
+    </div>
+    <span class="tag">Northbound Commerce</span>
+  </div>
+</div>
+
+<!-- ============ EXEC SUMMARY ============ -->
+<section id="summary">
+  <div class="wrap">
+    <div class="sec-label">Executive Summary</div>
+    <h2>Conversion that stays in <em>the brand's register</em>.</h2>
+    <p class="lead">Varley sells quiet confidence, and the store earns it — the photography, the tone, the restraint are all right. So the brief here isn't a mass-market conversion checklist; bolting on star widgets, countdown timers and progress meters would actively cheapen a brand at this tier. The opportunity is to close real friction <strong>in the brand's own register</strong>: the product page gives a shopper a price before a single reason to want it, there's no fit reassurance where size doubt lives, navigation offers a 170-piece wardrobe only four routes in, and almost nothing helps a shopper build the outfit the imagery already styles. Every recommendation below is designed to read as Varley, not as a discount store borrowing its tactics.</p>
+
+    <div class="score-grid">
+      <div class="score-ring">
+        <div class="ring">
+          <svg width="172" height="172">
+            <circle cx="86" cy="86" r="74" fill="none" stroke="#E6E0D4" stroke-width="12"/>
+            <circle cx="86" cy="86" r="74" fill="none" stroke="#3B6D11" stroke-width="12" stroke-linecap="round"
+              stroke-dasharray="465" stroke-dashoffset="167"/>
+          </svg>
+          <div class="ring-num"><b>6.4</b><span>Overall / 10</span></div>
+        </div>
+        <div class="score-note">
+          <p>A strong foundation held back by a handful of high-impact gaps. Brand and creative score highly; the headroom sits in reassurance and discovery — closed quietly, in keeping with the brand.</p>
+          <p>The trust and PDP gaps are where most of the near-term revenue lives — and where the wrong fix would cost more than the gap itself.</p>
+        </div>
+      </div>
+      <div class="subscores">
+        <div class="sub"><div class="name">First impression & brand</div><div class="val">8.0</div><div class="bar"><i style="width:80%"></i></div></div>
+        <div class="sub"><div class="name">Navigation & discovery</div><div class="val">5.0</div><div class="bar"><i style="width:50%"></i></div></div>
+        <div class="sub"><div class="name">Product page conversion</div><div class="val">5.5</div><div class="bar"><i style="width:55%"></i></div></div>
+        <div class="sub"><div class="name">Trust & social proof</div><div class="val">4.0</div><div class="bar"><i style="width:40%"></i></div></div>
+        <div class="sub"><div class="name">Basket value & upsell</div><div class="val">5.0</div><div class="bar"><i style="width:50%"></i></div></div>
+        <div class="sub"><div class="name">Mobile experience</div><div class="val">6.5</div><div class="bar"><i style="width:65%"></i></div></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>0</b><div class="l">Reassurance signals near the buy button — no fit confidence, no proof, nothing to settle a £100+ decision.</div></div>
+      <div class="stat"><b>4</b><div class="l">Top-level navigation routes serving a 170+ piece wardrobe.</div></div>
+      <div class="stat"><b>4</b><div class="l">Product panels closed by default — a shopper meets a price before a single reason to want it.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOP 10 ============ -->
+<section id="findings" style="background:#F4F0E8">
+  <div class="wrap">
+    <div class="sec-label">Prioritised Findings</div>
+    <h2>The <em>ten things</em> worth fixing first.</h2>
+    <p class="lead">Ranked by the balance of revenue impact against effort to implement. The top five are where I'd start.</p>
+    <table class="t10">
+      <thead>
+        <tr><th>#</th><th>Observation</th><th class="hide-m">Area</th><th>Impact</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rank">01</td><td class="issue"><b>No reassurance near the buy decision</b><span>Nothing settles a £100+ purchase at the point of doubt. The fix isn't a star widget — that would cheapen the tier. It's fit confidence, editorial proof and curated customer imagery, in the brand's register.</span></td><td class="hide-m"><span class="pill p-area">Trust</span></td><td><span class="pill p-high">High</span></td></tr>
+        <tr><td class="rank">02</td><td class="issue"><b>A price before a reason</b><span>Description, fit, fabric and delivery are all collapsed. The clean accordion approach is itself a luxury convention — but one editorial line on fabric or feel belongs above the fold to earn the scroll.</span></td><td class="hide-m"><span class="pill p-area">Content</span></td><td><span class="pill p-high">High</span></td></tr>
+        <tr><td class="rank">03</td><td class="issue"><b>No fit guidance above the fold</b><span>No model height, no "wearing size", no true-to-size indicator. Fit uncertainty is the leading cause of both abandonment and returns in apparel.</span></td><td class="hide-m"><span class="pill p-area">UX · Sizing</span></td><td><span class="pill p-high">High</span></td></tr>
+        <tr><td class="rank">04</td><td class="issue"><b>Catalogue under-served by navigation</b><span>Only New Arrivals, Bestsellers, Shop All and About sit in the main nav. Category discovery depends entirely on homepage tiles — and is lost on return visits.</span></td><td class="hide-m"><span class="pill p-area">Navigation</span></td><td><span class="pill p-high">High</span></td></tr>
+        <tr><td class="rank">05</td><td class="issue"><b>Instalments offered, never mentioned</b><span>At this price point a discreet "available in instalments" line reframes the spend — kept understated, the way a premium house presents it, not a loud badge.</span></td><td class="hide-m"><span class="pill p-area">Conversion</span></td><td><span class="pill p-med">Med</span></td></tr>
+        <tr><td class="rank">06</td><td class="issue"><b>Sold-out sizes capture no demand</b><span>Out-of-stock sizes dead-end with no waitlist. A notify-me both recovers in-market demand and reads as desirability, not scarcity theatre.</span></td><td class="hide-m"><span class="pill p-area">Conversion</span></td><td><span class="pill p-med">Med</span></td></tr>
+        <tr><td class="rank">07</td><td class="issue"><b>"Shop the look" is a buried text link</b><span>Cross-sell exists only as a small link above the gallery. A styled "wear it with" module is the most brand-native AOV lever there is — it's exactly how the imagery already merchandises.</span></td><td class="hide-m"><span class="pill p-area">AOV</span></td><td><span class="pill p-med">Med</span></td></tr>
+        <tr><td class="rank">08</td><td class="issue"><b>Delivery benefit stated, never felt</b><span>The £75 threshold sits as static text. Surface it as quiet reassurance in the bag — "complimentary delivery" once met — not a gamified progress meter, which would jar against the tone.</span></td><td class="hide-m"><span class="pill p-area">AOV</span></td><td><span class="pill p-med">Med</span></td></tr>
+        <tr><td class="rank">09</td><td class="issue"><b>Homepage gives one route in</b><span>A single hero CTA asks every visitor to want the same thing. Returning and intent-led shoppers need faster, segmented entry points.</span></td><td class="hide-m"><span class="pill p-area">Discovery</span></td><td><span class="pill p-med">Med</span></td></tr>
+        <tr><td class="rank">10</td><td class="issue"><b>No sticky add-to-bag on mobile</b><span>On a long mobile PDP the buy button scrolls away. A persistent bar keeps the decision one tap away throughout the scroll.</span></td><td class="hide-m"><span class="pill p-area">Mobile</span></td><td><span class="pill p-med">Low</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ UPSELL / BASKET ============ -->
+<section id="upsell">
+  <div class="wrap">
+    <div class="sec-label">Basket Value Strategy</div>
+    <h2>Four quiet ways to lift the <em>average order</em>.</h2>
+    <p class="lead">Varley's pieces are built to be worn as outfits, not in isolation — yet almost nothing on the page helps a shopper build one. These four mechanics raise basket value without ever feeling pushy.</p>
+    <div class="up-grid">
+      <div class="up-card">
+        <div class="n">01 — On the product page</div>
+        <h4>Complete the look</h4>
+        <p>Replace the buried "Shop the look" link with a styled four-piece module using the actual outfit from the shoot — the pant, the short, the tote. Each with a quick-add. It mirrors how the brand already styles its imagery.</p>
+        <div class="lift">Lever: items per order · low effort</div>
+      </div>
+      <div class="up-card">
+        <div class="n">02 — In the basket</div>
+        <h4>Complimentary delivery, felt</h4>
+        <p>Not a confetti progress meter — that reads mass-market. A single quiet line that knows where the basket stands: a gentle nudge below the threshold, and "complimentary delivery" stated with confidence once it's met. Reassurance, not a game.</p>
+        <div class="lift">Lever: basket size · low effort</div>
+      </div>
+      <div class="up-card">
+        <div class="n">03 — Around DoubleSoft®</div>
+        <h4>Build the wardrobe</h4>
+        <p>DoubleSoft® is the brand's signature — lean into it. A "pairs in DoubleSoft®" rail invites shoppers to add the matching pant or sweat in the same fabric story, turning one purchase into a set.</p>
+        <div class="lift">Lever: cross-category · medium effort</div>
+      </div>
+      <div class="up-card">
+        <div class="n">04 — After add-to-bag</div>
+        <h4>Considered cross-sell</h4>
+        <p>A restrained slide-in on add — one or two genuinely complementary pieces, not a wall of products. Timed to the moment of highest intent, kept in the brand's calm register.</p>
+        <div class="lift">Lever: attach rate · medium effort</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NAV MOCKUP ============ -->
+<section id="nav" style="background:#F4F0E8">
+  <div class="wrap">
+    <div class="sec-label">Navigation — Proposed</div>
+    <h2>Give the catalogue <em>real routes in</em>.</h2>
+    <p class="mock-intro lead">The current header offers four links to a wardrobe of 170+ pieces. A considered category structure — surfaced on hover, kept visually quiet — lets shoppers reach what they came for and rediscover it on every return. Brand colours and tone are preserved exactly.</p>
+
+    <div class="mock-frame anno">
+      <div class="pin" style="top:118px;left:36%">1</div>
+      <div class="pin" style="top:118px;left:50%">2</div>
+      <div class="pin" style="top:280px;right:24px">3</div>
+      <div class="browser-bar"><i></i><i></i><i></i><span class="url">uk.varley.com</span></div>
+      <div class="vnav">
+        <div class="vnav-util">Free standard delivery for orders over £75 · Free UK returns within 30 days</div>
+        <div class="vnav-main">
+          <div class="vnav-links">
+            <a class="added">Clothing</a>
+            <a class="added">Activewear</a>
+            <a>New Arrivals</a>
+            <a>Bestsellers</a>
+          </div>
+          <div class="vnav-logo">VARLEY</div>
+          <div class="vnav-icons"><span>Search</span><span>♡</span><span>Bag</span></div>
+        </div>
+        <div class="vmega">
+          <div><h5>Tops</h5><ul><li>Sweats & Hoodies</li><li>Knitwear</li><li>Half-Zips</li><li>Tanks & Tees</li></ul></div>
+          <div><h5>Bottoms</h5><ul><li>Leggings</li><li>Joggers & Pants</li><li>Shorts</li><li>Wide Leg</li></ul></div>
+          <div><h5>Edits</h5><ul><li>DoubleSoft®</li><li>The Vacation Edit</li><li>Dresses</li><li>Swimwear</li></ul></div>
+          <div><h5>Accessories</h5><ul><li>Sandals</li><li>Sunglasses</li><li>Bags & Totes</li><li>Gift Cards</li></ul></div>
+          <div class="promo"><b>The DoubleSoft® world</b><span>Our signature fabric, in every silhouette you reach for.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="anno-key">
+      <div class="row"><div class="num">1</div><div><b>Category-led entry.</b> <span>Clothing and Activewear become true destinations, not a single undifferentiated "Shop All".</span></div></div>
+      <div class="row"><div class="num">2</div><div><b>Hover-revealed structure.</b> <span>The full wardrobe maps out on hover, kept quiet and editorial so it never fights the brand.</span></div></div>
+      <div class="row"><div class="num">3</div><div><b>Persistent utilities.</b> <span>Search, wishlist and bag stay reachable — search in particular is a high-intent path the current header under-uses.</span></div></div>
+      <div class="row"><div class="num">4</div><div><b>Signature edit promoted.</b> <span>DoubleSoft® earns a permanent home in the menu rather than living only on the homepage.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PDP MOCKUP ============ -->
+<section id="pdp">
+  <div class="wrap">
+    <div class="sec-label">Product Page — Redesign</div>
+    <h2>The same page, <em>working harder</em>.</h2>
+    <p class="mock-intro lead">Taking the Hawley Half-Zip Sweat as the example. The desktop redesign is shown in full below, with the responsive mobile view and an annotated breakdown beneath it. Nothing changes the look of Varley — it brings the reasons to buy above the fold, in the brand's own register: a sticky gallery that holds the imagery in view as the details scroll, an editorial "a Varley signature" line in place of a star rating, an opening line of description, a quiet fit-confidence cue, a discreet instalment note, a waitlist on the sold-out size, in-store availability, and a styled "wear it with" strip. Real product imagery throughout.</p>
+
+    <div class="pdp-wrap">
+      <!-- DESKTOP -->
+      <div>
+        <div class="device-cap">Full redesign · desktop · sticky gallery</div>
+        <div class="dpdp">
+          <div class="vnav">
+            <div class="vnav-main"><div class="vnav-links"><a>Clothing</a><a>Activewear</a><a>New</a></div><div class="vnav-logo">VARLEY</div><div class="vnav-icons"><span>Search</span><span>♡</span><span>Bag</span></div></div>
+          </div>
+          <div class="dpdp-grid">
+            <div class="dgallery">
+              <div class="dthumbs">
+                <div class="th on"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/82e6478b8d61117eb70bca8ec54ccd9042cd3ac8_1_VAR01461_HAWLEY_HALF_ZIP_SWEAT_IVORY_MARL_040.jpg?v=1776764745&width=160&height=210&crop=center" alt="View 1"></div>
+                <div class="th"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/8727d807c3f5a1e4f7592607332c60501ae7887a_2_VAR01461_HAWLEY_HALF_ZIP_SWEAT_IVORY_MARL.jpg?v=1776764745&width=160&height=210&crop=center" alt="View 2"></div>
+                <div class="th"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/1d4d5e809f95a54d299218dd4f8c1ef9d9d4455c_3_VAR01461_HAWLEY_HALF_ZIP_SWEAT_IVORY_MARL.jpg?v=1776764745&width=160&height=210&crop=center" alt="View 3"></div>
+                <div class="th"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/a6dbbe1de3fefb79ef7975ff30494929b8caab05_4_VAR01461_HAWLEY_HALF_ZIP_SWEAT_IVORY_MARL.jpg?v=1776764745&width=160&height=210&crop=center" alt="View 4"></div>
+                <div class="th"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/077db863756db586eac3101246e57f4f8ba9747f_5_VAR01461_HAWLEY_HALF_ZIP_SWEAT_IVORY_MARL.jpg?v=1776764745&width=160&height=210&crop=center" alt="View 5"></div>
+                <div class="th"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/c3a04ff3425daa02386a36076e6503d36dea2a15_VAR01461_HAWLEY_SWEAT_IVORY_MARL_F.jpg?v=1776764745&width=160&height=210&crop=center" alt="View 6"></div>
+              </div>
+              <div class="dmain">
+                <img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/82e6478b8d61117eb70bca8ec54ccd9042cd3ac8_1_VAR01461_HAWLEY_HALF_ZIP_SWEAT_IVORY_MARL_040.jpg?v=1776764745&width=900&height=1180&crop=center" alt="Hawley Half-Zip Sweat in Ivory Marl">
+                <div class="gcount">01 / 06</div>
+              </div>
+            </div>
+            <div class="dinfo">
+              <div class="ttl">Hawley Half-Zip Sweat</div>
+              <div class="pr">£114.00</div>
+              <div class="dproof">A Varley signature — among our most-worn everyday pieces.</div>
+              <div class="ds">An oversized DoubleSoft® sweatshirt — lightweight, breathable and made for year-round wear in timeless silhouettes you'll reach for every day.</div>
+              <div class="dfitconf"><span class="dot"></span><b>Runs true to size</b> · 89% kept their usual size · model is 5'9", wears XS</div>
+              <div class="dlabel"><span>Colour — Ivory Marl</span></div>
+              <div class="dsw"><i class="sel" style="background:#EFE9DD"></i><i style="background:#1d1d1a"></i><i style="background:#9aa6b4"></i><i style="background:#b88a8a"></i><i style="background:#26303f"></i></div>
+              <div class="dlabel"><span>Size</span><a>Size chart</a></div>
+              <div class="dsizes"><b class="oos">XXS</b><b class="sel">XS</b><b>S</b><b>M</b><b>L</b><b>XL</b></div>
+              <div class="datc">ADD TO BAG</div>
+              <div class="dbnpl">Available in 3 instalments at checkout</div>
+              <div class="dstore anno-target" data-n="7">
+                <div class="ds-head"><span class="ds-pin">⌖</span><b>Check in-store availability</b><span class="ds-toggle">XS · Ivory Marl ▾</span></div>
+                <div class="ds-list">
+                  <div class="ds-store"><div><b>Varley SoHo</b><span>New York · 0.4 mi</span></div><span class="ds-tag in">In stock</span></div>
+                  <div class="ds-store"><div><b>Varley Marylebone</b><span>London · in 2 days</span></div><span class="ds-tag low">Low stock</span></div>
+                  <div class="ds-store"><div><b>Varley Los Angeles</b><span>Melrose Place</span></div><span class="ds-tag in">In stock</span></div>
+                </div>
+                <div class="ds-foot">Reserve to try on in store, or collect within the hour →</div>
+              </div>
+              <div class="dtrust"><div>↩ Complimentary 30-day returns</div><div>◷ Waitlist on sold-out sizes</div><div>✦ Free delivery on orders over £75</div></div>
+            </div>
+          </div>
+          <div class="ctl">
+            <h4>Complete the look</h4>
+            <div class="sub">Styled straight from the shoot — add the pieces worn together.</div>
+            <div class="ctl-grid">
+              <div class="ctl-item"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/016fcb335b8dff5c256d40bc31f5d58a783ad8bd_VAR01713_THE_SLIM_CUFF_PANT_25_IVORY_MARL_071.jpg?v=1774621168&width=440&height=580&crop=center" alt="The Slim Cuff Pant 25 inch in Ivory Marl"><div class="nm">The Slim Cuff Pant 25"</div><div class="pc">£102.00</div><div class="add">+ Add</div></div>
+              <div class="ctl-item"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/25fcffd83df52aacae805cfd2b2d680b8ab673dc_1_VAR02105_THE_WIDE_LEG_PANT_28_IVORY_MARL_175.jpg?v=1774621181&width=440&height=580&crop=center" alt="The Wide Leg Pant 28 inch in Ivory Marl"><div class="nm">The Wide Leg Pant 28"</div><div class="pc">£104.00</div><div class="add">+ Add</div></div>
+              <div class="ctl-item"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/00b0fb5958ef90553d02ef3fff94af7f2225a313_1_VAR01759_ATRIUM_HIGH_RISE_SHORT_4.5_PORCELAIN_BLUE_003.jpg?v=1773736707&width=440&height=580&crop=center" alt="Atrium High-Rise Short in Porcelain Blue"><div class="nm">Atrium High-Rise Short</div><div class="pc">£78.00</div><div class="add">+ Add</div></div>
+              <div class="ctl-item"><img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/cf353ca7ddf9bb32c8dd3ea5e44b8b0e9eed9e7d_1_Market_Tote_Ivory.jpg?v=1771256359&width=440&height=580&crop=center" alt="Market Tote in Ivory"><div class="nm">Market Tote</div><div class="pc">£39.00</div><div class="add">+ Add</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOBILE + KEY POINTS -->
+      <div class="pdp-lower">
+        <div class="pdp-block-mobile">
+          <div class="device-cap">Responsive · 375px</div>
+          <div class="phone anno">
+            <div class="pin" data-n="1" style="top:512px;left:12px">1</div>
+            <div class="pin" data-n="2" style="top:548px;left:12px">2</div>
+            <div class="pin" data-n="3" style="top:600px;right:12px">3</div>
+            <div class="pin" data-n="4" style="top:756px;right:12px">4</div>
+            <div class="pin" data-n="5" style="top:790px;left:12px">5</div>
+            <div class="pin" data-n="7" style="top:822px;right:12px">7</div>
+            <div class="pin" data-n="6" style="top:892px;left:12px">6</div>
+            <div class="vbar">FREE UK RETURNS WITHIN 30 DAYS</div>
+            <div class="ptop"><span>☰</span><div class="plogo">VARLEY</div><span>♡ &nbsp; Bag</span></div>
+            <div class="pgallery">
+              <img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/82e6478b8d61117eb70bca8ec54ccd9042cd3ac8_1_VAR01461_HAWLEY_HALF_ZIP_SWEAT_IVORY_MARL_040.jpg?v=1776764745&width=560&height=620&crop=center" alt="Hawley Half-Zip Sweat in Ivory Marl">
+              <div class="pg-dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="pbody">
+              <div class="ptitle">Hawley Half-Zip Sweat</div>
+              <div class="pprice">£114.00</div>
+              <div class="pproof">A Varley signature — among our most-worn pieces.</div>
+              <div class="pdesc">An oversized DoubleSoft® sweatshirt — lightweight, breathable and made for year-round wear. Your everyday essential.</div>
+              <div class="pfitconf"><span class="pdot"></span><b>Runs true to size</b> · model 5'9", wears XS</div>
+              <div class="plabel"><span>Colour — Ivory Marl</span></div>
+              <div class="swatches"><i class="sel" style="background:#EFE9DD"></i><i style="background:#1d1d1a"></i><i style="background:#9aa6b4"></i><i style="background:#b88a8a"></i><i style="background:#26303f"></i></div>
+              <div class="plabel"><span>Size</span><a>Size chart</a></div>
+              <div class="sizes"><b class="oos">XXS</b><b class="sel">XS</b><b>S</b><b>M</b><b>L</b><b>XL</b></div>
+              <div class="notify">◷ XXS sold out — join the <b>&nbsp;waitlist&nbsp;</b> and we'll let you know.</div>
+              <div class="bnpl">Available in 3 instalments at checkout.</div>
+              <div class="pstore"><span>⌖ &nbsp;Check in-store availability</span><span class="pstore-in">3 stores ›</span></div>
+              <div class="pstyled">
+                <div class="ps-h">Wear it with</div>
+                <div class="ps-row">
+                  <img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/016fcb335b8dff5c256d40bc31f5d58a783ad8bd_VAR01713_THE_SLIM_CUFF_PANT_25_IVORY_MARL_071.jpg?v=1774621168&width=260&height=346&crop=center" alt="Slim Cuff Pant">
+                  <img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/25fcffd83df52aacae805cfd2b2d680b8ab673dc_1_VAR02105_THE_WIDE_LEG_PANT_28_IVORY_MARL_175.jpg?v=1774621181&width=260&height=346&crop=center" alt="Wide Leg Pant">
+                  <img src="https://cdn.shopify.com/s/files/1/0090/1509/9507/files/cf353ca7ddf9bb32c8dd3ea5e44b8b0e9eed9e7d_1_Market_Tote_Ivory.jpg?v=1771256359&width=260&height=346&crop=center" alt="Market Tote">
+                </div>
+              </div>
+            </div>
+            <div class="stickyatc">
+              <div class="mini"><b>£114</b><br>XS · Ivory Marl</div>
+              <div class="atc">ADD TO BAG</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="kp-hint">Hover a point to <b>locate it</b> on the page</div>
+          <div class="keypoints">
+            <div class="kp" data-target="1"><div class="kn">1</div><div class="kt"><b>Proof in the brand's voice</b><span>An editorial "a Varley signature" line sits under the price — borrowed prestige, not a star widget. The number-led rating stays out of the buy zone entirely.</span></div></div>
+            <div class="kp" data-target="2"><div class="kn">2</div><div class="kt"><b>One editorial line, in view</b><span>A single line on fabric and feel reads above the fold; the considered accordions stay below for those who read on.</span></div></div>
+            <div class="kp" data-target="3"><div class="kn">3</div><div class="kt"><b>Fit confidence, quietly</b><span>"Runs true to size · model wears XS" sits beside the size selector — data that settles real doubt without theatre. The single biggest lever on both conversion and returns.</span></div></div>
+            <div class="kp" data-target="4"><div class="kn">4</div><div class="kt"><b>Waitlist as desirability</b><span>The sold-out XXS invites a waitlist rather than dead-ending — recovering demand while reading as something worth waiting for, not scarcity pressure.</span></div></div>
+            <div class="kp" data-target="5"><div class="kn">5</div><div class="kt"><b>Instalments, understated</b><span>A single discreet line that instalments are available — present for those who want it, never shouted in a badge.</span></div></div>
+            <div class="kp" data-target="6"><div class="kn">6</div><div class="kt"><b>Styled together</b><span>A "wear it with" strip of the pieces from the shoot, made shoppable — shown full-width on desktop, condensed on mobile. The most brand-native way to lift basket value.</span></div></div>
+            <div class="kp" data-target="7"><div class="kn">7</div><div class="kt"><b>Check in-store availability</b><span>Live stock across the SoHo, London and Los Angeles stores, with reserve-to-try-on. Turns the store network into a conversion and discovery asset — and is most valuable in the US, where the SoHo flagship anchors the brand.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARKET LENS ============ -->
+<section id="market">
+  <div class="wrap">
+    <div class="sec-label">Market Lens</div>
+    <h2>UK <em>restraint</em>, US <em>momentum</em>.</h2>
+    <p class="lead">The brand codes don't change across the two storefronts — but the dial does. The UK shopper rewards editorial restraint; the US is Varley's home market and a far more crowded premium-activewear set, where shoppers actively expect proof, fit data and performance language. Same quiet confidence, tuned to each audience.</p>
+
+    <div class="market-grid">
+      <div class="market-col uk">
+        <div class="mc-flag">uk.varley.com</div>
+        <h3>United Kingdom</h3>
+        <div class="mc-sub">Restraint-forward · editorial premium</div>
+        <ul>
+          <li><b>Proof, understated.</b> Editorial and press validation over visible ratings. Reviews present but quiet, lower on the page.</li>
+          <li><b>VAT-inclusive pricing</b> — the £ shown is the £ paid. Reassure on this rather than surprising at checkout.</li>
+          <li><b>£75 free-delivery</b> stated as quiet reassurance, not a progress meter.</li>
+          <li><b>Clearpay / Klarna</b> surfaced discreetly — the UK premium shopper expects subtlety.</li>
+          <li><b>Tone:</b> London refinement. Let whitespace and photography carry the confidence.</li>
+        </ul>
+      </div>
+      <div class="market-col us">
+        <div class="mc-flag">varley.com</div>
+        <h3>United States</h3>
+        <div class="mc-sub">Momentum-forward · proof &amp; performance</div>
+        <ul>
+          <li><b>Proof, more visible.</b> US shoppers reward fit data, customer imagery and reviews up front — still tasteful, but doing more work than in the UK.</li>
+          <li><b>Performance credentials</b> earn their place: fabric, movement, "good things come to those who sweat." Lean into the active heritage.</li>
+          <li><b>$100 free shipping + prepaid returns</b> stated with confidence; sales tax shown transparently before checkout.</li>
+          <li><b>Afterpay / Affirm</b> are near-expected at this price — present more openly than in the UK.</li>
+          <li><b>Omnichannel hook:</b> the SoHo flagship and LA/NY presence — surface store stock and book-in-store as a trust and discovery lever.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="market-foot">In short: hold the line on understatement in the UK; let proof and performance step forward in the US — without ever leaving the "quiet confidence" register that ties the brand together.</p>
+  </div>
+</section>
+
+<!-- ============ QUICK WINS ============ -->
+<section id="wins" style="background:#F4F0E8">
+  <div class="wrap">
+    <div class="sec-label">Quick Wins</div>
+    <h2>Six changes you could <em>ship this fortnight</em>.</h2>
+    <div class="qw-grid">
+      <div class="qw"><div class="qn">01</div><h4>Fit confidence line</h4><p>"Runs true to size · model wears XS" beside the size selector. The single highest-leverage reassurance — and pure configuration, not a build.</p></div>
+      <div class="qw"><div class="qn">02</div><h4>One line above the fold</h4><p>Lift a single editorial line on fabric or feel above the accordions, so no shopper meets a price with no reason behind it.</p></div>
+      <div class="qw"><div class="qn">03</div><h4>Editorial proof, not stars</h4><p>A quiet "a Varley signature" or press line near the title. Borrowed prestige in the brand's voice — never a star widget in the buy zone.</p></div>
+      <div class="qw"><div class="qn">04</div><h4>Instalments, discreetly</h4><p>One understated line that instalments are available. Present for those who want it, never shouted. A setting on most stacks.</p></div>
+      <div class="qw"><div class="qn">05</div><h4>Waitlist on sold-out</h4><p>Swap dead sold-out sizes for a waitlist. Recovers demand you're losing silently — and reads as desirability.</p></div>
+      <div class="qw"><div class="qn">06</div><h4>Quiet delivery cue</h4><p>A single line in the bag toward the £75 threshold — "complimentary delivery" once met. Reassurance, not a progress meter.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-label">Phased Roadmap</div>
+    <h2>A sensible order to <em>do it in</em>.</h2>
+    <div class="road">
+      <div class="phase">
+        <div class="ph">Phase 01</div>
+        <h4>Foundations</h4>
+        <div class="win">Weeks 1–3 · low lift, fast return</div>
+        <ul>
+          <li>Fit-confidence line at the size selector</li>
+          <li>One editorial line above the accordions</li>
+          <li>Editorial proof near the title (no star widget)</li>
+          <li>Discreet instalment messaging</li>
+          <li>Waitlist on sold-out sizes</li>
+          <li>Quiet delivery cue in the basket</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="ph">Phase 02</div>
+        <h4>Structure</h4>
+        <div class="win">Weeks 4–8 · build & merchandise</div>
+        <ul>
+          <li>Category-led navigation with hover menu</li>
+          <li>Complete-the-look module on the PDP</li>
+          <li>Sticky add-to-bag on mobile</li>
+          <li>Search promoted as a primary path</li>
+          <li>DoubleSoft® edit given a permanent home</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="ph">Phase 03</div>
+        <h4>Optimise</h4>
+        <div class="win">Weeks 9–12 · test & compound</div>
+        <ul>
+          <li>Homepage segmented entry points</li>
+          <li>Considered reviews & fit notes, lower on the PDP</li>
+          <li>Curated customer imagery, styled as editorial</li>
+          <li>Restrained post-add cross-sell</li>
+          <li>Structured A/B programme on the above</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="nb-img" style="width:250px;height:32px" role="img" aria-label="Northbound Commerce"></div>
+        <h3>A premium store deserves a <em>conversion layer</em> as considered as its creative.</h3>
+        <p>Every gap in this audit is costing conversion now — and each one can be closed inside your current platform and brand guidelines. Northbound partners with premium and luxury brands to do exactly this: senior CRO and UX work handled on an ongoing basis, not a one-off fix. Let's talk through the priorities here and the revenue behind them.</p>
+      </div>
+      <div class="foot-cta">
+        <a class="solid" href="https://northboundcommerce.co.uk/#contact" target="_blank">Book a call</a>
+        <a href="https://northboundcommerce.co.uk/northbound-work.html" target="_blank">See the work</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>Northbound Commerce · CRO & Digital Experience</span>
+      <span>Prepared for Varley · Conversion & Experience Audit</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var kps = document.querySelectorAll('.kp');
+    kps.forEach(function(kp){
+      var n = kp.getAttribute('data-target');
+      var targets = document.querySelectorAll('.pin[data-n="'+n+'"], .anno-target[data-n="'+n+'"]');
+      function on(){ kp.style.background='#fff'; targets.forEach(function(p){p.classList.add('active');}); }
+      function off(){ kp.style.background=''; targets.forEach(function(p){p.classList.remove('active');}); }
+      kp.addEventListener('mouseenter', on);
+      kp.addEventListener('mouseleave', off);
+      targets.forEach(function(p){
+        p.addEventListener('mouseenter', on);
+        p.addEventListener('mouseleave', off);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
