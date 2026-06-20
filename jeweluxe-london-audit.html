@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeweluxe London — Conversion &amp; Experience Review · Northbound Commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF9F6;
+    --surface:#FFFFFF;
+    --ink:#14161A;
+    --ink-2:#3C3A38;
+    --mute:#7A746B;
+    --line:#E7E1D7;
+    --stone:#EFEAE1;
+    --gold:#9C7B4A;
+    --char:#14161A;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Montserrat', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  .ey{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+
+  /* NB logo */
+  .nb{font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:-.01em;color:currentColor;display:inline-flex;align-items:baseline;white-space:nowrap}
+  .nb .bw{position:relative;display:inline-block}
+  .nb .sp{position:absolute;top:-.62em;left:50%;transform:translateX(-50%);width:9px;height:9px}
+  .nb .cm{margin-left:.4em;font-weight:700;opacity:1}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(251,249,246,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;color:var(--ink)}
+  .nav-links{display:flex;gap:30px}
+  .nav-links a{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);text-decoration:none;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* hero */
+  .hero{padding:92px 0 60px;border-bottom:1px solid var(--line)}
+  .hero .ey{margin-bottom:26px}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,7.4vw,82px);line-height:1.02;letter-spacing:-.005em;max-width:15ch}
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero .lede{font-size:19px;font-weight:300;color:var(--ink-2);max-width:62ch;margin-top:26px;line-height:1.6}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:46px;margin-top:46px}
+  .hero-meta .k{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:500}
+  .hero-meta .v{font-family:var(--serif);font-size:23px;margin-top:6px}
+
+  section{padding:70px 0;border-bottom:1px solid var(--line)}
+  .sec-head{margin-bottom:38px;max-width:74ch}
+  .sec-head .ey{margin-bottom:16px}
+  .sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.8vw,48px);line-height:1.05;letter-spacing:-.005em}
+  .sec-head p{margin-top:14px;font-weight:300;font-size:18px;color:var(--ink-2)}
+  p.body{font-weight:300;font-size:17px;color:var(--ink-2);max-width:72ch}
+  p.body + p.body{margin-top:15px}
+  .gold-rule{width:42px;height:1px;background:var(--gold);margin:0 0 22px}
+
+  /* exec */
+  .exec{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:start}
+  @media(max-width:820px){.exec{grid-template-columns:1fr;gap:34px}}
+  .stand{border:1px solid var(--line);background:var(--surface);padding:30px}
+  .stand h3{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:6px}
+  .stand .sub{font-size:12px;color:var(--mute);letter-spacing:.04em;margin-bottom:18px}
+  .stand .row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid var(--line);font-size:14px}
+  .stand .row span{color:var(--ink-2)}
+  .stand .row b{font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  .stand .row b.on{color:var(--gold)}
+  .stand .row b.low{color:var(--mute)}
+
+  /* opportunity cards */
+  .opps{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  @media(max-width:720px){.opps{grid-template-columns:1fr}}
+  .opp{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 28px}
+  .opp .n{font-family:var(--serif);font-size:22px;font-style:italic;color:var(--gold)}
+  .opp h3{font-family:var(--serif);font-size:26px;font-weight:500;margin:8px 0 10px;line-height:1.1}
+  .opp p{font-weight:300;font-size:14.5px;color:var(--ink-2)}
+
+  /* priorities table */
+  .t{width:100%;border-collapse:collapse;font-size:14.5px}
+  .t th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:500;text-align:left;padding:0 14px 14px;border-bottom:1px solid var(--ink)}
+  .t td{padding:18px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  .t tr td:first-child{font-family:var(--serif);font-size:22px;color:var(--ink);width:34px}
+  .t .ti{font-weight:500}
+  .t .td{display:block;color:var(--mute);font-weight:300;font-size:13.5px;margin-top:4px;max-width:62ch}
+  .lens{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+  .pill{display:inline-block;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:4px 9px;border-radius:2px;white-space:nowrap}
+  .pr{background:var(--ink);color:var(--paper)}
+  .ph{background:#8A7B63;color:#fff}
+  .pm{background:var(--stone);color:var(--ink-2)}
+  .pl{background:transparent;border:1px solid var(--line);color:var(--mute)}
+  .eff{font-size:11px;color:var(--mute);letter-spacing:.04em}
+  @media(max-width:760px){.t .colhide{display:none}.t td{padding:14px 8px}.t th{padding:0 8px 12px}}
+
+  /* mock label */
+  .ml{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:16px;display:flex;align-items:center;gap:9px}
+  .ml::before{content:"";width:18px;height:1px;background:var(--gold)}
+  .cap{font-weight:300;font-size:15px;color:var(--ink-2);max-width:74ch;margin-top:22px}
+  .cap b{font-weight:500;color:var(--ink)}
+  .illus{font-size:12px;color:var(--mute);font-weight:300;margin-top:12px;font-style:italic}
+
+  /* nav mockup (brand styled: white, square, montserrat) */
+  .nm{border:1px solid var(--line);background:#fff;box-shadow:0 30px 70px -50px rgba(0,0,0,.5)}
+  .nm .top{display:flex;align-items:center;justify-content:space-between;padding:18px 26px;border-bottom:1px solid #eee}
+  .nm .brand{font-family:var(--sans);font-weight:500;letter-spacing:.32em;font-size:17px}
+  .nm .util{display:flex;gap:18px;color:#8a8a8a}
+  .nm .util svg{width:18px;height:18px}
+  .nm .main{display:flex;gap:30px;align-items:center;padding:14px 26px;border-bottom:1px solid #eee}
+  .nm .main a{font-family:var(--sans);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);text-decoration:none;font-weight:400}
+  .nm .main .cta{margin-left:auto;border:1px solid var(--ink);padding:9px 18px;font-size:10.5px;letter-spacing:.13em}
+  .nm .fly{background:var(--paper);padding:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .nm .fly h5{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:11px;font-weight:600}
+  .nm .fly a{display:block;font-size:13px;font-weight:300;color:var(--ink-2);padding:4px 0;text-decoration:none}
+  @media(max-width:620px){.nm .fly{grid-template-columns:1fr 1fr}.nm .main{flex-wrap:wrap;gap:16px}}
+
+  /* PDP desktop (brand styled) */
+  .pdpd{border:1px solid var(--line);background:#fff;box-shadow:0 30px 70px -50px rgba(0,0,0,.5);overflow:hidden}
+  .pdpd .topbar{text-align:center;padding:14px;border-bottom:1px solid #eee;font-family:var(--sans);font-weight:500;letter-spacing:.34em;font-size:15px}
+  .pdpd .stage{display:grid;grid-template-columns:1.05fr 1fr}
+  @media(max-width:720px){.pdpd .stage{grid-template-columns:1fr}}
+  .pdpd .gal{padding:20px;display:flex;flex-direction:column;gap:10px;background:#faf8f5}
+  .pdpd .gal .main{aspect-ratio:1;overflow:hidden;background:#ece5da}
+  .pdpd .gal .main img{width:100%;height:100%;object-fit:cover;display:block}
+  .pdpd .gal .th{display:flex;gap:9px}
+  .pdpd .gal .th span{flex:1;aspect-ratio:1;overflow:hidden;background:#e3dacb}
+  .pdpd .gal .th span img{width:100%;height:100%;object-fit:cover}
+  .pdpd .gal .th span.on{outline:1px solid var(--ink);outline-offset:2px}
+  .pdpd .buy{padding:30px}
+  .crumb{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa}
+  .pdpd .buy h3{font-family:var(--sans);font-weight:400;font-size:24px;letter-spacing:.02em;margin:9px 0 6px}
+  .stars{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mute);margin-bottom:14px}
+  .stars .s{color:var(--gold);letter-spacing:2px;font-size:13px}
+  .pprice{font-family:var(--sans);font-weight:400;font-size:21px}
+  .ship{font-size:11px;color:var(--mute);margin-top:3px}
+  .fld{margin-top:22px}
+  .fld .fl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .fld .fl a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);font-size:9.5px}
+  .opts{display:flex;gap:9px;flex-wrap:wrap}
+  .opt{border:1px solid var(--line);padding:9px 13px;font-size:12px;line-height:1.35}
+  .opt.on{border-color:var(--ink)}
+  .opt b{display:block;font-weight:500}
+  .opt span{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+  .sizes{display:flex;gap:6px;flex-wrap:wrap}
+  .sz{width:34px;height:34px;border:1px solid var(--line);display:grid;place-items:center;font-size:12px}
+  .sz.on{border-color:var(--ink);background:var(--ink);color:#fff}
+  .atc{margin-top:24px;width:100%;background:var(--ink);color:#fff;border:none;padding:16px;font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;cursor:default}
+  .fin{text-align:center;font-size:12px;color:var(--mute);margin-top:11px;font-weight:300}
+  .fin b{color:var(--ink);font-weight:500}
+  .cert{margin-top:22px;border:1px solid var(--line);padding:18px}
+  .cert .ch{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:600}
+  .cert .ch a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink)}
+  .cert .g{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .cert .g b{display:block;font-family:var(--serif);font-size:22px;font-weight:500}
+  .cert .g span{font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .cert .no{margin-top:13px;font-size:10px;color:var(--mute);letter-spacing:.04em}
+  .marks{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .mark{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line);padding:7px 11px;display:flex;align-items:center;gap:6px}
+  .mark svg{width:12px;height:12px;color:var(--gold)}
+
+  /* mobile pdp */
+  .phone{width:360px;max-width:100%;margin:0;border:9px solid var(--ink);border-radius:38px;overflow:hidden;background:#fff;box-shadow:0 34px 80px -44px rgba(0,0,0,.55)}
+  .phone .sc{height:600px;overflow:hidden}
+  .phone .pb{height:34px;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:500;letter-spacing:.3em;font-size:13px;border-bottom:1px solid #eee}
+  .phone .pimg{aspect-ratio:1;background:#ece5da;overflow:hidden}
+  .phone .pimg img{width:100%;height:100%;object-fit:cover;display:block}
+  .phone .pbd{padding:16px}
+  .phone .pbd h4{font-family:var(--sans);font-weight:400;font-size:19px;letter-spacing:.02em}
+  .phone .pst{font-size:10px;color:var(--gold);letter-spacing:1px;margin:5px 0}
+  .phone .ppr{font-size:17px;margin-top:2px}
+  .phone .pm2{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:14px 0 8px;display:flex;justify-content:space-between}
+  .phone .pm2 a{color:var(--ink);text-decoration:none}
+  .phone .patc{margin-top:14px;background:var(--ink);color:#fff;text-align:center;padding:13px;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  .phone .pfin{text-align:center;font-size:11px;color:var(--mute);margin-top:8px;font-weight:300}
+  .phone .pcert{margin-top:14px;border:1px solid var(--line);padding:13px}
+  .phone .pcert .h{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;justify-content:space-between;font-weight:600}
+  .phone .pcert .g{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+  .phone .pcert .g b{display:block;font-family:var(--serif);font-size:16px;font-weight:500}
+  .phone .pcert .g span{font-size:7px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
+
+  /* quick wins */
+  .qw{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  @media(max-width:680px){.qw{grid-template-columns:1fr}}
+  .qw .i{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 26px;display:flex;gap:15px;align-items:flex-start}
+  .qw .i .x{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--gold);flex:none}
+  .qw .i h4{font-size:14.5px;font-weight:500}
+  .qw .i p{font-size:13px;color:var(--mute);font-weight:300;margin-top:4px}
+
+  /* roadmap */
+  .road{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink);margin-top:4px}
+  @media(max-width:760px){.road{grid-template-columns:1fr;border-top:none}}
+  .phase{position:relative;padding:38px 34px 32px 0}
+  @media(min-width:761px){.phase{padding-left:34px;border-right:1px solid var(--line)}.phase:first-child{padding-left:0}.phase:last-child{border-right:none;padding-right:0}}
+  @media(max-width:760px){.phase{border-top:1px solid var(--line);padding:30px 0}}
+  .phase::before{content:"";position:absolute;top:-4.5px;left:0;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  @media(max-width:760px){.phase::before{display:none}}
+  .phase .num{font-family:var(--serif);font-style:italic;font-weight:500;font-size:44px;line-height:1;color:var(--ink)}
+  .phase .when{display:block;margin-top:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .phase h3{font-family:var(--serif);font-size:27px;font-weight:500;margin:4px 0 0}
+  .phase .out{font-family:var(--serif);font-style:italic;font-size:16.5px;line-height:1.45;color:var(--ink-2);margin:14px 0 20px;max-width:30ch}
+  .phase ul{list-style:none}
+  .phase li{font-size:13px;font-weight:300;color:var(--ink-2);padding:12px 0;border-top:1px solid var(--line);display:flex;gap:12px;align-items:baseline}
+  .phase li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold);flex:none;position:relative;top:7px}
+  .phase li b{font-weight:600;color:var(--ink)}
+
+  /* footer */
+  footer{background:var(--char);color:#EDEAE3;padding:72px 0 44px}
+  footer .ft{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;padding-bottom:38px;border-bottom:1px solid #2a2c30}
+  footer h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4.4vw,42px);max-width:20ch;line-height:1.1}
+  footer .fcta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#EDEAE3;text-decoration:none;border:1px solid #3a3d42;padding:14px 24px;white-space:nowrap;transition:border-color .2s}
+  footer .fcta:hover{border-color:var(--gold)}
+  footer .pf{display:flex;gap:60px;flex-wrap:wrap;margin-top:34px}
+  footer .pf .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7c7f84;margin-bottom:7px}
+  footer .pf .v{font-family:var(--serif);font-size:19px}
+  footer .fbot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:40px;font-size:11px;letter-spacing:.04em;color:#7c7f84}
+  footer .fbot a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav"><div class="wrap">
+  <span class="nb" aria-label="Northbound Commerce">North<span class="bw">b<svg class="sp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c1 7 4 11 12 12-8 1-11 5-12 12-1-7-4-11-12-12 8-1 11-5 12-12Z"/></svg></span>ound<span class="cm">Commerce</span></span>
+  <nav class="nav-links">
+    <a href="#summary">Summary</a>
+    <a href="#revenue">Opportunity</a>
+    <a href="#priorities">Priorities</a>
+    <a href="#pdp">Product page</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="https://northboundcommerce.co.uk/northbound-work.html" target="_blank" rel="noopener" style="color:var(--ink)">Our Work ↗</a>
+  </nav>
+</div></div>
+
+<!-- HERO -->
+<header class="hero"><div class="wrap">
+  <div class="ey">Jeweluxe London · Conversion &amp; Experience Review · June 2026</div>
+  <h1>You've earned the attention. <em>Now convert it.</em></h1>
+  <p class="lede">A strong, well-followed brand is already sending qualified buyers to the site. This review is about the distance between that demand and the considered, trust-led buying experience a four-figure purchase asks for — measured against the standard set by houses such as Boodles and De Beers.</p>
+  <div class="hero-meta">
+    <div><div class="k">Reviewed</div><div class="v">Home · Product · Collections · Bespoke</div></div>
+    <div><div class="k">Price range</div><div class="v">£1,210 – £3,355</div></div>
+    <div><div class="k">Category</div><div class="v">Lab-grown bridal &amp; fine</div></div>
+  </div>
+</div></header>
+
+<!-- EXEC SUMMARY -->
+<section id="summary"><div class="wrap">
+  <div class="sec-head"><div class="ey">Executive summary</div><h2>The hard part is done</h2></div>
+  <div class="exec">
+    <div>
+      <div class="gold-rule"></div>
+      <p class="body">Jeweluxe is winning the most expensive thing to win: attention. An active, well-followed presence across Instagram, TikTok and Pinterest is generating real demand and sending qualified, high-intent visitors to the store. That is the foundation most jewellery brands spend years trying to build.</p>
+      <p class="body">The commercial opportunity now sits entirely on-site. The pieces are beautifully made and properly credentialled — IGI-certified, UK-hallmarked, handcrafted in London — yet the buying experience doesn't carry those credentials to the moment of decision. The product page, where the sale is won or lost, omits the certification detail, sizing confidence, social proof and payment flexibility that a considered four-figure purchase requires. The same traffic, met with the buying experience of an established luxury house, converts at a materially higher rate and basket value.</p>
+      <p class="body">The benchmark throughout is luxury, not mass-market. The recommendations favour certification transparency, private appointments and provenance storytelling over discounting and urgency tactics — the codes that brands like Boodles and De Beers use to justify the price and earn the trust.</p>
+    </div>
+    <div class="stand">
+      <h3>Where it stands</h3>
+      <div class="sub">A qualitative read across the funnel</div>
+      <div class="row"><span>Demand &amp; brand awareness</span><b class="on">Strong</b></div>
+      <div class="row"><span>Product &amp; craftsmanship</span><b class="on">Strong</b></div>
+      <div class="row"><span>Trust signals on-site</span><b class="low">Underbuilt</b></div>
+      <div class="row"><span>Product-page experience</span><b class="low">Underbuilt</b></div>
+      <div class="row"><span>Bespoke conversion</span><b class="low">Untapped</b></div>
+      <div class="row"><span>Payment flexibility</span><b class="low">Absent</b></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- REVENUE OPPORTUNITY -->
+<section id="revenue"><div class="wrap">
+  <div class="sec-head"><div class="ey">Where the revenue is</div><h2>Four moves, in priority order</h2><p>Each converts demand you already have, rather than chasing more of it.</p></div>
+  <div class="opps">
+    <div class="opp"><div class="n">i.</div><h3>Mirror the demand on-site</h3><p>The audience and the happy customers exist; the proof isn't on the page. Activating reviews, customer imagery and press turns social momentum into on-site confidence exactly where buyers hesitate. The review tool is already installed — it simply isn't populated or surfaced.</p></div>
+    <div class="opp"><div class="n">ii.</div><h3>Make bespoke a booked experience</h3><p>Bespoke is the highest-value, highest-margin offer and currently routes high-intent enquiries into a general contact form. A bookable private appointment and a guided enquiry lift the conversation from a £1,350 catalogue ring to a £3,000+ commission.</p></div>
+    <div class="opp"><div class="n">iii.</div><h3>Remove the price barrier</h3><p>There is no way to spread the cost on pieces between £1,200 and £3,400. Interest-free instalments make four-figure purchases accessible to more of your existing traffic — without ever discounting the brand.</p></div>
+    <div class="opp"><div class="n">iv.</div><h3>Tell the certification story</h3><p>Every stone has an IGI report and a UK hallmark; neither appears on the product. Surfacing the full grade and provenance — the De Beers and Boodles standard — is what converts a considered diamond buyer and defends the price.</p></div>
+  </div>
+</div></section>
+
+<!-- PRIORITIES -->
+<section id="priorities"><div class="wrap">
+  <div class="sec-head"><div class="ey">Priorities</div><h2>What's costing conversion</h2><p>Every point below was verified on the live site. Ordered by commercial impact.</p></div>
+  <table class="t">
+    <thead><tr><th></th><th>Observation</th><th class="colhide">Theme</th><th>Priority</th><th class="colhide">Effort</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><span class="ti">The certificate isn't on the product page</span><span class="td">The homepage carries an IGI-certified badge, but the individual stone's colour, clarity, cut and report number don't appear where the buyer decides. Only carat is mentioned, in the description.</span></td><td class="colhide"><span class="lens">Trust</span></td><td><span class="pill pr">Priority</span></td><td class="colhide"><span class="eff">Low</span></td></tr>
+      <tr><td>2</td><td><span class="ti">No social proof at the point of sale</span><span class="td">Judge.me is installed but shows no reviews ("be the first"), and the demand built on Instagram and TikTok isn't reflected as on-site proof. The infrastructure is there; it's empty.</span></td><td class="colhide"><span class="lens">Trust</span></td><td><span class="pill pr">Priority</span></td><td class="colhide"><span class="eff">Low–Med</span></td></tr>
+      <tr><td>3</td><td><span class="ti">No ring-sizing guidance</span><span class="td">Size is a bare A–Z dropdown with no size guide or at-home measuring help — on a purchase frequently made for someone else, where getting it wrong drives returns and hesitation.</span></td><td class="colhide"><span class="lens">Friction</span></td><td><span class="pill ph">High</span></td><td class="colhide"><span class="eff">Low</span></td></tr>
+      <tr><td>4</td><td><span class="ti">No way to spread the cost</span><span class="td">No instalment option (Klarna, Clearpay or Shop Pay) on pieces from £1,200 to £3,400. A standard, expected accommodation in lab-grown bridal that removes a real barrier.</span></td><td class="colhide"><span class="lens">Conversion</span></td><td><span class="pill ph">High</span></td><td class="colhide"><span class="eff">Low</span></td></tr>
+      <tr><td>5</td><td><span class="ti">Consultation routes to a general form</span><span class="td">"Book a Consultation" leads to the standard contact page rather than a scheduled private appointment — the experience an established house offers a high-intent bespoke enquiry.</span></td><td class="colhide"><span class="lens">Conversion</span></td><td><span class="pill ph">High</span></td><td class="colhide"><span class="eff">Med</span></td></tr>
+      <tr><td>6</td><td><span class="ti">Trust marks live on the homepage, not the PDP</span><span class="td">IGI certification and UK hallmarking are shown on the homepage but don't appear beside Add to Cart, where reassurance does its work.</span></td><td class="colhide"><span class="lens">Trust</span></td><td><span class="pill pm">Medium</span></td><td class="colhide"><span class="eff">Low</span></td></tr>
+      <tr><td>7</td><td><span class="ti">Collections can't be filtered or sorted</span><span class="td">No refinement by metal, stone, shape or price. Workable at today's range; a growing friction as the catalogue expands and buyers arrive with a specific intent.</span></td><td class="colhide"><span class="lens">Discovery</span></td><td><span class="pill pm">Medium</span></td><td class="colhide"><span class="eff">Med</span></td></tr>
+      <tr><td>8</td><td><span class="ti">Ready-to-ship vs made-to-order is buried</span><span class="td">A meaningful choice — immediate dispatch versus a 2–3 week handcrafted piece, and what each means for price — sits inside a plain dropdown label rather than being presented as a clear decision.</span></td><td class="colhide"><span class="lens">Clarity</span></td><td><span class="pill pm">Medium</span></td><td class="colhide"><span class="eff">Low</span></td></tr>
+      <tr><td>9</td><td><span class="ti">Not every category resolves to its own edit</span><span class="td">The Earrings link points to a generic collection rather than a curated earrings page — a small discoverability leak in an otherwise clean navigation.</span></td><td class="colhide"><span class="lens">Discovery</span></td><td><span class="pill pl">Low</span></td><td class="colhide"><span class="eff">Low</span></td></tr>
+      <tr><td>10</td><td><span class="ti">The 5% welcome is a flat discount</span><span class="td">Capturing the email as access — early bespoke slots, anniversary reminders, private previews — builds more lifetime value than a one-off code, and suits the brand better.</span></td><td class="colhide"><span class="lens">Retention</span></td><td><span class="pill pl">Low</span></td><td class="colhide"><span class="eff">Med</span></td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<!-- NAV MOCKUP -->
+<section id="nav"><div class="wrap">
+  <div class="sec-head"><div class="ey">Navigation</div><h2>Let buyers shop the way they think</h2><p>By metal, by stone, by budget — and give bespoke and private appointments the prominence they earn.</p></div>
+  <div class="ml">Proposed navigation</div>
+  <div class="nm">
+    <div class="top">
+      <span class="brand">JEWELUXE</span>
+      <div class="util">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 8.5C20 13 12 19 12 19S4 13 4 8.5A4 4 0 0 1 12 6a4 4 0 0 1 8 2.5Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      </div>
+    </div>
+    <div class="main">
+      <a href="#nav">Engagement</a><a href="#nav">Rings</a><a href="#nav">Necklaces</a><a href="#nav">Earrings</a><a href="#nav">Bespoke</a><a href="#nav">Our Story</a>
+      <span class="cta">BOOK AN APPOINTMENT</span>
+    </div>
+    <div class="fly">
+      <div><h5>By metal</h5><a href="#nav">Platinum</a><a href="#nav">18ct white gold</a><a href="#nav">18ct yellow gold</a><a href="#nav">Ready to ship · 9ct</a></div>
+      <div><h5>By stone</h5><a href="#nav">Round brilliant</a><a href="#nav">Oval</a><a href="#nav">Emerald</a><a href="#nav">Asscher</a></div>
+      <div><h5>By budget</h5><a href="#nav">Under £1,500</a><a href="#nav">£1,500 – £2,500</a><a href="#nav">£2,500 and above</a></div>
+      <div><h5>Not sure yet?</h5><a href="#nav">Start a bespoke enquiry</a><a href="#nav">Ring sizing guide</a><a href="#nav">Book a private appointment</a></div>
+    </div>
+  </div>
+  <p class="cap">The menu encodes how rings are actually chosen — metal, stone and budget — while <b>Ring sizing guide</b>, <b>bespoke enquiry</b> and <b>private appointment</b> become first-class, reachable destinations rather than being folded into a single contact form.</p>
+</div></section>
+
+<!-- PDP MOCKUP : DESKTOP FIRST -->
+<section id="pdp"><div class="wrap">
+  <div class="sec-head"><div class="ey">The product page</div><h2>Where the sale is won</h2><p>The same Aurora ring and the brand's own styling — restyled to carry the trust a four-figure diamond purchase needs. Desktop first, then mobile.</p></div>
+
+  <div class="ml">Desktop · the buying decision</div>
+  <div class="pdpd">
+    <div class="topbar">JEWELUXE</div>
+    <div class="stage">
+      <div class="gal">
+        <div class="main"><img src="https://jeweluxelondon.co.uk/cdn/shop/files/89F8A92A-997A-4F42-8F6D-A1F38B4180A7.jpg?v=1772835173&width=900" alt="Aurora ring"></div>
+        <div class="th">
+          <span class="on"><img src="https://jeweluxelondon.co.uk/cdn/shop/files/89F8A92A-997A-4F42-8F6D-A1F38B4180A7.jpg?v=1772835173&width=200" alt=""></span>
+          <span><img src="https://jeweluxelondon.co.uk/cdn/shop/files/312CE03B-A9D0-40A3-964C-3408862075D0.jpg?v=1772835173&width=200" alt=""></span>
+          <span><img src="https://jeweluxelondon.co.uk/cdn/shop/files/30FFF3FF-FFCB-4A5F-94D5-A6F5662B99FA.jpg?v=1773748998&width=200" alt=""></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="buy">
+        <div class="crumb">Engagement · Round brilliant</div>
+        <h3>Aurora Ring</h3>
+        <div class="stars"><span class="s">★★★★★</span> Verified reviews</div>
+        <div class="pprice">£1,350</div>
+        <div class="ship">VAT included</div>
+
+        <div class="fld">
+          <div class="fl"><span>Metal</span></div>
+          <div class="opts">
+            <span class="opt on"><b>18ct yellow gold</b><span>Made to order · 2–3 weeks</span></span>
+            <span class="opt"><b>9ct yellow gold</b><span>Ready to ship · 3–5 days</span></span>
+          </div>
+        </div>
+
+        <div class="fld">
+          <div class="fl"><span>Ring size</span><a href="#pdp">Find my size</a></div>
+          <div class="sizes"><span class="sz">J</span><span class="sz">K</span><span class="sz on">L</span><span class="sz">M</span><span class="sz">N</span><span class="sz">O</span><span class="sz">P</span></div>
+        </div>
+
+        <button class="atc">Add to bag</button>
+        <div class="fin">or 3 interest-free payments of <b>£450</b></div>
+
+        <div class="cert">
+          <div class="ch"><span>IGI-certified diamond</span><a href="#pdp">View report</a></div>
+          <div class="g">
+            <div><b>1.0</b><span>Carat</span></div>
+            <div><b>F</b><span>Colour</span></div>
+            <div><b>VS1</b><span>Clarity</span></div>
+            <div><b>Excellent</b><span>Cut</span></div>
+          </div>
+          <div class="no">IGI report · lab-grown · hallmarked in the United Kingdom</div>
+        </div>
+
+        <div class="marks">
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3Z"/></svg>UK hallmarked</span>
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>IGI certified</span>
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Handmade in London</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="cap"><b>Certification, surfaced.</b> The four Cs and the IGI report turn the homepage badge into proof the buyer can verify. <b>Sizing that helps</b> — a visible size strip and a "Find my size" guide reduce the single biggest source of ring hesitation and returns. <b>Instalments</b> open the price to more of your traffic, and the <b>hallmark, certification and London craftsmanship</b> marks finally appear beside the decision rather than only on the homepage.</p>
+  <p class="illus">Certificate grades and the instalment figure shown are illustrative placeholders for the mockup — real values populate per stone and per provider.</p>
+
+  <div class="ml" style="margin-top:48px">Mobile · 360px</div>
+  <div class="phone">
+    <div class="sc">
+      <div class="pb">JEWELUXE</div>
+      <div class="pimg"><img src="https://jeweluxelondon.co.uk/cdn/shop/files/89F8A92A-997A-4F42-8F6D-A1F38B4180A7.jpg?v=1772835173&width=700" alt="Aurora ring"></div>
+      <div class="pbd">
+        <div class="crumb">Round brilliant</div>
+        <h4>Aurora Ring</h4>
+        <div class="pst">★★★★★ &nbsp;Verified reviews</div>
+        <div class="ppr">£1,350</div>
+        <div class="pm2"><span>Metal · 18ct yellow gold</span></div>
+        <div class="opts"><span class="opt on"><b>18ct · made to order</b><span>2–3 wks</span></span><span class="opt"><b>9ct · ready</b><span>3–5 days</span></span></div>
+        <div class="pm2"><span>Ring size · L</span><a href="#pdp">Find my size</a></div>
+        <div class="sizes"><span class="sz">K</span><span class="sz on">L</span><span class="sz">M</span><span class="sz">N</span><span class="sz">O</span></div>
+        <div class="patc">Add to bag</div>
+        <div class="pfin">or 3 payments of £450, interest-free</div>
+        <div class="pcert">
+          <div class="h"><span>IGI-certified</span><a href="#pdp" style="color:var(--ink);text-decoration:none">Report</a></div>
+          <div class="g"><div><b>1.0</b><span>Carat</span></div><div><b>F</b><span>Colour</span></div><div><b>VS1</b><span>Clarity</span></div><div><b>EX</b><span>Cut</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="cap">On mobile — where most of the social traffic lands — the same hierarchy holds: price, a clear metal and lead-time choice, sizing help, instalments and certification all sit above the fold of the buying decision.</p>
+</div></section>
+
+<!-- QUICK WINS -->
+<section id="wins"><div class="wrap">
+  <div class="sec-head"><div class="ey">Quick wins</div><h2>Live within a week</h2><p>Low effort, no rebuild — mostly configuration and content.</p></div>
+  <div class="qw">
+    <div class="i"><span class="x">i.</span><div><h4>Switch on the reviews you already collect</h4><p>Judge.me is installed but empty. Request reviews from recent customers and surface the widget on every product.</p></div></div>
+    <div class="i"><span class="x">ii.</span><div><h4>Add a ring sizing guide</h4><p>A simple printable and at-home measure on every ring page — immediate reduction in hesitation and returns.</p></div></div>
+    <div class="i"><span class="x">iii.</span><div><h4>Bring certification onto the PDP</h4><p>Show the four Cs and the IGI report on each diamond, alongside the UK hallmark.</p></div></div>
+    <div class="i"><span class="x">iv.</span><div><h4>Enable instalments</h4><p>Activate an interest-free option at checkout so four-figure pieces reach more of your traffic.</p></div></div>
+    <div class="i"><span class="x">v.</span><div><h4>Point the consultation at a real appointment</h4><p>Replace the generic form route with a bookable slot for virtual or in-person bespoke appointments.</p></div></div>
+    <div class="i"><span class="x">vi.</span><div><h4>Fix the Earrings link</h4><p>Resolve it to a curated earrings collection rather than a generic page.</p></div></div>
+  </div>
+</div></section>
+
+<!-- ROADMAP -->
+<section id="roadmap"><div class="wrap">
+  <div class="sec-head"><div class="ey">Roadmap</div><h2>The order I'd work in</h2></div>
+  <div class="road">
+    <div class="phase">
+      <div class="num">01</div>
+      <div class="when">Weeks 1–2</div>
+      <h3>Trust &amp; proof</h3>
+      <p class="out">The brand starts to look as credentialled as it already is.</p>
+      <ul>
+        <li><b>Certification block</b> on every diamond product page</li>
+        <li><b>Activate the reviews</b> already installed, and surface them</li>
+        <li><b>Sizing guide</b> live across all rings</li>
+        <li><b>Hallmark &amp; IGI marks</b> beside Add to Cart</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="num">02</div>
+      <div class="when">Weeks 2–5</div>
+      <h3>Convert the demand</h3>
+      <p class="out">The same traffic begins converting at a higher rate and basket value.</p>
+      <ul>
+        <li><b>Instalments</b> at checkout</li>
+        <li><b>Bookable bespoke appointments</b>, virtual or in person</li>
+        <li><b>Ready-to-ship vs made-to-order</b> presented as a clear choice</li>
+        <li><b>Customer imagery &amp; press</b>, carried from social onto the site</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="num">03</div>
+      <div class="when">Weeks 5–10</div>
+      <h3>Scale &amp; retain</h3>
+      <p class="out">Discovery scales with the range, and a first purchase becomes a second.</p>
+      <ul>
+        <li><b>Shop-by navigation</b> — metal, stone, budget</li>
+        <li><b>Guided bespoke enquiry</b> for higher-value commissions</li>
+        <li><b>A members' privilege</b> in place of a flat welcome discount</li>
+        <li><b>Collection filtering</b> as the catalogue grows</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="ft">
+    <h3>A storefront that converts the demand the brand already commands.</h3>
+    <a class="fcta" href="mailto:hello@northboundcommerce.co.uk">Start a conversation</a>
+  </div>
+  <div class="pf">
+    <div><div class="k">Prepared for</div><div class="v">Jeweluxe London</div></div>
+    <div><div class="k">By</div><div class="v"><span class="nb" style="color:#EDEAE3;font-family:var(--sans);font-size:16px">North<span class="bw">b<svg class="sp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c1 7 4 11 12 12-8 1-11 5-12 12-1-7-4-11-12-12 8-1 11-5 12-12Z"/></svg></span>ound<span class="cm">Commerce</span></span></div></div>
+  </div>
+  <div class="fbot">
+    <span>Conversion &amp; experience for premium DTC · London</span>
+    <span><a href="https://northboundcommerce.co.uk" target="_blank" rel="noopener">northboundcommerce.co.uk</a> &nbsp;·&nbsp; <a href="https://northboundcommerce.co.uk/northbound-work.html" target="_blank" rel="noopener">Our Work</a></span>
+  </div>
+</div></footer>
+
+</body>
+</html>
