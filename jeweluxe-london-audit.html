@@ -45,7 +45,7 @@
   .cover{padding:88px 0 68px;border-bottom:1px solid var(--line)}
   .cover .label{margin-bottom:34px}
   .cover .nomad-logo{height:58px;margin-bottom:32px;display:block}
-  .cover h1{font-size:50px;font-weight:400;letter-spacing:-.005em}
+  .cover h1{font-size:clamp(46px,7.4vw,88px);font-weight:400;letter-spacing:-.005em}
   .cover h1 em{color:var(--gold)}
   .cover .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3.2vw,32px);color:var(--ink-soft);margin-top:8px}
   .cover .meta{display:flex;flex-wrap:wrap;margin-top:50px;border-top:1px solid var(--line)}
@@ -58,7 +58,7 @@
   .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:18px}
   .sec-head .no{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--gold)}
   .sec-head h2{font-size:clamp(30px,4.4vw,48px);font-weight:400}
-  .lead{font-size:15px;color:var(--ink);max-width:66ch}
+  .lead{font-size:19px;color:var(--ink);max-width:66ch}
   .lead.soft{color:var(--ink-soft)}
   .lead+.lead{margin-top:18px}
 
@@ -80,11 +80,11 @@
   .driver .dkick{font-family:'Cormorant Garamond';font-style:italic;font-size:20px;color:var(--ink-soft);margin-bottom:24px}
   .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px 40px;margin-top:8px}
   .dblock .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
-  .dblock p{font-size:14px;color:var(--ink)}
+  .dblock p{font-size:15.5px;color:var(--ink)}
   .dblock.obs p{color:var(--ink-soft)}
   .drationale{grid-column:1 / -1;background:var(--stone);padding:26px 30px;border-left:2px solid var(--gold);margin-top:6px}
   .drationale .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-  .drationale p{font-family:'Montserrat';font-size:15px;line-height:1.4;color:var(--ink)}
+  .drationale p{font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.4;color:var(--ink)}
   .dbench{font-size:14px;color:var(--ink-soft);margin-top:18px}
   .dbench b{color:var(--ink);font-weight:500}
   @media(max-width:760px){.driver .dhead{grid-template-columns:1fr;gap:10px}.dno-wrap{flex-direction:row;align-items:baseline;gap:16px}.driver .dno{font-size:42px}.driver .dno-lab{margin-top:0;padding-top:0;border-top:0}.dgrid{grid-template-columns:1fr;gap:18px}}
@@ -206,7 +206,7 @@
   .stage.feat .se{color:var(--gold-soft)}
   .stage h3{font-size:28px;font-weight:500;color:var(--ink);margin-bottom:14px}
   .stage.feat h3{color:#F5F1E8}
-  .stage .outcome{font-family:''Montserrat';font-style:italic;font-size:15px;line-height:1.35;color:var(--ink);margin-bottom:20px}
+  .stage .outcome{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.35;color:var(--ink);margin-bottom:20px}
   .stage.feat .outcome{color:#EFEADF}
   .stage .incl{list-style:none;margin-bottom:22px}
   .stage .incl li{font-size:13.5px;color:var(--ink-soft);padding-left:18px;position:relative;margin-bottom:9px;line-height:1.5}
@@ -269,6 +269,8 @@
       <div><span>Scope</span><strong>Product page &amp; conversion</strong></div>
       <div><span>Benchmarked against</span><strong>Boodles · De Beers · Monica Vinader</strong></div>
     </div>
+    <div class="prep">Prepared by
+      <span class="nb" style="font-size:13px"><span class="w1">Nor<span class="th">th<span class="sp"><svg viewBox="0 0 100 100"><path d="M50 4 C 53 40, 60 47, 96 50 C 60 53, 53 60, 50 96 C 47 60, 40 53, 4 50 C 40 47, 47 40, 50 4 Z" fill="#9C7B4A"/></svg></span></span>bound</span><span class="w2">Commerce</span></span>
     </div>
   </div>
 </div>
