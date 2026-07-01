@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -384,15 +383,27 @@ border-left: .5px solid #CCC8C3; border-right: .5px solid #CCC8C3; }
 align-items: center; gap: 4px; letter-spacing: .08em; }
 .pz-in-stock::before { content: '•'; font-size: 10px; }
 /* CTA buttons — match the live site */
-.pz-btn-atb { background: #0A0E0C; color: #fff; text-align: center;
+.pz-btn-atb { background: #fff; color: #0A0E0C; border: .5px solid #0A0E0C; text-align: center;
 padding: 14px 0; font-size: 8px; letter-spacing: .12em; text-transform:
 uppercase; margin-bottom: 5px; font-weight: 400; }
 .pz-btn-bin { border: .5px solid #0A0E0C; background: #fff; text-align:
 center; padding: 14px 0; font-size: 8px; letter-spacing: .12em;
 text-transform: uppercase; margin-bottom: 5px; color: #0A0E0C; }
-.pz-btn-bndl { background: #0A0E0C; color: #fff; text-align: center;
+.pz-btn-bndl { background: #fff; color: #0A0E0C; border: .5px solid #0A0E0C; text-align: center;
 padding: 12px 0; font-size: 7.5px; letter-spacing: .1em; text-transform:
 uppercase; margin-bottom: 7px; position: relative; }
+/* Complimentary sample selector */
+.pz-sample { margin: 0 0 8px; position: relative; border: .5px solid #CCC8C3; padding: 10px 10px 11px; }
+.pz-sample-head { display: flex; align-items: center; justify-content: center; position: relative; font-size: 8px; letter-spacing: .14em; color: #0A0E0C; text-transform: uppercase; margin-bottom: 10px; }
+.pz-sample-chev { position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: flex; }
+.pz-sample-radio { display: flex; align-items: center; gap: 7px; font-size: 7.5px; letter-spacing: .1em; color: #0A0E0C; text-transform: uppercase; margin-bottom: 10px; }
+.pz-sample-radio .dot { width: 9px; height: 9px; border-radius: 50%; border: 1px solid #0A0E0C; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.pz-sample-radio .dot::after { content: ''; width: 4px; height: 4px; border-radius: 50%; background: #0A0E0C; }
+.pz-sample-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.pz-sample-opt { border: .5px solid #DAD5CF; padding: 9px 4px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.pz-sample-vial { width: 9px; height: 22px; border-radius: 2px 2px 3px 3px; background: linear-gradient(#F4E7D2, #E3C49B); border: .5px solid #CDA877; position: relative; }
+.pz-sample-vial::before { content: ''; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 4px; height: 3px; background: #2A2A2A; border-radius: 1px; }
+.pz-sample-cap { font-size: 6px; letter-spacing: .04em; color: #0A0E0C; text-align: center; line-height: 1.3; text-transform: uppercase; }
 /* Klarna */
 .pz-klarna { border: .5px solid #EDE8E2; background: #FAFAF8; padding:
 6px 10px; margin-bottom: 7px; text-align: center; position: relative; }
@@ -924,8 +935,8 @@ absent from the purchase zone</div>
 until checkout</div>
 <div class="gap-row"><span class="gap-dash"></span>Bundle offer not
 placed at the right moment</div>
-<div class="gap-row"><span class="gap-dash"></span>No gift messaging or
-personalisation layer</div>
+<div class="gap-row"><span class="gap-dash"></span>No brand story accordions or
+occasion-specific guidance</div>
 <div class="gap-row"><span class="gap-dash"></span>No fragrance pyramid
 to guide considered buyers</div>
 <div class="gap-row"><span class="gap-dash"></span>No Application
@@ -949,8 +960,8 @@ d="M2 7l4 4 6-6"/></svg>Klarna positioned immediately after the purchase buttons
 <div class="gap-row"><svg class="gap-tick" viewBox="0 0 14 14"><path
 d="M2 7l4 4 6-6"/></svg>Bundle offer placed after the add to bag decision</div>
 <div class="gap-row"><svg class="gap-tick" viewBox="0 0 14 14"><path
-d="M2 7l4 4 6-6"/></svg>Gift message component built into the purchase
-zone</div>
+d="M2 7l4 4 6-6"/></svg>About This Fragrance, Wear It When and Roxie Says
+brand accordions below the CTA</div>
 <div class="gap-row"><svg class="gap-tick" viewBox="0 0 14 14"><path
 d="M2 7l4 4 6-6"/></svg>Full fragrance pyramid with top, heart and base
 notes</div>
@@ -958,8 +969,8 @@ notes</div>
 d="M2 7l4 4 6-6"/></svg>Application Affirmations and Roxie Says brand
 sections</div>
 <div class="gap-row"><svg class="gap-tick" viewBox="0 0 14 14"><path
-d="M2 7l4 4 6-6"/></svg>Three-pillar trust bar including gift
-wrapping</div>
+d="M2 7l4 4 6-6"/></svg>Two-pillar trust bar — shipping and security —
+anchored beneath the add to bag</div>
 </div>
 </div>
 </div>
@@ -1047,7 +1058,7 @@ CTA.</div>
 <!-- Notes -->
 <div class="pz-notes">
 <span class="pz-notes-label">NOTES</span>
-<span class="pz-notes-vals">BERGAMOT · SAFFRON</span>
+<span class="pz-notes-vals">BERGAMOT · SAFFRON · JASMINE · AMBERWOOD · PATCHOULI, MUSK · MOSS · MALTOL</span>
 <span class="pz-more-info">MORE INFO</span>
 <div class="hs" style="top:-7px;left:-7px;" tabindex="0"
 aria-label="Annotation 2">
@@ -1058,28 +1069,32 @@ character without pushing the add to bag below view.</div>
 </div>
 </div>
 <hr class="pz-line">
-<!-- QTY + IN STOCK -->
-<div class="pz-qty-row">
-<span class="pz-qty-label">QTY</span>
-<div class="pz-qty-ctrl">
-<span class="pz-qty-btn">−</span>
-<span class="pz-qty-val">1</span>
-<span class="pz-qty-btn">+</span>
+<!-- Complimentary sample selector (NEW — marquee feature) -->
+<div class="pz-sample">
+<div class="pz-sample-head">Choose your complimentary sample<span class="pz-sample-chev"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></span></div>
+<div class="pz-sample-radio"><span class="dot"></span>No sample, thank you</div>
+<div class="pz-sample-row">
+<div class="pz-sample-opt"><span class="pz-sample-vial"></span><span class="pz-sample-cap">Main Character</span></div>
+<div class="pz-sample-opt"><span class="pz-sample-vial"></span><span class="pz-sample-cap">Power House</span></div>
+<div class="pz-sample-opt"><span class="pz-sample-vial"></span><span class="pz-sample-cap">Scene Stealer</span></div>
 </div>
-<div class="pz-in-stock">IN STOCK</div>
-</div>
-<!-- CTAs matching live site -->
-<div class="pz-btn-atb" style="position:relative;">ADD TO BAG — £60.00
 <div class="hs" style="top:50%;transform:translateY(-50%);right:-4px;" tabindex="0" aria-label="Annotation 3">
 <div class="hs-dot">3</div>
-<div class="hs-tip tip-r"><strong>Price on the add to bag</strong>Cost and commitment confirmed in a single element. No need to look up — the price is visible at the exact moment of decision, removing the last point of hesitation.</div>
+<div class="hs-tip tip-r"><strong>Complimentary sample selector</strong>Every buyer is offered a free sample of another character at the point of purchase — discovery and cross-sell built into the buy box. Built as a property on the perfume line, so carts never orphan and stock decrements automatically.</div>
+</div>
+</div>
+<!-- CTAs matching live site -->
+<div class="pz-btn-atb" style="position:relative;">ADD TO BAG
+<div class="hs" style="top:50%;transform:translateY(-50%);right:-4px;" tabindex="0" aria-label="Annotation 4">
+<div class="hs-dot">4</div>
+<div class="hs-tip tip-r"><strong>Primary action, top of the stack</strong>Add to Bag sits directly beneath the sample step; the bundle upsell follows below it. The buyer commits to one bottle first, then meets the save-10% option.</div>
 </div>
 </div>
 <div class="pz-btn-bndl">
 SAVE 10% — SHOP ALL THREE CHARACTERS
 <div class="hs" style="top:50%;transform:translateY(-50%);right:-4px;"
-tabindex="0" aria-label="Annotation 4">
-<div class="hs-dot">4</div>
+tabindex="0" aria-label="Annotation 5">
+<div class="hs-dot">5</div>
 <div class="hs-tip tip-r"><strong>Bundle offer after the decision</strong>Placed after the primary add to bag action. Captures the upsell when the customer has already committed mentally.</div>
 </div>
 </div>
@@ -1096,8 +1111,8 @@ letter-spacing="0.5">Klarna</text></svg>
 <div class="pz-klarna-small">18+, T&amp;C apply, credit subject to
 status.</div>
 <div class="hs" style="top:50%;transform:translateY(-50%);right:-4px;"
-tabindex="0" aria-label="Annotation 5">
-<div class="hs-dot">5</div>
+tabindex="0" aria-label="Annotation 6">
+<div class="hs-dot">6</div>
 <div class="hs-tip tip-r"><strong>Klarna — strategic
 placement</strong>BNPL after the add to bag, not buried at checkout. Breaking
 £60 into three £20 removes the final price barrier at the point of
@@ -1125,8 +1140,8 @@ width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10
 <span class="pz-trust-txt">Secure<br>checkout</span>
 </div>
 <div class="hs" style="top:50%;transform:translateY(-50%);right:-4px;"
-tabindex="0" aria-label="Annotation 6">
-<div class="hs-dot">6</div>
+tabindex="0" aria-label="Annotation 7">
+<div class="hs-dot">7</div>
 <div class="hs-tip tip-r"><strong>Trust signals at the decision
 point</strong>Shipping and security as centred equal containers.
 Addresses core objections directly after the add to bag.</div>
@@ -1139,8 +1154,8 @@ class="pz-acc-ico">+</span></div>
 class="pz-acc-l">APPLICATION AFFIRMATIONS</span><span
 class="pz-acc-ico">+</span>
 <div class="hs" style="top:50%;transform:translateY(-50%);left:-4px;"
-tabindex="0" aria-label="Annotation 7">
-<div class="hs-dot">7</div>
+tabindex="0" aria-label="Annotation 8">
+<div class="hs-dot">8</div>
 <div class="hs-tip tip-l"><strong>Affirmations accordion</strong>Custom
 section delivering the alter ego narrative and application ritual. Not
 present in the original build — deepens emotional connection before
@@ -1163,8 +1178,8 @@ class="pz-acc-ico">+</span></div>
 <span class="pz-sticky-price">£60.00</span>
 <div class="pz-sticky-btn">ADD TO BAG</div>
 </div>
-<div class="hs" style="top:50%;transform:translateY(-50%);right:10px;" tabindex="0" aria-label="Annotation 8">
-<div class="hs-dot">8</div>
+<div class="hs" style="top:50%;transform:translateY(-50%);right:10px;" tabindex="0" aria-label="Annotation 9">
+<div class="hs-dot">9</div>
 <div class="hs-tip tip-up"><strong>Sticky add to bag</strong>The add to bag bar stays fixed as the customer scrolls through brand story, notes and reviews. Purchase intent is never lost to navigation — one tap from anywhere on the page.</div>
 </div>
 </div>
@@ -1173,16 +1188,16 @@ class="pz-acc-ico">+</span></div>
 <div class="pz-press-label">As seen in</div>
 <div class="pz-press-names">
 <span class="pz-press-name">VOGUE</span>
-<span class="pz-press-name">HARPER'S BAZAAR</span>
-<span class="pz-press-name">FORBES</span>
-<span class="pz-press-name">THE TIMES</span>
 <span class="pz-press-name">GLAMOUR</span>
+<span class="pz-press-name">THE TIMES</span>
+<span class="pz-press-name">HARPER'S BAZAAR</span>
+<span class="pz-press-name">TATLER</span>
 </div>
 <div class="hs" style="top:50%;transform:translateY(-50%);right:10px;"
-tabindex="0" aria-label="Annotation 9">
-<div class="hs-dot">9</div>
+tabindex="0" aria-label="Annotation 10">
+<div class="hs-dot">10</div>
 <div class="hs-tip tip-up"><strong>Press bar — brand
-authority</strong>Editorial press names validate the luxury positioning
+authority</strong>Vogue, Glamour, The Times, Harper's Bazaar and Tatler validate the luxury positioning
 for new visitors arriving without prior brand awareness.</div>
 </div>
 </div>
@@ -1200,14 +1215,15 @@ store</span>
 <div class="ann-col">
 <div class="ann-item"><div class="ann-num" aria-hidden="true">1</div><div><span class="ann-tag">Conversion</span><div class="ann-title">Social proof before price</div><p class="ann-text">Stars, reviews and price in the same decision zone. Converts hesitation into confidence before the customer reaches the add to bag button.</p></div></div>
 <div class="ann-item"><div class="ann-num" aria-hidden="true">2</div><div><span class="ann-tag">Discovery</span><div class="ann-title">Fragrance notes above the fold</div><p class="ann-text">Key scent notes surfaced inline with progressive disclosure. Communicates character without pushing the add to bag button out of view.</p></div></div>
-<div class="ann-item"><div class="ann-num" aria-hidden="true">3</div><div><span class="ann-tag">Conversion</span><div class="ann-title">Price on the add to bag button</div><p class="ann-text">Cost and commitment confirmed in a single element. No need to look up — the price is visible at the exact moment of decision, removing the last point of hesitation.</p></div></div>
-<div class="ann-item"><div class="ann-num" aria-hidden="true">4</div><div><span class="ann-tag">AOV</span><div class="ann-title">Bundle offer after the decision</div><p class="ann-text">The 10% offer placed after the primary add to bag. The customer has already committed — this captures the upsell at peak openness.</p></div></div>
-<div class="ann-item"><div class="ann-num" aria-hidden="true">5</div><div><span class="ann-tag">Friction removal</span><div class="ann-title">Klarna at the decision point</div><p class="ann-text">BNPL placed after the add to bag, not buried in checkout. Breaking £60 into three £20 removes the final price barrier where it matters.</p></div></div>
-<div class="ann-item"><div class="ann-num" aria-hidden="true">6</div><div><span class="ann-tag">Trust</span><div class="ann-title">Two-pillar trust bar</div><p class="ann-text">Shipping and security as equal centred containers. Addresses core objections directly after the add to bag, before the brand copy.</p></div></div>
-<div class="ann-item"><div class="ann-num" aria-hidden="true">7</div><div><span class="ann-tag">Brand</span><div class="ann-title">Affirmations and brand narrative</div><p class="ann-text">Custom accordion sections delivering the alter ego narrative, Roxie Says founder voice, and application ritual — none of this existed in the original build.</p></div></div>
-<div class="ann-item"><div class="ann-num" aria-hidden="true">8</div><div><span class="ann-tag">Always on</span><div class="ann-title">Sticky add to bag</div><p class="ann-text">The add to bag bar stays fixed as the customer scrolls through brand story, notes and reviews. Purchase intent is never lost to navigation — one tap from anywhere on the page.</p></div></div>
-<div class="ann-item"><div class="ann-num" aria-hidden="true">9</div><div><span class="ann-tag">Authority</span><div class="ann-title">Press bar</div><p class="ann-text">Vogue, Harper's Bazaar and Forbes validate the luxury positioning for first-time visitors arriving without prior brand awareness.</p></div></div>
-<div class="ann-item"><div class="ann-num" aria-hidden="true">10</div><div><span class="ann-tag">Storytelling</span><div class="ann-title">Fragrance pyramid section</div><p class="ann-text">Visual top, heart and base note structure below the fold. Helps considered buyers understand the scent before purchase, reducing returns at this price point.</p></div></div>
+<div class="ann-item"><div class="ann-num" aria-hidden="true">3</div><div><span class="ann-tag">New · Discovery + AOV</span><div class="ann-title">Complimentary sample selector</div><p class="ann-text">The headline addition since the original build. Every buyer is offered a free sample of another character at the point of purchase — cross-sell and discovery built into the buy box. Architected as a line-item property on the perfume line, so carts never orphan and stock decrements automatically on every order.</p></div></div>
+<div class="ann-item"><div class="ann-num" aria-hidden="true">4</div><div><span class="ann-tag">Hierarchy</span><div class="ann-title">Primary action, top of the stack</div><p class="ann-text">Add to Bag sits directly under the sample step, with the bundle upsell beneath it. The buyer commits to one bottle first, then meets the save-10% option.</p></div></div>
+<div class="ann-item"><div class="ann-num" aria-hidden="true">5</div><div><span class="ann-tag">AOV</span><div class="ann-title">Bundle offer after the decision</div><p class="ann-text">The 10% offer placed after the primary add to bag. The customer has already committed — this captures the upsell at peak openness.</p></div></div>
+<div class="ann-item"><div class="ann-num" aria-hidden="true">6</div><div><span class="ann-tag">Friction removal</span><div class="ann-title">Klarna at the decision point</div><p class="ann-text">BNPL placed after the add to bag, not buried in checkout. Breaking £60 into three £20 removes the final price barrier where it matters.</p></div></div>
+<div class="ann-item"><div class="ann-num" aria-hidden="true">7</div><div><span class="ann-tag">Trust</span><div class="ann-title">Two-pillar trust bar</div><p class="ann-text">Shipping and security as equal centred containers. Addresses core objections directly after the add to bag, before the brand copy.</p></div></div>
+<div class="ann-item"><div class="ann-num" aria-hidden="true">8</div><div><span class="ann-tag">Brand</span><div class="ann-title">Affirmations and brand narrative</div><p class="ann-text">Custom accordion sections delivering the alter ego narrative, Roxie Says founder voice, and application ritual — none of this existed in the original build.</p></div></div>
+<div class="ann-item"><div class="ann-num" aria-hidden="true">9</div><div><span class="ann-tag">Always on</span><div class="ann-title">Sticky add to bag</div><p class="ann-text">The add to bag bar stays fixed as the customer scrolls through brand story, notes and reviews. Purchase intent is never lost to navigation — one tap from anywhere on the page.</p></div></div>
+<div class="ann-item"><div class="ann-num" aria-hidden="true">10</div><div><span class="ann-tag">Authority</span><div class="ann-title">Press bar</div><p class="ann-text">Vogue, Glamour, The Times, Harper's Bazaar and Tatler validate the luxury positioning for first-time visitors arriving without prior brand awareness.</p></div></div>
+<div class="ann-item"><div class="ann-num" aria-hidden="true">11</div><div><span class="ann-tag">Storytelling</span><div class="ann-title">Fragrance pyramid section</div><p class="ann-text">Visual top, heart and base note structure below the fold. Helps considered buyers understand the scent before purchase, reducing returns at this price point.</p></div></div>
 </div>
 </div>
 </div>
@@ -1267,11 +1283,12 @@ class="opt-title">Application Affirmations component</h3><p
 class="opt-body">Custom Liquid section translating the scent into
 character language. Aspirational copy that speaks to buyer identity and
 deepens emotional connection before purchase.</p></div>
-<div class="opt-card"><div class="opt-lbl">Gifting</div><h3
-class="opt-title">Gift message and wrapping</h3><p
-class="opt-body">Personalisation prompt and gift wrapping option in the
-purchase zone. Increases gifting conversion and surfaces use-case intent
-at the decision moment.</p></div>
+<div class="opt-card"><div class="opt-lbl">Discovery + AOV</div><h3
+class="opt-title">Complimentary sample selector</h3><p
+class="opt-body">A free sample of a second character offered on every
+single-bottle order. Built as a line-item property on the perfume line —
+no orphaned cart items, stock decremented automatically on each order.
+Turns one purchase into a trial of the wider collection.</p></div>
 </div>
 </section>
 <!-- ══ MOBILE UX ══════════════════════════════════ -->
@@ -1314,11 +1331,12 @@ guidelines. Eliminates the misfire frustration that breaks purchase
 intent at the final step.</p>
 </div>
 <div class="mob-feat" role="listitem">
-<div class="mob-feat-lbl">Hierarchy</div>
-<h3 class="mob-feat-h">Single column button stack</h3>
-<p class="mob-feat-p">Add to bag and bundle offer stacked full
-width with deliberate vertical spacing. Clear hierarchy, no accidental
-taps between adjacent actions.</p>
+<div class="mob-feat-lbl">Discovery</div>
+<h3 class="mob-feat-h">Complimentary sample selector</h3>
+<p class="mob-feat-p">The three characters as a horizontally scrollable
+row of large tap targets. Every single-bottle order becomes a free
+sample of another scent — cross-sell and discovery sized for the
+thumb.</p>
 </div>
 </div>
 <!-- Mobile screenshots -->
